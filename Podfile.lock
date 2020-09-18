@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (5.2.2)
+  - IQKeyboardManagerSwift (6.5.6)
+  - KeychainAccess (4.2.0)
+  - Kingfisher (5.15.0):
+    - Kingfisher/Core (= 5.15.0)
+  - Kingfisher/Core (5.15.0)
+  - ObjectMapper (4.2.0)
+  - Wormholy (1.6.3)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2.0)
+  - IQKeyboardManagerSwift (~> 6.5.0)
+  - KeychainAccess (~> 4.2.0)
+  - Kingfisher (~> 5.15.0)
+  - ObjectMapper (~> 4.2.0)
+  - Wormholy (~> 1.6.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - IQKeyboardManagerSwift
+    - KeychainAccess
+    - Kingfisher
+    - ObjectMapper
+    - Wormholy
+
+SPEC CHECKSUMS:
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  KeychainAccess: 3f760109aa99b05d0f231e28b22642da7153e38a
+  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  Wormholy: bfc1c8679eefd0edd92638758e21c3961b1b3b50
+
+PODFILE CHECKSUM: e0db43e14389ef35565c8e8cda1a089e3fd4b487
+
+COCOAPODS: 1.10.0.beta.1
