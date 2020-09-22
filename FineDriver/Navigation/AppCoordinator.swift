@@ -6,8 +6,27 @@
 //  Copyright © 2020 Infotekh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-struct AppCoordinator {
+protocol CoordinatorProtocol {
+    var navigationController: UINavigationController { get set }
+
+    func start()
+}
+
+
+
+struct AppCoordinator: CoordinatorProtocol {
+    var navigationController: UINavigationController
     
+    func start() {
+        let authManager = AuthManager()
+        let splashViewController = SplashViewController.initFromNib()
+        let presenter = SplashPresenter(viewController: splashViewController
+            , coordinator: self
+            , authManager: authManager)
+        splashViewController.presenter = presenter
+        
+        navigationController.viewControllers = [splashViewController]
+    }
 }
