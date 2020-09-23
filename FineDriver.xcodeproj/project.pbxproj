@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B532622514CB5C006EAAB2 /* AppDelegate.swift */; };
-		47B532652514CB5C006EAAB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B532642514CB5C006EAAB2 /* SceneDelegate.swift */; };
 		47B532672514CB5C006EAAB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B532662514CB5C006EAAB2 /* ViewController.swift */; };
 		47B5326A2514CB5C006EAAB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B532682514CB5C006EAAB2 /* Main.storyboard */; };
 		47B5326C2514CB5E006EAAB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47B5326B2514CB5E006EAAB2 /* Assets.xcassets */; };
@@ -19,13 +18,11 @@
 		9AA51BDC251A2CE1000AB6F1 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BDA251A2CE1000AB6F1 /* SplashViewController.xib */; };
 		9AA51BDE251A2D0E000AB6F1 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BDD251A2D0E000AB6F1 /* SplashPresenter.swift */; };
 		9AA51BE0251A2E1C000AB6F1 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BDF251A2E1C000AB6F1 /* AuthManager.swift */; };
-		9AA51BE2251A3671000AB6F1 /* UIViewController+XIB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BE1251A3671000AB6F1 /* UIViewController+XIB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		47B5325F2514CB5C006EAAB2 /* FineDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FineDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B532622514CB5C006EAAB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		47B532642514CB5C006EAAB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		47B532662514CB5C006EAAB2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		47B532692514CB5C006EAAB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		47B5326B2514CB5E006EAAB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,7 +35,6 @@
 		9AA51BDA251A2CE1000AB6F1 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		9AA51BDD251A2D0E000AB6F1 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
 		9AA51BDF251A2E1C000AB6F1 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthManager.swift; path = FineDriver/Modules/Splash/Presenter/AuthManager.swift; sourceTree = SOURCE_ROOT; };
-		9AA51BE1251A3671000AB6F1 /* UIViewController+XIB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+XIB.swift"; path = "FineDriver/Modules/Splash/Presenter/UIViewController+XIB.swift"; sourceTree = SOURCE_ROOT; };
 		C2712C967E335A421276BA18 /* Pods-FineDriver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineDriver.release.xcconfig"; path = "Target Support Files/Pods-FineDriver/Pods-FineDriver.release.xcconfig"; sourceTree = "<group>"; };
 		D1DD5B6F486C2D0F5CF97B2A /* Pods_FineDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FineDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,7 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				47B532622514CB5C006EAAB2 /* AppDelegate.swift */,
-				47B532642514CB5C006EAAB2 /* SceneDelegate.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -160,7 +155,6 @@
 		47B5328C2514DC18006EAAB2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9AA51BE1251A3671000AB6F1 /* UIViewController+XIB.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -331,12 +325,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA51BE2251A3671000AB6F1 /* UIViewController+XIB.swift in Sources */,
 				47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */,
 				9AA51BE0251A2E1C000AB6F1 /* AuthManager.swift in Sources */,
 				47B532672514CB5C006EAAB2 /* ViewController.swift in Sources */,
 				47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */,
-				47B532652514CB5C006EAAB2 /* SceneDelegate.swift in Sources */,
 				9AA51BDB251A2CE1000AB6F1 /* SplashViewController.swift in Sources */,
 				9AA51BDE251A2D0E000AB6F1 /* SplashPresenter.swift in Sources */,
 			);
