@@ -6,8 +6,8 @@
 //
 
 import UIKit
-
-@main
+//@main
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private var coordinator: AppCoordinator?
