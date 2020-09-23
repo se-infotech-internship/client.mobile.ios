@@ -16,12 +16,18 @@ protocol CoordinatorProtocol {
 
 
 
-struct AppCoordinator: CoordinatorProtocol {
+class AppCoordinator: CoordinatorProtocol {
+    // не понял зачем нужен синглтон - мы же будем передавать ссылку на координатор в презентеры
+    // также поменял СТРАКТ на КЛАСС 
     var navigationController: UINavigationController
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
     
     func start() {
         let authManager = AuthManager()
-        let splashViewController = SplashViewController.initFromNib()
+        let splashViewController = SplashViewController()
         let presenter = SplashPresenter(viewController: splashViewController
             , coordinator: self
             , authManager: authManager)

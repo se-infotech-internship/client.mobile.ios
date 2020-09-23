@@ -8,37 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B532622514CB5C006EAAB2 /* AppDelegate.swift */; };
-		47B532652514CB5C006EAAB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B532642514CB5C006EAAB2 /* SceneDelegate.swift */; };
-		47B5326C2514CB5E006EAAB2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47B5326B2514CB5E006EAAB2 /* Images.xcassets */; };
+		47B532672514CB5C006EAAB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B532662514CB5C006EAAB2 /* ViewController.swift */; };
+		47B5326A2514CB5C006EAAB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B532682514CB5C006EAAB2 /* Main.storyboard */; };
+		47B5326C2514CB5E006EAAB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47B5326B2514CB5E006EAAB2 /* Assets.xcassets */; };
 		47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B5326D2514CB5E006EAAB2 /* LaunchScreen.storyboard */; };
 		47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */; };
 		9167D5E7C899946F444F6C27 /* Pods_FineDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DD5B6F486C2D0F5CF97B2A /* Pods_FineDriver.framework */; };
-		92864DD62519F25400B24298 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92864DD42519F25400B24298 /* MenuViewController.swift */; };
-		92864DD72519F25400B24298 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92864DD52519F25400B24298 /* MenuViewController.xib */; };
-		92864DDA2519F36600B24298 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92864DD92519F36600B24298 /* Colors.xcassets */; };
-		92864DF32519F83B00B24298 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92864DF12519F83B00B24298 /* MenuCell.swift */; };
-		92864DF42519F83B00B24298 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92864DF22519F83B00B24298 /* MenuCell.xib */; };
-		92864DF7251A017500B24298 /* MenuEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92864DF6251A017500B24298 /* MenuEntity.swift */; };
-		92864E00251A0A0900B24298 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92864DFF251A0A0900B24298 /* MenuPresenter.swift */; };
+		9AA51BDB251A2CE1000AB6F1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BD9251A2CE1000AB6F1 /* SplashViewController.swift */; };
+		9AA51BDC251A2CE1000AB6F1 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BDA251A2CE1000AB6F1 /* SplashViewController.xib */; };
+		9AA51BDE251A2D0E000AB6F1 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BDD251A2D0E000AB6F1 /* SplashPresenter.swift */; };
+		9AA51BE0251A2E1C000AB6F1 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BDF251A2E1C000AB6F1 /* AuthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		47B5325F2514CB5C006EAAB2 /* FineDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FineDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B532622514CB5C006EAAB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		47B532642514CB5C006EAAB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		47B5326B2514CB5E006EAAB2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		47B532662514CB5C006EAAB2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		47B532692514CB5C006EAAB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		47B5326B2514CB5E006EAAB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47B5326E2514CB5E006EAAB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47B532702514CB5E006EAAB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		47B532922514DD84006EAAB2 /* FineDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FineDriver.entitlements; sourceTree = "<group>"; };
 		49835E0D39478AF6F454BDBF /* Pods-FineDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineDriver.debug.xcconfig"; path = "Target Support Files/Pods-FineDriver/Pods-FineDriver.debug.xcconfig"; sourceTree = "<group>"; };
-		92864DD42519F25400B24298 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		92864DD52519F25400B24298 /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
-		92864DD92519F36600B24298 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		92864DF12519F83B00B24298 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
-		92864DF22519F83B00B24298 /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
-		92864DF6251A017500B24298 /* MenuEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEntity.swift; sourceTree = "<group>"; };
-		92864DFF251A0A0900B24298 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
+		9AA51BD9251A2CE1000AB6F1 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		9AA51BDA251A2CE1000AB6F1 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		9AA51BDD251A2D0E000AB6F1 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		9AA51BDF251A2E1C000AB6F1 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthManager.swift; path = FineDriver/Modules/Splash/Presenter/AuthManager.swift; sourceTree = SOURCE_ROOT; };
 		C2712C967E335A421276BA18 /* Pods-FineDriver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineDriver.release.xcconfig"; path = "Target Support Files/Pods-FineDriver/Pods-FineDriver.release.xcconfig"; sourceTree = "<group>"; };
 		D1DD5B6F486C2D0F5CF97B2A /* Pods_FineDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FineDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -88,9 +84,9 @@
 				47B532922514DD84006EAAB2 /* FineDriver.entitlements */,
 				47B532812514DB6A006EAAB2 /* AppDelegate */,
 				47B5328B2514DC0E006EAAB2 /* Utils */,
-				92864DD02519EF5100B24298 /* Extensions */,
-				92864DD22519EF6C00B24298 /* Managers */,
-				92864DD32519EF7600B24298 /* Models */,
+				47B5328C2514DC18006EAAB2 /* Extensions */,
+				47B5328A2514DBCB006EAAB2 /* Managers */,
+				47B532892514DBC4006EAAB2 /* Models */,
 				47B532842514DB8B006EAAB2 /* Modules */,
 				47B5328D2514DC53006EAAB2 /* Navigation */,
 				47B532872514DB95006EAAB2 /* Resources */,
@@ -103,7 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				47B532622514CB5C006EAAB2 /* AppDelegate.swift */,
-				47B532642514CB5C006EAAB2 /* SceneDelegate.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -111,7 +106,8 @@
 		47B532842514DB8B006EAAB2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				92864DFB251A09DA00B24298 /* Menu */,
+				9AA51BD5251A2C9D000AB6F1 /* Splash */,
+				47B532662514CB5C006EAAB2 /* ViewController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -120,8 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				47B532702514CB5E006EAAB2 /* Info.plist */,
-				47B5326B2514CB5E006EAAB2 /* Images.xcassets */,
-				92864DD92519F36600B24298 /* Colors.xcassets */,
+				47B5326B2514CB5E006EAAB2 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -129,10 +124,25 @@
 		47B532882514DBB1006EAAB2 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				47B532682514CB5C006EAAB2 /* Main.storyboard */,
 				47B5326D2514CB5E006EAAB2 /* LaunchScreen.storyboard */,
-				92864DD52519F25400B24298 /* MenuViewController.xib */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		47B532892514DBC4006EAAB2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		47B5328A2514DBCB006EAAB2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				9AA51BDF251A2E1C000AB6F1 /* AuthManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		47B5328B2514DC0E006EAAB2 /* Utils */ = {
@@ -140,6 +150,13 @@
 			children = (
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		47B5328C2514DC18006EAAB2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		47B5328D2514DC53006EAAB2 /* Navigation */ = {
@@ -150,61 +167,38 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		92864DD02519EF5100B24298 /* Extensions */ = {
+		9AA51BD5251A2C9D000AB6F1 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				9AA51BD8251A2CC2000AB6F1 /* Presenter */,
+				9AA51BD7251A2CB8000AB6F1 /* View */,
+				9AA51BD6251A2CAB000AB6F1 /* Model */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		9AA51BD6251A2CAB000AB6F1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Extensions;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		92864DD22519EF6C00B24298 /* Managers */ = {
+		9AA51BD7251A2CB8000AB6F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9AA51BD9251A2CE1000AB6F1 /* SplashViewController.swift */,
+				9AA51BDA251A2CE1000AB6F1 /* SplashViewController.xib */,
 			);
-			path = Managers;
+			path = View;
 			sourceTree = "<group>";
 		};
-		92864DD32519EF7600B24298 /* Models */ = {
+		9AA51BD8251A2CC2000AB6F1 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				92864DF6251A017500B24298 /* MenuEntity.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		92864DFB251A09DA00B24298 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				92864DFD251A09EA00B24298 /* Presenter */,
-				92864DFC251A09E400B24298 /* Controller */,
-			);
-			path = Menu;
-			sourceTree = "<group>";
-		};
-		92864DFC251A09E400B24298 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				92864DFE251A09EF00B24298 /* Cell */,
-				92864DD42519F25400B24298 /* MenuViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		92864DFD251A09EA00B24298 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				92864DFF251A0A0900B24298 /* MenuPresenter.swift */,
+				9AA51BDD251A2D0E000AB6F1 /* SplashPresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		92864DFE251A09EF00B24298 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				92864DF12519F83B00B24298 /* MenuCell.swift */,
-				92864DF22519F83B00B24298 /* MenuCell.xib */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		AD9DF553CF5919408B920236 /* Frameworks */ = {
@@ -275,11 +269,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92864DF42519F83B00B24298 /* MenuCell.xib in Resources */,
-				92864DDA2519F36600B24298 /* Colors.xcassets in Resources */,
 				47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */,
-				47B5326C2514CB5E006EAAB2 /* Images.xcassets in Resources */,
-				92864DD72519F25400B24298 /* MenuViewController.xib in Resources */,
+				47B5326C2514CB5E006EAAB2 /* Assets.xcassets in Resources */,
+				47B5326A2514CB5C006EAAB2 /* Main.storyboard in Resources */,
+				9AA51BDC251A2CE1000AB6F1 /* SplashViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,18 +326,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */,
-				92864DD62519F25400B24298 /* MenuViewController.swift in Sources */,
-				92864DF32519F83B00B24298 /* MenuCell.swift in Sources */,
-				92864E00251A0A0900B24298 /* MenuPresenter.swift in Sources */,
-				92864DF7251A017500B24298 /* MenuEntity.swift in Sources */,
+				9AA51BE0251A2E1C000AB6F1 /* AuthManager.swift in Sources */,
+				47B532672514CB5C006EAAB2 /* ViewController.swift in Sources */,
 				47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */,
-				47B532652514CB5C006EAAB2 /* SceneDelegate.swift in Sources */,
+				9AA51BDB251A2CE1000AB6F1 /* SplashViewController.swift in Sources */,
+				9AA51BDE251A2D0E000AB6F1 /* SplashPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		47B532682514CB5C006EAAB2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47B532692514CB5C006EAAB2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		47B5326D2514CB5E006EAAB2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -482,7 +482,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HUHG2FJLKJ;
 				INFOPLIST_FILE = FineDriver/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -504,7 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HUHG2FJLKJ;
 				INFOPLIST_FILE = FineDriver/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
