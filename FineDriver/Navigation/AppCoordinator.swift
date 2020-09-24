@@ -6,8 +6,47 @@
 //  Copyright © 2020 Infotekh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-struct AppCoordinator {
+protocol CoordinatorProtocol {
+    var navigationController: UINavigationController! { get set }
+
+    func start()
+    func routeToMap()
+    func routeToMenu()
+}
+
+
+
+class AppCoordinator: CoordinatorProtocol {
     
+    static let shared = AppCoordinator()
+    
+    var navigationController: UINavigationController!
+    
+    func start() {
+        let authManager = AuthManager()
+        let splashViewController = SplashViewController()
+        let presenter = SplashPresenter(viewController: splashViewController
+            , authManager: authManager)
+        splashViewController.presenter = presenter
+        
+        navigationController.viewControllers = [splashViewController]
+    }
+    
+    func routeToMap() {
+        let viewController = MapViewController()
+        let presenter = MapPresenter()
+        viewController.presenter = presenter
+        
+        navigationController.viewControllers = [viewController]
+    }
+    
+    func routeToMenu() {
+        let viewController = MenuViewController()
+        let presenter = MenuPresenter()
+        viewController.presenter = presenter
+        
+        navigationController.viewControllers = [viewController]
+    }
 }

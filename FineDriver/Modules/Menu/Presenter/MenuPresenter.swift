@@ -25,6 +25,7 @@ final class MenuPresenter {
     
     // MARK: - Private property
     private var menuItemsEntity = [MenuItemEntity]()
+    private let coordinator = AppCoordinator.shared
     
     // MARK: - Private method
     private func fetchMockMenuData() { // TODO: - work with mockData
@@ -45,5 +46,9 @@ extension MenuPresenter: MenuPresenterProtocol {
     
     func viewDidLoad() {
         fetchMockMenuData()
+    }
+    
+    func routeMap() {
+        coordinator.routeToMap()
     }
 }
