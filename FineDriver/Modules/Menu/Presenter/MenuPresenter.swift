@@ -15,6 +15,7 @@ protocol MenuPresenterProtocol: class {
     func countRows() -> Int
     func model(index: Int) -> MenuItemEntity
     func viewDidLoad()
+    func routeMap()
 }
 
 final class MenuPresenter {
