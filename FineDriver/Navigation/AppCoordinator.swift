@@ -9,30 +9,44 @@
 import UIKit
 
 protocol CoordinatorProtocol {
-    var navigationController: UINavigationController { get set }
+    var navigationController: UINavigationController! { get set }
 
     func start()
+    func routeToMap()
+    func routeToMenu()
 }
 
 
 
 class AppCoordinator: CoordinatorProtocol {
-    // не понял зачем нужен синглтон - мы же будем передавать ссылку на координатор в презентеры
-    // также поменял СТРАКТ на КЛАСС 
-    var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
+    static let shared = AppCoordinator()
+    
+    var navigationController: UINavigationController!
     
     func start() {
         let authManager = AuthManager()
         let splashViewController = SplashViewController()
         let presenter = SplashPresenter(viewController: splashViewController
-            , coordinator: self
             , authManager: authManager)
         splashViewController.presenter = presenter
         
         navigationController.viewControllers = [splashViewController]
+    }
+    
+    func routeToMap() {
+        let viewController = MapViewController()
+        let presenter = MapPresenter()
+        viewController.presenter = presenter
+        
+        navigationController.viewControllers = [viewController]
+    }
+    
+    func routeToMenu() {
+        let viewController = MenuViewController()
+        let presenter = MenuPresenter()
+        viewController.presenter = presenter
+        
+        navigationController.viewControllers = [viewController]
     }
 }

@@ -75,5 +75,9 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: - write code
+        // stub
+        if indexPath.row == 0 {
+            presenter?.routeMap()
+        }
     }
 }
