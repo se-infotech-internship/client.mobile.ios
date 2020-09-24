@@ -10,20 +10,29 @@ import Foundation
 
 
 protocol SplashPresenterProtocol {
-
+    func auth()
 }
 
 final class SplashPresenter: SplashPresenterProtocol {
     var viewController: SplashViewControllerProtocol!
-    var coordinator: CoordinatorProtocol!
+    private let coordinator = AppCoordinator.shared
     var authManager: AuthManagerProtocol!
     
     init(viewController: SplashViewControllerProtocol
-        , coordinator: CoordinatorProtocol
         , authManager: AuthManagerProtocol) {
         
         self.viewController = viewController
-        self.coordinator = coordinator
         self.authManager = authManager
+    }
+    
+    func auth() {
+        authManager.auth { [weak self] (result) in
+            switch result {
+            case .success(let authObj):
+                self?.coordinator.routeToMap()
+            case .failure(let err):
+                break
+            }
+        }
     }
 }

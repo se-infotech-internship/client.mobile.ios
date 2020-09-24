@@ -8,10 +8,23 @@
 
 import Foundation
 
+enum AuthError: Error {
+    case stub
+}
+
+struct AuthObj {}
+
 protocol AuthManagerProtocol {
-    
+    func auth(completion: @escaping(Result<AuthObj, AuthError>) -> Void)
 }
 
 final class AuthManager: AuthManagerProtocol {
+    func auth(completion: @escaping (Result<AuthObj, AuthError>) -> Void) {
+        //TODO: - implement
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            completion(.success(AuthObj()))
+        }
+    }
+    
     
 }

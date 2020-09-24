@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let navigationController = UINavigationController()
-        coordinator = AppCoordinator(navigationController: navigationController)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        coordinator = AppCoordinator.shared
+        coordinator?.navigationController = navigationController
         coordinator?.start()
 
         window = UIWindow(frame: UIScreen.main.bounds)
