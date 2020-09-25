@@ -10,13 +10,11 @@ import UIKit
 
 protocol CoordinatorProtocol {
     var navigationController: UINavigationController! { get set }
-
+    
     func start()
     func routeToMap()
     func routeToMenu()
 }
-
-
 
 class AppCoordinator: CoordinatorProtocol {
     
@@ -27,8 +25,8 @@ class AppCoordinator: CoordinatorProtocol {
     func start() {
         let authManager = AuthManager()
         let splashViewController = SplashViewController()
-        let presenter = SplashPresenter(viewController: splashViewController
-            , authManager: authManager)
+        let presenter = SplashPresenter(viewController: splashViewController,
+                                        authManager: authManager)
         splashViewController.presenter = presenter
         
         navigationController.viewControllers = [splashViewController]
@@ -36,7 +34,7 @@ class AppCoordinator: CoordinatorProtocol {
     
     func routeToMap() {
         let viewController = MapViewController()
-        let presenter = MapPresenter()
+        let presenter = MapPresenter(view: viewController)
         viewController.presenter = presenter
         
         navigationController.viewControllers = [viewController]
@@ -44,7 +42,7 @@ class AppCoordinator: CoordinatorProtocol {
     
     func routeToMenu() {
         let viewController = MenuViewController()
-        let presenter = MenuPresenter()
+        let presenter = MenuPresenter(view: viewController)
         viewController.presenter = presenter
         
         navigationController.viewControllers = [viewController]

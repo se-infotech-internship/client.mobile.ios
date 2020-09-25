@@ -27,6 +27,11 @@ final class MenuPresenter {
     private var menuItemsEntity = [MenuItemEntity]()
     private let coordinator = AppCoordinator.shared
     
+    // MARK: - LifeCycle
+    init(view: MenuViewControllerProtocol?) {
+        self.view = view
+    }
+    
     // MARK: - Private method
     private func fetchMockMenuData() { // TODO: - work with mockData
         menuItemsEntity = mockDataForMenuVC()

@@ -144,53 +144,21 @@
 		4706367C251DFE90006F7F41 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				4706367D251DFE90006F7F41 /* Presenter */,
-				4706367F251DFE90006F7F41 /* Controller */,
-			);
-			path = SignIn;
-			sourceTree = "<group>";
-		};
-		4706367D251DFE90006F7F41 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
 				4706367E251DFE90006F7F41 /* SignInPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		4706367F251DFE90006F7F41 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
 				47063680251DFE90006F7F41 /* SignInViewController.swift */,
 			);
-			path = Controller;
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		47063685251DFEB9006F7F41 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				47063686251DFEB9006F7F41 /* Presenter */,
-				47063689251DFEB9006F7F41 /* View */,
-			);
-			path = Splash;
-			sourceTree = "<group>";
-		};
-		47063686251DFEB9006F7F41 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				47063687251DFEB9006F7F41 /* SplashPresenter.swift */,
 				47063688251DFEB9006F7F41 /* AuthManager.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		47063689251DFEB9006F7F41 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				47063687251DFEB9006F7F41 /* SplashPresenter.swift */,
 				4706368A251DFEB9006F7F41 /* SplashViewController.swift */,
 				4706368B251DFEB9006F7F41 /* SplashViewController.xib */,
 			);
-			path = View;
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		47B532562514CB5C006EAAB2 = {
@@ -239,10 +207,10 @@
 		47B532842514DB8B006EAAB2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				47063685251DFEB9006F7F41 /* Splash */,
 				4706367C251DFE90006F7F41 /* SignIn */,
 				9AA51C07251C1191000AB6F1 /* Map */,
 				9AA51BF7251C0DCE000AB6F1 /* Menu */,
-				47063685251DFEB9006F7F41 /* Splash */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -260,9 +228,7 @@
 		47B532882514DBB1006EAAB2 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				9AA51C05251C0F12000AB6F1 /* MenuViewController.xib */,
 				47B5326D2514CB5E006EAAB2 /* LaunchScreen.storyboard */,
-				9AA51C0C251C1208000AB6F1 /* MapViewController.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -314,61 +280,23 @@
 		9AA51BF7251C0DCE000AB6F1 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				9AA51BF8251C0DCE000AB6F1 /* Presenter */,
-				9AA51BFA251C0DCF000AB6F1 /* Controller */,
-			);
-			path = Menu;
-			sourceTree = "<group>";
-		};
-		9AA51BF8251C0DCE000AB6F1 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
 				9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		9AA51BFA251C0DCF000AB6F1 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				9AA51BFB251C0DCF000AB6F1 /* Cell */,
 				9AA51BFE251C0DCF000AB6F1 /* MenuViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		9AA51BFB251C0DCF000AB6F1 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
+				9AA51C05251C0F12000AB6F1 /* MenuViewController.xib */,
 				9AA51BFC251C0DCF000AB6F1 /* MenuCell.swift */,
 				9AA51BFD251C0DCF000AB6F1 /* MenuCell.xib */,
 			);
-			path = Cell;
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		9AA51C07251C1191000AB6F1 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				9AA51C09251C11AD000AB6F1 /* Presenter */,
-				9AA51C08251C119D000AB6F1 /* View */,
+				9AA51C10251C1253000AB6F1 /* MapPresenter.swift */,
+				9AA51C0E251C122A000AB6F1 /* MapViewController.swift */,
+				9AA51C0C251C1208000AB6F1 /* MapViewController.xib */,
 			);
 			path = Map;
-			sourceTree = "<group>";
-		};
-		9AA51C08251C119D000AB6F1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				9AA51C0E251C122A000AB6F1 /* MapViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		9AA51C09251C11AD000AB6F1 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				9AA51C10251C1253000AB6F1 /* MapPresenter.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		AD9DF553CF5919408B920236 /* Frameworks */ = {

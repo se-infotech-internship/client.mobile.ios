@@ -59,6 +59,7 @@ final class MenuViewController: UIViewController {
     }
 }
 
+// MARK: - Protocol methods
 extension MenuViewController: MenuViewControllerProtocol {
     
     func reloadData() {
@@ -86,10 +87,12 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: - write code
-        // stub
-        if indexPath.row == 0 {
+        
+        switch indexPath.row {
+        case 0:
             presenter?.routeMap()
+        default:
+            break
         }
     }
 }
