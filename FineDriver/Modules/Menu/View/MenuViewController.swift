@@ -14,6 +14,14 @@ protocol MenuViewControllerProtocol: class {
 }
 
 final class MenuViewController: UIViewController {
+    
+    private enum Layout {
+        
+        enum TableView {
+            
+            static let height: CGFloat = 58.0
+        }
+    }
 
     // MARK: - Private outlets
     @IBOutlet private weak var avatarImageView: UIImageView!
@@ -60,6 +68,10 @@ extension MenuViewController: MenuViewControllerProtocol {
 
 // MARK: - Delegate methods
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Layout.TableView.height
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.countRows() ?? 0

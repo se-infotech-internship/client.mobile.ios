@@ -29,7 +29,7 @@ final class SplashPresenter: SplashPresenterProtocol {
         authManager.auth { [weak self] (result) in
             switch result {
             case .success(let authObj):
-                self?.coordinator.routeToMap()
+                self?.coordinator.routeToMenu()
             case .failure(let err):
                 break
             }

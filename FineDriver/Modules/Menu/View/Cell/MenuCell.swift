@@ -35,11 +35,20 @@ final class MenuCell: UITableViewCell {
         yellowRoundView.layer.cornerRadius = 17
         yellowRoundView.clipsToBounds = true
     }
+
+    private func setupNotificationView(count: Int?) {
+        if count == nil {
+            notificationView.isHidden = true
+        } else {
+            notificationView.isHidden = false
+        }
+    }
     
     // MARK: - Public method
     func update(model: MenuItemEntity) {
-        iconImageView.image = UIImage(named: "\(model.iconItem)")
+        iconImageView.image = model.iconItem
         nameLabel.text = model.nameItem
+        setupNotificationView(count: model.notificationCount)
         countCallLabel.text = "\(model.notificationCount ?? 0)"
     }
 }

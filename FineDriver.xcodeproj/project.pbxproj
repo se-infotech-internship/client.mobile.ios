@@ -13,6 +13,12 @@
 		47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B5326D2514CB5E006EAAB2 /* LaunchScreen.storyboard */; };
 		47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */; };
 		9167D5E7C899946F444F6C27 /* Pods_FineDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DD5B6F486C2D0F5CF97B2A /* Pods_FineDriver.framework */; };
+		9200592D251DD58C00998477 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92005923251DD58C00998477 /* SplashPresenter.swift */; };
+		9200592E251DD58C00998477 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92005924251DD58C00998477 /* AuthManager.swift */; };
+		9200592F251DD58C00998477 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92005926251DD58C00998477 /* SplashViewController.swift */; };
+		92005930251DD58C00998477 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92005927251DD58C00998477 /* SplashViewController.xib */; };
+		92005931251DD58C00998477 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9200592A251DD58C00998477 /* MapPresenter.swift */; };
+		92005932251DD58C00998477 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9200592C251DD58C00998477 /* MapViewController.swift */; };
 		92864DD62519F25400B24298 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92864DD42519F25400B24298 /* MenuViewController.swift */; };
 		92864DD72519F25400B24298 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92864DD52519F25400B24298 /* MenuViewController.xib */; };
 		92864DDA2519F36600B24298 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92864DD92519F36600B24298 /* Colors.xcassets */; };
@@ -36,6 +42,12 @@
 		47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		47B532922514DD84006EAAB2 /* FineDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FineDriver.entitlements; sourceTree = "<group>"; };
 		49835E0D39478AF6F454BDBF /* Pods-FineDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineDriver.debug.xcconfig"; path = "Target Support Files/Pods-FineDriver/Pods-FineDriver.debug.xcconfig"; sourceTree = "<group>"; };
+		92005923251DD58C00998477 /* SplashPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		92005924251DD58C00998477 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		92005926251DD58C00998477 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		92005927251DD58C00998477 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		9200592A251DD58C00998477 /* MapPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		9200592C251DD58C00998477 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		92864DD42519F25400B24298 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		92864DD52519F25400B24298 /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		92864DD92519F36600B24298 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -119,6 +131,8 @@
 		47B532842514DB8B006EAAB2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				92005928251DD58C00998477 /* Map */,
+				92005921251DD58C00998477 /* Splash */,
 				92864E8E251B590D00B24298 /* SignIn */,
 				92864DFB251A09DA00B24298 /* Menu */,
 			);
@@ -161,6 +175,58 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		92005921251DD58C00998477 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				92005922251DD58C00998477 /* Presenter */,
+				92005925251DD58C00998477 /* View */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		92005922251DD58C00998477 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				92005923251DD58C00998477 /* SplashPresenter.swift */,
+				92005924251DD58C00998477 /* AuthManager.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		92005925251DD58C00998477 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92005926251DD58C00998477 /* SplashViewController.swift */,
+				92005927251DD58C00998477 /* SplashViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92005928251DD58C00998477 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				92005929251DD58C00998477 /* Presenter */,
+				9200592B251DD58C00998477 /* View */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		92005929251DD58C00998477 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				9200592A251DD58C00998477 /* MapPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		9200592B251DD58C00998477 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9200592C251DD58C00998477 /* MapViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		92864DD02519EF5100B24298 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,18 +253,18 @@
 			isa = PBXGroup;
 			children = (
 				92864DFD251A09EA00B24298 /* Presenter */,
-				92864DFC251A09E400B24298 /* Controller */,
+				92864DFC251A09E400B24298 /* View */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
 		};
-		92864DFC251A09E400B24298 /* Controller */ = {
+		92864DFC251A09E400B24298 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				92864DFE251A09EF00B24298 /* Cell */,
 				92864DD42519F25400B24298 /* MenuViewController.swift */,
 			);
-			path = Controller;
+			path = View;
 			sourceTree = "<group>";
 		};
 		92864DFD251A09EA00B24298 /* Presenter */ = {
@@ -222,17 +288,17 @@
 			isa = PBXGroup;
 			children = (
 				92864E90251B593A00B24298 /* Presenter */,
-				92864E8F251B592E00B24298 /* Controller */,
+				92864E8F251B592E00B24298 /* View */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
 		};
-		92864E8F251B592E00B24298 /* Controller */ = {
+		92864E8F251B592E00B24298 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				92864E91251B595600B24298 /* SignInViewController.swift */,
 			);
-			path = Controller;
+			path = View;
 			sourceTree = "<group>";
 		};
 		92864E90251B593A00B24298 /* Presenter */ = {
@@ -315,6 +381,7 @@
 				92864DF42519F83B00B24298 /* MenuCell.xib in Resources */,
 				92864DDA2519F36600B24298 /* Colors.xcassets in Resources */,
 				47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */,
+				92005930251DD58C00998477 /* SplashViewController.xib in Resources */,
 				47B5326C2514CB5E006EAAB2 /* Images.xcassets in Resources */,
 				92864E94251B595600B24298 /* SignInViewController.xib in Resources */,
 				92864E9C251B5E8000B24298 /* credentials.plist in Resources */,
@@ -389,14 +456,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */,
+				9200592D251DD58C00998477 /* SplashPresenter.swift in Sources */,
+				92005931251DD58C00998477 /* MapPresenter.swift in Sources */,
 				92864DD62519F25400B24298 /* MenuViewController.swift in Sources */,
+				9200592F251DD58C00998477 /* SplashViewController.swift in Sources */,
 				92864DF32519F83B00B24298 /* MenuCell.swift in Sources */,
 				92864EBD251B62CA00B24298 /* SignInPresenter.swift in Sources */,
 				92864E00251A0A0900B24298 /* MenuPresenter.swift in Sources */,
 				92864E93251B595600B24298 /* SignInViewController.swift in Sources */,
 				92864DF7251A017500B24298 /* MenuEntity.swift in Sources */,
+				9200592E251DD58C00998477 /* AuthManager.swift in Sources */,
 				47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */,
 				47B532652514CB5C006EAAB2 /* SceneDelegate.swift in Sources */,
+				92005932251DD58C00998477 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
