@@ -23,6 +23,7 @@
 		4706368D251DFEB9006F7F41 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47063688251DFEB9006F7F41 /* AuthManager.swift */; };
 		4706368E251DFEB9006F7F41 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4706368A251DFEB9006F7F41 /* SplashViewController.swift */; };
 		4706368F251DFEB9006F7F41 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4706368B251DFEB9006F7F41 /* SplashViewController.xib */; };
+		470636D1251E18BA006F7F41 /* ResourcesKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470636D0251E18BA006F7F41 /* ResourcesKeys.swift */; };
 		47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B532622514CB5C006EAAB2 /* AppDelegate.swift */; };
 		47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B5326D2514CB5E006EAAB2 /* LaunchScreen.storyboard */; };
 		47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */; };
@@ -57,6 +58,7 @@
 		47063688251DFEB9006F7F41 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		4706368A251DFEB9006F7F41 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		4706368B251DFEB9006F7F41 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		470636D0251E18BA006F7F41 /* ResourcesKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResourcesKeys.swift; path = FineDriver/Resources/ResourcesKeys.swift; sourceTree = SOURCE_ROOT; };
 		47B5325F2514CB5C006EAAB2 /* FineDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FineDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B532622514CB5C006EAAB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47B5326E2514CB5E006EAAB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 		47B5328B2514DC0E006EAAB2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				470636D0251E18BA006F7F41 /* ResourcesKeys.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				47063673251DFDDE006F7F41 /* HTTPTask.swift in Sources */,
 				9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */,
 				4706367A251DFE17006F7F41 /* FineModel.swift in Sources */,
+				470636D1251E18BA006F7F41 /* ResourcesKeys.swift in Sources */,
 				47063682251DFE90006F7F41 /* SignInViewController.swift in Sources */,
 				9AA51C02251C0DCF000AB6F1 /* MenuViewController.swift in Sources */,
 			);
