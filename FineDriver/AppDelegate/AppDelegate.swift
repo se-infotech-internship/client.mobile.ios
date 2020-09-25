@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private var coordinator: AppCoordinator?
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let navigationController = UINavigationController()
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         // MARK: - Google Auth
-        GIDSignIn.sharedInstance().clientID = "683824327490-qsfdggpdqrbk4odheepi0a9t8nr5t73u.apps.googleusercontent.com" // TODO: - Change key (it's mock data!)
+        GIDSignIn.sharedInstance().clientID = ResourcesKeys.googleSignInKey
         GIDSignIn.sharedInstance()?.delegate = self
         
         // MARK: - Facebook Auth
@@ -44,13 +44,13 @@ extension AppDelegate: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) { }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-      return GIDSignIn.sharedInstance().handle(url)
+        return GIDSignIn.sharedInstance().handle(url)
     }
 }
 
 // MARK: - Facebook Auth method
 extension AppDelegate {
-
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         ApplicationDelegate.shared.application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
     }
