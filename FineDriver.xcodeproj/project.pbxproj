@@ -27,7 +27,6 @@
 		47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B5326D2514CB5E006EAAB2 /* LaunchScreen.storyboard */; };
 		47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */; };
 		9167D5E7C899946F444F6C27 /* Pods_FineDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DD5B6F486C2D0F5CF97B2A /* Pods_FineDriver.framework */; };
-		9AA51BE0251A2E1C000AB6F1 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BDF251A2E1C000AB6F1 /* AuthManager.swift */; };
 		9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
 		9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */; };
 		9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */; };
@@ -65,7 +64,6 @@
 		47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		47B532922514DD84006EAAB2 /* FineDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FineDriver.entitlements; sourceTree = "<group>"; };
 		49835E0D39478AF6F454BDBF /* Pods-FineDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineDriver.debug.xcconfig"; path = "Target Support Files/Pods-FineDriver/Pods-FineDriver.debug.xcconfig"; sourceTree = "<group>"; };
-		9AA51BDF251A2E1C000AB6F1 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthManager.swift; path = FineDriver/Modules/Splash/Presenter/AuthManager.swift; sourceTree = SOURCE_ROOT; };
 		9AA51BF1251C0C33000AB6F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				47063662251DFDDE006F7F41 /* EndPoint */,
 				47063665251DFDDE006F7F41 /* Manager */,
 				47063667251DFDDE006F7F41 /* Service */,
-				9AA51BDF251A2E1C000AB6F1 /* AuthManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -388,6 +385,7 @@
 				47B5325C2514CB5C006EAAB2 /* Frameworks */,
 				47B5325D2514CB5C006EAAB2 /* Resources */,
 				ECDBE189C7705F9B2FD295BF /* [CP] Embed Pods Frameworks */,
+				033DCCB5B9A4EB2DC9382F4E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -449,6 +447,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		033DCCB5B9A4EB2DC9382F4E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FineDriver/Pods-FineDriver-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FineDriver/Pods-FineDriver-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FineDriver/Pods-FineDriver-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		26E687E42CEB6C2752FFCA21 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -506,7 +521,6 @@
 				9AA51C04251C0E20000AB6F1 /* MenuEntity.swift in Sources */,
 				9AA51C11251C1253000AB6F1 /* MapPresenter.swift in Sources */,
 				9AA51C0F251C122A000AB6F1 /* MapViewController.swift in Sources */,
-				9AA51BE0251A2E1C000AB6F1 /* AuthManager.swift in Sources */,
 				47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */,
 				47063674251DFDDE006F7F41 /* Router.swift in Sources */,
 				47063681251DFE90006F7F41 /* SignInPresenter.swift in Sources */,
