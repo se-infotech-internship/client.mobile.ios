@@ -18,8 +18,8 @@ final class SplashPresenter: SplashPresenterProtocol {
     private let coordinator = AppCoordinator.shared
     var authManager: AuthManagerProtocol!
     
-    init(viewController: SplashViewControllerProtocol
-        , authManager: AuthManagerProtocol) {
+    init(viewController: SplashViewControllerProtocol,
+         authManager: AuthManagerProtocol) {
         
         self.viewController = viewController
         self.authManager = authManager
