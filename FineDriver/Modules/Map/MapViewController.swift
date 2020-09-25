@@ -8,18 +8,28 @@
 
 import UIKit
 
+protocol MapViewControllerProtocol: class {
+    
+}
+
 class MapViewController: UIViewController {
     
-    var presenter: MapPresenterProtocol!
+    // MARK: - Public property
+    var presenter: MapPresenterProtocol?
     
-
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
     //TODO: - implement. now it is a stub
-    @IBAction func onMenuHandler(_ sender: Any) {
-        presenter.menuHandler()
+    @IBAction private func onMenuHandler(_ sender: Any) {
+        presenter?.menuHandler()
     }
+}
+
+// MARK: - Protocol methods
+extension MapViewController: MapViewControllerProtocol {
+    
 }

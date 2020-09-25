@@ -13,15 +13,19 @@ protocol SplashViewControllerProtocol: class {
 }
 
 class SplashViewController: UIViewController {
-    var presenter: SplashPresenterProtocol!
+    
+    // MARK: - Public property
+    var presenter: SplashPresenterProtocol?
 
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter.auth()
+        presenter?.auth()
     }
 }
 
+// MARK: - Protocol methods
 extension SplashViewController: SplashViewControllerProtocol {
     
 }
