@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         // MARK: - Google Auth
-        GIDSignIn.sharedInstance().clientID = "683824327490-qsfdggpdqrbk4odheepi0a9t8nr5t73u.apps.googleusercontent.com" // TODO: - Change key (it's mock data!)
+        GIDSignIn.sharedInstance().clientID = ResourcesKeys.googleSignInKey
         GIDSignIn.sharedInstance()?.delegate = self
         
         // MARK: - Facebook Auth
