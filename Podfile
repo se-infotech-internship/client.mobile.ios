@@ -11,11 +11,6 @@ def pods
   pod 'Kingfisher', '~> 5.15.0'
   pod 'Wormholy', '~> 1.6.0', :configurations => ['Debug']
 
-# Auth pods
-  pod 'GoogleSignIn', '~> 5.0'
-  pod 'FBSDKLoginKit'
-
-
 end
 
 target 'FineDriver' do
