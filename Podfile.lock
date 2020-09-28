@@ -28,10 +28,10 @@ PODS:
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
   - IQKeyboardManagerSwift (6.5.6)
-  - KeychainAccess (4.2.0)
-  - Kingfisher (5.15.0):
-    - Kingfisher/Core (= 5.15.0)
-  - Kingfisher/Core (5.15.0)
+  - KeychainAccess (4.2.1)
+  - Kingfisher (5.15.4):
+    - Kingfisher/Core (= 5.15.4)
+  - Kingfisher/Core (5.15.4)
   - ObjectMapper (4.2.0)
   - Wormholy (1.6.3)
 
@@ -69,8 +69,8 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
-  KeychainAccess: 3f760109aa99b05d0f231e28b22642da7153e38a
-  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
+  KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
+  Kingfisher: 657dc1077e5bbbfff864194c79f29e35b722d062
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   Wormholy: bfc1c8679eefd0edd92638758e21c3961b1b3b50
 

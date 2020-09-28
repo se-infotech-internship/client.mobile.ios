@@ -91,6 +91,8 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             presenter?.routeMap()
+        case 1:
+            presenter?.routeFines()
         default:
             break
         }

@@ -47,4 +47,12 @@ class AppCoordinator: CoordinatorProtocol {
         
         navigationController.viewControllers = [viewController]
     }
+    
+    func routeToFinesList() {
+        let viewController = FinesViewController()
+        let presenter =  FinesPresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        navigationController.viewControllers = [viewController]
+    }
 }

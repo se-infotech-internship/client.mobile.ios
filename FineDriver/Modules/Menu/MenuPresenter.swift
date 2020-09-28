@@ -16,6 +16,7 @@ protocol MenuPresenterProtocol: class {
     func model(index: Int) -> MenuItemEntity
     func viewDidLoad()
     func routeMap()
+    func routeFines()
 }
 
 final class MenuPresenter {
@@ -55,5 +56,9 @@ extension MenuPresenter: MenuPresenterProtocol {
     
     func routeMap() {
         coordinator.routeToMap()
+    }
+    
+    func routeFines() {
+        coordinator.routeToFinesList()
     }
 }
