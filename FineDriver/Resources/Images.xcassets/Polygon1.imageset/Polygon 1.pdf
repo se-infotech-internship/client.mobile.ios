@@ -47,7 +47,7 @@ endobj
 
 6 0 obj
   << /Type /Catalog
-     /Pages 
+     /Pages 5 0 R
   >>
 endobj
 
@@ -56,14 +56,15 @@ xref
 0000000000 65535 f
 0000000010 00000 n
 0000000034 00000 n
+0000000299 00000 n
 0000000321 00000 n
 0000000492 00000 n
 0000000566 00000 n
 trailer
 << /ID [ (some) (id) ]
-   /Root 
+   /Root 6 0 R
    /Size 7
 >>
 startxref
-620
+625
 %%EOF

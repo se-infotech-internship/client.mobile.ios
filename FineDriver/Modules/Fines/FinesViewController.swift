@@ -24,6 +24,7 @@ final class FinesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        presenter?.viewDidLoad()
         setupTableCell()
         setupTableView()
         reloadData()
@@ -64,8 +65,8 @@ extension FinesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FineCell.identifier) as? FineCell else { return UITableViewCell() }
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FineCell.identifier) as? FineCell, let presenter = presenter else { return UITableViewCell() }
+        cell.update(entity: presenter.model(index: indexPath.row))
         cell.delegate = self
         return cell
     }

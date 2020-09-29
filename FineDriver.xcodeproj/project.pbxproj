@@ -28,6 +28,7 @@
 		929416742521DD2A00D7F966 /* FinesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929416732521DD2A00D7F966 /* FinesPresenter.swift */; };
 		929416782521E0A700D7F966 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929416772521E0A700D7F966 /* UIView.swift */; };
 		929416992522034800D7F966 /* FineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929416982522034800D7F966 /* FineEntity.swift */; };
+		92F6E3A725237B7C00CBED41 /* PinEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F6E3A625237B7B00CBED41 /* PinEntity.swift */; };
 		9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
 		9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */; };
 		9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */; };
@@ -66,6 +67,7 @@
 		929416732521DD2A00D7F966 /* FinesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinesPresenter.swift; sourceTree = "<group>"; };
 		929416772521E0A700D7F966 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		929416982522034800D7F966 /* FineEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineEntity.swift; sourceTree = "<group>"; };
+		92F6E3A625237B7B00CBED41 /* PinEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinEntity.swift; sourceTree = "<group>"; };
 		9AA51BF1251C0C33000AB6F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				9AA51C03251C0E20000AB6F1 /* MenuEntity.swift */,
 				929416982522034800D7F966 /* FineEntity.swift */,
+				92F6E3A625237B7B00CBED41 /* PinEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,8 +294,8 @@
 				47B5325B2514CB5C006EAAB2 /* Sources */,
 				47B5325C2514CB5C006EAAB2 /* Frameworks */,
 				47B5325D2514CB5C006EAAB2 /* Resources */,
-				ECDBE189C7705F9B2FD295BF /* [CP] Embed Pods Frameworks */,
-				033DCCB5B9A4EB2DC9382F4E /* [CP] Copy Pods Resources */,
+				C21F038E7229EC2469CFF4B6 /* [CP] Embed Pods Frameworks */,
+				09C7AF482E161BA1BC841861 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -356,7 +359,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		033DCCB5B9A4EB2DC9382F4E /* [CP] Copy Pods Resources */ = {
+		09C7AF482E161BA1BC841861 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -395,7 +398,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ECDBE189C7705F9B2FD295BF /* [CP] Embed Pods Frameworks */ = {
+		C21F038E7229EC2469CFF4B6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -429,6 +432,7 @@
 				9AA51C11251C1253000AB6F1 /* MapPresenter.swift in Sources */,
 				9294165D2521DD0000D7F966 /* FinesViewController.swift in Sources */,
 				9AA51C0F251C122A000AB6F1 /* MapViewController.swift in Sources */,
+				92F6E3A725237B7C00CBED41 /* PinEntity.swift in Sources */,
 				47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */,
 				929416782521E0A700D7F966 /* UIView.swift in Sources */,
 				47063681251DFE90006F7F41 /* SignInPresenter.swift in Sources */,

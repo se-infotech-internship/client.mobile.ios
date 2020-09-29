@@ -8,6 +8,7 @@
 import UIKit
 import GoogleSignIn
 import FBSDKCoreKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: - Facebook Auth
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
+        
+        // MARK: - Google map
+        GMSServices.provideAPIKey(ResourcesKeys.googleMapKey)
         
         return true
     }
