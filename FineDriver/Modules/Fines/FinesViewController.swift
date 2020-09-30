@@ -27,7 +27,6 @@ final class FinesViewController: UIViewController {
         presenter?.viewDidLoad()
         setupTableCell()
         setupTableView()
-        reloadData()
     }
 
     // MARK: - Private methods

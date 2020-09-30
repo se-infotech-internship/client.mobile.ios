@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6I2-2Q-Syh" customClass="GMSMapView">
-                    <rect key="frame" x="0.0" y="44" width="414" height="744"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="788"/>
                     <color key="backgroundColor" systemColor="linkColor"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzo-Tm-OM5">
@@ -31,6 +31,9 @@
                         <constraint firstAttribute="width" constant="20" id="kG9-cp-Hys"/>
                     </constraints>
                     <state key="normal" image="camera_alt"/>
+                    <connections>
+                        <action selector="didTapInfoCameraButton:" destination="-1" eventType="touchUpInside" id="qCo-4b-ahX"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRB-eL-pxq">
                     <rect key="frame" x="374" y="260" width="20" height="20"/>
@@ -39,6 +42,9 @@
                         <constraint firstAttribute="height" constant="20" id="p0N-ap-HV4"/>
                     </constraints>
                     <state key="normal" image="settings"/>
+                    <connections>
+                        <action selector="didTapMenuButton:" destination="-1" eventType="touchUpInside" id="WCP-U9-sSM"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXF-7I-TKi">
                     <rect key="frame" x="374" y="302" width="20" height="20"/>
@@ -47,6 +53,9 @@
                         <constraint firstAttribute="width" constant="20" id="zls-Wi-Hm2"/>
                     </constraints>
                     <state key="normal" image="navigation"/>
+                    <connections>
+                        <action selector="didTapCurrentLocationButton:" destination="-1" eventType="touchUpInside" id="5A1-RM-LtC"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCr-kg-oDe">
                     <rect key="frame" x="0.0" y="788" width="414" height="74"/>
@@ -93,13 +102,13 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tCr-kg-oDe" secondAttribute="trailing" id="1OV-gB-Dry"/>
                 <constraint firstItem="Zzo-Tm-OM5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="176" id="BzY-2u-d0T"/>
-                <constraint firstItem="6I2-2Q-Syh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="MHJ-t6-86Z"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DRB-eL-pxq" secondAttribute="trailing" constant="20" id="Mgd-6R-PSf"/>
                 <constraint firstItem="kXF-7I-TKi" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="258" id="OVr-Sb-uKK"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="tCr-kg-oDe" secondAttribute="bottom" id="Rac-d5-ryH"/>
                 <constraint firstItem="DRB-eL-pxq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="216" id="UOn-cx-MuB"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6I2-2Q-Syh" secondAttribute="trailing" id="ZSi-lI-J4F"/>
                 <constraint firstItem="tCr-kg-oDe" firstAttribute="top" secondItem="6I2-2Q-Syh" secondAttribute="bottom" id="jcN-Tp-6yH"/>
+                <constraint firstItem="6I2-2Q-Syh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kCq-vN-2sN"/>
                 <constraint firstItem="tCr-kg-oDe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mHi-Km-1Ck"/>
                 <constraint firstItem="6I2-2Q-Syh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="n8h-wO-Jmz"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zzo-Tm-OM5" secondAttribute="trailing" constant="20" id="uMe-2P-Dky"/>
