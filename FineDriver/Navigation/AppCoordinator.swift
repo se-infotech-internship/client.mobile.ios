@@ -20,6 +20,8 @@ class AppCoordinator: CoordinatorProtocol {
     
     static let shared = AppCoordinator()
     
+    private init() {}
+    
     var navigationController: UINavigationController!
     
     func start() {
