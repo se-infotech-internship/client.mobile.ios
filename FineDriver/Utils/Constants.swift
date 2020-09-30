@@ -10,4 +10,5 @@ import Foundation
 
 struct Constants {
     static let googleSignInKey = "683824327490-qsfdggpdqrbk4odheepi0a9t8nr5t73u.apps.googleusercontent.com"
+    static let googleMapKey = "AIzaSyCtmTSeBoiNuABFitnJ9Bm7URumBCxYxCs"
 }

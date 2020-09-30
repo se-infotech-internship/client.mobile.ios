@@ -29,14 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         // MARK: - Google Auth
-        GIDSignIn.sharedInstance().clientID = ResourcesKeys.googleSignInKey
+        GIDSignIn.sharedInstance().clientID = Constants.googleSignInKey
         GIDSignIn.sharedInstance()?.delegate = self
         
         // MARK: - Facebook Auth
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
         
         // MARK: - Google map
-        GMSServices.provideAPIKey(ResourcesKeys.googleMapKey)
+        GMSServices.provideAPIKey(Constants.googleMapKey)
         
         return true
     }

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopUpView" customModule="FineDriver" customModuleProvider="target">
+            <connections>
+                <outlet property="addressLabel" destination="ep1-WV-Pch" id="ErX-NT-uoi"/>
+                <outlet property="metersToCameraLabel" destination="rq0-tt-DQS" id="ylC-Qz-jhh"/>
+                <outlet property="speedLimitLabel" destination="JmO-p2-clR" id="koy-Yv-K6E"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="156"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Polygon 1-2" translatesAutoresizingMaskIntoConstraints="NO" id="arf-Fv-dKy">
+                    <rect key="frame" x="301" y="139" width="23" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="23" id="NHv-Zw-yaG"/>
+                        <constraint firstAttribute="height" constant="17" id="pNA-Q1-gVw"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="окно сообщений" translatesAutoresizingMaskIntoConstraints="NO" id="X30-Hb-94Y">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="141"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="141" id="ghj-DX-jgL"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 7" translatesAutoresizingMaskIntoConstraints="NO" id="c3S-kP-uZq">
+                    <rect key="frame" x="284" y="16" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="ojT-rA-ttv"/>
+                        <constraint firstAttribute="width" constant="80" id="tcs-0L-R9p"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500 м" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rq0-tt-DQS">
+                    <rect key="frame" x="306" y="104" width="66" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="eIO-pI-vHH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="КАМЕРА" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbW-e5-u2b">
+                    <rect key="frame" x="56" y="17" width="94" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="mg1-eC-TNs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обмеження:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8t-nd-4ED">
+                    <rect key="frame" x="56" y="58" width="85" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="85" id="LOD-uY-DOA"/>
+                        <constraint firstAttribute="height" constant="16" id="QXX-30-2ro"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80 км/г" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmO-p2-clR">
+                    <rect key="frame" x="56" y="74" width="81" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="qBj-xX-fi1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пр. Оболонський , Київ " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ep1-WV-Pch">
+                    <rect key="frame" x="56" y="115" width="161" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="nfZ-fI-HaH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="c3S-kP-uZq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="0sw-2H-wrb"/>
+                <constraint firstItem="JmO-p2-clR" firstAttribute="leading" secondItem="N8t-nd-4ED" secondAttribute="leading" id="5Af-tT-1bP"/>
+                <constraint firstItem="ep1-WV-Pch" firstAttribute="top" secondItem="JmO-p2-clR" secondAttribute="bottom" constant="13" id="6h9-IT-iS0"/>
+                <constraint firstItem="X30-Hb-94Y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7dJ-Ke-I7w"/>
+                <constraint firstItem="bbW-e5-u2b" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="A0A-CJ-F7I"/>
+                <constraint firstAttribute="bottom" secondItem="X30-Hb-94Y" secondAttribute="bottom" constant="15" id="CAq-rx-8dQ"/>
+                <constraint firstItem="bbW-e5-u2b" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="56" id="CKL-Xv-MqD"/>
+                <constraint firstItem="JmO-p2-clR" firstAttribute="top" secondItem="N8t-nd-4ED" secondAttribute="bottom" id="EfP-BV-cJB"/>
+                <constraint firstItem="arf-Fv-dKy" firstAttribute="top" secondItem="rq0-tt-DQS" secondAttribute="bottom" constant="7" id="Nca-aK-hPk"/>
+                <constraint firstItem="ep1-WV-Pch" firstAttribute="leading" secondItem="JmO-p2-clR" secondAttribute="leading" id="YZ7-lI-glz"/>
+                <constraint firstItem="N8t-nd-4ED" firstAttribute="top" secondItem="bbW-e5-u2b" secondAttribute="bottom" constant="13" id="YjE-Pe-IQ1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c3S-kP-uZq" secondAttribute="trailing" constant="50" id="aZR-Bw-9cd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rq0-tt-DQS" secondAttribute="trailing" constant="42" id="c7o-48-NlC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="arf-Fv-dKy" secondAttribute="trailing" constant="90" id="cB4-pA-ufX"/>
+                <constraint firstItem="N8t-nd-4ED" firstAttribute="leading" secondItem="bbW-e5-u2b" secondAttribute="leading" id="e2x-n5-fxA"/>
+                <constraint firstItem="X30-Hb-94Y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iah-Px-lA9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="X30-Hb-94Y" secondAttribute="trailing" id="sC0-cl-Y5G"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="arf-Fv-dKy" secondAttribute="bottom" id="vCn-HC-OgT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-7.2463768115942031" y="-129.91071428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Group 7" width="88" height="88"/>
+        <image name="Polygon 1-2" width="20" height="13"/>
+        <image name="окно сообщений" width="368" height="141"/>
+    </resources>
+</document>

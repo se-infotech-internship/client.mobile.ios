@@ -14,6 +14,7 @@ protocol MapPresenterProtocol: class {
     var pinsEntity: [PinEntity] { get set }
     func viewDidLoad()
     func markersLocation() -> ([CLLocationCoordinate2D])
+    func routeToMenu()
 }
 
 class MapPresenter {
@@ -40,5 +41,9 @@ extension MapPresenter: MapPresenterProtocol {
     
     func viewDidLoad() {
         pinsEntity = mockDataForMapVC()
+    }
+    
+    func routeToMenu() {
+        coordinator.routeToMenu()
     }
 }

@@ -13,7 +13,6 @@
 		4706368D251DFEB9006F7F41 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47063688251DFEB9006F7F41 /* AuthManager.swift */; };
 		4706368E251DFEB9006F7F41 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4706368A251DFEB9006F7F41 /* SplashViewController.swift */; };
 		4706368F251DFEB9006F7F41 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4706368B251DFEB9006F7F41 /* SplashViewController.xib */; };
-		470636D1251E18BA006F7F41 /* ResourcesKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470636D0251E18BA006F7F41 /* ResourcesKeys.swift */; };
 		470636D4251E19C9006F7F41 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470636D3251E19C9006F7F41 /* Constants.swift */; };
 		47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B532622514CB5C006EAAB2 /* AppDelegate.swift */; };
 		47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B5326D2514CB5E006EAAB2 /* LaunchScreen.storyboard */; };
@@ -28,6 +27,9 @@
 		929416742521DD2A00D7F966 /* FinesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929416732521DD2A00D7F966 /* FinesPresenter.swift */; };
 		929416782521E0A700D7F966 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929416772521E0A700D7F966 /* UIView.swift */; };
 		929416992522034800D7F966 /* FineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929416982522034800D7F966 /* FineEntity.swift */; };
+		9297AEFC2524C5FC007C2291 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9297AEFB2524C5FC007C2291 /* PopUpView.swift */; };
+		9297AEFF2524C608007C2291 /* PopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9297AEFE2524C608007C2291 /* PopUpView.xib */; };
+		9297AF022524EE12007C2291 /* UINib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9297AF012524EE12007C2291 /* UINib.swift */; };
 		92F6E3A725237B7C00CBED41 /* PinEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F6E3A625237B7B00CBED41 /* PinEntity.swift */; };
 		9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
 		9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */; };
@@ -49,7 +51,6 @@
 		47063688251DFEB9006F7F41 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		4706368A251DFEB9006F7F41 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		4706368B251DFEB9006F7F41 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
-		470636D0251E18BA006F7F41 /* ResourcesKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResourcesKeys.swift; path = FineDriver/Resources/ResourcesKeys.swift; sourceTree = SOURCE_ROOT; };
 		470636D3251E19C9006F7F41 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		47B5325F2514CB5C006EAAB2 /* FineDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FineDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B532622514CB5C006EAAB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +68,9 @@
 		929416732521DD2A00D7F966 /* FinesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinesPresenter.swift; sourceTree = "<group>"; };
 		929416772521E0A700D7F966 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		929416982522034800D7F966 /* FineEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineEntity.swift; sourceTree = "<group>"; };
+		9297AEFB2524C5FC007C2291 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		9297AEFE2524C608007C2291 /* PopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpView.xib; sourceTree = "<group>"; };
+		9297AF012524EE12007C2291 /* UINib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINib.swift; sourceTree = "<group>"; };
 		92F6E3A625237B7B00CBED41 /* PinEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinEntity.swift; sourceTree = "<group>"; };
 		9AA51BF1251C0C33000AB6F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -219,7 +223,6 @@
 		47B5328B2514DC0E006EAAB2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				470636D0251E18BA006F7F41 /* ResourcesKeys.swift */,
 				470636D3251E19C9006F7F41 /* Constants.swift */,
 			);
 			path = Utils;
@@ -229,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				929416772521E0A700D7F966 /* UIView.swift */,
+				9297AF012524EE12007C2291 /* UINib.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -271,6 +275,8 @@
 				9AA51C10251C1253000AB6F1 /* MapPresenter.swift */,
 				9AA51C0E251C122A000AB6F1 /* MapViewController.swift */,
 				9AA51C0C251C1208000AB6F1 /* MapViewController.xib */,
+				9297AEFB2524C5FC007C2291 /* PopUpView.swift */,
+				9297AEFE2524C608007C2291 /* PopUpView.xib */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */,
+				9297AEFF2524C608007C2291 /* PopUpView.xib in Resources */,
 				9AA51C06251C0F12000AB6F1 /* MenuViewController.xib in Resources */,
 				9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */,
 				4706368F251DFEB9006F7F41 /* SplashViewController.xib in Resources */,
@@ -426,6 +433,8 @@
 				4706368D251DFEB9006F7F41 /* AuthManager.swift in Sources */,
 				929416992522034800D7F966 /* FineEntity.swift in Sources */,
 				9AA51C00251C0DCF000AB6F1 /* MenuCell.swift in Sources */,
+				9297AEFC2524C5FC007C2291 /* PopUpView.swift in Sources */,
+				9297AF022524EE12007C2291 /* UINib.swift in Sources */,
 				47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */,
 				929416742521DD2A00D7F966 /* FinesPresenter.swift in Sources */,
 				9AA51C04251C0E20000AB6F1 /* MenuEntity.swift in Sources */,
@@ -442,7 +451,6 @@
 				925E87872520AC7B00FD1D75 /* ServiceProvider.swift in Sources */,
 				929416702521DD1600D7F966 /* FineCell.swift in Sources */,
 				9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */,
-				470636D1251E18BA006F7F41 /* ResourcesKeys.swift in Sources */,
 				47063682251DFE90006F7F41 /* SignInViewController.swift in Sources */,
 				9AA51C02251C0DCF000AB6F1 /* MenuViewController.swift in Sources */,
 			);
