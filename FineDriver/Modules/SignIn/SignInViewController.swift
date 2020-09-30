@@ -23,22 +23,20 @@ final class SignInViewController: UIViewController {
     // LifeCicle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance()?.delegate = self
-        
+    
         setupGoogleSignIn()
         setupFacebookSignIn()
         
         if #available(iOS 13.0, *) {
             setupAppleSignIn()
-        } else {
-            // Fallback on earlier versions
         }
     }
     
     // MARK: - Private methods
     private func setupGoogleSignIn() {
+        
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.delegate = self
         
         let googleButton = GIDSignInButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
         googleButton.center = view.center
@@ -87,8 +85,6 @@ final class SignInViewController: UIViewController {
             controller.delegate = self
             controller.presentationContextProvider = self
             controller.performRequests()
-        } else {
-            // Fallback on earlier versions
         }
     }
 }

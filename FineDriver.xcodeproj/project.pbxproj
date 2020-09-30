@@ -124,6 +124,24 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		470C17A725246F9400B30DAA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9AA51BFC251C0DCF000AB6F1 /* MenuCell.swift */,
+				9AA51BFD251C0DCF000AB6F1 /* MenuCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		470C17A8252470C100B30DAA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9294166E2521DD1600D7F966 /* FineCell.swift */,
+				9294166F2521DD1600D7F966 /* FineCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		47B532562514CB5C006EAAB2 = {
 			isa = PBXGroup;
 			children = (
@@ -244,11 +262,10 @@
 		9294165A2521DCEA00D7F966 /* Fines */ = {
 			isa = PBXGroup;
 			children = (
+				470C17A8252470C100B30DAA /* Cell */,
 				929416732521DD2A00D7F966 /* FinesPresenter.swift */,
 				9294165B2521DD0000D7F966 /* FinesViewController.swift */,
 				9294165C2521DD0000D7F966 /* FinesViewController.xib */,
-				9294166E2521DD1600D7F966 /* FineCell.swift */,
-				9294166F2521DD1600D7F966 /* FineCell.xib */,
 			);
 			path = Fines;
 			sourceTree = "<group>";
@@ -256,11 +273,10 @@
 		9AA51BF7251C0DCE000AB6F1 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				470C17A725246F9400B30DAA /* Cell */,
 				9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */,
 				9AA51BFE251C0DCF000AB6F1 /* MenuViewController.swift */,
 				9AA51C05251C0F12000AB6F1 /* MenuViewController.xib */,
-				9AA51BFC251C0DCF000AB6F1 /* MenuCell.swift */,
-				9AA51BFD251C0DCF000AB6F1 /* MenuCell.xib */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
