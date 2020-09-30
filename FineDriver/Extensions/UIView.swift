@@ -19,7 +19,7 @@ import UIKit
           layer.masksToBounds = newValue > 0
       }
     }
-    
+
     @IBInspectable var shadowColor: UIColor? {
         set {
             guard let uiColor = newValue else { return }
@@ -57,7 +57,7 @@ import UIKit
             return layer.shadowRadius
         }
     }
-    
+
     @IBInspectable var borderWidth: CGFloat {
         set {
             layer.borderWidth = newValue
@@ -66,7 +66,7 @@ import UIKit
             return layer.borderWidth
         }
     }
-    
+
     @IBInspectable var borderColor: UIColor? {
         set {
             guard let uiColor = newValue else { return }

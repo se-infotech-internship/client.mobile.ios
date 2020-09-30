@@ -7,16 +7,20 @@
 //
 
 import Foundation
+import GoogleMaps
 
 protocol MapPresenterProtocol: class {
     var view: MapViewControllerProtocol? { get set}
-    func menuHandler()
+    var pinsEntity: [PinEntity] { get set }
+    func viewDidLoad()
+    func markersLocation() -> ([CLLocationCoordinate2D])
 }
 
 class MapPresenter {
     
     // MARK: - Protocol property
     weak var view: MapViewControllerProtocol?
+    var pinsEntity: [PinEntity] = []
     
     // MARK: - Private property
     private let coordinator = AppCoordinator.shared
@@ -30,7 +34,11 @@ class MapPresenter {
 // MARK: - Protocol methods
 extension MapPresenter: MapPresenterProtocol {
     
-    func menuHandler() {
-        coordinator.routeToMenu()
+    func markersLocation() -> ([CLLocationCoordinate2D]) {
+        return pinsEntity.map { CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long) }
+    }
+    
+    func viewDidLoad() {
+        pinsEntity = mockDataForMapVC()
     }
 }

@@ -10,6 +10,8 @@ def pods
   pod 'IQKeyboardManagerSwift', '~> 6.5.0'
   pod 'Kingfisher', '~> 5.15.0'
   pod 'Wormholy', '~> 1.6.0', :configurations => ['Debug']
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 
 # Auth pods
   pod 'GoogleSignIn', '~> 5.0'
