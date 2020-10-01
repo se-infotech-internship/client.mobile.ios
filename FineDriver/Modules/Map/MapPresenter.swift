@@ -15,6 +15,7 @@ protocol MapPresenterProtocol: class {
     func viewDidLoad()
     func markersLocation() -> ([CLLocationCoordinate2D])
     func routeToMenu()
+    func pinInfo() -> [PinEntity]
 }
 
 class MapPresenter {
@@ -36,7 +37,7 @@ class MapPresenter {
 extension MapPresenter: MapPresenterProtocol {
     
     func markersLocation() -> ([CLLocationCoordinate2D]) {
-        return pinsEntity.map { CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long) }
+        return pinsEntity.map { CLLocationCoordinate2D(latitude: $0.lat ?? 0, longitude: $0.long ?? 0) }
     }
     
     func viewDidLoad() {
@@ -45,5 +46,9 @@ extension MapPresenter: MapPresenterProtocol {
     
     func routeToMenu() {
         coordinator.routeToMenu()
+    }
+    
+    func pinInfo() -> [PinEntity] {
+        return pinsEntity
     }
 }
