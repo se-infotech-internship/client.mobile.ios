@@ -19,7 +19,7 @@ class MapViewController: UIViewController {
         enum Default {
             static let zoom: Float = 17
         }
-            
+        
         enum UkrainePosition {
             static let lat: Double = 49.0392207
             static let long: Double = 29.8098225
@@ -35,13 +35,14 @@ class MapViewController: UIViewController {
     
     // MARK: - Private outlets
     @IBOutlet private weak var mapView: GMSMapView!
+    lazy var popUpView = PopUpView()
     
     // MARK: - Public property
     var presenter: MapPresenterProtocol?
     
     // MARK: - Private property
     private var locationManager = CLLocationManager()
-    private var currentLocation = CLLocation()
+    private var currentLocation = CLLocationCoordinate2D()
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -55,10 +56,11 @@ class MapViewController: UIViewController {
     
     // MARK: - Private methods
     private func setCurrentLocation() {
-        let camera = GMSCameraPosition.camera(withLatitude: Constants.UkrainePosition.lat,
-                                              longitude: Constants.UkrainePosition.long,
-                                              zoom: Constants.UkrainePosition.zoom)
-        mapView.camera = camera
+        
+        var bounds = GMSCoordinateBounds()
+        bounds = bounds.includingCoordinate(CLLocationCoordinate2D(latitude: Constants.UkrainePosition.lat, longitude: Constants.UkrainePosition.long))
+        mapView.animate(with: GMSCameraUpdate.fit(bounds))
+        mapView.animate(toZoom: 7)
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -74,24 +76,38 @@ class MapViewController: UIViewController {
     private func setupMarkers() {
         guard let presenter = presenter else { return }
         let coordinates = presenter.markersLocation()
-        
-        for pinData in coordinates {
+        let pinInfo = presenter.pinInfo()
+        var pinData = PinEntity()
+        for (index, element) in coordinates.enumerated() {
             let marker = GMSMarker()
-            marker.position.latitude = pinData.latitude
-            marker.position.longitude = pinData.longitude
-            marker.icon = UIImage(named: "Group 39")
+            marker.position.latitude = element.latitude
+            marker.position.longitude = element.longitude
+            
+            if element.latitude == pinInfo[index].lat && element.longitude == pinInfo[index].long {
+                pinData.limitation = pinInfo[index].limitation
+                pinData.adress = pinInfo[index].adress
+                
+                if pinInfo[index].isActive == true {
+                    marker.icon = UIImage(named: "Group 39")
+                }
+            }
+            
             marker.userData = pinData
             marker.map = mapView
         }
     }
     
-    // MARK: - Private action
-    @IBAction private func didTapInfoCameraButton(_ sender: Any) {
-        let subView = PopUpView(frame: .init(x: Constants.PopUp.x,
+    private func setupPopUpView() {
+        popUpView = PopUpView(frame: CGRect(x: Constants.PopUp.x,
                                              y: Constants.PopUp.y,
                                              width: Double(mapView.frame.width),
                                              height: Constants.PopUp.height))
-        view.addSubview(subView)
+        view.addSubview(popUpView)
+    }
+    
+    // MARK: - Private action
+    @IBAction private func didTapInfoCameraButton(_ sender: Any) {
+        setupPopUpView()
     }
     
     @IBAction private func didTapMenuButton(_ sender: Any) {
@@ -99,10 +115,8 @@ class MapViewController: UIViewController {
     }
     
     @IBAction private func didTapCurrentLocationButton(_ sender: Any) {
-        let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
-                                              longitude: currentLocation.coordinate.longitude,
-                                              zoom: Constants.Default.zoom)
-        mapView.camera = camera
+        mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude,
+                                                           longitude: currentLocation.longitude))
     }
 }
 
@@ -110,17 +124,29 @@ class MapViewController: UIViewController {
 extension MapViewController: MapViewControllerProtocol { }
 
 // MARK: - MapView Delegate methods
-extension MapViewController: GMSMapViewDelegate { }
+extension MapViewController: GMSMapViewDelegate {
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        popUpView.removeFromSuperview()
+    }
+    
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        setupPopUpView()
+        return nil
+    }
+}
 
 // MARK: - LocationManager delegate method
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.last else { return }
-        currentLocation = lastLocation
-        let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude,
-                                              longitude: currentLocation.coordinate.longitude,
+        currentLocation = lastLocation.coordinate
+        
+        let camera = GMSCameraPosition.camera(withLatitude: currentLocation.latitude,
+                                              longitude: currentLocation.longitude,
                                               zoom: Constants.Default.zoom)
-        mapView.camera = camera
+        mapView.animate(to: camera)
+        locationManager.stopUpdatingLocation()
     }
 }

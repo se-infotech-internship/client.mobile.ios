@@ -9,11 +9,11 @@
 import Foundation
 
 struct PinEntity {
-    var isActive: Bool
-    var long: Double
-    var lat: Double
-    var limitation: String
-    var adress: String
+    var isActive: Bool?
+    var long: Double?
+    var lat: Double?
+    var limitation: String?
+    var adress: String?
     
 }
 
