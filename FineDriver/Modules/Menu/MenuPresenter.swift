@@ -17,6 +17,7 @@ protocol MenuPresenterProtocol: class {
     func viewDidLoad()
     func routeMap()
     func routeFines()
+    func routeAuth()
 }
 
 final class MenuPresenter {
@@ -60,5 +61,9 @@ extension MenuPresenter: MenuPresenterProtocol {
     
     func routeFines() {
         coordinator.routeToFinesList()
+    }
+    
+    func routeAuth() {
+        coordinator.routeToAuth()
     }
 }

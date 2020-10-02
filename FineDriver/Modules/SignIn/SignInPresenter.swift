@@ -16,6 +16,10 @@ final class SignInPresenter {
     
     // MARK: - Protocol property
     weak var view: SignInViewControllerProtocol?
+    
+    init(view: SignInViewControllerProtocol?) {
+        self.view = view
+    }
 }
 
 // MARK: - protocol methods
