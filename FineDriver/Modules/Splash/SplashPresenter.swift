@@ -39,7 +39,7 @@ extension SplashPresenter: SplashPresenterProtocol {
         authManager.auth { [weak self] (result) in
             switch result {
             case .success(let authObj):
-                self?.coordinator.routeToMenu()
+                self?.coordinator.routeToMap()
             case .failure(let err):
                 break
             }

@@ -11,9 +11,11 @@ import UIKit
 protocol CoordinatorProtocol {
     var navigationController: UINavigationController! { get set }
     
+    func popVC()
     func start()
     func routeToMap()
     func routeToMenu()
+    func routeToAuth()
 }
 
 class AppCoordinator: CoordinatorProtocol {
@@ -24,14 +26,26 @@ class AppCoordinator: CoordinatorProtocol {
     
     var navigationController: UINavigationController!
     
+    func popVC() {
+        navigationController.popViewController(animated: true)
+    }
+    
     func start() {
         let authManager = AuthManager()
-        let splashViewController = SplashViewController()
-        let presenter = SplashPresenter(viewController: splashViewController,
+        let viewController = SplashViewController()
+        let presenter = SplashPresenter(viewController: viewController,
                                         authManager: authManager)
-        splashViewController.presenter = presenter
+        viewController.presenter = presenter
         
-        navigationController.viewControllers = [splashViewController]
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToAuth() {
+        let viewController = SignInViewController()
+        let presenter = SignInPresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        navigationController.pushViewController(viewController, animated: true)
     }
     
     func routeToMap() {
@@ -39,7 +53,7 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = MapPresenter(view: viewController)
         viewController.presenter = presenter
         
-        navigationController.viewControllers = [viewController]
+        navigationController.pushViewController(viewController, animated: true)
     }
     
     func routeToMenu() {
@@ -47,7 +61,7 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = MenuPresenter(view: viewController)
         viewController.presenter = presenter
         
-        navigationController.viewControllers = [viewController]
+        navigationController.pushViewController(viewController, animated: true)
     }
     
     func routeToFinesList() {
@@ -55,6 +69,6 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter =  FinesPresenter(view: viewController)
         viewController.presenter = presenter
         
-        navigationController.viewControllers = [viewController]
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

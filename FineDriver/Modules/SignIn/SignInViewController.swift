@@ -17,8 +17,8 @@ protocol SignInViewControllerProtocol: class {
 
 final class SignInViewController: UIViewController {
     
-    // MARK: - Private properties
-    private var presenter: SignInPresenterProtocol?
+    // MARK: - Public properties
+    var presenter: SignInPresenterProtocol?
     
     // LifeCicle
     override func viewDidLoad() {

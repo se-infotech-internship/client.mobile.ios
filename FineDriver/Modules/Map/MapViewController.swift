@@ -28,8 +28,10 @@ class MapViewController: UIViewController {
         
         enum PopUp {
             static let x: Double = 0
-            static let y: Double = 50
+            static let y: Double = -206
             static let height: Double = 156
+            static let centerHeight: Double = 120
+            static let animationTime: Double = 0.3
         }
     }
     
@@ -105,9 +107,18 @@ class MapViewController: UIViewController {
         view.addSubview(popUpView)
     }
     
+    private func popUpAnimation(x: Double, y: Double) {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: Constants.PopUp.animationTime) {
+                self.popUpView.center = CGPoint(x: x, y: y)
+            }
+        }
+    }
+    
     // MARK: - Private action
     @IBAction private func didTapInfoCameraButton(_ sender: Any) {
         setupPopUpView()
+        popUpAnimation(x: Double(self.view.frame.width / 2), y: Constants.PopUp.centerHeight)
     }
     
     @IBAction private func didTapMenuButton(_ sender: Any) {
@@ -117,6 +128,7 @@ class MapViewController: UIViewController {
     @IBAction private func didTapCurrentLocationButton(_ sender: Any) {
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude,
                                                            longitude: currentLocation.longitude))
+        locationManager.startUpdatingLocation()
     }
 }
 
@@ -127,7 +139,10 @@ extension MapViewController: MapViewControllerProtocol { }
 extension MapViewController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        popUpView.removeFromSuperview()
+        popUpAnimation(x: Double(self.view.frame.width / 2), y: Constants.PopUp.y)
+        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.PopUp.animationTime) {
+            self.popUpView.removeFromSuperview()
+        }
     }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
@@ -142,11 +157,8 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.last else { return }
         currentLocation = lastLocation.coordinate
-        
-        let camera = GMSCameraPosition.camera(withLatitude: currentLocation.latitude,
-                                              longitude: currentLocation.longitude,
-                                              zoom: Constants.Default.zoom)
-        mapView.animate(to: camera)
+        mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
+        mapView.animate(toZoom: Constants.Default.zoom)
         locationManager.stopUpdatingLocation()
     }
 }
