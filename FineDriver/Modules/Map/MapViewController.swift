@@ -30,12 +30,14 @@ class MapViewController: UIViewController {
             static let x: Double = 0
             static let y: Double = -206
             static let height: Double = 156
-            static let centerHeight: Double = 120
             static let animationTime: Double = 0.3
+            static let translationX: CGFloat = 0
+            static let transationY: CGFloat = 256
         }
     }
     
     // MARK: - Private outlets
+    @IBOutlet private weak var soundButton: UIButton!
     @IBOutlet private weak var mapView: GMSMapView!
     lazy var popUpView = PopUpView()
     
@@ -107,20 +109,23 @@ class MapViewController: UIViewController {
         view.addSubview(popUpView)
     }
     
-    private func popUpAnimation(x: Double, y: Double) {
+    private func popUpAnimation(isShow: Bool) {
         DispatchQueue.main.async {
             UIView.animate(withDuration: Constants.PopUp.animationTime) {
-                self.popUpView.center = CGPoint(x: x, y: y)
+                if isShow {
+                    self.setupPopUpView()
+                    self.popUpView.transform = CGAffineTransform(translationX: Constants.PopUp.translationX, y: Constants.PopUp.transationY)
+                } else {
+                    self.popUpView.transform = .identity
+                    DispatchQueue.main.asyncAfter(deadline: .now() + Constants.PopUp.animationTime) {
+                        self.popUpView.removeFromSuperview()
+                    }
+                }
             }
         }
     }
     
     // MARK: - Private action
-    @IBAction private func didTapInfoCameraButton(_ sender: Any) {
-        setupPopUpView()
-        popUpAnimation(x: Double(self.view.frame.width / 2), y: Constants.PopUp.centerHeight)
-    }
-    
     @IBAction private func didTapMenuButton(_ sender: Any) {
         presenter?.routeToMenu()
     }
@@ -130,6 +135,9 @@ class MapViewController: UIViewController {
                                                            longitude: currentLocation.longitude))
         locationManager.startUpdatingLocation()
     }
+    @IBAction private func didTapSoundButton(_ sender: Any) {
+    }
+    
 }
 
 // MARK: - Protocol methods
@@ -139,14 +147,11 @@ extension MapViewController: MapViewControllerProtocol { }
 extension MapViewController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        popUpAnimation(x: Double(self.view.frame.width / 2), y: Constants.PopUp.y)
-        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.PopUp.animationTime) {
-            self.popUpView.removeFromSuperview()
-        }
+       popUpAnimation(isShow: false)
     }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        setupPopUpView()
+        popUpAnimation(isShow: true)
         return nil
     }
 }

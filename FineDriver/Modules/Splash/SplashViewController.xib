@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,20 +19,35 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Splash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3b9-oA-eKe">
-                    <rect key="frame" x="181" y="437.5" width="52" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundSplash" translatesAutoresizingMaskIntoConstraints="NO" id="Rna-6f-7E6">
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_plate" translatesAutoresizingMaskIntoConstraints="NO" id="NwS-uZ-Ntq">
+                    <rect key="frame" x="103.5" y="155" width="207" height="207"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="NwS-uZ-Ntq" secondAttribute="height" multiplier="1:1" id="s47-8x-SUQ"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-            <constraints>
-                <constraint firstItem="3b9-oA-eKe" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="MLQ-uD-4A5"/>
-                <constraint firstItem="3b9-oA-eKe" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="waW-Zo-f1f"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Rna-6f-7E6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="NHs-Vq-wrr"/>
+                <constraint firstItem="NwS-uZ-Ntq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QLz-Vf-7FF"/>
+                <constraint firstAttribute="bottom" secondItem="Rna-6f-7E6" secondAttribute="bottom" id="dQn-o4-bGs"/>
+                <constraint firstItem="NwS-uZ-Ntq" firstAttribute="width" secondItem="Rna-6f-7E6" secondAttribute="width" multiplier="0.5" id="eSo-Do-1f0"/>
+                <constraint firstItem="Rna-6f-7E6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="l20-9M-6G5"/>
+                <constraint firstItem="NwS-uZ-Ntq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="111" id="pMy-fp-Sbs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Rna-6f-7E6" secondAttribute="trailing" id="t59-KX-BQt"/>
+            </constraints>
             <point key="canvasLocation" x="141" y="141"/>
         </view>
     </objects>
+    <resources>
+        <image name="Logo_plate" width="192" height="192"/>
+        <image name="backgroundSplash" width="375" height="763"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

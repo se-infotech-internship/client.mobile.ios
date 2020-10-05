@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="FineDriver" customModuleProvider="target">
             <connections>
                 <outlet property="mapView" destination="6I2-2Q-Syh" id="yyH-XX-tOk"/>
+                <outlet property="soundButton" destination="cGD-9X-4sa" id="hkd-1s-3W2"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Y7F-yb-U3r"/>
             </connections>
         </placeholder>
@@ -24,35 +25,24 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="788"/>
                     <color key="backgroundColor" systemColor="linkColor"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzo-Tm-OM5">
-                    <rect key="frame" x="374" y="220" width="20" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="0fT-CL-G6O"/>
-                        <constraint firstAttribute="width" constant="20" id="kG9-cp-Hys"/>
-                    </constraints>
-                    <state key="normal" image="camera_alt"/>
-                    <connections>
-                        <action selector="didTapInfoCameraButton:" destination="-1" eventType="touchUpInside" id="qCo-4b-ahX"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRB-eL-pxq">
-                    <rect key="frame" x="374" y="260" width="20" height="20"/>
+                    <rect key="frame" x="370" y="59" width="24" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="20" id="E6m-XS-e5k"/>
-                        <constraint firstAttribute="height" constant="20" id="p0N-ap-HV4"/>
+                        <constraint firstAttribute="height" constant="24" id="HpR-k7-91W"/>
+                        <constraint firstAttribute="width" constant="24" id="VWL-VE-8Cx"/>
                     </constraints>
-                    <state key="normal" image="settings"/>
+                    <state key="normal" image="menu"/>
                     <connections>
                         <action selector="didTapMenuButton:" destination="-1" eventType="touchUpInside" id="WCP-U9-sSM"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXF-7I-TKi">
-                    <rect key="frame" x="374" y="302" width="20" height="20"/>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXF-7I-TKi">
+                    <rect key="frame" x="338" y="717" width="56" height="56"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="JBz-Af-AXP"/>
-                        <constraint firstAttribute="width" constant="20" id="zls-Wi-Hm2"/>
+                        <constraint firstAttribute="width" constant="56" id="QSW-nD-VNS"/>
+                        <constraint firstAttribute="height" constant="56" id="Son-eD-9m4"/>
                     </constraints>
-                    <state key="normal" image="navigation"/>
+                    <state key="normal" image="Focused"/>
                     <connections>
                         <action selector="didTapCurrentLocationButton:" destination="-1" eventType="touchUpInside" id="5A1-RM-LtC"/>
                     </connections>
@@ -81,7 +71,10 @@
                                 <constraint firstAttribute="height" constant="32" id="leL-eI-NMJ"/>
                                 <constraint firstAttribute="width" constant="32" id="s5F-y1-NlF"/>
                             </constraints>
-                            <state key="normal" image="Group 47"/>
+                            <state key="normal" image="volume-2"/>
+                            <connections>
+                                <action selector="didTapSoundButton:" destination="-1" eventType="touchUpInside" id="K1d-yJ-2O3"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,27 +94,24 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tCr-kg-oDe" secondAttribute="trailing" id="1OV-gB-Dry"/>
-                <constraint firstItem="Zzo-Tm-OM5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="176" id="BzY-2u-d0T"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DRB-eL-pxq" secondAttribute="trailing" constant="20" id="Mgd-6R-PSf"/>
-                <constraint firstItem="kXF-7I-TKi" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="258" id="OVr-Sb-uKK"/>
+                <constraint firstItem="DRB-eL-pxq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="1p1-QL-IS5"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="tCr-kg-oDe" secondAttribute="bottom" id="Rac-d5-ryH"/>
-                <constraint firstItem="DRB-eL-pxq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="216" id="UOn-cx-MuB"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6I2-2Q-Syh" secondAttribute="trailing" id="ZSi-lI-J4F"/>
+                <constraint firstItem="tCr-kg-oDe" firstAttribute="top" secondItem="kXF-7I-TKi" secondAttribute="bottom" constant="15" id="chg-On-sAz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DRB-eL-pxq" secondAttribute="trailing" constant="20" id="fHO-Ja-aDa"/>
                 <constraint firstItem="tCr-kg-oDe" firstAttribute="top" secondItem="6I2-2Q-Syh" secondAttribute="bottom" id="jcN-Tp-6yH"/>
                 <constraint firstItem="6I2-2Q-Syh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kCq-vN-2sN"/>
                 <constraint firstItem="tCr-kg-oDe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mHi-Km-1Ck"/>
                 <constraint firstItem="6I2-2Q-Syh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="n8h-wO-Jmz"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zzo-Tm-OM5" secondAttribute="trailing" constant="20" id="uMe-2P-Dky"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kXF-7I-TKi" secondAttribute="trailing" constant="20" id="waz-xq-glz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kXF-7I-TKi" secondAttribute="trailing" constant="20" id="sco-as-8Rt"/>
             </constraints>
             <point key="canvasLocation" x="140.57971014492756" y="129.91071428571428"/>
         </view>
     </objects>
     <resources>
-        <image name="Group 47" width="32" height="32"/>
-        <image name="camera_alt" width="24" height="24"/>
-        <image name="navigation" width="24" height="24"/>
-        <image name="settings" width="24" height="24"/>
+        <image name="Focused" width="76" height="76"/>
+        <image name="menu" width="24" height="24"/>
+        <image name="volume-2" width="24" height="24"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

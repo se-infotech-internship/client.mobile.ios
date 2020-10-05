@@ -10,6 +10,7 @@ import Foundation
 
 protocol SignInPresenterProtocol: class {
     var view: SignInViewControllerProtocol? { get set }
+    func routeToMap()
 }
 
 final class SignInPresenter {
@@ -17,6 +18,10 @@ final class SignInPresenter {
     // MARK: - Protocol property
     weak var view: SignInViewControllerProtocol?
     
+    // MARK: - Private property
+    private let coordinator = AppCoordinator.shared
+    
+    // MARK: - LifeCycle
     init(view: SignInViewControllerProtocol?) {
         self.view = view
     }
@@ -24,5 +29,8 @@ final class SignInPresenter {
 
 // MARK: - protocol methods
 extension SignInPresenter: SignInPresenterProtocol {
-
+    
+    func routeToMap() {
+        coordinator.routeToMap()
+    }
 }

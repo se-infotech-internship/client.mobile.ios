@@ -21,6 +21,9 @@
 		92001DAD2525C0E700CAE036 /* GMSCoordinateBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */; };
 		925E87842520ABF700FD1D75 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E87832520ABF700FD1D75 /* Service.swift */; };
 		925E87872520AC7B00FD1D75 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E87862520AC7B00FD1D75 /* ServiceProvider.swift */; };
+		928E9F652528D22B008A1D59 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E9F642528D22A008A1D59 /* UserDefaults.swift */; };
+		928E9F682528D929008A1D59 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E9F672528D929008A1D59 /* UserDefaultsKeys.swift */; };
+		928E9F6F2528FE36008A1D59 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928E9F6D2528FE36008A1D59 /* SignInViewController.xib */; };
 		9294165D2521DD0000D7F966 /* FinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9294165B2521DD0000D7F966 /* FinesViewController.swift */; };
 		9294165E2521DD0000D7F966 /* FinesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9294165C2521DD0000D7F966 /* FinesViewController.xib */; };
 		929416702521DD1600D7F966 /* FineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9294166E2521DD1600D7F966 /* FineCell.swift */; };
@@ -63,6 +66,9 @@
 		92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMSCoordinateBounds.swift; sourceTree = "<group>"; };
 		925E87832520ABF700FD1D75 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		925E87862520AC7B00FD1D75 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		928E9F642528D22A008A1D59 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		928E9F672528D929008A1D59 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		928E9F6D2528FE36008A1D59 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		9294165B2521DD0000D7F966 /* FinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinesViewController.swift; sourceTree = "<group>"; };
 		9294165C2521DD0000D7F966 /* FinesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinesViewController.xib; sourceTree = "<group>"; };
 		9294166E2521DD1600D7F966 /* FineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineCell.swift; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 			children = (
 				4706367E251DFE90006F7F41 /* SignInPresenter.swift */,
 				47063680251DFE90006F7F41 /* SignInViewController.swift */,
+				928E9F6D2528FE36008A1D59 /* SignInViewController.xib */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -245,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				470636D3251E19C9006F7F41 /* Constants.swift */,
+				928E9F672528D929008A1D59 /* UserDefaultsKeys.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -255,6 +263,7 @@
 				929416772521E0A700D7F966 /* UIView.swift */,
 				9297AF012524EE12007C2291 /* UINib.swift */,
 				92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */,
+				928E9F642528D22A008A1D59 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -384,6 +393,7 @@
 				4706368F251DFEB9006F7F41 /* SplashViewController.xib in Resources */,
 				9294165E2521DD0000D7F966 /* FinesViewController.xib in Resources */,
 				9AA51C01251C0DCF000AB6F1 /* MenuCell.xib in Resources */,
+				928E9F6F2528FE36008A1D59 /* SignInViewController.xib in Resources */,
 				9AA51C0D251C1208000AB6F1 /* MapViewController.xib in Resources */,
 				9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */,
 				929416712521DD1600D7F966 /* FineCell.xib in Resources */,
@@ -460,6 +470,7 @@
 				4706368D251DFEB9006F7F41 /* AuthManager.swift in Sources */,
 				929416992522034800D7F966 /* FineEntity.swift in Sources */,
 				9AA51C00251C0DCF000AB6F1 /* MenuCell.swift in Sources */,
+				928E9F652528D22B008A1D59 /* UserDefaults.swift in Sources */,
 				9297AEFC2524C5FC007C2291 /* PopUpView.swift in Sources */,
 				9297AF022524EE12007C2291 /* UINib.swift in Sources */,
 				47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */,
@@ -477,6 +488,7 @@
 				925E87842520ABF700FD1D75 /* Service.swift in Sources */,
 				925E87872520AC7B00FD1D75 /* ServiceProvider.swift in Sources */,
 				929416702521DD1600D7F966 /* FineCell.swift in Sources */,
+				928E9F682528D929008A1D59 /* UserDefaultsKeys.swift in Sources */,
 				9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */,
 				92001DAD2525C0E700CAE036 /* GMSCoordinateBounds.swift in Sources */,
 				47063682251DFE90006F7F41 /* SignInViewController.swift in Sources */,
