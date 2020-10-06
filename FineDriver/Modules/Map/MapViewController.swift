@@ -37,9 +37,10 @@ class MapViewController: UIViewController {
     }
     
     // MARK: - Private outlets
+    @IBOutlet private weak var speedLabel: UILabel!
     @IBOutlet private weak var soundButton: UIButton!
     @IBOutlet private weak var mapView: GMSMapView!
-    lazy var popUpView = PopUpView()
+    lazy private var popUpView = PopUpView()
     
     // MARK: - Public property
     var presenter: MapPresenterProtocol?
@@ -137,9 +138,10 @@ class MapViewController: UIViewController {
                                                            longitude: currentLocation.longitude))
         locationManager.startUpdatingLocation()
     }
-    @IBAction private func didTapSoundButton(_ sender: Any) {
-    }
     
+    @IBAction private func didTapSoundButton(_ sender: Any) {
+        
+    }
 }
 
 // MARK: - Protocol methods
@@ -163,6 +165,10 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.last else { return }
+        
+        guard let speed = manager.location?.speed else { return }
+        speedLabel.text = speed < 0 ? "0 км/г" : "\(speed * 3.6) км/г"
+        
         currentLocation = lastLocation.coordinate
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
         mapView.animate(toZoom: Constants.Default.zoom)

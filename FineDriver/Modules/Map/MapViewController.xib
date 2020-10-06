@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="mapView" destination="6I2-2Q-Syh" id="yyH-XX-tOk"/>
                 <outlet property="soundButton" destination="cGD-9X-4sa" id="hkd-1s-3W2"/>
+                <outlet property="speedLabel" destination="IlR-QW-L5F" id="euy-AJ-itq"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Y7F-yb-U3r"/>
             </connections>
         </placeholder>
@@ -26,15 +27,23 @@
                     <color key="backgroundColor" systemColor="linkColor"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRB-eL-pxq">
-                    <rect key="frame" x="370" y="59" width="24" height="24"/>
+                    <rect key="frame" x="354" y="59" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="24" id="HpR-k7-91W"/>
-                        <constraint firstAttribute="width" constant="24" id="VWL-VE-8Cx"/>
+                        <constraint firstAttribute="height" constant="40" id="HpR-k7-91W"/>
+                        <constraint firstAttribute="width" constant="40" id="VWL-VE-8Cx"/>
                     </constraints>
                     <state key="normal" image="menu"/>
                     <connections>
                         <action selector="didTapMenuButton:" destination="-1" eventType="touchUpInside" id="WCP-U9-sSM"/>
                     </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7e-xS-WKx">
+                    <rect key="frame" x="20" y="59" width="56" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="RLV-dK-WLu"/>
+                        <constraint firstAttribute="width" constant="56" id="WkB-hU-3Xl"/>
+                    </constraints>
+                    <state key="normal" image="Search"/>
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXF-7I-TKi">
                     <rect key="frame" x="338" y="717" width="56" height="56"/>
@@ -59,8 +68,8 @@
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 км/г" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlR-QW-L5F">
-                            <rect key="frame" x="36" y="26" width="106.5" height="40"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 км/г" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlR-QW-L5F">
+                            <rect key="frame" x="36" y="26" width="77.5" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -96,9 +105,11 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tCr-kg-oDe" secondAttribute="trailing" id="1OV-gB-Dry"/>
                 <constraint firstItem="DRB-eL-pxq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="1p1-QL-IS5"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="tCr-kg-oDe" secondAttribute="bottom" id="Rac-d5-ryH"/>
+                <constraint firstItem="X7e-xS-WKx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="XdY-LQ-vTl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6I2-2Q-Syh" secondAttribute="trailing" id="ZSi-lI-J4F"/>
                 <constraint firstItem="tCr-kg-oDe" firstAttribute="top" secondItem="kXF-7I-TKi" secondAttribute="bottom" constant="15" id="chg-On-sAz"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DRB-eL-pxq" secondAttribute="trailing" constant="20" id="fHO-Ja-aDa"/>
+                <constraint firstItem="X7e-xS-WKx" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="fmO-0O-RqQ"/>
                 <constraint firstItem="tCr-kg-oDe" firstAttribute="top" secondItem="6I2-2Q-Syh" secondAttribute="bottom" id="jcN-Tp-6yH"/>
                 <constraint firstItem="6I2-2Q-Syh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kCq-vN-2sN"/>
                 <constraint firstItem="tCr-kg-oDe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mHi-Km-1Ck"/>
@@ -110,6 +121,7 @@
     </objects>
     <resources>
         <image name="Focused" width="76" height="76"/>
+        <image name="Search" width="60" height="60"/>
         <image name="menu" width="24" height="24"/>
         <image name="volume-2" width="24" height="24"/>
         <systemColor name="linkColor">
