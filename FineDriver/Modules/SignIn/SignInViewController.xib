@@ -113,12 +113,32 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WP-IR-HN3">
+                    <rect key="frame" x="24" y="422" width="366" height="40"/>
+                    <color key="backgroundColor" red="0.30975833539999997" green="0.39804595710000001" blue="0.64708590509999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="9OF-BJ-YH1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                    <state key="normal" title="Facebook">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didTapFacebookButton:" destination="-1" eventType="touchUpInside" id="prR-dv-hjv"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Bnn-x0-T1V" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8j0-Xb-LJc"/>
                 <constraint firstItem="6C9-32-ibg" firstAttribute="top" secondItem="J02-2f-xuk" secondAttribute="bottom" constant="24" id="AYd-Or-sEr"/>
+                <constraint firstItem="2WP-IR-HN3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="B1T-Sr-aV9"/>
                 <constraint firstItem="3H5-f5-SdY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="DqC-VS-7Db"/>
                 <constraint firstItem="3H5-f5-SdY" firstAttribute="top" secondItem="YpE-2e-X61" secondAttribute="bottom" constant="20" id="EoO-8g-Iol"/>
                 <constraint firstItem="QDe-WG-74R" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="H8p-Nl-bh6"/>
@@ -126,6 +146,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6C9-32-ibg" secondAttribute="trailing" constant="24" id="LZi-MD-sbs"/>
                 <constraint firstItem="YpE-2e-X61" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="Pfg-5f-3RV"/>
                 <constraint firstItem="Bnn-x0-T1V" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Q0W-x1-35e"/>
+                <constraint firstItem="YpE-2e-X61" firstAttribute="top" secondItem="2WP-IR-HN3" secondAttribute="bottom" constant="20" id="RGD-8o-hmI"/>
                 <constraint firstItem="gqC-lQ-hhU" firstAttribute="top" secondItem="6C9-32-ibg" secondAttribute="bottom" constant="40" id="Sxm-k0-Yhp"/>
                 <constraint firstItem="Ytp-wi-C6y" firstAttribute="top" secondItem="3H5-f5-SdY" secondAttribute="bottom" constant="9" id="Tif-sn-tGH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gqC-lQ-hhU" secondAttribute="trailing" constant="60" id="Tsu-uc-tKF"/>
@@ -139,6 +160,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3H5-f5-SdY" secondAttribute="trailing" constant="24" id="os2-Ax-AKF"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="J02-2f-xuk" secondAttribute="trailing" constant="24" id="owz-Qy-tMR"/>
                 <constraint firstItem="6C9-32-ibg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="pMI-Ns-wO7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2WP-IR-HN3" secondAttribute="trailing" constant="24" id="pcF-iu-zvC"/>
                 <constraint firstItem="gqC-lQ-hhU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="poY-Qe-wJZ"/>
                 <constraint firstItem="J02-2f-xuk" firstAttribute="top" secondItem="Ytp-wi-C6y" secondAttribute="bottom" constant="9" id="wDd-ih-Rzb"/>
             </constraints>

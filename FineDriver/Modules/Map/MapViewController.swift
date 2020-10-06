@@ -92,7 +92,9 @@ class MapViewController: UIViewController {
                 pinData.adress = pinInfo[index].adress
                 
                 if pinInfo[index].isActive == true {
-                    marker.icon = UIImage(named: "Group 39")
+                    marker.icon = UIImage(named: "Marker")
+                } else {
+                    marker.icon = UIImage(named: "Camera_off")
                 }
             }
             

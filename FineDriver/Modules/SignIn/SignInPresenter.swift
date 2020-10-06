@@ -11,6 +11,7 @@ import Foundation
 protocol SignInPresenterProtocol: class {
     var view: SignInViewControllerProtocol? { get set }
     func routeToMap()
+    func saveToUserDefaults(user: String, firstName: String, familyName: String, email: String, tokenId: String)
 }
 
 final class SignInPresenter {
@@ -20,6 +21,7 @@ final class SignInPresenter {
     
     // MARK: - Private property
     private let coordinator = AppCoordinator.shared
+    private let defaults = UserDefaults.standard
     
     // MARK: - LifeCycle
     init(view: SignInViewControllerProtocol?) {
@@ -29,6 +31,14 @@ final class SignInPresenter {
 
 // MARK: - protocol methods
 extension SignInPresenter: SignInPresenterProtocol {
+    
+    func saveToUserDefaults(user: String, firstName: String, familyName: String, email: String, tokenId: String) {
+        defaults.register(defaults: [.user: user,
+                                     .firstName: firstName,
+                                     .familyName: familyName,
+                                     .email: email,
+                                     .tokenId: tokenId])
+    }
     
     func routeToMap() {
         coordinator.routeToMap()
