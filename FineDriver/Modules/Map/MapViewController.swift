@@ -177,4 +177,11 @@ extension MapViewController: CLLocationManagerDelegate {
         mapView.animate(toZoom: Constants.Default.zoom)
         locationManager.stopUpdatingLocation()
     }
+    
+    func distance(from location: CLLocation) -> CLLocationDistance {
+        var startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        var endLocation = CLLocation(latitude: 0, longitude: 0)
+        var distance: CLLocationDistance = startLocation.distance(from: endLocation)
+        return distance
+    }
 }
