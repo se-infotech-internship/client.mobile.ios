@@ -81,25 +81,28 @@ class MapViewController: UIViewController {
     private func setupMarkers() {
         guard let presenter = presenter else { return }
         let coordinates = presenter.markersLocation()
-        let pinInfo = presenter.pinInfo()
-        var pinData = PinEntity()
+        let cameraInfo = presenter.cameraInfo()
+        let cameraData = CameraEntity()
         for (index, element) in coordinates.enumerated() {
             let marker = GMSMarker()
             marker.position.latitude = element.latitude
             marker.position.longitude = element.longitude
             
-            if element.latitude == pinInfo[index].lat && element.longitude == pinInfo[index].long {
-                pinData.limitation = pinInfo[index].limitation
-                pinData.adress = pinInfo[index].adress
+            if element.latitude == cameraInfo[index].latitude && element.longitude == cameraInfo[index].longitude {
+                cameraData.address = cameraInfo[index].address
+                cameraData.direction = cameraInfo[index].direction
+                cameraData.speed = cameraInfo[index].speed
+                cameraData.state = cameraInfo[index].state
                 
-                if pinInfo[index].isActive == true {
+                
+                if cameraInfo[index].state == "on" {
                     marker.icon = UIImage(named: "Marker")
                 } else {
                     marker.icon = UIImage(named: "Camera_off")
                 }
             }
             
-            marker.userData = pinData
+            marker.userData = cameraData
             marker.map = mapView
         }
     }
@@ -167,7 +170,7 @@ extension MapViewController: CLLocationManagerDelegate {
         guard let lastLocation = locations.last else { return }
         
         guard let speed = manager.location?.speed else { return }
-        speedLabel.text = speed < 0 ? "0 км/г" : "\(speed * 3.6) км/г"
+        speedLabel.text = speed < 0 ? "0 км/г" : "\(Int(speed * 3.6)) км/г"
         
         currentLocation = lastLocation.coordinate
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))

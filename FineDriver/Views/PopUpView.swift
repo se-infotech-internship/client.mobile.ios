@@ -16,8 +16,8 @@ class PopUpView: NibView {
     @IBOutlet private weak var metersToCameraLabel: UILabel!
     
     // MARK: - Public property
-    func update(entity: PinEntity) {
-        speedLimitLabel.text = entity.limitation
-        addressLabel.text = entity.adress
+    func update(entity: CameraEntity) {
+        speedLimitLabel.text = "\(entity.speed) км/г"
+        addressLabel.text = entity.address
     }
 }

@@ -11,25 +11,47 @@ import GoogleMaps
 
 protocol MapPresenterProtocol: class {
     var view: MapViewControllerProtocol? { get set}
-    var pinsEntity: [PinEntity] { get set }
+    var camerasEntity: [CameraEntity] { get set }
     func viewDidLoad()
     func markersLocation() -> ([CLLocationCoordinate2D])
     func routeToMenu()
-    func pinInfo() -> [PinEntity]
+    func cameraInfo() -> [CameraEntity]
 }
 
 class MapPresenter {
     
     // MARK: - Protocol property
     weak var view: MapViewControllerProtocol?
-    var pinsEntity: [PinEntity] = []
+    var camerasEntity: [CameraEntity] = []
     
     // MARK: - Private property
     private let coordinator = AppCoordinator.shared
+    private let localService = ServiceLocalFile()
     
     // MARK: - LifeCycle
     init(view: MapViewControllerProtocol?) {
         self.view = view
+    }
+    
+    // MARK: - Private method
+    private func fetchCameras() {
+        
+        localService.fetchLocationList(jsonData: localService.readLocalFile() ?? Data(), success: { [weak self] (cameras) in
+            
+            guard let self = self else { return }
+            
+            for camera in cameras {
+                
+                self.camerasEntity.append(CameraEntity(address: camera.address,
+                                                       latitude: camera.latitude,
+                                                       longitude: camera.longitude,
+                                                       direction: camera.direction,
+                                                       speed: camera.speed,
+                                                       state: camera.state))
+            }
+            }, fail: { (error) in
+                debugPrint("fetchLocationList - \(error)")
+        })
     }
 }
 
@@ -37,18 +59,18 @@ class MapPresenter {
 extension MapPresenter: MapPresenterProtocol {
     
     func markersLocation() -> ([CLLocationCoordinate2D]) {
-        return pinsEntity.map { CLLocationCoordinate2D(latitude: $0.lat ?? 0, longitude: $0.long ?? 0) }
+        return camerasEntity.map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
     }
     
     func viewDidLoad() {
-        pinsEntity = mockDataForMapVC()
+        fetchCameras()
     }
     
     func routeToMenu() {
         coordinator.routeToMenu()
     }
     
-    func pinInfo() -> [PinEntity] {
-        return pinsEntity
+    func cameraInfo() -> [CameraEntity] {
+        return camerasEntity
     }
 }
