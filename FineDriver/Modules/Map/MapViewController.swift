@@ -65,7 +65,7 @@ class MapViewController: UIViewController {
         var bounds = GMSCoordinateBounds()
         bounds = bounds.includingCoordinate(CLLocationCoordinate2D(latitude: Constants.UkrainePosition.lat, longitude: Constants.UkrainePosition.long))
         mapView.animate(with: GMSCameraUpdate.fit(bounds))
-        mapView.animate(toZoom: 7)
+        mapView.animate(toZoom: Constants.UkrainePosition.zoom)
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -115,7 +115,7 @@ class MapViewController: UIViewController {
         view.addSubview(popUpView)
     }
     
-    private func popUpAnimation(isShow: Bool) {
+    private func popUpAnimation(isShow: Bool = true) {
         DispatchQueue.main.async {
             UIView.animate(withDuration: Constants.PopUp.animationTime) {
                 if isShow {
@@ -158,8 +158,10 @@ extension MapViewController: GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        popUpAnimation(isShow: true)
-        return nil
+        guard let cameraInfo = marker.userData as? CameraEntity else { return nil }
+        popUpAnimation()
+        popUpView.update(entity: cameraInfo)
+        return popUpView
     }
 }
 
@@ -169,19 +171,31 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.last else { return }
         
+        // TODO: - Speed
         guard let speed = manager.location?.speed else { return }
         speedLabel.text = speed < 0 ? "0 км/г" : "\(Int(speed * 3.6)) км/г"
+        
+        // TODO: - Distance to cameras
+        let startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        guard let cameras = presenter?.cameraInfo() else { return }
+        for (index, _) in cameras.enumerated() {
+            guard let presenter = presenter else { return }
+            
+            let endLocation = CLLocation(latitude: presenter.model(index: index).latitude, longitude: presenter.model(index: index).longitude)
+            let distance = startLocation.distance(from: endLocation)
+
+            if distance.isEqual(to: 700) {
+                popUpAnimation()
+//            } else if distance.isLess(than: 700) {
+//                popUpAnimation()
+            }
+        }
+        
         
         currentLocation = lastLocation.coordinate
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
         mapView.animate(toZoom: Constants.Default.zoom)
+        
         locationManager.stopUpdatingLocation()
-    }
-    
-    func distance(from location: CLLocation) -> CLLocationDistance {
-        var startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
-        var endLocation = CLLocation(latitude: 0, longitude: 0)
-        var distance: CLLocationDistance = startLocation.distance(from: endLocation)
-        return distance
     }
 }

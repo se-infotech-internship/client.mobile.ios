@@ -16,6 +16,7 @@ protocol MapPresenterProtocol: class {
     func markersLocation() -> ([CLLocationCoordinate2D])
     func routeToMenu()
     func cameraInfo() -> [CameraEntity]
+    func model(index: Int) -> CameraEntity
 }
 
 class MapPresenter {
@@ -72,5 +73,9 @@ extension MapPresenter: MapPresenterProtocol {
     
     func cameraInfo() -> [CameraEntity] {
         return camerasEntity
+    }
+    
+    func model(index: Int) -> CameraEntity {
+        return camerasEntity[index]
     }
 }
