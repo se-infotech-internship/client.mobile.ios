@@ -38,6 +38,7 @@
 		92CAF0D3252CF5BC0080F46E /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CAF0D2252CF5BC0080F46E /* CameraModel.swift */; };
 		92CAF0D6252CF9B90080F46E /* ServiceLocalFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CAF0D5252CF9B90080F46E /* ServiceLocalFile.swift */; };
 		92CAF0D9252CFEE10080F46E /* CameraEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CAF0D8252CFEE10080F46E /* CameraEntity.swift */; };
+		92CAF0E3252F399A0080F46E /* beep-09.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 92CAF0E2252F399A0080F46E /* beep-09.mp3 */; };
 		9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
 		9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */; };
 		9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */; };
@@ -86,6 +87,7 @@
 		92CAF0D2252CF5BC0080F46E /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		92CAF0D5252CF9B90080F46E /* ServiceLocalFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocalFile.swift; sourceTree = "<group>"; };
 		92CAF0D8252CFEE10080F46E /* CameraEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEntity.swift; sourceTree = "<group>"; };
+		92CAF0E2252F399A0080F46E /* beep-09.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "beep-09.mp3"; sourceTree = "<group>"; };
 		9AA51BF1251C0C33000AB6F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		47B532872514DB95006EAAB2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				92CAF0E2252F399A0080F46E /* beep-09.mp3 */,
 				92CAF0CF252CF47E0080F46E /* cameras_list.json */,
 				9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */,
 				9AA51BF1251C0C33000AB6F1 /* Images.xcassets */,
@@ -405,6 +408,7 @@
 				9AA51C01251C0DCF000AB6F1 /* MenuCell.xib in Resources */,
 				928E9F6F2528FE36008A1D59 /* SignInViewController.xib in Resources */,
 				9AA51C0D251C1208000AB6F1 /* MapViewController.xib in Resources */,
+				92CAF0E3252F399A0080F46E /* beep-09.mp3 in Resources */,
 				9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */,
 				929416712521DD1600D7F966 /* FineCell.xib in Resources */,
 			);

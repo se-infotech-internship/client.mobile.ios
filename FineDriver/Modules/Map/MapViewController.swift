@@ -109,9 +109,9 @@ class MapViewController: UIViewController {
     
     private func setupPopUpView() {
         popUpView = PopUpView(frame: CGRect(x: Constants.PopUp.x,
-                                             y: Constants.PopUp.y,
-                                             width: Double(mapView.frame.width),
-                                             height: Constants.PopUp.height))
+                                            y: Constants.PopUp.y,
+                                            width: Double(mapView.frame.width),
+                                            height: Constants.PopUp.height))
         view.addSubview(popUpView)
     }
     
@@ -124,11 +124,15 @@ class MapViewController: UIViewController {
                 } else {
                     self.popUpView.transform = .identity
                     DispatchQueue.main.asyncAfter(deadline: .now() + Constants.PopUp.animationTime) {
-                        self.popUpView.removeFromSuperview()
+                        self.hidePopUp()
                     }
                 }
             }
         }
+    }
+    
+    private func hidePopUp() {
+        popUpView.removeFromSuperview()
     }
     
     // MARK: - Private action
@@ -143,7 +147,7 @@ class MapViewController: UIViewController {
     }
     
     @IBAction private func didTapSoundButton(_ sender: Any) {
-        
+            presenter?.stopSound()
     }
 }
 
@@ -154,10 +158,11 @@ extension MapViewController: MapViewControllerProtocol { }
 extension MapViewController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-       popUpAnimation(isShow: false)
+        popUpAnimation(isShow: false)
     }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        hidePopUp()
         guard let cameraInfo = marker.userData as? CameraEntity else { return nil }
         popUpAnimation()
         popUpView.update(entity: cameraInfo)
@@ -183,14 +188,24 @@ extension MapViewController: CLLocationManagerDelegate {
             
             let endLocation = CLLocation(latitude: presenter.model(index: index).latitude, longitude: presenter.model(index: index).longitude)
             let distance = startLocation.distance(from: endLocation)
-
+            
             if distance.isEqual(to: 700) {
+                presenter.stopSound()
+                hidePopUp()
                 popUpAnimation()
-//            } else if distance.isLess(than: 700) {
-//                popUpAnimation()
+                presenter.playSound(forResource: "beep-09", withExtension: "mp3")
+            } else if distance.isEqual(to: 200) {
+                presenter.stopSound()
+                hidePopUp()
+                popUpAnimation()
+                presenter.playSound(forResource: "beep-09", withExtension: "mp3")
+            } else if distance.isEqual(to: 100) {
+                presenter.stopSound()
+                hidePopUp()
+                popUpAnimation()
+                presenter.playSound(forResource: "beep-09", withExtension: "mp3")
             }
         }
-        
         
         currentLocation = lastLocation.coordinate
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))

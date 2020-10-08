@@ -8,6 +8,7 @@
 
 import Foundation
 import GoogleMaps
+import AVFoundation
 
 protocol MapPresenterProtocol: class {
     var view: MapViewControllerProtocol? { get set}
@@ -17,6 +18,8 @@ protocol MapPresenterProtocol: class {
     func routeToMenu()
     func cameraInfo() -> [CameraEntity]
     func model(index: Int) -> CameraEntity
+    func playSound(forResource: String, withExtension: String)
+    func stopSound()
 }
 
 class MapPresenter {
@@ -28,6 +31,7 @@ class MapPresenter {
     // MARK: - Private property
     private let coordinator = AppCoordinator.shared
     private let localService = ServiceLocalFile()
+    private var player: AVAudioPlayer?
     
     // MARK: - LifeCycle
     init(view: MapViewControllerProtocol?) {
@@ -50,8 +54,8 @@ class MapPresenter {
                                                        speed: camera.speed,
                                                        state: camera.state))
             }
-            }, fail: { (error) in
-                debugPrint("fetchLocationList - \(error)")
+        }, fail: { (error) in
+            debugPrint("fetchLocationList - \(error)")
         })
     }
 }
@@ -77,5 +81,24 @@ extension MapPresenter: MapPresenterProtocol {
     
     func model(index: Int) -> CameraEntity {
         return camerasEntity[index]
+    }
+    
+    func playSound(forResource: String, withExtension: String = "mp3") {
+        guard let url = Bundle.main.url(forResource: forResource, withExtension: withExtension) else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            guard let player = player else { return }
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func stopSound() {
+        guard let player = player else { return }
+        player.stop()
     }
 }
