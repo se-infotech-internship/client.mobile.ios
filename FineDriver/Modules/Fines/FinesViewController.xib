@@ -21,22 +21,64 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AHO-sd-ZLG">
-                    <rect key="frame" x="0.0" y="144" width="414" height="618"/>
+                    <rect key="frame" x="0.0" y="128" width="414" height="734"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tqi-hL-HCi">
+                    <rect key="frame" x="0.0" y="44" width="414" height="64"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vector-3" translatesAutoresizingMaskIntoConstraints="NO" id="ZlL-YO-8Cb">
+                            <rect key="frame" x="16" y="22.5" width="11" height="19"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="19" id="adL-R1-cb5"/>
+                                <constraint firstAttribute="width" constant="11" id="jZT-eh-8ht"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1v-oI-0fw">
+                            <rect key="frame" x="16" y="17" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="cjB-wu-I60"/>
+                                <constraint firstAttribute="width" constant="30" id="e0h-xS-tbF"/>
+                            </constraints>
+                            <connections>
+                                <action selector="didTapPopUpButton:" destination="-1" eventType="touchUpInside" id="bqy-1a-wCl"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ШТРАФИ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNX-iq-dJd">
+                            <rect key="frame" x="163" y="20" width="88.5" height="24"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.16882747410000001" green="0.18808373810000001" blue="0.19608008860000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="zNX-iq-dJd" firstAttribute="centerX" secondItem="Tqi-hL-HCi" secondAttribute="centerX" id="7Ph-iL-hHe"/>
+                        <constraint firstItem="ZlL-YO-8Cb" firstAttribute="leading" secondItem="Tqi-hL-HCi" secondAttribute="leading" constant="16" id="9Uv-QA-rw0"/>
+                        <constraint firstItem="ZlL-YO-8Cb" firstAttribute="centerY" secondItem="Tqi-hL-HCi" secondAttribute="centerY" id="PEy-Zd-h5n"/>
+                        <constraint firstItem="zNX-iq-dJd" firstAttribute="centerY" secondItem="Tqi-hL-HCi" secondAttribute="centerY" id="VVL-wQ-ipy"/>
+                        <constraint firstItem="t1v-oI-0fw" firstAttribute="centerY" secondItem="Tqi-hL-HCi" secondAttribute="centerY" id="oa5-24-IST"/>
+                        <constraint firstItem="t1v-oI-0fw" firstAttribute="leading" secondItem="Tqi-hL-HCi" secondAttribute="leading" constant="16" id="u6e-yd-0wF"/>
+                        <constraint firstAttribute="height" constant="64" id="zrY-Lv-ace"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AHO-sd-ZLG" secondAttribute="trailing" id="Nfa-Iw-ygf"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AHO-sd-ZLG" secondAttribute="bottom" constant="100" id="ubx-PZ-OeM"/>
-                <constraint firstItem="AHO-sd-ZLG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xf5-kl-7Py"/>
-                <constraint firstItem="AHO-sd-ZLG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="zst-oS-2x2"/>
+                <constraint firstItem="Tqi-hL-HCi" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="28k-ZS-LjS"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="top" secondItem="Tqi-hL-HCi" secondAttribute="bottom" constant="20" id="3tv-Sk-OAd"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ODJ-BH-pn2"/>
+                <constraint firstItem="Tqi-hL-HCi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Vi9-xK-6Sg"/>
+                <constraint firstItem="Tqi-hL-HCi" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Z9g-LX-0Rk"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="b3H-Sd-DMt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AHO-sd-ZLG" secondAttribute="bottom" id="xnY-aV-FZE"/>
             </constraints>
-            <point key="canvasLocation" x="142" y="110"/>
+            <point key="canvasLocation" x="140.57971014492756" y="109.82142857142857"/>
         </view>
     </objects>
     <resources>
+        <image name="Vector-3" width="11" height="19"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

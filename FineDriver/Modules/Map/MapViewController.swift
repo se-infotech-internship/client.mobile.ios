@@ -34,13 +34,21 @@ class MapViewController: UIViewController {
             static let translationX: CGFloat = 0
             static let transationY: CGFloat = 256
         }
+        
+        enum Distance {
+            static let longAway: Double = 700
+            static let medium: Double = 200
+            static let near: Double = 100
+        }
     }
     
     // MARK: - Private outlets
     @IBOutlet private weak var speedLabel: UILabel!
     @IBOutlet private weak var soundButton: UIButton!
+    @IBOutlet private weak var soundImageView: UIImageView!
     @IBOutlet private weak var mapView: GMSMapView!
-    lazy private var popUpView = PopUpView()
+    
+    private var popUpView: PopUpView?
     
     // MARK: - Public property
     var presenter: MapPresenterProtocol?
@@ -82,7 +90,7 @@ class MapViewController: UIViewController {
         guard let presenter = presenter else { return }
         let coordinates = presenter.markersLocation()
         let cameraInfo = presenter.cameraInfo()
-        let cameraData = CameraEntity()
+        var cameraData = CameraEntity()
         for (index, element) in coordinates.enumerated() {
             let marker = GMSMarker()
             marker.position.latitude = element.latitude
@@ -93,7 +101,6 @@ class MapViewController: UIViewController {
                 cameraData.direction = cameraInfo[index].direction
                 cameraData.speed = cameraInfo[index].speed
                 cameraData.state = cameraInfo[index].state
-                
                 
                 if cameraInfo[index].state == "on" {
                     marker.icon = UIImage(named: "Marker")
@@ -112,27 +119,30 @@ class MapViewController: UIViewController {
                                             y: Constants.PopUp.y,
                                             width: Double(mapView.frame.width),
                                             height: Constants.PopUp.height))
-        view.addSubview(popUpView)
+        view.addSubview(popUpView ?? UIView())
     }
     
     private func popUpAnimation(isShow: Bool = true) {
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: Constants.PopUp.animationTime) {
-                if isShow {
-                    self.setupPopUpView()
-                    self.popUpView.transform = CGAffineTransform(translationX: Constants.PopUp.translationX, y: Constants.PopUp.transationY)
-                } else {
-                    self.popUpView.transform = .identity
-                    DispatchQueue.main.asyncAfter(deadline: .now() + Constants.PopUp.animationTime) {
-                        self.hidePopUp()
-                    }
+        UIView.animate(withDuration: Constants.PopUp.animationTime) {
+            if isShow {
+                self.setupPopUpView()
+                self.popUpView?.transform = CGAffineTransform(translationX: Constants.PopUp.translationX, y: Constants.PopUp.transationY)
+            } else {
+                self.popUpView?.transform = .identity
+                DispatchQueue.main.asyncAfter(deadline: .now() + Constants.PopUp.animationTime) {
+                    self.hidePopUp()
                 }
             }
         }
     }
     
     private func hidePopUp() {
-        popUpView.removeFromSuperview()
+        popUpView?.removeFromSuperview()
+    }
+    
+    private func soundOncomingCamera(forResource: String = "02869", withExtension: String = "mp3") {
+        presenter?.stopSound()
+        presenter?.playSound(forResource: forResource, withExtension: withExtension)
     }
     
     // MARK: - Private action
@@ -147,7 +157,12 @@ class MapViewController: UIViewController {
     }
     
     @IBAction private func didTapSoundButton(_ sender: Any) {
+        if soundImageView.image == UIImage(named: "volume-2") {
+            soundImageView.image = UIImage(named: "Sound_off")
             presenter?.stopSound()
+        } else {
+            soundImageView.image = UIImage(named: "volume-2")
+        }
     }
 }
 
@@ -165,8 +180,8 @@ extension MapViewController: GMSMapViewDelegate {
         hidePopUp()
         guard let cameraInfo = marker.userData as? CameraEntity else { return nil }
         popUpAnimation()
-        popUpView.update(entity: cameraInfo)
-        return popUpView
+        popUpView?.update(entity: cameraInfo, metersTo: 700)
+        return nil
     }
 }
 
@@ -182,28 +197,24 @@ extension MapViewController: CLLocationManagerDelegate {
         
         // TODO: - Distance to cameras
         let startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        
         guard let cameras = presenter?.cameraInfo() else { return }
-        for (index, _) in cameras.enumerated() {
+        for (index, element) in cameras.enumerated() {
             guard let presenter = presenter else { return }
             
-            let endLocation = CLLocation(latitude: presenter.model(index: index).latitude, longitude: presenter.model(index: index).longitude)
+            let endLocation = CLLocation(latitude: presenter.model(index: index).latitude ?? 0, longitude: presenter.model(index: index).longitude ?? 0)
             let distance = startLocation.distance(from: endLocation)
             
-            if distance.isEqual(to: 700) {
-                presenter.stopSound()
+            if distance.isLess(than: Constants.Distance.longAway) {
                 hidePopUp()
+                soundOncomingCamera()
                 popUpAnimation()
-                presenter.playSound(forResource: "beep-09", withExtension: "mp3")
-            } else if distance.isEqual(to: 200) {
-                presenter.stopSound()
-                hidePopUp()
-                popUpAnimation()
-                presenter.playSound(forResource: "beep-09", withExtension: "mp3")
-            } else if distance.isEqual(to: 100) {
-                presenter.stopSound()
-                hidePopUp()
-                popUpAnimation()
-                presenter.playSound(forResource: "beep-09", withExtension: "mp3")
+                popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
+                
+            } else if distance.isEqual(to: Constants.Distance.medium) {
+                soundOncomingCamera()
+            } else if distance.isEqual(to: Constants.Distance.near) {
+                soundOncomingCamera()
             }
         }
         

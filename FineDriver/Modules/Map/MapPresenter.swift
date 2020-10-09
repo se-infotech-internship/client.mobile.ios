@@ -64,7 +64,7 @@ class MapPresenter {
 extension MapPresenter: MapPresenterProtocol {
     
     func markersLocation() -> ([CLLocationCoordinate2D]) {
-        return camerasEntity.map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
+        return camerasEntity.map { CLLocationCoordinate2D(latitude: $0.latitude ?? 0, longitude: $0.longitude ?? 0) }
     }
     
     func viewDidLoad() {

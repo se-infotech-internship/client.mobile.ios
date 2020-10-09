@@ -8,21 +8,21 @@
 
 import Foundation
 
-final class CameraEntity {
+struct CameraEntity {
     
-    var address: String
-    var latitude: Double
-    var longitude: Double
+    var address: String?
+    var latitude: Double?
+    var longitude: Double?
     var direction: String?
-    var speed: Int
-    var state: String
+    var speed: Int?
+    var state: String?
     
-    init(address: String = "", latitude: Double = 0.0, longitude: Double = 0.0, direction: String? = "", speed: Int = 0, state: String = "") {
-        self.address = address
-        self.latitude = latitude
-        self.longitude = longitude
-        self.direction = direction
-        self.speed = speed
-        self.state = state
-    }
+//    init(address: String = "", latitude: Double = 0.0, longitude: Double = 0.0, direction: String? = "", speed: Int = 0, state: String = "") {
+//        self.address = address
+//        self.latitude = latitude
+//        self.longitude = longitude
+//        self.direction = direction
+//        self.speed = speed
+//        self.state = state
+//    }
 }

@@ -39,6 +39,11 @@ final class FinesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    // MARK: - Private action
+    @IBAction private func didTapPopUpButton(_ sender: Any) {
+        presenter?.routePop()
+    }
 }
 
 // MARK: - Protocol methods
@@ -59,6 +64,11 @@ extension FinesViewController: FineCellDelegate {
 
 // MARK: - TableView methods
 extension FinesViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.countRows() ?? 0
     }

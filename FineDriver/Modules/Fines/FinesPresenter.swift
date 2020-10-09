@@ -14,6 +14,7 @@ protocol FinesPresenterProtocol: class {
     func model(index: Int) -> FineEntity
     func viewDidLoad()
     func fines() -> [FineEntity]
+    func routePop()
 }
 
 final class FinesPresenter {
@@ -23,6 +24,7 @@ final class FinesPresenter {
     
     // MARK: - Private property
     private var fineEntities = [FineEntity]()
+    private let coordinator = AppCoordinator.shared
     
     // MARK: - LifeCycle
     init(view: FinesViewControllerProtocol?) {
@@ -51,5 +53,9 @@ extension FinesPresenter: FinesPresenterProtocol {
     
     func fines() -> [FineEntity] {
         return fineEntities
+    }
+    
+    func routePop() {
+        coordinator.popVC()
     }
 }

@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundSplash" translatesAutoresizingMaskIntoConstraints="NO" id="Rna-6f-7E6">
-                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_plate" translatesAutoresizingMaskIntoConstraints="NO" id="NwS-uZ-Ntq">
                     <rect key="frame" x="103.5" y="155" width="207" height="207"/>
@@ -32,7 +32,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Rna-6f-7E6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="NHs-Vq-wrr"/>
+                <constraint firstItem="Rna-6f-7E6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NHs-Vq-wrr"/>
                 <constraint firstItem="NwS-uZ-Ntq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QLz-Vf-7FF"/>
                 <constraint firstAttribute="bottom" secondItem="Rna-6f-7E6" secondAttribute="bottom" id="dQn-o4-bGs"/>
                 <constraint firstItem="NwS-uZ-Ntq" firstAttribute="width" secondItem="Rna-6f-7E6" secondAttribute="width" multiplier="0.5" id="eSo-Do-1f0"/>
