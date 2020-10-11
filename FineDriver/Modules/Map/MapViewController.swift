@@ -205,16 +205,22 @@ extension MapViewController: CLLocationManagerDelegate {
             let endLocation = CLLocation(latitude: presenter.model(index: index).latitude ?? 0, longitude: presenter.model(index: index).longitude ?? 0)
             let distance = startLocation.distance(from: endLocation)
             
-            if distance.isLess(than: Constants.Distance.longAway) {
+            if distance.isEqual(to: Constants.Distance.longAway) {
                 hidePopUp()
                 soundOncomingCamera()
                 popUpAnimation()
                 popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
                 
             } else if distance.isEqual(to: Constants.Distance.medium) {
+                hidePopUp()
                 soundOncomingCamera()
+                popUpAnimation()
+                popUpView?.update(entity: element, metersTo: Constants.Distance.medium)
             } else if distance.isEqual(to: Constants.Distance.near) {
+                hidePopUp()
                 soundOncomingCamera()
+                popUpAnimation()
+                popUpView?.update(entity: element, metersTo: Constants.Distance.near)
             }
         }
         

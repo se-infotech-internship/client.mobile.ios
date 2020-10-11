@@ -1,18 +1,18 @@
 //
-//  SettingsViewController.swift
+//  MessageSettingViewController.swift
 //  FineDriver
 //
-//  Created by Вячеслав on 09.10.2020.
+//  Created by Вячеслав on 11.10.2020.
 //  Copyright © 2020 Infotekh. All rights reserved.
 //
 
 import UIKit
 
-protocol SettingsViewControllerProtocol: class {
+protocol MessageSettingViewControllerProtocol: class {
     func reloadData()
 }
 
-final class SettingsViewController: UIViewController {
+final class MessageSettingViewController: UIViewController {
     
     private enum Constants {
         
@@ -22,26 +22,26 @@ final class SettingsViewController: UIViewController {
         }
     }
     
-    // MARK: - Private outlets
-    @IBOutlet private weak var tableView: UITableView!
+    // MARK: - Private outlet
     @IBOutlet private weak var navigationView: NavigationView!
+    @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Public property
-    var presenter: SettingsPresenterProtocol?
+    var presenter: MessageSettingPresenterProtocol?
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupNavigationView()
+
+       setupNavigationView()
         setupTableView()
         presenter?.viewDidLoad()
-        reloadData()
+        tableView.reloadData()
     }
-    
-    // MARK: - Private func
+
+    // MARK: - Private method
     private func setupNavigationView() {
-        navigationView.update(title: "НАЛАШТУВАННЯ")
+        navigationView.update(title: "ШТРАФИ")
     }
     
     private func setupTableView() {
@@ -52,12 +52,12 @@ final class SettingsViewController: UIViewController {
     }
     
     private func setupTableCell() {
-        tableView.register(UINib(nibName: BaseSettingCell.identifier, bundle: nil), forCellReuseIdentifier: BaseSettingCell.identifier)
+        tableView.register(UINib(nibName: SwitchSettingCell.identifier, bundle: nil), forCellReuseIdentifier: SwitchSettingCell.identifier)
     }
 }
 
-// MARK: - Protocol methods
-extension SettingsViewController: SettingsViewControllerProtocol {
+// MARK: - Protocol methos
+extension MessageSettingViewController: MessageSettingViewControllerProtocol {
     
     func reloadData() {
         tableView.reloadData()
@@ -65,7 +65,7 @@ extension SettingsViewController: SettingsViewControllerProtocol {
 }
 
 // MARK: - Delegate methods
-extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+extension MessageSettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Constants.TableView.height
@@ -77,20 +77,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cellModel = presenter?.model(index: indexPath.row),
-              let cell = tableView.dequeueReusableCell(withIdentifier: BaseSettingCell.identifier, for: indexPath) as? BaseSettingCell else { return UITableViewCell() }
+              let cell = tableView.dequeueReusableCell(withIdentifier: SwitchSettingCell.identifier, for: indexPath) as? SwitchSettingCell else { return UITableViewCell() }
         cell.update(entity: cellModel)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.row {
-        case 0: presenter?.routeMessageSetting()
-        case 1: break
-        case 2: break
-        case 3: break
-        case 4: break
-        default: break
-        }
     }
 }

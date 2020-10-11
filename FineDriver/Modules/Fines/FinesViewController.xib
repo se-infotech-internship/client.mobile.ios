@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinesViewController" customModule="FineDriver" customModuleProvider="target">
             <connections>
+                <outlet property="navigationView" destination="Tqi-hL-HCi" id="L4Y-CO-hxh"/>
                 <outlet property="tableView" destination="AHO-sd-ZLG" id="E5U-wP-gh3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,41 +25,9 @@
                     <rect key="frame" x="0.0" y="128" width="414" height="734"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tqi-hL-HCi">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tqi-hL-HCi" customClass="NavigationView" customModule="FineDriver" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="44" width="414" height="64"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vector-3" translatesAutoresizingMaskIntoConstraints="NO" id="ZlL-YO-8Cb">
-                            <rect key="frame" x="16" y="22.5" width="11" height="19"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="19" id="adL-R1-cb5"/>
-                                <constraint firstAttribute="width" constant="11" id="jZT-eh-8ht"/>
-                            </constraints>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1v-oI-0fw">
-                            <rect key="frame" x="16" y="17" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="cjB-wu-I60"/>
-                                <constraint firstAttribute="width" constant="30" id="e0h-xS-tbF"/>
-                            </constraints>
-                            <connections>
-                                <action selector="didTapPopUpButton:" destination="-1" eventType="touchUpInside" id="bqy-1a-wCl"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ШТРАФИ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNX-iq-dJd">
-                            <rect key="frame" x="163" y="20" width="88.5" height="24"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.16882747410000001" green="0.18808373810000001" blue="0.19608008860000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstItem="zNX-iq-dJd" firstAttribute="centerX" secondItem="Tqi-hL-HCi" secondAttribute="centerX" id="7Ph-iL-hHe"/>
-                        <constraint firstItem="ZlL-YO-8Cb" firstAttribute="leading" secondItem="Tqi-hL-HCi" secondAttribute="leading" constant="16" id="9Uv-QA-rw0"/>
-                        <constraint firstItem="ZlL-YO-8Cb" firstAttribute="centerY" secondItem="Tqi-hL-HCi" secondAttribute="centerY" id="PEy-Zd-h5n"/>
-                        <constraint firstItem="zNX-iq-dJd" firstAttribute="centerY" secondItem="Tqi-hL-HCi" secondAttribute="centerY" id="VVL-wQ-ipy"/>
-                        <constraint firstItem="t1v-oI-0fw" firstAttribute="centerY" secondItem="Tqi-hL-HCi" secondAttribute="centerY" id="oa5-24-IST"/>
-                        <constraint firstItem="t1v-oI-0fw" firstAttribute="leading" secondItem="Tqi-hL-HCi" secondAttribute="leading" constant="16" id="u6e-yd-0wF"/>
                         <constraint firstAttribute="height" constant="64" id="zrY-Lv-ace"/>
                     </constraints>
                 </view>
@@ -78,7 +47,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Vector-3" width="11" height="19"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
