@@ -17,44 +17,26 @@ protocol SignInViewControllerProtocol: class {
 
 final class SignInViewController: UIViewController {
     
+    // MARK: - Private outlet
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var appleView: UIView!
+    
+    // MARK: - Private property
+    lazy private var facebookButton = FBLoginButton(frame: .zero, permissions: [.email, .publicProfile])
+    
     // MARK: - Public properties
     var presenter: SignInPresenterProtocol?
     
     // LifeCicle
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        setupGoogleSignIn()
-        setupFacebookSignIn()
         
-        if #available(iOS 13.0, *) {
-            setupAppleSignIn()
-        }
     }
     
     // MARK: - Private methods
-    private func setupGoogleSignIn() {
-        
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance()?.delegate = self
-        
-        let googleButton = GIDSignInButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-        googleButton.center = view.center
-        view.addSubview(googleButton)
-    }
-    
     private func setupFacebookSignIn() {
-        
-        let facebookButton = FBLoginButton()
-        facebookButton.center = view.center
         view.addSubview(facebookButton)
-        
-        // TODO: - Constraint for test
-        NSLayoutConstraint.activate([facebookButton.topAnchor.constraint(equalTo: view.topAnchor,constant: 30),
-                                     facebookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 30),
-                                     facebookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-                                     facebookButton.heightAnchor.constraint(equalToConstant: 50)])
-        
         facebookButton.delegate = self
         facebookButton.permissions = ["public_profile", "email"]
         
@@ -87,13 +69,51 @@ final class SignInViewController: UIViewController {
             controller.performRequests()
         }
     }
+    
+    // MARK: - Private action
+    @IBAction private func didTapRegisterButton(_ sender: Any) {
+        presenter?.routeToMap()
+    }
+    
+    @IBAction private func didTapGoogleButton(_ sender: Any) {
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().presentingViewController = self
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    @IBAction private func didTapFacebookButton(_ sender: Any) {
+        facebookButton.sendActions(for: .touchUpInside)
+    }
 }
 
 // MARK: - Google auth delegate methods
 extension SignInViewController: GIDSignInDelegate {
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print("\(user.authentication.idToken)") // TODO: - Logic for auth success/error
+    private func signIn(_ signIn: GIDSignIn!, presentViewController viewController: UIViewController!) {
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    private func signIn(_ signIn: GIDSignIn!, dismissViewController viewController: UIViewController!) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+        if error == nil {
+            
+            guard let user = user,
+                  let userId = user.userID,
+                  let firstName = user.profile.givenName,
+                  let familyName = user.profile.familyName,
+                  let email = user.profile.email,
+                  let tokenId = user.authentication.idToken else { return }
+
+            presenter?.saveToUserDefaults(user: userId,
+                                          firstName: firstName,
+                                          familyName: familyName,
+                                          email: email,
+                                          tokenId: tokenId)
+        }
     }
 }
 
@@ -104,12 +124,25 @@ extension SignInViewController: LoginButtonDelegate {
         let token = result?.token?.tokenString
         
         let request = FBSDKLoginKit.GraphRequest(graphPath: "me",
-                                                 parameters: ["fields": "email, name"],
+                                                 parameters: ["fields": "email, first_name, id, user, family_name"],
                                                  tokenString: token,
                                                  version: nil,
                                                  httpMethod: .get)
+        
         request.start { (connection, result, error) in
-            print("\(result)") // TODO: - Logic for auth success/error
+            
+            guard let fields = result as? [String: Any],
+                  let firstName = fields["first_name"] as? String,
+                  let id = fields["id"] as? String,
+                  let user = fields["user"] as? String,
+                  let familyName = fields["family_name"] as? String,
+                  let email = fields["email"] as? String else { return }
+            
+            self.presenter?.saveToUserDefaults(user: user,
+                                               firstName: firstName,
+                                               familyName: familyName,
+                                               email: email,
+                                               tokenId: id)
         }
     }
     
@@ -125,10 +158,18 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     // MARK: - ASAuthorizationControllerDelegate methods
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
-            print("User id is \(userIdentifier) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))")
+            
+            guard let firstName = appleIDCredential.fullName?.givenName else { return }
+            guard let familyName = appleIDCredential.fullName?.familyName else { return }
+            guard let email = appleIDCredential.email else { return }
+            guard let tokenId = appleIDCredential.authorizationCode as? String else { return }
+            
+            self.presenter?.saveToUserDefaults(user: appleIDCredential.user,
+                                               firstName: firstName,
+                                               familyName: familyName,
+                                               email: email,
+                                               tokenId: tokenId)
+            
         }
     }
     

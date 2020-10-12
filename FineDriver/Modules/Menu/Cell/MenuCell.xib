@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-dx-8a7">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse 2" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-dx-8a7">
                         <rect key="frame" x="24" y="8" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="9pm-f8-8Jr"/>
@@ -58,6 +58,11 @@
                                     <constraint firstAttribute="width" constant="35" id="aUr-k8-drY"/>
                                     <constraint firstItem="Jz3-t8-eEq" firstAttribute="centerX" secondItem="7f6-hr-pCO" secondAttribute="centerX" id="nuC-Y9-IcM"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="11"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ka2-SR-pxB">
                                 <rect key="frame" x="26" y="16" width="8" height="8"/>
@@ -76,6 +81,13 @@
                             <constraint firstAttribute="trailing" secondItem="Ka2-SR-pxB" secondAttribute="trailing" constant="32" id="luy-z8-XZC"/>
                         </constraints>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oqF-lg-feA">
+                        <rect key="frame" x="32" y="14" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="s6Z-a8-kFb"/>
+                            <constraint firstAttribute="height" constant="24" id="xjX-rg-wvi"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="At8-rt-Jeg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0eu-LI-L9J"/>
@@ -84,18 +96,20 @@
                     <constraint firstItem="5Nd-l1-ggq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="DUK-NF-dyu"/>
                     <constraint firstAttribute="bottom" secondItem="5Nd-l1-ggq" secondAttribute="bottom" id="GQ0-bo-MNG"/>
                     <constraint firstAttribute="bottom" secondItem="BDq-qE-b26" secondAttribute="bottom" id="IlG-mp-oSX"/>
+                    <constraint firstItem="oqF-lg-feA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-2" id="KgW-5B-97K"/>
                     <constraint firstAttribute="trailing" secondItem="BDq-qE-b26" secondAttribute="trailing" id="V2k-ja-rot"/>
                     <constraint firstItem="At8-rt-Jeg" firstAttribute="leading" secondItem="bcT-dx-8a7" secondAttribute="trailing" constant="24" id="Xbp-8i-8Gw"/>
                     <constraint firstItem="BDq-qE-b26" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fCP-um-SGz"/>
                     <constraint firstItem="BDq-qE-b26" firstAttribute="top" secondItem="At8-rt-Jeg" secondAttribute="bottom" id="o4V-aO-znL"/>
                     <constraint firstItem="bcT-dx-8a7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="qwF-Qf-EDo"/>
+                    <constraint firstItem="oqF-lg-feA" firstAttribute="centerX" secondItem="bcT-dx-8a7" secondAttribute="centerX" id="sxI-E9-zez"/>
                     <constraint firstAttribute="trailing" secondItem="At8-rt-Jeg" secondAttribute="trailing" constant="56" id="xxe-mN-qvZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="countCallLabel" destination="Jz3-t8-eEq" id="bP2-fO-yjS"/>
-                <outlet property="iconImageView" destination="bcT-dx-8a7" id="Rgi-SE-2GU"/>
+                <outlet property="iconImageView" destination="oqF-lg-feA" id="bV4-gN-8TU"/>
                 <outlet property="nameLabel" destination="At8-rt-Jeg" id="8U4-mu-m4i"/>
                 <outlet property="notificationView" destination="5Nd-l1-ggq" id="ay1-fz-1xf"/>
                 <outlet property="redRoundView" destination="Ka2-SR-pxB" id="xjb-ai-CJR"/>
@@ -105,6 +119,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Ellipse 2" width="48" height="48"/>
         <namedColor name="Ellipse31">
             <color red="0.88400000333786011" green="0.1940000057220459" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

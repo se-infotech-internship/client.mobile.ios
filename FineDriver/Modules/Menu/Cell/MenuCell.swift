@@ -31,9 +31,6 @@ final class MenuCell: UITableViewCell {
     private func setupView() {
         redRoundView.layer.cornerRadius = self.redRoundView.frame.size.width / 2
         redRoundView.clipsToBounds = true
-        
-        yellowRoundView.layer.cornerRadius = 17
-        yellowRoundView.clipsToBounds = true
     }
 
     private func setupNotificationView(count: Int?) {

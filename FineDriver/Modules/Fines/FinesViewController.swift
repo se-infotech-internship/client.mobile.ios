@@ -16,6 +16,7 @@ final class FinesViewController: UIViewController {
     
     // MARK:- Private outlet
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var navigationView: NavigationView!
     
     // MARK: - Public properties
     var presenter: FinesPresenterProtocol?
@@ -27,6 +28,7 @@ final class FinesViewController: UIViewController {
         presenter?.viewDidLoad()
         setupTableCell()
         setupTableView()
+        setupNavigationView()
     }
 
     // MARK: - Private methods
@@ -38,6 +40,15 @@ final class FinesViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    private func setupNavigationView() {
+        navigationView.update(title: "ШТРАФИ")
+    }
+    
+    // MARK: - Private action
+    @IBAction private func didTapPopUpButton(_ sender: Any) {
+        presenter?.routePop()
     }
 }
 
@@ -59,6 +70,11 @@ extension FinesViewController: FineCellDelegate {
 
 // MARK: - TableView methods
 extension FinesViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.countRows() ?? 0
     }

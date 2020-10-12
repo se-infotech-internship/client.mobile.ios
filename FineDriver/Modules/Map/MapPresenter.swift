@@ -8,28 +8,55 @@
 
 import Foundation
 import GoogleMaps
+import AVFoundation
 
 protocol MapPresenterProtocol: class {
     var view: MapViewControllerProtocol? { get set}
-    var pinsEntity: [PinEntity] { get set }
+    var camerasEntity: [CameraEntity] { get set }
     func viewDidLoad()
     func markersLocation() -> ([CLLocationCoordinate2D])
     func routeToMenu()
-    func pinInfo() -> [PinEntity]
+    func cameraInfo() -> [CameraEntity]
+    func model(index: Int) -> CameraEntity
+    func playSound(forResource: String, withExtension: String)
+    func stopSound()
 }
 
 class MapPresenter {
     
     // MARK: - Protocol property
     weak var view: MapViewControllerProtocol?
-    var pinsEntity: [PinEntity] = []
+    var camerasEntity: [CameraEntity] = []
     
     // MARK: - Private property
     private let coordinator = AppCoordinator.shared
+    private let localService = ServiceLocalFile()
+    private var player: AVAudioPlayer?
     
     // MARK: - LifeCycle
     init(view: MapViewControllerProtocol?) {
         self.view = view
+    }
+    
+    // MARK: - Private method
+    private func fetchCameras() {
+        
+        localService.fetchLocationList(jsonData: localService.readLocalFile() ?? Data(), success: { [weak self] (cameras) in
+            
+            guard let self = self else { return }
+            
+            for camera in cameras {
+                
+                self.camerasEntity.append(CameraEntity(address: camera.address,
+                                                       latitude: camera.latitude,
+                                                       longitude: camera.longitude,
+                                                       direction: camera.direction,
+                                                       speed: camera.speed,
+                                                       state: camera.state))
+            }
+        }, fail: { (error) in
+            debugPrint("fetchLocationList - \(error)")
+        })
     }
 }
 
@@ -37,18 +64,41 @@ class MapPresenter {
 extension MapPresenter: MapPresenterProtocol {
     
     func markersLocation() -> ([CLLocationCoordinate2D]) {
-        return pinsEntity.map { CLLocationCoordinate2D(latitude: $0.lat ?? 0, longitude: $0.long ?? 0) }
+        return camerasEntity.map { CLLocationCoordinate2D(latitude: $0.latitude ?? 0, longitude: $0.longitude ?? 0) }
     }
     
     func viewDidLoad() {
-        pinsEntity = mockDataForMapVC()
+        fetchCameras()
     }
     
     func routeToMenu() {
         coordinator.routeToMenu()
     }
     
-    func pinInfo() -> [PinEntity] {
-        return pinsEntity
+    func cameraInfo() -> [CameraEntity] {
+        return camerasEntity
+    }
+    
+    func model(index: Int) -> CameraEntity {
+        return camerasEntity[index]
+    }
+    
+    func playSound(forResource: String, withExtension: String = "mp3") {
+        guard let url = Bundle.main.url(forResource: forResource, withExtension: withExtension) else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            guard let player = player else { return }
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func stopSound() {
+        guard let player = player else { return }
+        player.stop()
     }
 }

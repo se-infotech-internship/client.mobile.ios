@@ -16,6 +16,8 @@ protocol CoordinatorProtocol {
     func routeToMap()
     func routeToMenu()
     func routeToAuth()
+    func routeToSetting()
+    func routeToMessageSetting()
 }
 
 class AppCoordinator: CoordinatorProtocol {
@@ -67,6 +69,22 @@ class AppCoordinator: CoordinatorProtocol {
     func routeToFinesList() {
         let viewController = FinesViewController()
         let presenter =  FinesPresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToSetting() {
+        let viewController = SettingsViewController()
+        let presenter = SettingsPresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToMessageSetting() {
+        let viewController = MessageSettingViewController()
+        let presenter = MessageSettingPresenter(view: viewController)
         viewController.presenter = presenter
         
         navigationController.pushViewController(viewController, animated: true)

@@ -54,11 +54,11 @@ final class FineCell: UITableViewCell {
                 self.showContentConstraint.priority = UILayoutPriority(rawValue: Priority.big)
             }
         } else {
-            UIView.animate(withDuration: 1) {
+//            UIView.animate(withDuration: 1) {
                 self.arrowImageView.transform = CGAffineTransform(rotationAngle: (180.0 * .pi * 2) / 180.0)
                 self.zeroContentConstraint.priority = UILayoutPriority(rawValue: Priority.big)
                 self.showContentConstraint.priority = UILayoutPriority(rawValue: Priority.low)
-            }
+//            }
         }
     }
     

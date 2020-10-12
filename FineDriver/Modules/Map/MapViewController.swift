@@ -30,14 +30,25 @@ class MapViewController: UIViewController {
             static let x: Double = 0
             static let y: Double = -206
             static let height: Double = 156
-            static let centerHeight: Double = 120
             static let animationTime: Double = 0.3
+            static let translationX: CGFloat = 0
+            static let transationY: CGFloat = 256
+        }
+        
+        enum Distance {
+            static let longAway: Double = 700
+            static let medium: Double = 200
+            static let near: Double = 100
         }
     }
     
     // MARK: - Private outlets
+    @IBOutlet private weak var speedLabel: UILabel!
+    @IBOutlet private weak var soundButton: UIButton!
+    @IBOutlet private weak var soundImageView: UIImageView!
     @IBOutlet private weak var mapView: GMSMapView!
-    lazy var popUpView = PopUpView()
+    
+    private var popUpView: PopUpView?
     
     // MARK: - Public property
     var presenter: MapPresenterProtocol?
@@ -62,7 +73,7 @@ class MapViewController: UIViewController {
         var bounds = GMSCoordinateBounds()
         bounds = bounds.includingCoordinate(CLLocationCoordinate2D(latitude: Constants.UkrainePosition.lat, longitude: Constants.UkrainePosition.long))
         mapView.animate(with: GMSCameraUpdate.fit(bounds))
-        mapView.animate(toZoom: 7)
+        mapView.animate(toZoom: Constants.UkrainePosition.zoom)
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -78,49 +89,63 @@ class MapViewController: UIViewController {
     private func setupMarkers() {
         guard let presenter = presenter else { return }
         let coordinates = presenter.markersLocation()
-        let pinInfo = presenter.pinInfo()
-        var pinData = PinEntity()
+        let cameraInfo = presenter.cameraInfo()
+        var cameraData = CameraEntity()
         for (index, element) in coordinates.enumerated() {
             let marker = GMSMarker()
             marker.position.latitude = element.latitude
             marker.position.longitude = element.longitude
             
-            if element.latitude == pinInfo[index].lat && element.longitude == pinInfo[index].long {
-                pinData.limitation = pinInfo[index].limitation
-                pinData.adress = pinInfo[index].adress
+            if element.latitude == cameraInfo[index].latitude && element.longitude == cameraInfo[index].longitude {
+                cameraData.address = cameraInfo[index].address
+                cameraData.direction = cameraInfo[index].direction
+                cameraData.speed = cameraInfo[index].speed
+                cameraData.state = cameraInfo[index].state
                 
-                if pinInfo[index].isActive == true {
-                    marker.icon = UIImage(named: "Group 39")
+                if cameraInfo[index].state == "on" {
+                    marker.icon = UIImage(named: "Marker")
+                } else {
+                    marker.icon = UIImage(named: "Camera_off")
                 }
             }
             
-            marker.userData = pinData
+            marker.userData = cameraData
             marker.map = mapView
         }
     }
     
     private func setupPopUpView() {
         popUpView = PopUpView(frame: CGRect(x: Constants.PopUp.x,
-                                             y: Constants.PopUp.y,
-                                             width: Double(mapView.frame.width),
-                                             height: Constants.PopUp.height))
-        view.addSubview(popUpView)
+                                            y: Constants.PopUp.y,
+                                            width: Double(mapView.frame.width),
+                                            height: Constants.PopUp.height))
+        view.addSubview(popUpView ?? UIView())
     }
     
-    private func popUpAnimation(x: Double, y: Double) {
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: Constants.PopUp.animationTime) {
-                self.popUpView.center = CGPoint(x: x, y: y)
+    private func popUpAnimation(isShow: Bool = true) {
+        UIView.animate(withDuration: Constants.PopUp.animationTime) {
+            if isShow {
+                self.setupPopUpView()
+                self.popUpView?.transform = CGAffineTransform(translationX: Constants.PopUp.translationX, y: Constants.PopUp.transationY)
+            } else {
+                self.popUpView?.transform = .identity
+                DispatchQueue.main.asyncAfter(deadline: .now() + Constants.PopUp.animationTime) {
+                    self.hidePopUp()
+                }
             }
         }
     }
     
-    // MARK: - Private action
-    @IBAction private func didTapInfoCameraButton(_ sender: Any) {
-        setupPopUpView()
-        popUpAnimation(x: Double(self.view.frame.width / 2), y: Constants.PopUp.centerHeight)
+    private func hidePopUp() {
+        popUpView?.removeFromSuperview()
     }
     
+    private func soundOncomingCamera(forResource: String = "02869", withExtension: String = "mp3") {
+        presenter?.stopSound()
+        presenter?.playSound(forResource: forResource, withExtension: withExtension)
+    }
+    
+    // MARK: - Private action
     @IBAction private func didTapMenuButton(_ sender: Any) {
         presenter?.routeToMenu()
     }
@@ -129,6 +154,15 @@ class MapViewController: UIViewController {
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude,
                                                            longitude: currentLocation.longitude))
         locationManager.startUpdatingLocation()
+    }
+    
+    @IBAction private func didTapSoundButton(_ sender: Any) {
+        if soundImageView.image == UIImage(named: "volume-2") {
+            soundImageView.image = UIImage(named: "Sound_off")
+            presenter?.stopSound()
+        } else {
+            soundImageView.image = UIImage(named: "volume-2")
+        }
     }
 }
 
@@ -139,14 +173,14 @@ extension MapViewController: MapViewControllerProtocol { }
 extension MapViewController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        popUpAnimation(x: Double(self.view.frame.width / 2), y: Constants.PopUp.y)
-        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.PopUp.animationTime) {
-            self.popUpView.removeFromSuperview()
-        }
+        popUpAnimation(isShow: false)
     }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        setupPopUpView()
+        hidePopUp()
+        guard let cameraInfo = marker.userData as? CameraEntity else { return nil }
+        popUpAnimation()
+        popUpView?.update(entity: cameraInfo, metersTo: 700)
         return nil
     }
 }
@@ -156,9 +190,44 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.last else { return }
+        
+        // TODO: - Speed
+        guard let speed = manager.location?.speed else { return }
+        speedLabel.text = speed < 0 ? "0 км/г" : "\(Int(speed * 3.6)) км/г"
+        
+        // TODO: - Distance to cameras
+        let startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        
+        guard let cameras = presenter?.cameraInfo() else { return }
+        for (index, element) in cameras.enumerated() {
+            guard let presenter = presenter else { return }
+            
+            let endLocation = CLLocation(latitude: presenter.model(index: index).latitude ?? 0, longitude: presenter.model(index: index).longitude ?? 0)
+            let distance = startLocation.distance(from: endLocation)
+            
+            if distance.isEqual(to: Constants.Distance.longAway) {
+                hidePopUp()
+                soundOncomingCamera()
+                popUpAnimation()
+                popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
+                
+            } else if distance.isEqual(to: Constants.Distance.medium) {
+                hidePopUp()
+                soundOncomingCamera()
+                popUpAnimation()
+                popUpView?.update(entity: element, metersTo: Constants.Distance.medium)
+            } else if distance.isEqual(to: Constants.Distance.near) {
+                hidePopUp()
+                soundOncomingCamera()
+                popUpAnimation()
+                popUpView?.update(entity: element, metersTo: Constants.Distance.near)
+            }
+        }
+        
         currentLocation = lastLocation.coordinate
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
         mapView.animate(toZoom: Constants.Default.zoom)
+        
         locationManager.stopUpdatingLocation()
     }
 }

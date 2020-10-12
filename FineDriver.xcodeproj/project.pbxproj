@@ -19,8 +19,15 @@
 		47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */; };
 		9167D5E7C899946F444F6C27 /* Pods_FineDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DD5B6F486C2D0F5CF97B2A /* Pods_FineDriver.framework */; };
 		92001DAD2525C0E700CAE036 /* GMSCoordinateBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */; };
+		920E55F3253061BD0082CF6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920E55F1253061BD0082CF6F /* SettingsViewController.swift */; };
+		920E55F4253061BD0082CF6F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920E55F2253061BD0082CF6F /* SettingsViewController.xib */; };
+		920E55F8253063720082CF6F /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920E55F7253063720082CF6F /* SettingsPresenter.swift */; };
+		920E55FE2530999A0082CF6F /* SettingItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920E55FD2530999A0082CF6F /* SettingItemEntity.swift */; };
 		925E87842520ABF700FD1D75 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E87832520ABF700FD1D75 /* Service.swift */; };
 		925E87872520AC7B00FD1D75 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E87862520AC7B00FD1D75 /* ServiceProvider.swift */; };
+		928E9F652528D22B008A1D59 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E9F642528D22A008A1D59 /* UserDefaults.swift */; };
+		928E9F682528D929008A1D59 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E9F672528D929008A1D59 /* UserDefaultsKeys.swift */; };
+		928E9F6F2528FE36008A1D59 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928E9F6D2528FE36008A1D59 /* SignInViewController.xib */; };
 		9294165D2521DD0000D7F966 /* FinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9294165B2521DD0000D7F966 /* FinesViewController.swift */; };
 		9294165E2521DD0000D7F966 /* FinesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9294165C2521DD0000D7F966 /* FinesViewController.xib */; };
 		929416702521DD1600D7F966 /* FineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9294166E2521DD1600D7F966 /* FineCell.swift */; };
@@ -31,7 +38,20 @@
 		9297AEFC2524C5FC007C2291 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9297AEFB2524C5FC007C2291 /* PopUpView.swift */; };
 		9297AEFF2524C608007C2291 /* PopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9297AEFE2524C608007C2291 /* PopUpView.xib */; };
 		9297AF022524EE12007C2291 /* UINib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9297AF012524EE12007C2291 /* UINib.swift */; };
-		92F6E3A725237B7C00CBED41 /* PinEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F6E3A625237B7B00CBED41 /* PinEntity.swift */; };
+		92CAF0D0252CF47F0080F46E /* cameras_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 92CAF0CF252CF47E0080F46E /* cameras_list.json */; };
+		92CAF0D3252CF5BC0080F46E /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CAF0D2252CF5BC0080F46E /* CameraModel.swift */; };
+		92CAF0D6252CF9B90080F46E /* ServiceLocalFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CAF0D5252CF9B90080F46E /* ServiceLocalFile.swift */; };
+		92CAF0D9252CFEE10080F46E /* CameraEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CAF0D8252CFEE10080F46E /* CameraEntity.swift */; };
+		92CAF0E6252F7C1B0080F46E /* 02869.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 92CAF0E5252F7C190080F46E /* 02869.mp3 */; };
+		92CEE3F32532303F008543F0 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CEE3F22532303F008543F0 /* NavigationView.swift */; };
+		92CEE3F625323058008543F0 /* NavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CEE3F525323058008543F0 /* NavigationView.xib */; };
+		92CEE3FB2532FEBC008543F0 /* BaseSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CEE3F92532FEBC008543F0 /* BaseSettingCell.swift */; };
+		92CEE3FC2532FEBC008543F0 /* BaseSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CEE3FA2532FEBC008543F0 /* BaseSettingCell.xib */; };
+		92CEE40125330D92008543F0 /* MessageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CEE3FF25330D92008543F0 /* MessageSettingViewController.swift */; };
+		92CEE40225330D92008543F0 /* MessageSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CEE40025330D92008543F0 /* MessageSettingViewController.xib */; };
+		92CEE406253310F9008543F0 /* MessageSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CEE405253310F9008543F0 /* MessageSettingPresenter.swift */; };
+		92CEE40C253323A0008543F0 /* SwitchSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CEE40A253323A0008543F0 /* SwitchSettingCell.swift */; };
+		92CEE40D253323A0008543F0 /* SwitchSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CEE40B253323A0008543F0 /* SwitchSettingCell.xib */; };
 		9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
 		9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */; };
 		9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */; };
@@ -61,8 +81,15 @@
 		47B532922514DD84006EAAB2 /* FineDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FineDriver.entitlements; sourceTree = "<group>"; };
 		49835E0D39478AF6F454BDBF /* Pods-FineDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineDriver.debug.xcconfig"; path = "Target Support Files/Pods-FineDriver/Pods-FineDriver.debug.xcconfig"; sourceTree = "<group>"; };
 		92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMSCoordinateBounds.swift; sourceTree = "<group>"; };
+		920E55F1253061BD0082CF6F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		920E55F2253061BD0082CF6F /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		920E55F7253063720082CF6F /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		920E55FD2530999A0082CF6F /* SettingItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemEntity.swift; sourceTree = "<group>"; };
 		925E87832520ABF700FD1D75 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		925E87862520AC7B00FD1D75 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		928E9F642528D22A008A1D59 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		928E9F672528D929008A1D59 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		928E9F6D2528FE36008A1D59 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		9294165B2521DD0000D7F966 /* FinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinesViewController.swift; sourceTree = "<group>"; };
 		9294165C2521DD0000D7F966 /* FinesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinesViewController.xib; sourceTree = "<group>"; };
 		9294166E2521DD1600D7F966 /* FineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineCell.swift; sourceTree = "<group>"; };
@@ -73,7 +100,20 @@
 		9297AEFB2524C5FC007C2291 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		9297AEFE2524C608007C2291 /* PopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpView.xib; sourceTree = "<group>"; };
 		9297AF012524EE12007C2291 /* UINib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINib.swift; sourceTree = "<group>"; };
-		92F6E3A625237B7B00CBED41 /* PinEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinEntity.swift; sourceTree = "<group>"; };
+		92CAF0CF252CF47E0080F46E /* cameras_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cameras_list.json; sourceTree = "<group>"; };
+		92CAF0D2252CF5BC0080F46E /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
+		92CAF0D5252CF9B90080F46E /* ServiceLocalFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocalFile.swift; sourceTree = "<group>"; };
+		92CAF0D8252CFEE10080F46E /* CameraEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEntity.swift; sourceTree = "<group>"; };
+		92CAF0E5252F7C190080F46E /* 02869.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 02869.mp3; sourceTree = "<group>"; };
+		92CEE3F22532303F008543F0 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		92CEE3F525323058008543F0 /* NavigationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationView.xib; sourceTree = "<group>"; };
+		92CEE3F92532FEBC008543F0 /* BaseSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingCell.swift; sourceTree = "<group>"; };
+		92CEE3FA2532FEBC008543F0 /* BaseSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseSettingCell.xib; sourceTree = "<group>"; };
+		92CEE3FF25330D92008543F0 /* MessageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSettingViewController.swift; sourceTree = "<group>"; };
+		92CEE40025330D92008543F0 /* MessageSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageSettingViewController.xib; sourceTree = "<group>"; };
+		92CEE405253310F9008543F0 /* MessageSettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSettingPresenter.swift; sourceTree = "<group>"; };
+		92CEE40A253323A0008543F0 /* SwitchSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSettingCell.swift; sourceTree = "<group>"; };
+		92CEE40B253323A0008543F0 /* SwitchSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchSettingCell.xib; sourceTree = "<group>"; };
 		9AA51BF1251C0C33000AB6F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
@@ -115,6 +155,7 @@
 			children = (
 				4706367E251DFE90006F7F41 /* SignInPresenter.swift */,
 				47063680251DFE90006F7F41 /* SignInViewController.swift */,
+				928E9F6D2528FE36008A1D59 /* SignInViewController.xib */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -200,6 +241,7 @@
 				9AA51C07251C1191000AB6F1 /* Map */,
 				9AA51BF7251C0DCE000AB6F1 /* Menu */,
 				9294165A2521DCEA00D7F966 /* Fines */,
+				920E55F02530617F0082CF6F /* Settings */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -207,6 +249,8 @@
 		47B532872514DB95006EAAB2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				92CAF0E5252F7C190080F46E /* 02869.mp3 */,
+				92CAF0CF252CF47E0080F46E /* cameras_list.json */,
 				9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */,
 				9AA51BF1251C0C33000AB6F1 /* Images.xcassets */,
 				47B532702514CB5E006EAAB2 /* Info.plist */,
@@ -227,7 +271,9 @@
 			children = (
 				9AA51C03251C0E20000AB6F1 /* MenuEntity.swift */,
 				929416982522034800D7F966 /* FineEntity.swift */,
-				92F6E3A625237B7B00CBED41 /* PinEntity.swift */,
+				92CAF0D2252CF5BC0080F46E /* CameraModel.swift */,
+				92CAF0D8252CFEE10080F46E /* CameraEntity.swift */,
+				920E55FD2530999A0082CF6F /* SettingItemEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -237,6 +283,7 @@
 			children = (
 				925E87832520ABF700FD1D75 /* Service.swift */,
 				925E87862520AC7B00FD1D75 /* ServiceProvider.swift */,
+				92CAF0D5252CF9B90080F46E /* ServiceLocalFile.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -245,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				470636D3251E19C9006F7F41 /* Constants.swift */,
+				928E9F672528D929008A1D59 /* UserDefaultsKeys.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -255,6 +303,7 @@
 				929416772521E0A700D7F966 /* UIView.swift */,
 				9297AF012524EE12007C2291 /* UINib.swift */,
 				92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */,
+				928E9F642528D22A008A1D59 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -272,8 +321,22 @@
 			children = (
 				9297AEFB2524C5FC007C2291 /* PopUpView.swift */,
 				9297AEFE2524C608007C2291 /* PopUpView.xib */,
+				92CEE3F22532303F008543F0 /* NavigationView.swift */,
+				92CEE3F525323058008543F0 /* NavigationView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		920E55F02530617F0082CF6F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				92CEE3F82532FC94008543F0 /* Cell */,
+				920E55F7253063720082CF6F /* SettingsPresenter.swift */,
+				920E55F1253061BD0082CF6F /* SettingsViewController.swift */,
+				920E55F2253061BD0082CF6F /* SettingsViewController.xib */,
+				92CEE3FE25330D54008543F0 /* MessageSetting */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		9294165A2521DCEA00D7F966 /* Fines */ = {
@@ -285,6 +348,35 @@
 				9294165C2521DD0000D7F966 /* FinesViewController.xib */,
 			);
 			path = Fines;
+			sourceTree = "<group>";
+		};
+		92CEE3F82532FC94008543F0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				92CEE3F92532FEBC008543F0 /* BaseSettingCell.swift */,
+				92CEE3FA2532FEBC008543F0 /* BaseSettingCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		92CEE3FE25330D54008543F0 /* MessageSetting */ = {
+			isa = PBXGroup;
+			children = (
+				92CEE40925332383008543F0 /* Cell */,
+				92CEE405253310F9008543F0 /* MessageSettingPresenter.swift */,
+				92CEE3FF25330D92008543F0 /* MessageSettingViewController.swift */,
+				92CEE40025330D92008543F0 /* MessageSettingViewController.xib */,
+			);
+			path = MessageSetting;
+			sourceTree = "<group>";
+		};
+		92CEE40925332383008543F0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				92CEE40A253323A0008543F0 /* SwitchSettingCell.swift */,
+				92CEE40B253323A0008543F0 /* SwitchSettingCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		9AA51BF7251C0DCE000AB6F1 /* Menu */ = {
@@ -380,12 +472,20 @@
 				47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */,
 				9297AEFF2524C608007C2291 /* PopUpView.xib in Resources */,
 				9AA51C06251C0F12000AB6F1 /* MenuViewController.xib in Resources */,
+				92CEE40225330D92008543F0 /* MessageSettingViewController.xib in Resources */,
 				9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */,
+				92CAF0D0252CF47F0080F46E /* cameras_list.json in Resources */,
+				920E55F4253061BD0082CF6F /* SettingsViewController.xib in Resources */,
 				4706368F251DFEB9006F7F41 /* SplashViewController.xib in Resources */,
 				9294165E2521DD0000D7F966 /* FinesViewController.xib in Resources */,
 				9AA51C01251C0DCF000AB6F1 /* MenuCell.xib in Resources */,
+				92CAF0E6252F7C1B0080F46E /* 02869.mp3 in Resources */,
+				928E9F6F2528FE36008A1D59 /* SignInViewController.xib in Resources */,
+				92CEE40D253323A0008543F0 /* SwitchSettingCell.xib in Resources */,
+				92CEE3F625323058008543F0 /* NavigationView.xib in Resources */,
 				9AA51C0D251C1208000AB6F1 /* MapViewController.xib in Resources */,
 				9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */,
+				92CEE3FC2532FEBC008543F0 /* BaseSettingCell.xib in Resources */,
 				929416712521DD1600D7F966 /* FineCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,19 +556,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92CEE3FB2532FEBC008543F0 /* BaseSettingCell.swift in Sources */,
 				470636D4251E19C9006F7F41 /* Constants.swift in Sources */,
 				4706368D251DFEB9006F7F41 /* AuthManager.swift in Sources */,
 				929416992522034800D7F966 /* FineEntity.swift in Sources */,
 				9AA51C00251C0DCF000AB6F1 /* MenuCell.swift in Sources */,
+				920E55F8253063720082CF6F /* SettingsPresenter.swift in Sources */,
+				928E9F652528D22B008A1D59 /* UserDefaults.swift in Sources */,
 				9297AEFC2524C5FC007C2291 /* PopUpView.swift in Sources */,
+				92CAF0D3252CF5BC0080F46E /* CameraModel.swift in Sources */,
 				9297AF022524EE12007C2291 /* UINib.swift in Sources */,
+				92CEE40125330D92008543F0 /* MessageSettingViewController.swift in Sources */,
+				920E55FE2530999A0082CF6F /* SettingItemEntity.swift in Sources */,
+				92CEE40C253323A0008543F0 /* SwitchSettingCell.swift in Sources */,
 				47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */,
 				929416742521DD2A00D7F966 /* FinesPresenter.swift in Sources */,
 				9AA51C04251C0E20000AB6F1 /* MenuEntity.swift in Sources */,
+				92CEE406253310F9008543F0 /* MessageSettingPresenter.swift in Sources */,
+				92CEE3F32532303F008543F0 /* NavigationView.swift in Sources */,
 				9AA51C11251C1253000AB6F1 /* MapPresenter.swift in Sources */,
 				9294165D2521DD0000D7F966 /* FinesViewController.swift in Sources */,
 				9AA51C0F251C122A000AB6F1 /* MapViewController.swift in Sources */,
-				92F6E3A725237B7C00CBED41 /* PinEntity.swift in Sources */,
 				47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */,
 				929416782521E0A700D7F966 /* UIView.swift in Sources */,
 				47063681251DFE90006F7F41 /* SignInPresenter.swift in Sources */,
@@ -477,8 +585,12 @@
 				925E87842520ABF700FD1D75 /* Service.swift in Sources */,
 				925E87872520AC7B00FD1D75 /* ServiceProvider.swift in Sources */,
 				929416702521DD1600D7F966 /* FineCell.swift in Sources */,
+				928E9F682528D929008A1D59 /* UserDefaultsKeys.swift in Sources */,
+				920E55F3253061BD0082CF6F /* SettingsViewController.swift in Sources */,
 				9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */,
 				92001DAD2525C0E700CAE036 /* GMSCoordinateBounds.swift in Sources */,
+				92CAF0D6252CF9B90080F46E /* ServiceLocalFile.swift in Sources */,
+				92CAF0D9252CFEE10080F46E /* CameraEntity.swift in Sources */,
 				47063682251DFE90006F7F41 /* SignInViewController.swift in Sources */,
 				9AA51C02251C0DCF000AB6F1 /* MenuViewController.swift in Sources */,
 			);

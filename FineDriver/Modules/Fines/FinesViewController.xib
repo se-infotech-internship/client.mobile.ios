@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinesViewController" customModule="FineDriver" customModuleProvider="target">
             <connections>
+                <outlet property="navigationView" destination="Tqi-hL-HCi" id="L4Y-CO-hxh"/>
                 <outlet property="tableView" destination="AHO-sd-ZLG" id="E5U-wP-gh3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,19 +22,28 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AHO-sd-ZLG">
-                    <rect key="frame" x="0.0" y="144" width="414" height="618"/>
+                    <rect key="frame" x="0.0" y="128" width="414" height="734"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tqi-hL-HCi" customClass="NavigationView" customModule="FineDriver" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="zrY-Lv-ace"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AHO-sd-ZLG" secondAttribute="trailing" id="Nfa-Iw-ygf"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AHO-sd-ZLG" secondAttribute="bottom" constant="100" id="ubx-PZ-OeM"/>
-                <constraint firstItem="AHO-sd-ZLG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xf5-kl-7Py"/>
-                <constraint firstItem="AHO-sd-ZLG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="zst-oS-2x2"/>
+                <constraint firstItem="Tqi-hL-HCi" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="28k-ZS-LjS"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="top" secondItem="Tqi-hL-HCi" secondAttribute="bottom" constant="20" id="3tv-Sk-OAd"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ODJ-BH-pn2"/>
+                <constraint firstItem="Tqi-hL-HCi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Vi9-xK-6Sg"/>
+                <constraint firstItem="Tqi-hL-HCi" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Z9g-LX-0Rk"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="b3H-Sd-DMt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AHO-sd-ZLG" secondAttribute="bottom" id="xnY-aV-FZE"/>
             </constraints>
-            <point key="canvasLocation" x="142" y="110"/>
+            <point key="canvasLocation" x="140.57971014492756" y="109.82142857142857"/>
         </view>
     </objects>
     <resources>

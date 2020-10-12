@@ -93,6 +93,8 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
             presenter?.routeMap()
         case 1:
             presenter?.routeFines()
+        case 4:
+            presenter?.routeSetting()
         case 6:
             presenter?.routeAuth()
         default:

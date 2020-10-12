@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,15 +34,8 @@
                         <constraint firstAttribute="height" constant="141" id="ghj-DX-jgL"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 7" translatesAutoresizingMaskIntoConstraints="NO" id="c3S-kP-uZq">
-                    <rect key="frame" x="284" y="16" width="80" height="80"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="80" id="ojT-rA-ttv"/>
-                        <constraint firstAttribute="width" constant="80" id="tcs-0L-R9p"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500 м" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rq0-tt-DQS">
-                    <rect key="frame" x="306" y="104" width="66" height="28"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="700 м" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rq0-tt-DQS">
+                    <rect key="frame" x="299" y="104" width="65" height="28"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="eIO-pI-vHH"/>
                     </constraints>
@@ -86,11 +80,35 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBM-Yf-aRi">
+                    <rect key="frame" x="284" y="16" width="80" height="80"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 85" translatesAutoresizingMaskIntoConstraints="NO" id="wtw-GY-p5P">
+                            <rect key="frame" x="15" y="20" width="50" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="6bA-kp-gwq"/>
+                                <constraint firstAttribute="height" constant="40" id="ItI-1T-ZNO"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" name="Ellipse23"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="3sJ-B6-622"/>
+                        <constraint firstAttribute="height" constant="80" id="IaJ-yZ-7i8"/>
+                        <constraint firstItem="wtw-GY-p5P" firstAttribute="centerX" secondItem="NBM-Yf-aRi" secondAttribute="centerX" id="z11-nG-wOR"/>
+                        <constraint firstItem="wtw-GY-p5P" firstAttribute="centerY" secondItem="NBM-Yf-aRi" secondAttribute="centerY" id="z4d-dp-YbV"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="40"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="c3S-kP-uZq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="0sw-2H-wrb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NBM-Yf-aRi" secondAttribute="trailing" constant="50" id="0qb-fk-2oI"/>
                 <constraint firstItem="JmO-p2-clR" firstAttribute="leading" secondItem="N8t-nd-4ED" secondAttribute="leading" id="5Af-tT-1bP"/>
                 <constraint firstItem="ep1-WV-Pch" firstAttribute="top" secondItem="JmO-p2-clR" secondAttribute="bottom" constant="13" id="6h9-IT-iS0"/>
                 <constraint firstItem="X30-Hb-94Y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7dJ-Ke-I7w"/>
@@ -99,10 +117,10 @@
                 <constraint firstItem="bbW-e5-u2b" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="56" id="CKL-Xv-MqD"/>
                 <constraint firstItem="JmO-p2-clR" firstAttribute="top" secondItem="N8t-nd-4ED" secondAttribute="bottom" id="EfP-BV-cJB"/>
                 <constraint firstItem="arf-Fv-dKy" firstAttribute="top" secondItem="rq0-tt-DQS" secondAttribute="bottom" constant="7" id="Nca-aK-hPk"/>
+                <constraint firstItem="NBM-Yf-aRi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="T76-Xx-lsO"/>
                 <constraint firstItem="ep1-WV-Pch" firstAttribute="leading" secondItem="JmO-p2-clR" secondAttribute="leading" id="YZ7-lI-glz"/>
                 <constraint firstItem="N8t-nd-4ED" firstAttribute="top" secondItem="bbW-e5-u2b" secondAttribute="bottom" constant="13" id="YjE-Pe-IQ1"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c3S-kP-uZq" secondAttribute="trailing" constant="50" id="aZR-Bw-9cd"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rq0-tt-DQS" secondAttribute="trailing" constant="42" id="c7o-48-NlC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rq0-tt-DQS" secondAttribute="trailing" constant="50" id="c7o-48-NlC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="arf-Fv-dKy" secondAttribute="trailing" constant="90" id="cB4-pA-ufX"/>
                 <constraint firstItem="N8t-nd-4ED" firstAttribute="leading" secondItem="bbW-e5-u2b" secondAttribute="leading" id="e2x-n5-fxA"/>
                 <constraint firstItem="X30-Hb-94Y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iah-Px-lA9"/>
@@ -114,8 +132,11 @@
         </view>
     </objects>
     <resources>
-        <image name="Group 7" width="88" height="88"/>
+        <image name="Group 85" width="50" height="40"/>
         <image name="Polygon 1-2" width="20" height="13"/>
         <image name="окно сообщений" width="368" height="141"/>
+        <namedColor name="Ellipse23">
+            <color red="0.24300000071525574" green="0.25900000333786011" blue="0.2669999897480011" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>
