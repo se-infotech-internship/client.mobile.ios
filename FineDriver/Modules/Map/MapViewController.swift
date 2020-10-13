@@ -28,11 +28,10 @@ class MapViewController: UIViewController {
         
         enum PopUp {
             static let x: Double = 0
-            static let y: Double = -206
-            static let height: Double = 156
+            static let y: Double = -156
+            static let height: CGFloat = 156
             static let animationTime: Double = 0.3
             static let translationX: CGFloat = 0
-            static let transationY: CGFloat = 256
         }
         
         enum Distance {
@@ -56,6 +55,7 @@ class MapViewController: UIViewController {
     // MARK: - Private property
     private var locationManager = CLLocationManager()
     private var currentLocation = CLLocationCoordinate2D()
+    private var isCenterCamera = true
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -80,6 +80,7 @@ class MapViewController: UIViewController {
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
         locationManager.startUpdatingLocation()
+        locationManager.activityType = .automotiveNavigation
     }
     
     private func setupMapView() {
@@ -118,17 +119,24 @@ class MapViewController: UIViewController {
         popUpView = PopUpView(frame: CGRect(x: Constants.PopUp.x,
                                             y: Constants.PopUp.y,
                                             width: Double(mapView.frame.width),
-                                            height: Constants.PopUp.height))
+                                            height: Double(Constants.PopUp.height)))
         view.addSubview(popUpView ?? UIView())
     }
     
     private func popUpAnimation(isShow: Bool = true) {
+        
         UIView.animate(withDuration: Constants.PopUp.animationTime) {
+            
             if isShow {
                 self.setupPopUpView()
-                self.popUpView?.transform = CGAffineTransform(translationX: Constants.PopUp.translationX, y: Constants.PopUp.transationY)
+                self.popUpView?.transform = CGAffineTransform(translationX: Constants.PopUp.translationX,
+                                                              y: self.view.safeAreaInsets.bottom + Constants.PopUp.height)
             } else {
                 self.popUpView?.transform = .identity
+            }
+        } completion: { [weak self] _ in
+            guard let self = self else { return }
+            if !isShow {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Constants.PopUp.animationTime) {
                     self.hidePopUp()
                 }
@@ -153,7 +161,7 @@ class MapViewController: UIViewController {
     @IBAction private func didTapCurrentLocationButton(_ sender: Any) {
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude,
                                                            longitude: currentLocation.longitude))
-        locationManager.startUpdatingLocation()
+        isCenterCamera = true
     }
     
     @IBAction private func didTapSoundButton(_ sender: Any) {
@@ -180,8 +188,15 @@ extension MapViewController: GMSMapViewDelegate {
         hidePopUp()
         guard let cameraInfo = marker.userData as? CameraEntity else { return nil }
         popUpAnimation()
-        popUpView?.update(entity: cameraInfo, metersTo: 700)
+        popUpView?.update(entity: cameraInfo, metersTo: 777)
         return nil
+    }
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        
+        if position.target.latitude == currentLocation.latitude && position.target.longitude == currentLocation.longitude {
+            isCenterCamera = false
+        }
     }
 }
 
@@ -195,39 +210,61 @@ extension MapViewController: CLLocationManagerDelegate {
         guard let speed = manager.location?.speed else { return }
         speedLabel.text = speed < 0 ? "0 км/г" : "\(Int(speed * 3.6)) км/г"
         
-        // TODO: - Distance to cameras
-        let startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        if isCenterCamera {
+            currentLocation = lastLocation.coordinate
+            mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
+            mapView.animate(toZoom: Constants.Default.zoom)
+        }
+    }
+    
+    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
         
-        guard let cameras = presenter?.cameraInfo() else { return }
-        for (index, element) in cameras.enumerated() {
-            guard let presenter = presenter else { return }
+        if CLLocationManager.authorizationStatus() == .authorizedAlways {
             
-            let endLocation = CLLocation(latitude: presenter.model(index: index).latitude ?? 0, longitude: presenter.model(index: index).longitude ?? 0)
-            let distance = startLocation.distance(from: endLocation)
-            
-            if distance.isEqual(to: Constants.Distance.longAway) {
-                hidePopUp()
-                soundOncomingCamera()
-                popUpAnimation()
-                popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
+            if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
                 
-            } else if distance.isEqual(to: Constants.Distance.medium) {
-                hidePopUp()
-                soundOncomingCamera()
-                popUpAnimation()
-                popUpView?.update(entity: element, metersTo: Constants.Distance.medium)
-            } else if distance.isEqual(to: Constants.Distance.near) {
-                hidePopUp()
-                soundOncomingCamera()
-                popUpAnimation()
-                popUpView?.update(entity: element, metersTo: Constants.Distance.near)
+                let maxDistance = Constants.Distance.longAway
+                let midDistance = Constants.Distance.medium
+                let nearDistance = Constants.Distance.near
+                
+                let maxRegion  = CLCircularRegion(center: currentLocation, radius: maxDistance, identifier: "maxRegion")
+                let midRegion  = CLCircularRegion(center: currentLocation, radius: midDistance, identifier: "midRegion")
+                let nearRegion = CLCircularRegion(center: currentLocation, radius: nearDistance, identifier: "nearRegion")
+                
+                maxRegion.notifyOnEntry = true
+                maxRegion.notifyOnExit = false
+                
+                midRegion.notifyOnEntry = true
+                midRegion.notifyOnExit = false
+                
+                nearRegion.notifyOnEntry = true
+                nearRegion.notifyOnExit = false
+                
+                locationManager.startMonitoring(for: maxRegion)
+                locationManager.startMonitoring(for: midRegion)
+                locationManager.startMonitoring(for: nearRegion)
             }
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
-        currentLocation = lastLocation.coordinate
-        mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
-        mapView.animate(toZoom: Constants.Default.zoom)
-        
-        locationManager.stopUpdatingLocation()
+        if let region = region as? CLCircularRegion {
+            
+            guard let cameras = presenter?.cameraInfo() else { return }
+            for (_, element) in cameras.enumerated() {
+                hidePopUp()
+                soundOncomingCamera()
+                popUpAnimation()
+                
+                if region.identifier == "maxRegion" {
+                    popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
+                } else if region.identifier == "midRegion" {
+                    popUpView?.update(entity: element, metersTo: Constants.Distance.medium)
+                } else if region.identifier == "nearRegion" {
+                    popUpView?.update(entity: element, metersTo: Constants.Distance.near)
+                }
+            }
+        }
     }
 }

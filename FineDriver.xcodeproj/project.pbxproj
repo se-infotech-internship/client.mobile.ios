@@ -43,8 +43,6 @@
 		92CAF0D6252CF9B90080F46E /* ServiceLocalFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CAF0D5252CF9B90080F46E /* ServiceLocalFile.swift */; };
 		92CAF0D9252CFEE10080F46E /* CameraEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CAF0D8252CFEE10080F46E /* CameraEntity.swift */; };
 		92CAF0E6252F7C1B0080F46E /* 02869.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 92CAF0E5252F7C190080F46E /* 02869.mp3 */; };
-		92CEE3F32532303F008543F0 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CEE3F22532303F008543F0 /* NavigationView.swift */; };
-		92CEE3F625323058008543F0 /* NavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CEE3F525323058008543F0 /* NavigationView.xib */; };
 		92CEE3FB2532FEBC008543F0 /* BaseSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CEE3F92532FEBC008543F0 /* BaseSettingCell.swift */; };
 		92CEE3FC2532FEBC008543F0 /* BaseSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CEE3FA2532FEBC008543F0 /* BaseSettingCell.xib */; };
 		92CEE40125330D92008543F0 /* MessageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CEE3FF25330D92008543F0 /* MessageSettingViewController.swift */; };
@@ -105,8 +103,6 @@
 		92CAF0D5252CF9B90080F46E /* ServiceLocalFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocalFile.swift; sourceTree = "<group>"; };
 		92CAF0D8252CFEE10080F46E /* CameraEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEntity.swift; sourceTree = "<group>"; };
 		92CAF0E5252F7C190080F46E /* 02869.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 02869.mp3; sourceTree = "<group>"; };
-		92CEE3F22532303F008543F0 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
-		92CEE3F525323058008543F0 /* NavigationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationView.xib; sourceTree = "<group>"; };
 		92CEE3F92532FEBC008543F0 /* BaseSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingCell.swift; sourceTree = "<group>"; };
 		92CEE3FA2532FEBC008543F0 /* BaseSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseSettingCell.xib; sourceTree = "<group>"; };
 		92CEE3FF25330D92008543F0 /* MessageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSettingViewController.swift; sourceTree = "<group>"; };
@@ -321,8 +317,6 @@
 			children = (
 				9297AEFB2524C5FC007C2291 /* PopUpView.swift */,
 				9297AEFE2524C608007C2291 /* PopUpView.xib */,
-				92CEE3F22532303F008543F0 /* NavigationView.swift */,
-				92CEE3F525323058008543F0 /* NavigationView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -482,7 +476,6 @@
 				92CAF0E6252F7C1B0080F46E /* 02869.mp3 in Resources */,
 				928E9F6F2528FE36008A1D59 /* SignInViewController.xib in Resources */,
 				92CEE40D253323A0008543F0 /* SwitchSettingCell.xib in Resources */,
-				92CEE3F625323058008543F0 /* NavigationView.xib in Resources */,
 				9AA51C0D251C1208000AB6F1 /* MapViewController.xib in Resources */,
 				9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */,
 				92CEE3FC2532FEBC008543F0 /* BaseSettingCell.xib in Resources */,
@@ -573,7 +566,6 @@
 				929416742521DD2A00D7F966 /* FinesPresenter.swift in Sources */,
 				9AA51C04251C0E20000AB6F1 /* MenuEntity.swift in Sources */,
 				92CEE406253310F9008543F0 /* MessageSettingPresenter.swift in Sources */,
-				92CEE3F32532303F008543F0 /* NavigationView.swift in Sources */,
 				9AA51C11251C1253000AB6F1 /* MapPresenter.swift in Sources */,
 				9294165D2521DD0000D7F966 /* FinesViewController.swift in Sources */,
 				9AA51C0F251C122A000AB6F1 /* MapViewController.swift in Sources */,
