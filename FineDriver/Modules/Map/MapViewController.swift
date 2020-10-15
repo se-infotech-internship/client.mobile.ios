@@ -192,8 +192,10 @@ extension MapViewController: GMSMapViewDelegate {
         return nil
     }
     
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        isCenterCamera = false
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        if gesture {
+            isCenterCamera = false
+        }
     }
 }
 
