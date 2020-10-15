@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UINavigationController:UINavigationControllerDelegate {
+extension UINavigationController: UINavigationControllerDelegate {
 
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,7 @@ extension UINavigationController:UINavigationControllerDelegate {
 
     public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if responds(to: #selector(getter: self.interactivePopGestureRecognizer)) {
-            if viewControllers.count > 1 {
+            if viewControllers.count > 2 {
                 interactivePopGestureRecognizer?.isEnabled = true
             } else {
                 interactivePopGestureRecognizer?.isEnabled = false
