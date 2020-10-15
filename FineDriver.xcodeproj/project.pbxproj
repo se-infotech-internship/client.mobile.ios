@@ -25,6 +25,7 @@
 		920E55FE2530999A0082CF6F /* SettingItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920E55FD2530999A0082CF6F /* SettingItemEntity.swift */; };
 		925E87842520ABF700FD1D75 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E87832520ABF700FD1D75 /* Service.swift */; };
 		925E87872520AC7B00FD1D75 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E87862520AC7B00FD1D75 /* ServiceProvider.swift */; };
+		9289B06125360F1B00D7AFB6 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9289B06025360F1B00D7AFB6 /* UINavigationController.swift */; };
 		928E9F652528D22B008A1D59 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E9F642528D22A008A1D59 /* UserDefaults.swift */; };
 		928E9F682528D929008A1D59 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E9F672528D929008A1D59 /* UserDefaultsKeys.swift */; };
 		928E9F6F2528FE36008A1D59 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928E9F6D2528FE36008A1D59 /* SignInViewController.xib */; };
@@ -85,6 +86,7 @@
 		920E55FD2530999A0082CF6F /* SettingItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemEntity.swift; sourceTree = "<group>"; };
 		925E87832520ABF700FD1D75 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		925E87862520AC7B00FD1D75 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		9289B06025360F1B00D7AFB6 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		928E9F642528D22A008A1D59 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		928E9F672528D929008A1D59 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		928E9F6D2528FE36008A1D59 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				9297AF012524EE12007C2291 /* UINib.swift */,
 				92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */,
 				928E9F642528D22A008A1D59 /* UserDefaults.swift */,
+				9289B06025360F1B00D7AFB6 /* UINavigationController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 			files = (
 				92CEE3FB2532FEBC008543F0 /* BaseSettingCell.swift in Sources */,
 				470636D4251E19C9006F7F41 /* Constants.swift in Sources */,
+				9289B06125360F1B00D7AFB6 /* UINavigationController.swift in Sources */,
 				4706368D251DFEB9006F7F41 /* AuthManager.swift in Sources */,
 				929416992522034800D7F966 /* FineEntity.swift in Sources */,
 				9AA51C00251C0DCF000AB6F1 /* MenuCell.swift in Sources */,

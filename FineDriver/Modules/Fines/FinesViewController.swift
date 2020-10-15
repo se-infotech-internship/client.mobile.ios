@@ -57,8 +57,10 @@ extension FinesViewController: FinesViewControllerProtocol {
 // MARK: - FineCellDelegate method
 extension FinesViewController: FineCellDelegate {
     func changeSize(_ cell: FineCell, fineButtonTappedFor fine: Bool) {
-        guard let isLowSize = cell.isLowSize else { return }
+        guard let isLowSize = cell.isHiddingContent else { return }
         cell.changeSizeData(isLowSize)
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }
 
@@ -79,5 +81,4 @@ extension FinesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.delegate = self
         return cell
     }
-    
 }

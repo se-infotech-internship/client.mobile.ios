@@ -193,10 +193,7 @@ extension MapViewController: GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        
-        if position.target.latitude == currentLocation.latitude && position.target.longitude == currentLocation.longitude {
-            isCenterCamera = false
-        }
+        isCenterCamera = false
     }
 }
 
