@@ -16,13 +16,4 @@ struct CameraEntity {
     var direction: String?
     var speed: Int?
     var state: String?
-    
-//    init(address: String = "", latitude: Double = 0.0, longitude: Double = 0.0, direction: String? = "", speed: Int = 0, state: String = "") {
-//        self.address = address
-//        self.latitude = latitude
-//        self.longitude = longitude
-//        self.direction = direction
-//        self.speed = speed
-//        self.state = state
-//    }
 }

@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageSettingViewController" customModule="FineDriver" customModuleProvider="target">
             <connections>
-                <outlet property="navigationView" destination="4v1-yy-S0R" id="9tZ-hZ-EWl"/>
                 <outlet property="tableView" destination="gsh-Kw-JNH" id="GRF-1g-44u"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,27 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4v1-yy-S0R" customClass="NavigationView" customModule="FineDriver" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="44" width="414" height="66"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="66" id="UW8-hr-Sdk"/>
-                    </constraints>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gsh-Kw-JNH">
-                    <rect key="frame" x="0.0" y="166" width="414" height="696"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="4v1-yy-S0R" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="4bC-UD-dsd"/>
+                <constraint firstItem="gsh-Kw-JNH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="7Tb-iR-Cq6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gsh-Kw-JNH" secondAttribute="bottom" id="ADQ-hA-Grt"/>
                 <constraint firstItem="gsh-Kw-JNH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Na9-CU-Szv"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4v1-yy-S0R" secondAttribute="trailing" id="SZt-AR-V9o"/>
-                <constraint firstItem="4v1-yy-S0R" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cMW-yo-lQU"/>
-                <constraint firstItem="gsh-Kw-JNH" firstAttribute="top" secondItem="4v1-yy-S0R" secondAttribute="bottom" constant="56" id="fHa-R2-5ev"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gsh-Kw-JNH" secondAttribute="trailing" id="tdp-4n-ZtX"/>
             </constraints>
             <point key="canvasLocation" x="135" y="113"/>

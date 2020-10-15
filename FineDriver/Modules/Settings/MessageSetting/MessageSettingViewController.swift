@@ -23,7 +23,6 @@ final class MessageSettingViewController: UIViewController {
     }
     
     // MARK: - Private outlet
-    @IBOutlet private weak var navigationView: NavigationView!
     @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Public property
@@ -33,17 +32,12 @@ final class MessageSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       setupNavigationView()
         setupTableView()
         presenter?.viewDidLoad()
         tableView.reloadData()
     }
 
     // MARK: - Private method
-    private func setupNavigationView() {
-        navigationView.update(title: "ШТРАФИ")
-    }
-    
     private func setupTableView() {
         tableView.separatorStyle = .none
         tableView.delegate = self

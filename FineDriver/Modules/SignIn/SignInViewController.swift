@@ -80,10 +80,6 @@ final class SignInViewController: UIViewController {
         GIDSignIn.sharedInstance().presentingViewController = self
         GIDSignIn.sharedInstance().signIn()
     }
-    
-    @IBAction private func didTapFacebookButton(_ sender: Any) {
-        facebookButton.sendActions(for: .touchUpInside)
-    }
 }
 
 // MARK: - Google auth delegate methods

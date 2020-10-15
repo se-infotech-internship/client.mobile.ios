@@ -24,7 +24,6 @@ final class SettingsViewController: UIViewController {
     
     // MARK: - Private outlets
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var navigationView: NavigationView!
     
     // MARK: - Public property
     var presenter: SettingsPresenterProtocol?
@@ -33,17 +32,12 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationView()
         setupTableView()
         presenter?.viewDidLoad()
         reloadData()
     }
     
     // MARK: - Private func
-    private func setupNavigationView() {
-        navigationView.update(title: "НАЛАШТУВАННЯ")
-    }
-    
     private func setupTableView() {
         tableView.separatorStyle = .none
         tableView.delegate = self

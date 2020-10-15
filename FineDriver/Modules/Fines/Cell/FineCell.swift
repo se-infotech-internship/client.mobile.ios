@@ -14,14 +14,7 @@ protocol FineCellDelegate: class {
 
 final class FineCell: UITableViewCell {
     
-    private enum Priority {
-        static let big: Float = 1000
-        static let low: Float = 700
-    }
-    
     // MARK: - Private outlets
-    @IBOutlet private weak var zeroContentConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var showContentConstraint: NSLayoutConstraint!
     @IBOutlet private weak var arrowImageView: UIImageView!
     @IBOutlet private weak var fineIdLabel: UILabel!
     @IBOutlet private weak var paidLabel: UILabel!
@@ -33,32 +26,33 @@ final class FineCell: UITableViewCell {
     @IBOutlet private weak var paidFineLabel: UILabel!
     @IBOutlet private weak var sumFineLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var hiddingView: UIView!
     
     // MARK: - Public properties
     static var identifier = "FineCell"
-    var isLowSize: Bool? = false
+    var isHiddingContent: Bool? = true
     weak var delegate: FineCellDelegate?
-
+    
     @IBAction private func didTapChangeSizeButton(_ sender: Any) {
-        guard let isLowSize = isLowSize else { return }
-        self.delegate?.changeSize(self, fineButtonTappedFor: isLowSize)
-        self.isLowSize = !isLowSize
+        guard let isHiddingContent = isHiddingContent else { return }
+        self.delegate?.changeSize(self, fineButtonTappedFor: isHiddingContent)
+        self.isHiddingContent = !isHiddingContent
     }
     
     // MARK: - Public methods
-    func changeSizeData(_ lowSize: Bool) {
-        if lowSize {
-            UIView.animate(withDuration: 1) {
+    func changeSizeData(_ isHiddingContent: Bool) {
+        if isHiddingContent {
+            UIView.animate(withDuration: 0.3) {
                 self.arrowImageView.transform = CGAffineTransform(rotationAngle: (180.0 * .pi) / 180.0)
-                self.zeroContentConstraint.priority = UILayoutPriority(rawValue: Priority.low)
-                self.showContentConstraint.priority = UILayoutPriority(rawValue: Priority.big)
+                self.hiddingView.isHidden = true
+                print("hide = \(self.contentView.frame.height)")
             }
         } else {
-//            UIView.animate(withDuration: 1) {
+            UIView.animate(withDuration: 0.3) {
                 self.arrowImageView.transform = CGAffineTransform(rotationAngle: (180.0 * .pi * 2) / 180.0)
-                self.zeroContentConstraint.priority = UILayoutPriority(rawValue: Priority.big)
-                self.showContentConstraint.priority = UILayoutPriority(rawValue: Priority.low)
-//            }
+                self.hiddingView.isHidden = false
+                print("show = \(self.contentView.frame.height)")
+            }
         }
     }
     
@@ -70,7 +64,7 @@ final class FineCell: UITableViewCell {
         carModelLabel.text = entity.carModel
         carSignLabel.text = entity.carSign
         sumFineLabel.text = entity.countMoney
-        
+
         if entity.isPaidFine {
             paidLabel.text = "Cплачено"
             paidLabel.textColor = UIColor(named: "Paid")
