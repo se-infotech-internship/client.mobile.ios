@@ -24,6 +24,7 @@ final class MessageSettingViewController: UIViewController {
     
     // MARK: - Private outlet
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var customNavigationBar: NavigationBar!
     
     // MARK: - Public property
     var presenter: MessageSettingPresenterProtocol?
@@ -33,6 +34,7 @@ final class MessageSettingViewController: UIViewController {
         super.viewDidLoad()
 
         setupTableView()
+        setupNavigationBar()
         presenter?.viewDidLoad()
         tableView.reloadData()
     }
@@ -47,6 +49,12 @@ final class MessageSettingViewController: UIViewController {
     
     private func setupTableCell() {
         tableView.register(UINib(nibName: SwitchSettingCell.identifier, bundle: nil), forCellReuseIdentifier: SwitchSettingCell.identifier)
+    }
+    
+    private func setupNavigationBar() {
+        customNavigationBar.update(title: "ПОВIДОМЛЕННЯ")
+        customNavigationBar.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
 
@@ -74,5 +82,21 @@ extension MessageSettingViewController: UITableViewDelegate, UITableViewDataSour
               let cell = tableView.dequeueReusableCell(withIdentifier: SwitchSettingCell.identifier, for: indexPath) as? SwitchSettingCell else { return UITableViewCell() }
         cell.update(entity: cellModel)
         return cell
+    }
+}
+
+// MARK: - NavigationBarDelegate method
+extension MessageSettingViewController: NavigationBarDelegate {
+    
+    func leftAction() {
+        presenter?.routePop()
+    }
+}
+
+// MARK: - Pop gesture delegate method
+extension MessageSettingViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

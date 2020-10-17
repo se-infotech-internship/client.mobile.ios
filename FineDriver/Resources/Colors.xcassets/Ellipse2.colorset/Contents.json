@@ -5,13 +5,13 @@
         "color-space" : "display-p3",
         "components" : {
           "alpha" : "1.000",
-          "blue" : "0.769",
-          "green" : "0.769",
-          "red" : "0.769"
+          "blue" : "0.831",
+          "green" : "0.827",
+          "red" : "0.827"
         }
       },
       "idiom" : "universal"
-    },
+    }
   ],
   "info" : {
     "author" : "xcode",

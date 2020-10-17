@@ -20,7 +20,7 @@ final class SplashPresenter {
     weak var viewController: SplashViewControllerProtocol?
     
     // MARK: - Private property
-    private let coordinator = AppCoordinator.shared
+    private weak var coordinator = AppCoordinator.shared
     private var authManager: AuthManagerProtocol!
     
     // MARK: - LifeCycle
@@ -39,7 +39,7 @@ extension SplashPresenter: SplashPresenterProtocol {
         authManager.auth { [weak self] (result) in
             switch result {
             case .success(let authObj):
-                self?.coordinator.routeToAuth()
+                self?.coordinator?.routeToAuth()
             case .failure(let err):
                 break
             }

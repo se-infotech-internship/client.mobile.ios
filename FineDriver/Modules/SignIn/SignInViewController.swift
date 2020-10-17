@@ -31,7 +31,7 @@ final class SignInViewController: UIViewController {
     // LifeCicle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     // MARK: - Private methods
@@ -110,6 +110,7 @@ extension SignInViewController: GIDSignInDelegate {
                                           email: email,
                                           tokenId: tokenId)
         }
+        presenter?.routeToMap()
     }
 }
 
@@ -183,4 +184,12 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
 // MARK: - Protocol methods
 extension SignInViewController: SignInViewControllerProtocol {
     
+}
+
+// MARK: - Pop gesture delegate method
+extension SignInViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
 }

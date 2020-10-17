@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinesViewController" customModule="FineDriver" customModuleProvider="target">
             <connections>
+                <outlet property="customNavigationBar" destination="aSG-P3-xdZ" id="m6q-SR-D1n"/>
                 <outlet property="tableView" destination="AHO-sd-ZLG" id="E5U-wP-gh3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,17 +22,30 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AHO-sd-ZLG">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSG-P3-xdZ" customClass="NavigationBar" customModule="FineDriver" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="104" id="VrB-Cb-SDB"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="AHO-sd-ZLG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="CkV-gP-LWM"/>
-                <constraint firstItem="AHO-sd-ZLG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ODJ-BH-pn2"/>
-                <constraint firstItem="AHO-sd-ZLG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="b3H-Sd-DMt"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AHO-sd-ZLG" secondAttribute="bottom" id="xnY-aV-FZE"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="top" secondItem="aSG-P3-xdZ" secondAttribute="bottom" id="1Z8-Um-pHi"/>
+                <constraint firstItem="aSG-P3-xdZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3IW-Z9-vw8"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4ag-Lf-nEm"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="7f9-in-Hvu"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="80V-dX-sFV"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OpE-2V-HRj"/>
+                <constraint firstItem="aSG-P3-xdZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="YR9-f8-VTa"/>
+                <constraint firstItem="aSG-P3-xdZ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="anS-ss-wr7"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="eUl-zc-fhq"/>
+                <constraint firstItem="AHO-sd-ZLG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="piK-Zi-vJ5"/>
             </constraints>
             <point key="canvasLocation" x="140.57971014492756" y="109.82142857142857"/>
         </view>

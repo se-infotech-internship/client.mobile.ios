@@ -25,7 +25,6 @@
 		920E55FE2530999A0082CF6F /* SettingItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920E55FD2530999A0082CF6F /* SettingItemEntity.swift */; };
 		925E87842520ABF700FD1D75 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E87832520ABF700FD1D75 /* Service.swift */; };
 		925E87872520AC7B00FD1D75 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E87862520AC7B00FD1D75 /* ServiceProvider.swift */; };
-		9289B06125360F1B00D7AFB6 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9289B06025360F1B00D7AFB6 /* UINavigationController.swift */; };
 		928E9F652528D22B008A1D59 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E9F642528D22A008A1D59 /* UserDefaults.swift */; };
 		928E9F682528D929008A1D59 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928E9F672528D929008A1D59 /* UserDefaultsKeys.swift */; };
 		928E9F6F2528FE36008A1D59 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928E9F6D2528FE36008A1D59 /* SignInViewController.xib */; };
@@ -51,6 +50,8 @@
 		92CEE406253310F9008543F0 /* MessageSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CEE405253310F9008543F0 /* MessageSettingPresenter.swift */; };
 		92CEE40C253323A0008543F0 /* SwitchSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CEE40A253323A0008543F0 /* SwitchSettingCell.swift */; };
 		92CEE40D253323A0008543F0 /* SwitchSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CEE40B253323A0008543F0 /* SwitchSettingCell.xib */; };
+		92CF0A68253B196900F92897 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0A67253B196900F92897 /* NavigationBar.swift */; };
+		92CF0A6A253B25A000F92897 /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CF0A69253B25A000F92897 /* NavigationBar.xib */; };
 		9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
 		9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */; };
 		9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */; };
@@ -86,7 +87,6 @@
 		920E55FD2530999A0082CF6F /* SettingItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemEntity.swift; sourceTree = "<group>"; };
 		925E87832520ABF700FD1D75 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		925E87862520AC7B00FD1D75 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
-		9289B06025360F1B00D7AFB6 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		928E9F642528D22A008A1D59 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		928E9F672528D929008A1D59 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		928E9F6D2528FE36008A1D59 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
@@ -112,6 +112,8 @@
 		92CEE405253310F9008543F0 /* MessageSettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSettingPresenter.swift; sourceTree = "<group>"; };
 		92CEE40A253323A0008543F0 /* SwitchSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSettingCell.swift; sourceTree = "<group>"; };
 		92CEE40B253323A0008543F0 /* SwitchSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchSettingCell.xib; sourceTree = "<group>"; };
+		92CF0A67253B196900F92897 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		92CF0A69253B25A000F92897 /* NavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBar.xib; sourceTree = "<group>"; };
 		9AA51BF1251C0C33000AB6F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
@@ -302,7 +304,6 @@
 				9297AF012524EE12007C2291 /* UINib.swift */,
 				92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */,
 				928E9F642528D22A008A1D59 /* UserDefaults.swift */,
-				9289B06025360F1B00D7AFB6 /* UINavigationController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +321,8 @@
 			children = (
 				9297AEFB2524C5FC007C2291 /* PopUpView.swift */,
 				9297AEFE2524C608007C2291 /* PopUpView.xib */,
+				92CF0A67253B196900F92897 /* NavigationBar.swift */,
+				92CF0A69253B25A000F92897 /* NavigationBar.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				920E55F4253061BD0082CF6F /* SettingsViewController.xib in Resources */,
 				4706368F251DFEB9006F7F41 /* SplashViewController.xib in Resources */,
 				9294165E2521DD0000D7F966 /* FinesViewController.xib in Resources */,
+				92CF0A6A253B25A000F92897 /* NavigationBar.xib in Resources */,
 				9AA51C01251C0DCF000AB6F1 /* MenuCell.xib in Resources */,
 				92CAF0E6252F7C1B0080F46E /* 02869.mp3 in Resources */,
 				928E9F6F2528FE36008A1D59 /* SignInViewController.xib in Resources */,
@@ -554,7 +558,6 @@
 			files = (
 				92CEE3FB2532FEBC008543F0 /* BaseSettingCell.swift in Sources */,
 				470636D4251E19C9006F7F41 /* Constants.swift in Sources */,
-				9289B06125360F1B00D7AFB6 /* UINavigationController.swift in Sources */,
 				4706368D251DFEB9006F7F41 /* AuthManager.swift in Sources */,
 				929416992522034800D7F966 /* FineEntity.swift in Sources */,
 				9AA51C00251C0DCF000AB6F1 /* MenuCell.swift in Sources */,
@@ -588,6 +591,7 @@
 				92CAF0D6252CF9B90080F46E /* ServiceLocalFile.swift in Sources */,
 				92CAF0D9252CFEE10080F46E /* CameraEntity.swift in Sources */,
 				47063682251DFE90006F7F41 /* SignInViewController.swift in Sources */,
+				92CF0A68253B196900F92897 /* NavigationBar.swift in Sources */,
 				9AA51C02251C0DCF000AB6F1 /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

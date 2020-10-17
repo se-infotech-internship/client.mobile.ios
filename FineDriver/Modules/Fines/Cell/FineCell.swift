@@ -45,13 +45,11 @@ final class FineCell: UITableViewCell {
             UIView.animate(withDuration: 0.3) {
                 self.arrowImageView.transform = CGAffineTransform(rotationAngle: (180.0 * .pi) / 180.0)
                 self.hiddingView.isHidden = true
-                print("hide = \(self.contentView.frame.height)")
             }
         } else {
             UIView.animate(withDuration: 0.3) {
                 self.arrowImageView.transform = CGAffineTransform(rotationAngle: (180.0 * .pi * 2) / 180.0)
                 self.hiddingView.isHidden = false
-                print("show = \(self.contentView.frame.height)")
             }
         }
     }

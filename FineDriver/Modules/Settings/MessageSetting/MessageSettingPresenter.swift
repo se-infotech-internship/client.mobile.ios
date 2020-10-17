@@ -22,7 +22,7 @@ final class MessageSettingPresenter {
     weak var view: MessageSettingViewControllerProtocol?
     
     // MARK: - Private property
-    private let coordinator = AppCoordinator.shared
+    private weak var coordinator = AppCoordinator.shared
     private var entity = [SwitchItemEntity]()
     
     // MARK: - LifeCycle
@@ -52,6 +52,6 @@ extension MessageSettingPresenter: MessageSettingPresenterProtocol {
     }
     
     func routePop() {
-        coordinator.popVC()
+        coordinator?.popVC()
     }
 }

@@ -9,6 +9,7 @@
 import Foundation
 import GoogleMaps
 import AVFoundation
+import GooglePlaces
 
 protocol MapPresenterProtocol: class {
     var view: MapViewControllerProtocol? { get set}
@@ -20,6 +21,7 @@ protocol MapPresenterProtocol: class {
     func model(index: Int) -> CameraEntity
     func playSound(forResource: String, withExtension: String)
     func stopSound()
+    func fetchRoute(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D)
 }
 
 class MapPresenter {
@@ -29,7 +31,7 @@ class MapPresenter {
     var camerasEntity: [CameraEntity] = []
     
     // MARK: - Private property
-    private let coordinator = AppCoordinator.shared
+    private weak var coordinator = AppCoordinator.shared
     private let localService = ServiceLocalFile()
     private var player: AVAudioPlayer?
     
@@ -63,6 +65,43 @@ class MapPresenter {
 // MARK: - Protocol methods
 extension MapPresenter: MapPresenterProtocol {
     
+    func fetchRoute(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) {
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        guard let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=\(source.latitude),\(source.longitude)&destination=\(destination.latitude),\(destination.longitude)&sensor=false&mode=walking&key=\(Constants.googleMapKey)") else { return }
+        
+        let task = session.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
+            
+            if data == nil {
+                
+                print(error!.localizedDescription)
+            } else {
+                
+                do {
+                    
+                    if let json : [String: Any] = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
+                        
+                        let preRoutes = json["routes"] as! NSArray
+                        let routes = preRoutes[0] as! NSDictionary
+                        let routeOverviewPolyline:NSDictionary = routes.value(forKey: "overview_polyline") as! NSDictionary
+                        let polyString = routeOverviewPolyline.object(forKey: "points") as! String
+                        
+                        guard let self = self, let view = self.view else { return }
+                        
+                        view.drawPath(from: polyString)
+                    }
+                    
+                } catch {
+                    print("parsing error")
+                }
+            }
+        })
+        task.resume()
+    }
+    
+    
     func markersLocation() -> ([CLLocationCoordinate2D]) {
         return camerasEntity.map { CLLocationCoordinate2D(latitude: $0.latitude ?? 0, longitude: $0.longitude ?? 0) }
     }
@@ -72,7 +111,7 @@ extension MapPresenter: MapPresenterProtocol {
     }
     
     func routeToMenu() {
-        coordinator.routeToMenu()
+        coordinator?.routeToMenu()
     }
     
     func cameraInfo() -> [CameraEntity] {
@@ -101,4 +140,5 @@ extension MapPresenter: MapPresenterProtocol {
         guard let player = player else { return }
         player.stop()
     }
+    
 }

@@ -20,7 +20,7 @@ final class SignInPresenter {
     weak var view: SignInViewControllerProtocol?
     
     // MARK: - Private property
-    private let coordinator = AppCoordinator.shared
+    private weak var coordinator = AppCoordinator.shared
     private let defaults = UserDefaults.standard
     
     // MARK: - LifeCycle
@@ -41,6 +41,6 @@ extension SignInPresenter: SignInPresenterProtocol {
     }
     
     func routeToMap() {
-        coordinator.routeToMap()
+        coordinator?.routeToMap()
     }
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBar">
+            <connections>
+                <outlet property="titleLabel" destination="Jyz-BR-0Qb" id="HTB-wj-D3N"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6Z-8D-AX1">
+                    <rect key="frame" x="0.0" y="44" width="414" height="64"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCv-Ce-LSZ">
+                            <rect key="frame" x="16" y="21" width="30" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="kEl-YC-0jy"/>
+                                <constraint firstAttribute="width" constant="30" id="smi-po-Prm"/>
+                            </constraints>
+                            <state key="normal" image="Vector-3"/>
+                            <connections>
+                                <action selector="didTapPopVC:" destination="-1" eventType="touchUpInside" id="xEJ-nv-d4C"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;title&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jyz-BR-0Qb">
+                            <rect key="frame" x="43" y="17.5" width="328" height="29"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" name="navigationBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Jyz-BR-0Qb" secondAttribute="trailing" constant="43" id="LBJ-pJ-47Z"/>
+                        <constraint firstItem="Jyz-BR-0Qb" firstAttribute="centerX" secondItem="W6Z-8D-AX1" secondAttribute="centerX" id="Mix-tQ-Q6h"/>
+                        <constraint firstItem="Jyz-BR-0Qb" firstAttribute="centerY" secondItem="W6Z-8D-AX1" secondAttribute="centerY" id="T9E-id-ILC"/>
+                        <constraint firstItem="iCv-Ce-LSZ" firstAttribute="leading" secondItem="W6Z-8D-AX1" secondAttribute="leading" constant="16" id="iU9-p5-yUK"/>
+                        <constraint firstItem="Jyz-BR-0Qb" firstAttribute="leading" secondItem="W6Z-8D-AX1" secondAttribute="leading" constant="43" id="tgb-wK-vva"/>
+                        <constraint firstItem="iCv-Ce-LSZ" firstAttribute="centerY" secondItem="W6Z-8D-AX1" secondAttribute="centerY" id="zvL-BC-pmw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="W6Z-8D-AX1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Gib-jT-Vv2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="W6Z-8D-AX1" secondAttribute="bottom" id="J8z-RH-Gp6"/>
+                <constraint firstItem="W6Z-8D-AX1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Sd5-47-QLn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="W6Z-8D-AX1" secondAttribute="trailing" id="f44-IX-los"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-72.463768115942031" y="0.6696428571428571"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Vector-3" width="11" height="19"/>
+        <namedColor name="navigationBackgroundColor">
+            <color red="0.16899999976158142" green="0.18799999356269836" blue="0.19599999487400055" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

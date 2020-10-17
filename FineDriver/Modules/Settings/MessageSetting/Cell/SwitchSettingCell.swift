@@ -19,6 +19,8 @@ class SwitchSettingCell: UITableViewCell {
     
     static let identifier = "SwitchSettingCell"
     
+    
+    
     // MARK: - Public property
     func update(entity: SwitchItemEntity) {
         

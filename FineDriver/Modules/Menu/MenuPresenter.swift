@@ -28,7 +28,7 @@ final class MenuPresenter {
     
     // MARK: - Private property
     private var menuItemsEntity = [MenuItemEntity]()
-    private let coordinator = AppCoordinator.shared
+    private weak var coordinator = AppCoordinator.shared
     
     // MARK: - LifeCycle
     init(view: MenuViewControllerProtocol?) {
@@ -57,18 +57,18 @@ extension MenuPresenter: MenuPresenterProtocol {
     }
     
     func routeMap() {
-        coordinator.routeToMap()
+        coordinator?.routeToMap()
     }
     
     func routeFines() {
-        coordinator.routeToFinesList()
+        coordinator?.routeToFinesList()
     }
     
     func routeAuth() {
-        coordinator.routeToAuth()
+        coordinator?.routeToAuth()
     }
     
     func routeSetting() {
-        coordinator.routeToSetting()
+        coordinator?.routeToSetting()
     }
 }
