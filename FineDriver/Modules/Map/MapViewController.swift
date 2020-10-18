@@ -101,6 +101,7 @@ class MapViewController: UIViewController {
         let coordinates = presenter.markersLocation()
         let cameraInfo = presenter.cameraInfo()
         var cameraData = CameraEntity()
+        var circle = GMSCircle()
         for (index, element) in coordinates.enumerated() {
             let marker = GMSMarker()
             marker.position.latitude = element.latitude
@@ -117,10 +118,15 @@ class MapViewController: UIViewController {
                 } else {
                     marker.icon = UIImage(named: "Camera_off")
                 }
+                
+                circle = GMSCircle(position: CLLocationCoordinate2D(latitude: element.latitude, longitude: element.longitude), radius: Constants.Distance.medium)
+                circle.fillColor = UIColor(red: 0.992, green: 0.818, blue: 0.818, alpha: 0.3)
+                circle.strokeColor = .clear
             }
             
             marker.userData = cameraData
             marker.map = mapView
+            circle.map = mapView
         }
     }
     
@@ -277,7 +283,7 @@ extension MapViewController: CLLocationManagerDelegate {
                     soundOncomingCamera()
                     popUpAnimation()
                     popUpView?.update(entity: element, metersTo: distance.binade)
-                } else if distance.isLessThanOrEqualTo(10) {
+                } else {
                     isUpdateLocation = true
                     isSoundMusic = false
                 }

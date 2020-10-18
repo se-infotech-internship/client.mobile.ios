@@ -71,7 +71,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Пр. Оболонський , Київ " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ep1-WV-Pch">
-                    <rect key="frame" x="34" y="104" width="271" height="16"/>
+                    <rect key="frame" x="34" y="104" width="271" height="17"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="UON-Ew-TRR"/>
                     </constraints>
@@ -126,7 +126,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="X30-Hb-94Y" secondAttribute="trailing" id="sC0-cl-Y5G"/>
                 <constraint firstItem="ep1-WV-Pch" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="34" id="uNm-dN-s1s"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="arf-Fv-dKy" secondAttribute="bottom" id="vCn-HC-OgT"/>
-                <constraint firstAttribute="bottom" secondItem="ep1-WV-Pch" secondAttribute="bottom" constant="36" id="zgn-Lu-jIu"/>
+                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="ep1-WV-Pch" secondAttribute="bottom" constant="36" id="zgn-Lu-jIu"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-7.2463768115942031" y="-129.91071428571428"/>
