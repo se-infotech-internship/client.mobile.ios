@@ -38,6 +38,11 @@ extension SignInPresenter: SignInPresenterProtocol {
                                      .familyName: familyName,
                                      .email: email,
                                      .tokenId: tokenId])
+        defaults[.user] = login
+        defaults[.firstName] = firstName
+        defaults[.familyName] = familyName
+        defaults[.email] = email
+        defaults[.tokenId] = tokenId
     }
     
     func routeToMap() {

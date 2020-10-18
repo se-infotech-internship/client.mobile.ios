@@ -56,6 +56,11 @@
 		92CF0A71253C319400F92897 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CF0A6F253C319400F92897 /* ProfileViewController.xib */; };
 		92CF0A73253C31A300F92897 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0A72253C31A300F92897 /* ProfilePresenter.swift */; };
 		92CF0A75253C57C800F92897 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0A74253C57C800F92897 /* ProfileEntity.swift */; };
+		92CF0A7B253CABF900F92897 /* CamerasSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0A79253CABF800F92897 /* CamerasSettingViewController.swift */; };
+		92CF0A7C253CABF900F92897 /* CamerasSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CF0A7A253CABF800F92897 /* CamerasSettingViewController.xib */; };
+		92CF0A7E253CAC0A00F92897 /* CamerasSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0A7D253CAC0A00F92897 /* CamerasSettingPresenter.swift */; };
+		92CF0A82253CAED800F92897 /* StepperSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0A80253CAED800F92897 /* StepperSettingCell.swift */; };
+		92CF0A83253CAED800F92897 /* StepperSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CF0A81253CAED800F92897 /* StepperSettingCell.xib */; };
 		9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
 		9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */; };
 		9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */; };
@@ -122,6 +127,11 @@
 		92CF0A6F253C319400F92897 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		92CF0A72253C31A300F92897 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		92CF0A74253C57C800F92897 /* ProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
+		92CF0A79253CABF800F92897 /* CamerasSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasSettingViewController.swift; sourceTree = "<group>"; };
+		92CF0A7A253CABF800F92897 /* CamerasSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CamerasSettingViewController.xib; sourceTree = "<group>"; };
+		92CF0A7D253CAC0A00F92897 /* CamerasSettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasSettingPresenter.swift; sourceTree = "<group>"; };
+		92CF0A80253CAED800F92897 /* StepperSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperSettingCell.swift; sourceTree = "<group>"; };
+		92CF0A81253CAED800F92897 /* StepperSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepperSettingCell.xib; sourceTree = "<group>"; };
 		9AA51BF1251C0C33000AB6F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
@@ -345,6 +355,7 @@
 				920E55F1253061BD0082CF6F /* SettingsViewController.swift */,
 				920E55F2253061BD0082CF6F /* SettingsViewController.xib */,
 				92CEE3FE25330D54008543F0 /* MessageSetting */,
+				92CF0A78253CABC100F92897 /* CamerasSetting */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -397,6 +408,26 @@
 				92CF0A6F253C319400F92897 /* ProfileViewController.xib */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		92CF0A78253CABC100F92897 /* CamerasSetting */ = {
+			isa = PBXGroup;
+			children = (
+				92CF0A7F253CAEBC00F92897 /* Cell */,
+				92CF0A7D253CAC0A00F92897 /* CamerasSettingPresenter.swift */,
+				92CF0A79253CABF800F92897 /* CamerasSettingViewController.swift */,
+				92CF0A7A253CABF800F92897 /* CamerasSettingViewController.xib */,
+			);
+			path = CamerasSetting;
+			sourceTree = "<group>";
+		};
+		92CF0A7F253CAEBC00F92897 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				92CF0A80253CAED800F92897 /* StepperSettingCell.swift */,
+				92CF0A81253CAED800F92897 /* StepperSettingCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		9AA51BF7251C0DCE000AB6F1 /* Menu */ = {
@@ -497,6 +528,7 @@
 				92CAF0D0252CF47F0080F46E /* cameras_list.json in Resources */,
 				920E55F4253061BD0082CF6F /* SettingsViewController.xib in Resources */,
 				4706368F251DFEB9006F7F41 /* SplashViewController.xib in Resources */,
+				92CF0A7C253CABF900F92897 /* CamerasSettingViewController.xib in Resources */,
 				9294165E2521DD0000D7F966 /* FinesViewController.xib in Resources */,
 				92CF0A6A253B25A000F92897 /* NavigationBar.xib in Resources */,
 				9AA51C01251C0DCF000AB6F1 /* MenuCell.xib in Resources */,
@@ -507,6 +539,7 @@
 				9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */,
 				92CEE3FC2532FEBC008543F0 /* BaseSettingCell.xib in Resources */,
 				929416712521DD1600D7F966 /* FineCell.xib in Resources */,
+				92CF0A83253CAED800F92897 /* StepperSettingCell.xib in Resources */,
 				92CF0A71253C319400F92897 /* ProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92CEE3FB2532FEBC008543F0 /* BaseSettingCell.swift in Sources */,
+				92CF0A82253CAED800F92897 /* StepperSettingCell.swift in Sources */,
 				470636D4251E19C9006F7F41 /* Constants.swift in Sources */,
 				4706368D251DFEB9006F7F41 /* AuthManager.swift in Sources */,
 				929416992522034800D7F966 /* FineEntity.swift in Sources */,
@@ -588,6 +622,7 @@
 				92CAF0D3252CF5BC0080F46E /* CameraModel.swift in Sources */,
 				9297AF022524EE12007C2291 /* UINib.swift in Sources */,
 				92CEE40125330D92008543F0 /* MessageSettingViewController.swift in Sources */,
+				92CF0A7E253CAC0A00F92897 /* CamerasSettingPresenter.swift in Sources */,
 				920E55FE2530999A0082CF6F /* SettingItemEntity.swift in Sources */,
 				92CEE40C253323A0008543F0 /* SwitchSettingCell.swift in Sources */,
 				47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */,
@@ -611,6 +646,7 @@
 				920E55F3253061BD0082CF6F /* SettingsViewController.swift in Sources */,
 				9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */,
 				92001DAD2525C0E700CAE036 /* GMSCoordinateBounds.swift in Sources */,
+				92CF0A7B253CABF900F92897 /* CamerasSettingViewController.swift in Sources */,
 				92CAF0D6252CF9B90080F46E /* ServiceLocalFile.swift in Sources */,
 				92CAF0D9252CFEE10080F46E /* CameraEntity.swift in Sources */,
 				47063682251DFE90006F7F41 /* SignInViewController.swift in Sources */,

@@ -25,6 +25,18 @@ final class SwitchItemEntity: SettingItemEntity {
     }
 }
 
+final class StepperEntity: SettingItemEntity {
+    
+    var distance: Int
+    
+    init(title: String, distance: Int) {
+        self.distance = distance
+        super.init(title: title)
+    }
+}
+
+
+
 // TODO: - Mock SettingScreen
 func mockDataForSettingVC() -> [SettingItemEntity] {
     let message = SettingItemEntity(title: "Повідомлення")
@@ -44,4 +56,13 @@ func mockDataForMessageSettingVC() -> [SwitchItemEntity] {
     let pushMessage = SwitchItemEntity(title: "Push - повідомлення", isOn: false)
     
     return [mapMessage, voiceMessage, soundMessage, pushMessage]
+}
+
+func mockCameraSetting() -> [SettingItemEntity] {
+    let one = SwitchItemEntity(title: "ВІДОБРАЖАТИ ВСІ КАМЕРИ", isOn: true)
+    let two = SwitchItemEntity(title: "ВІДОБРАЖАТИ TRUCAM", isOn: true)
+    let three = SwitchItemEntity(title: "ВІДОБРАЖАТИ КАМЕРИ ТІЛЬКИ ПО ОБРАНОМУ МАРШРУТУ", isOn: false)
+    let four = StepperEntity(title: "РАДІУС ЗОНИ ПОПЕРЕДЖЕННЯ", distance: 700)
+    
+    return [one, two, three, four]
 }

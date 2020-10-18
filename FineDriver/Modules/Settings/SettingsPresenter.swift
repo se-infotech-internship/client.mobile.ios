@@ -15,6 +15,7 @@ protocol SettingsPresenterProtocol: class {
     func viewDidLoad()
     func routeMessageSetting()
     func routePop()
+    func routeCamerasSetting()
 }
 
 final class SettingsPresenter {
@@ -58,5 +59,9 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     
     func routeMessageSetting() {
         coordinator?.routeToMessageSetting()
+    }
+    
+    func routeCamerasSetting() {
+        coordinator?.routeToCamerasSetting()
     }
 }

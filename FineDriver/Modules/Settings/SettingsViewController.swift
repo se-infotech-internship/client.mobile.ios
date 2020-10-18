@@ -85,10 +85,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
         case 0: presenter?.routeMessageSetting()
-        case 1: break
+        case 1: presenter?.routeCamerasSetting()
         case 2: break
         case 3: break
         case 4: break

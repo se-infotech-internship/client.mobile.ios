@@ -108,6 +108,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         case 4:
             presenter?.routeSetting()
         case 6:
+            UserDefaults.standard[.tokenId] = ""
             presenter?.routeAuth()
         default:
             break

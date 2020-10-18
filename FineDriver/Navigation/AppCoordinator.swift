@@ -19,6 +19,7 @@ protocol CoordinatorProtocol {
     func routeToSetting()
     func routeToMessageSetting()
     func routeToProfile()
+    func routeToCamerasSetting()
 }
 
 class AppCoordinator: CoordinatorProtocol {
@@ -101,6 +102,15 @@ class AppCoordinator: CoordinatorProtocol {
     func routeToProfile() {
         let viewController = ProfileViewController()
         let presenter = ProfilePresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        print("routeToProfile = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToCamerasSetting() {
+        let viewController = CamerasSettingViewController()
+        let presenter = CamerasSettingPresenter(view: viewController)
         viewController.presenter = presenter
         
         print("routeToProfile = \(navigationController?.viewControllers ?? [UIViewController()])")

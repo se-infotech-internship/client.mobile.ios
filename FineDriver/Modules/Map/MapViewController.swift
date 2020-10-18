@@ -276,7 +276,7 @@ extension MapViewController: CLLocationManagerDelegate {
             let distance = startLocation.distance(from: endLocation)
             
             if isUpdateLocation {
-                if distance.isLessThanOrEqualTo(Constants.Distance.longAway) {
+                if distance.isEqual(to:Constants.Distance.longAway) {
                     isSoundMusic = true
                     isUpdateLocation = false
                     hidePopUp()

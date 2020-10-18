@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import LocalAuthentication
 
 
 protocol SplashPresenterProtocol {
     var viewController: SplashViewControllerProtocol? { get set }
     func auth()
+    func checkToken()
 }
 
 final class SplashPresenter {
@@ -30,12 +32,40 @@ final class SplashPresenter {
         self.viewController = viewController
         self.authManager = authManager
     }
+    
+    private func routeAuth() {
+        coordinator?.routeToAuth()
+    }
+    
+    private func routeMap() {
+        coordinator?.routeToMap()
+    }
+    
+    private func faceTouchAuth() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Потрібно Вас ідентифікувати☺️"
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [weak self] success, authenticationError in
+                
+                DispatchQueue.main.async {
+                    if success {
+                        self?.routeMap()
+                    } else {
+                        print("biometric error")
+                    }
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Protocol methods
 extension SplashPresenter: SplashPresenterProtocol {
     
-    func auth() {
+    func auth() { // TODO: - doesn't using in this version
         authManager.auth { [weak self] (result) in
             switch result {
             case .success(let authObj):
@@ -43,6 +73,19 @@ extension SplashPresenter: SplashPresenterProtocol {
             case .failure(let err):
                 break
             }
+        }
+    }
+    
+    func checkToken() {
+        var token: String?
+        let defaults = UserDefaults.standard
+        token = defaults[.tokenId]
+        guard let tokenId = token else { return }
+        
+        if tokenId != "" {
+            faceTouchAuth()
+        } else {
+            routeAuth()
         }
     }
 }
