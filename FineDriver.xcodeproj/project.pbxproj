@@ -52,6 +52,10 @@
 		92CEE40D253323A0008543F0 /* SwitchSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CEE40B253323A0008543F0 /* SwitchSettingCell.xib */; };
 		92CF0A68253B196900F92897 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0A67253B196900F92897 /* NavigationBar.swift */; };
 		92CF0A6A253B25A000F92897 /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CF0A69253B25A000F92897 /* NavigationBar.xib */; };
+		92CF0A70253C319400F92897 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0A6E253C319400F92897 /* ProfileViewController.swift */; };
+		92CF0A71253C319400F92897 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CF0A6F253C319400F92897 /* ProfileViewController.xib */; };
+		92CF0A73253C31A300F92897 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0A72253C31A300F92897 /* ProfilePresenter.swift */; };
+		92CF0A75253C57C800F92897 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CF0A74253C57C800F92897 /* ProfileEntity.swift */; };
 		9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
 		9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */; };
 		9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */; };
@@ -114,6 +118,10 @@
 		92CEE40B253323A0008543F0 /* SwitchSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchSettingCell.xib; sourceTree = "<group>"; };
 		92CF0A67253B196900F92897 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		92CF0A69253B25A000F92897 /* NavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBar.xib; sourceTree = "<group>"; };
+		92CF0A6E253C319400F92897 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		92CF0A6F253C319400F92897 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		92CF0A72253C31A300F92897 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		92CF0A74253C57C800F92897 /* ProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
 		9AA51BF1251C0C33000AB6F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
@@ -241,6 +249,7 @@
 				9AA51C07251C1191000AB6F1 /* Map */,
 				9AA51BF7251C0DCE000AB6F1 /* Menu */,
 				9294165A2521DCEA00D7F966 /* Fines */,
+				92CF0A6D253C311600F92897 /* Profile */,
 				920E55F02530617F0082CF6F /* Settings */,
 			);
 			path = Modules;
@@ -274,6 +283,7 @@
 				92CAF0D2252CF5BC0080F46E /* CameraModel.swift */,
 				92CAF0D8252CFEE10080F46E /* CameraEntity.swift */,
 				920E55FD2530999A0082CF6F /* SettingItemEntity.swift */,
+				92CF0A74253C57C800F92897 /* ProfileEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -377,6 +387,16 @@
 				92CEE40B253323A0008543F0 /* SwitchSettingCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		92CF0A6D253C311600F92897 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				92CF0A72253C31A300F92897 /* ProfilePresenter.swift */,
+				92CF0A6E253C319400F92897 /* ProfileViewController.swift */,
+				92CF0A6F253C319400F92897 /* ProfileViewController.xib */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		9AA51BF7251C0DCE000AB6F1 /* Menu */ = {
@@ -487,6 +507,7 @@
 				9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */,
 				92CEE3FC2532FEBC008543F0 /* BaseSettingCell.xib in Resources */,
 				929416712521DD1600D7F966 /* FineCell.xib in Resources */,
+				92CF0A71253C319400F92897 /* ProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +597,7 @@
 				9AA51C11251C1253000AB6F1 /* MapPresenter.swift in Sources */,
 				9294165D2521DD0000D7F966 /* FinesViewController.swift in Sources */,
 				9AA51C0F251C122A000AB6F1 /* MapViewController.swift in Sources */,
+				92CF0A75253C57C800F92897 /* ProfileEntity.swift in Sources */,
 				47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */,
 				929416782521E0A700D7F966 /* UIView.swift in Sources */,
 				47063681251DFE90006F7F41 /* SignInPresenter.swift in Sources */,
@@ -584,6 +606,7 @@
 				925E87842520ABF700FD1D75 /* Service.swift in Sources */,
 				925E87872520AC7B00FD1D75 /* ServiceProvider.swift in Sources */,
 				929416702521DD1600D7F966 /* FineCell.swift in Sources */,
+				92CF0A70253C319400F92897 /* ProfileViewController.swift in Sources */,
 				928E9F682528D929008A1D59 /* UserDefaultsKeys.swift in Sources */,
 				920E55F3253061BD0082CF6F /* SettingsViewController.swift in Sources */,
 				9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */,
@@ -593,6 +616,7 @@
 				47063682251DFE90006F7F41 /* SignInViewController.swift in Sources */,
 				92CF0A68253B196900F92897 /* NavigationBar.swift in Sources */,
 				9AA51C02251C0DCF000AB6F1 /* MenuViewController.swift in Sources */,
+				92CF0A73253C31A300F92897 /* ProfilePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

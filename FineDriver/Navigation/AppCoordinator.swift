@@ -18,6 +18,7 @@ protocol CoordinatorProtocol {
     func routeToAuth()
     func routeToSetting()
     func routeToMessageSetting()
+    func routeToProfile()
 }
 
 class AppCoordinator: CoordinatorProtocol {
@@ -94,6 +95,15 @@ class AppCoordinator: CoordinatorProtocol {
         viewController.presenter = presenter
         
         print("routeToMessageSetting = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToProfile() {
+        let viewController = ProfileViewController()
+        let presenter = ProfilePresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        print("routeToProfile = \(navigationController?.viewControllers ?? [UIViewController()])")
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

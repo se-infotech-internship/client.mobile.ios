@@ -98,19 +98,19 @@ extension SignInViewController: GIDSignInDelegate {
         if error == nil {
             
             guard let user = user,
-                  let userId = user.userID,
+                  let login = user.userID,
                   let firstName = user.profile.givenName,
                   let familyName = user.profile.familyName,
                   let email = user.profile.email,
                   let tokenId = user.authentication.idToken else { return }
 
-            presenter?.saveToUserDefaults(user: userId,
+            presenter?.saveToUserDefaults(login: login,
                                           firstName: firstName,
                                           familyName: familyName,
                                           email: email,
                                           tokenId: tokenId)
+            presenter?.routeToMap()
         }
-        presenter?.routeToMap()
     }
 }
 
@@ -135,7 +135,7 @@ extension SignInViewController: LoginButtonDelegate {
                   let familyName = fields["family_name"] as? String,
                   let email = fields["email"] as? String else { return }
             
-            self.presenter?.saveToUserDefaults(user: user,
+            self.presenter?.saveToUserDefaults(login: user,
                                                firstName: firstName,
                                                familyName: familyName,
                                                email: email,
@@ -159,9 +159,10 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
             guard let firstName = appleIDCredential.fullName?.givenName else { return }
             guard let familyName = appleIDCredential.fullName?.familyName else { return }
             guard let email = appleIDCredential.email else { return }
-            guard let tokenId = appleIDCredential.authorizationCode as? String else { return }
+            guard let autorizationCode = appleIDCredential.authorizationCode else { return }
+            let tokenId = String(decoding: autorizationCode, as: UTF8.self)
             
-            self.presenter?.saveToUserDefaults(user: appleIDCredential.user,
+            self.presenter?.saveToUserDefaults(login: appleIDCredential.user,
                                                firstName: firstName,
                                                familyName: familyName,
                                                email: email,

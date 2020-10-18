@@ -26,9 +26,9 @@ final class FinesViewController: UIViewController {
         super.viewDidLoad()
         
         presenter?.viewDidLoad()
+        setupNavigationBar()
         setupTableCell()
         setupTableView()
-        setupNavigationBar()
     }
 
     // MARK: - Private methods
@@ -103,7 +103,6 @@ extension FinesViewController: NavigationBarDelegate {
 extension FinesViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-
         return true
     }
 }
