@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageSettingViewController" customModule="FineDriver" customModuleProvider="target">
             <connections>
+                <outlet property="customNavigationBar" destination="4Wz-fM-HTh" id="7XJ-9T-SEt"/>
                 <outlet property="tableView" destination="gsh-Kw-JNH" id="GRF-1g-44u"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,19 +22,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gsh-Kw-JNH">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Wz-fM-HTh" customClass="NavigationBar" customModule="FineDriver" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="104" id="cOS-52-d2q"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="gsh-Kw-JNH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="7Tb-iR-Cq6"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gsh-Kw-JNH" secondAttribute="bottom" id="ADQ-hA-Grt"/>
-                <constraint firstItem="gsh-Kw-JNH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Na9-CU-Szv"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gsh-Kw-JNH" secondAttribute="trailing" id="tdp-4n-ZtX"/>
+                <constraint firstItem="4Wz-fM-HTh" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="3FB-lR-CdF"/>
+                <constraint firstItem="gsh-Kw-JNH" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="4zJ-cK-MYS"/>
+                <constraint firstItem="gsh-Kw-JNH" firstAttribute="top" secondItem="4Wz-fM-HTh" secondAttribute="bottom" id="7hs-ha-j4Y"/>
+                <constraint firstItem="gsh-Kw-JNH" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="NgH-86-enj"/>
+                <constraint firstItem="4Wz-fM-HTh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="QxO-on-4Vl"/>
+                <constraint firstItem="gsh-Kw-JNH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Sa8-4s-1No"/>
+                <constraint firstItem="4Wz-fM-HTh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xgY-Kc-bPK"/>
             </constraints>
-            <point key="canvasLocation" x="135" y="113"/>
+            <point key="canvasLocation" x="134.78260869565219" y="112.5"/>
         </view>
     </objects>
     <resources>

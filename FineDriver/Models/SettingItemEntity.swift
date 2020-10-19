@@ -25,6 +25,28 @@ final class SwitchItemEntity: SettingItemEntity {
     }
 }
 
+final class StepperEntity: SettingItemEntity {
+    
+    var distance: Int
+    
+    init(title: String, distance: Int) {
+        self.distance = distance
+        super.init(title: title)
+    }
+}
+
+final class SelectFineEntity: SettingItemEntity {
+    
+    var isSelect: Bool
+    
+    init(title: String, isSelect: Bool) {
+        self.isSelect = isSelect
+        super.init(title: title)
+    }
+}
+
+
+
 // TODO: - Mock SettingScreen
 func mockDataForSettingVC() -> [SettingItemEntity] {
     let message = SettingItemEntity(title: "Повідомлення")
@@ -44,4 +66,29 @@ func mockDataForMessageSettingVC() -> [SwitchItemEntity] {
     let pushMessage = SwitchItemEntity(title: "Push - повідомлення", isOn: false)
     
     return [mapMessage, voiceMessage, soundMessage, pushMessage]
+}
+
+func mockCameraSetting() -> [SettingItemEntity] {
+    let one = SwitchItemEntity(title: "ВІДОБРАЖАТИ ВСІ КАМЕРИ", isOn: true)
+    let two = SwitchItemEntity(title: "ВІДОБРАЖАТИ TRUCAM", isOn: true)
+    let three = SwitchItemEntity(title: "ВІДОБРАЖАТИ КАМЕРИ ТІЛЬКИ ПО ОБРАНОМУ МАРШРУТУ", isOn: false)
+    let four = StepperEntity(title: "РАДІУС ЗОНИ ПОПЕРЕДЖЕННЯ", distance: 700)
+    
+    return [one, two, three, four]
+}
+
+func mockFineSetting() -> [SettingItemEntity] {
+    let one =  SettingItemEntity(title: "Періодичність автоматичної перевірки штрафів")
+    let two = SwitchItemEntity(title: "Відправка e-mail при надходжені штрафу", isOn: true)
+    return [one, two]
+}
+
+func mockSelectFineSetting() -> [SelectFineEntity] {
+    let day = SelectFineEntity(title: "Раз на день", isSelect: true)
+    let weak = SelectFineEntity(title: "Раз на тиждень", isSelect: false)
+    let mounth = SelectFineEntity(title: "Раз на місяць", isSelect: false)
+    let year = SelectFineEntity(title: "Раз на рік", isSelect: false)
+    let never = SelectFineEntity(title: "Не перевіряти", isSelect: false)
+    
+    return [day, weak, mounth, year, never]
 }

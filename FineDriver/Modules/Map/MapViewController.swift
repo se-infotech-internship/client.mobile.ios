@@ -10,7 +10,9 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-protocol MapViewControllerProtocol: class { }
+protocol MapViewControllerProtocol: class {
+    func drawPath(from polyStr: String)
+}
 
 class MapViewController: UIViewController {
     
@@ -44,7 +46,6 @@ class MapViewController: UIViewController {
     // MARK: - Private outlets
     @IBOutlet private weak var speedLabel: UILabel!
     @IBOutlet private weak var soundButton: UIButton!
-    @IBOutlet private weak var soundImageView: UIImageView!
     @IBOutlet private weak var mapView: GMSMapView!
     
     private var popUpView: PopUpView?
@@ -56,6 +57,10 @@ class MapViewController: UIViewController {
     private var locationManager = CLLocationManager()
     private var currentLocation = CLLocationCoordinate2D()
     private var isCenterCamera = true
+    private var isUpdateLocation = true
+    private var isSoundMusic = false
+    private var isCheckButtonSound = false
+    private var oldPolylineArr = [GMSPolyline]()
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -65,6 +70,10 @@ class MapViewController: UIViewController {
         setCurrentLocation()
         setupMapView()
         setupMarkers()
+    }
+    
+    deinit {
+        print("deinit MapViewController")
     }
     
     // MARK: - Private methods
@@ -92,6 +101,7 @@ class MapViewController: UIViewController {
         let coordinates = presenter.markersLocation()
         let cameraInfo = presenter.cameraInfo()
         var cameraData = CameraEntity()
+        var circle = GMSCircle()
         for (index, element) in coordinates.enumerated() {
             let marker = GMSMarker()
             marker.position.latitude = element.latitude
@@ -108,10 +118,15 @@ class MapViewController: UIViewController {
                 } else {
                     marker.icon = UIImage(named: "Camera_off")
                 }
+                
+                circle = GMSCircle(position: CLLocationCoordinate2D(latitude: element.latitude, longitude: element.longitude), radius: Constants.Distance.medium)
+                circle.fillColor = UIColor(red: 0.992, green: 0.818, blue: 0.818, alpha: 0.3)
+                circle.strokeColor = .clear
             }
             
             marker.userData = cameraData
             marker.map = mapView
+            circle.map = mapView
         }
     }
     
@@ -149,8 +164,12 @@ class MapViewController: UIViewController {
     }
     
     private func soundOncomingCamera(forResource: String = "02869", withExtension: String = "mp3") {
-        presenter?.stopSound()
-        presenter?.playSound(forResource: forResource, withExtension: withExtension)
+        if isSoundMusic {
+            presenter?.stopSound()
+            presenter?.playSound(forResource: forResource, withExtension: withExtension)
+        } else {
+            presenter?.stopSound()
+        }
     }
     
     // MARK: - Private action
@@ -165,17 +184,44 @@ class MapViewController: UIViewController {
     }
     
     @IBAction private func didTapSoundButton(_ sender: Any) {
-        if soundImageView.image == UIImage(named: "volume-2") {
-            soundImageView.image = UIImage(named: "Sound_off")
+        
+        isCheckButtonSound = !isCheckButtonSound
+        
+        if isCheckButtonSound {
+            soundButton.setImage(UIImage(named: "Sound_off"), for: .normal)
             presenter?.stopSound()
         } else {
-            soundImageView.image = UIImage(named: "volume-2")
+            soundButton.setImage(UIImage(named: "volume-2"), for: .normal)
+            soundOncomingCamera()
         }
     }
 }
 
 // MARK: - Protocol methods
-extension MapViewController: MapViewControllerProtocol { }
+extension MapViewController: MapViewControllerProtocol {
+    
+    func drawPath(from polyStr: String) {
+        
+        DispatchQueue.main.async(execute: {
+            let path = GMSPath(fromEncodedPath: polyStr)
+            let polyline = GMSPolyline(path: path)
+            polyline.strokeWidth = 5.0
+            polyline.strokeColor = UIColor.systemBlue
+            polyline.map = self.mapView
+            
+            self.oldPolylineArr.append(polyline)
+            
+            if self.oldPolylineArr.count > 0 {
+                
+                for polyline in self.oldPolylineArr {
+                    polyline.map = nil
+                }
+            }
+            self.oldPolylineArr.append(polyline)
+            polyline.map = self.mapView
+        })
+    }
+}
 
 // MARK: - MapView Delegate methods
 extension MapViewController: GMSMapViewDelegate {
@@ -188,7 +234,7 @@ extension MapViewController: GMSMapViewDelegate {
         hidePopUp()
         guard let cameraInfo = marker.userData as? CameraEntity else { return nil }
         popUpAnimation()
-        popUpView?.update(entity: cameraInfo, metersTo: 777)
+        popUpView?.update(entity: cameraInfo, metersTo: 700)
         return nil
     }
     
@@ -196,6 +242,11 @@ extension MapViewController: GMSMapViewDelegate {
         if gesture {
             isCenterCamera = false
         }
+    }
+
+    func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+        
+        presenter?.fetchRoute(from: currentLocation, to: coordinate)
     }
 }
 
@@ -214,56 +265,90 @@ extension MapViewController: CLLocationManagerDelegate {
             mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
             mapView.animate(toZoom: Constants.Default.zoom)
         }
-    }
-    
-    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
         
-        if CLLocationManager.authorizationStatus() == .authorizedAlways {
-            
-            if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-                
-                let maxDistance = Constants.Distance.longAway
-                let midDistance = Constants.Distance.medium
-                let nearDistance = Constants.Distance.near
-                
-                let maxRegion  = CLCircularRegion(center: currentLocation, radius: maxDistance, identifier: "maxRegion")
-                let midRegion  = CLCircularRegion(center: currentLocation, radius: midDistance, identifier: "midRegion")
-                let nearRegion = CLCircularRegion(center: currentLocation, radius: nearDistance, identifier: "nearRegion")
-                
-                maxRegion.notifyOnEntry = true
-                maxRegion.notifyOnExit = false
-                
-                midRegion.notifyOnEntry = true
-                midRegion.notifyOnExit = false
-                
-                nearRegion.notifyOnEntry = true
-                nearRegion.notifyOnExit = false
-                
-                locationManager.startMonitoring(for: maxRegion)
-                locationManager.startMonitoring(for: midRegion)
-                locationManager.startMonitoring(for: nearRegion)
-            }
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        let startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
         
-        if let region = region as? CLCircularRegion {
+        guard let cameras = presenter?.cameraInfo() else { return }
+        for (index, element) in cameras.enumerated() {
+            guard let presenter = presenter else { return }
             
-            guard let cameras = presenter?.cameraInfo() else { return }
-            for (_, element) in cameras.enumerated() {
-                hidePopUp()
-                soundOncomingCamera()
-                popUpAnimation()
-                
-                if region.identifier == "maxRegion" {
-                    popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
-                } else if region.identifier == "midRegion" {
-                    popUpView?.update(entity: element, metersTo: Constants.Distance.medium)
-                } else if region.identifier == "nearRegion" {
-                    popUpView?.update(entity: element, metersTo: Constants.Distance.near)
+            let endLocation = CLLocation(latitude: presenter.model(index: index).latitude ?? 0, longitude: presenter.model(index: index).longitude ?? 0)
+            let distance = startLocation.distance(from: endLocation)
+            
+            if isUpdateLocation {
+                if distance.isEqual(to:Constants.Distance.longAway) {
+                    isSoundMusic = true
+                    isUpdateLocation = false
+                    hidePopUp()
+                    soundOncomingCamera()
+                    popUpAnimation()
+                    popUpView?.update(entity: element, metersTo: distance.binade)
+                } else {
+                    isUpdateLocation = true
+                    isSoundMusic = false
                 }
             }
         }
+        
+        //    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
+        //
+        //        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+        //
+        //            if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+        //
+        //                let maxDistance = Constants.Distance.longAway
+        //                let midDistance = Constants.Distance.medium
+        //                let nearDistance = Constants.Distance.near
+        //
+        //                guard let cameras = presenter?.cameraInfo() else { return }
+        //                for (_, element) in cameras.enumerated() {
+        //
+        //                    let maxRegion  = CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
+        //                                                   radius: maxDistance,
+        //                                                   identifier: "\(element.address ?? "")" + "\(Constants.Distance.longAway)")
+        //                    let midRegion  =  CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
+        //                                                       radius: midDistance,
+        //                                                       identifier: "\(element.address ?? "")" + "\(Constants.Distance.medium)")
+        //                    let nearRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
+        //                                                      radius: nearDistance,
+        //                                                      identifier: "\(element.address ?? "")" + "\(Constants.Distance.near)")
+        //
+        //                    maxRegion.notifyOnEntry = true
+        //                    maxRegion.notifyOnExit = false
+        //
+        //                    midRegion.notifyOnEntry = true
+        //                    midRegion.notifyOnExit = false
+        //
+        //                    nearRegion.notifyOnEntry = true
+        //                    nearRegion.notifyOnExit = false
+        //
+        //                    locationManager.startMonitoring(for: maxRegion)
+        //                    locationManager.startMonitoring(for: midRegion)
+        //                    locationManager.startMonitoring(for: nearRegion)
+        //                }
+        //            }
+        //        }
+        //    }
+        //
+        //    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        //
+        //        if let region = region as? CLCircularRegion {
+        //
+        //            guard let cameras = presenter?.cameraInfo() else { return }
+        //            for (_, element) in cameras.enumerated() {
+        //                hidePopUp()
+        //                soundOncomingCamera()
+        //                popUpAnimation()
+        //
+        //                if region.identifier.suffix(3) == "\(Constants.Distance.longAway)" {
+        //                    popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
+        //                } else if region.identifier.suffix(3) == "\(Constants.Distance.medium)" {
+        //                    popUpView?.update(entity: element, metersTo: Constants.Distance.medium)
+        //                } else if region.identifier.suffix(3) == "\(Constants.Distance.near)" {
+        //                    popUpView?.update(entity: element, metersTo: Constants.Distance.near)
+        //                }
+        //            }
+        //        }
+        //    }
     }
 }

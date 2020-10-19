@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CoordinatorProtocol {
-    var navigationController: UINavigationController! { get set }
+    var navigationController: UINavigationController? { get set }
     
     func popVC()
     func start()
@@ -18,6 +18,10 @@ protocol CoordinatorProtocol {
     func routeToAuth()
     func routeToSetting()
     func routeToMessageSetting()
+    func routeToProfile()
+    func routeToCamerasSetting()
+    func routeToFineSetting()
+    func routeToSelectFineSetting()
 }
 
 class AppCoordinator: CoordinatorProtocol {
@@ -26,10 +30,10 @@ class AppCoordinator: CoordinatorProtocol {
     
     private init() {}
     
-    var navigationController: UINavigationController!
+    var navigationController: UINavigationController?
     
     func popVC() {
-        navigationController.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     func start() {
@@ -39,7 +43,8 @@ class AppCoordinator: CoordinatorProtocol {
                                         authManager: authManager)
         viewController.presenter = presenter
         
-        navigationController.pushViewController(viewController, animated: true)
+        print("SplashViewController = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func routeToAuth() {
@@ -47,7 +52,8 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = SignInPresenter(view: viewController)
         viewController.presenter = presenter
         
-        navigationController.pushViewController(viewController, animated: true)
+        print("routeToAuth = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func routeToMap() {
@@ -55,7 +61,8 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = MapPresenter(view: viewController)
         viewController.presenter = presenter
         
-        navigationController.pushViewController(viewController, animated: true)
+        print("routeToMap = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func routeToMenu() {
@@ -63,15 +70,17 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = MenuPresenter(view: viewController)
         viewController.presenter = presenter
         
-        navigationController.pushViewController(viewController, animated: true)
+        print("routeToMenu = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func routeToFinesList() {
         let viewController = FinesViewController()
         let presenter =  FinesPresenter(view: viewController)
         viewController.presenter = presenter
-        
-        navigationController.pushViewController(viewController, animated: true)
+    
+        print("routeToFinesList = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func routeToSetting() {
@@ -79,7 +88,8 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = SettingsPresenter(view: viewController)
         viewController.presenter = presenter
         
-        navigationController.pushViewController(viewController, animated: true)
+        print("routeToSetting = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func routeToMessageSetting() {
@@ -87,6 +97,41 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = MessageSettingPresenter(view: viewController)
         viewController.presenter = presenter
         
-        navigationController.pushViewController(viewController, animated: true)
+        print("routeToMessageSetting = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToProfile() {
+        let viewController = ProfileViewController()
+        let presenter = ProfilePresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        print("routeToProfile = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToCamerasSetting() {
+        let viewController = CamerasSettingViewController()
+        let presenter = CamerasSettingPresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        print("routeToProfile = \(navigationController?.viewControllers ?? [UIViewController()])")
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToFineSetting() {
+        let viewController = FineSettingViewController()
+        let presenter = FineSettingPresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToSelectFineSetting() {
+        let viewController = SelectFineSettingViewController()
+        let presenter = SelectFineSettingPresenter(view: viewController)
+        viewController.presenter = presenter
+        
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

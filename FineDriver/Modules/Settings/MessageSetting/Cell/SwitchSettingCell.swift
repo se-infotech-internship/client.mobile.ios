@@ -19,12 +19,19 @@ class SwitchSettingCell: UITableViewCell {
     
     static let identifier = "SwitchSettingCell"
     
+    
+    
     // MARK: - Public property
     func update(entity: SwitchItemEntity) {
         
         self.entity = entity
         guard let entity = self.entity else { return }
         titleLabel.text = entity.title
+        if entity.isOn {
+            agreeSwitch.isOn = true
+        } else {
+            agreeSwitch.isOn = false
+        }
     }
     
     // MARK: - Private action

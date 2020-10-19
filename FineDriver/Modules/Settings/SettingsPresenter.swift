@@ -14,6 +14,9 @@ protocol SettingsPresenterProtocol: class {
     func model(index: Int) -> SettingItemEntity
     func viewDidLoad()
     func routeMessageSetting()
+    func routePop()
+    func routeCamerasSetting()
+    func routeToFineSetting()
 }
 
 final class SettingsPresenter {
@@ -22,7 +25,7 @@ final class SettingsPresenter {
     weak var view: SettingsViewControllerProtocol?
     
     // MARK: - Private property
-    private let coordinator = AppCoordinator.shared
+    private weak var coordinator = AppCoordinator.shared
     private var settingItemsEntity = [SettingItemEntity]()
     
     // MARK: - LifeCycle
@@ -52,10 +55,18 @@ extension SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func routePop() {
-        coordinator.popVC()
+        coordinator?.popVC()
     }
     
     func routeMessageSetting() {
-        coordinator.routeToMessageSetting()
+        coordinator?.routeToMessageSetting()
+    }
+    
+    func routeCamerasSetting() {
+        coordinator?.routeToCamerasSetting()
+    }
+    
+    func routeToFineSetting() {
+        coordinator?.routeToFineSetting()
     }
 }

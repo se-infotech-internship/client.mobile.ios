@@ -31,6 +31,11 @@ final class MenuViewController: UIViewController {
     var presenter: MenuPresenterProtocol?
     
     // MARK: - LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        clearNavControllersStack()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,8 +52,8 @@ final class MenuViewController: UIViewController {
     private func setupView() {
         avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
         avatarImageView.clipsToBounds = true
-    
         presenter?.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     private func setupTableView() {
@@ -56,6 +61,10 @@ final class MenuViewController: UIViewController {
         tableView.register(UINib(nibName: MenuCell.identifier,
                                  bundle: nil),
                            forCellReuseIdentifier: MenuCell.identifier)
+    }
+    
+    private func clearNavControllersStack() {
+        self.navigationController?.viewControllers = [self]
     }
 }
 
@@ -87,18 +96,30 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
         case 0:
             presenter?.routeMap()
         case 1:
             presenter?.routeFines()
+        case 3:
+            presenter?.routeProfile()
         case 4:
             presenter?.routeSetting()
         case 6:
+            UserDefaults.standard[.tokenId] = ""
             presenter?.routeAuth()
         default:
             break
         }
+    }
+}
+
+// MARK: - Pop gesture delegate method
+extension MenuViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
     }
 }

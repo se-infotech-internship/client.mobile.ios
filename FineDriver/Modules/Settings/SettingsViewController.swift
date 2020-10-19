@@ -24,6 +24,7 @@ final class SettingsViewController: UIViewController {
     
     // MARK: - Private outlets
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var customNavigationBar: NavigationBar!
     
     // MARK: - Public property
     var presenter: SettingsPresenterProtocol?
@@ -33,6 +34,7 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
+        setupNavigationBar()
         presenter?.viewDidLoad()
         reloadData()
     }
@@ -47,6 +49,12 @@ final class SettingsViewController: UIViewController {
     
     private func setupTableCell() {
         tableView.register(UINib(nibName: BaseSettingCell.identifier, bundle: nil), forCellReuseIdentifier: BaseSettingCell.identifier)
+    }
+    
+    private func setupNavigationBar() {
+        customNavigationBar.update(title: "НАЛАШТУВАННЯ")
+        customNavigationBar.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
 
@@ -77,14 +85,31 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
         case 0: presenter?.routeMessageSetting()
-        case 1: break
-        case 2: break
+        case 1: presenter?.routeCamerasSetting()
+        case 2: presenter?.routeToFineSetting()
         case 3: break
         case 4: break
         default: break
         }
+    }
+}
+
+// MARK: - NavigationBarDelegate method
+extension SettingsViewController: NavigationBarDelegate {
+    
+    func leftAction() {
+        presenter?.routePop()
+    }
+}
+
+// MARK: - Pop gesture delegate method
+extension SettingsViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

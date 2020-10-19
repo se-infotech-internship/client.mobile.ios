@@ -24,7 +24,7 @@ final class FinesPresenter {
     
     // MARK: - Private property
     private var fineEntities = [FineEntity]()
-    private let coordinator = AppCoordinator.shared
+    private weak var coordinator = AppCoordinator.shared
     
     // MARK: - LifeCycle
     init(view: FinesViewControllerProtocol?) {
@@ -56,6 +56,6 @@ extension FinesPresenter: FinesPresenterProtocol {
     }
     
     func routePop() {
-        coordinator.popVC()
+        coordinator?.popVC()
     }
 }

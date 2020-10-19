@@ -16,13 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private var coordinator: AppCoordinator?
     var window: UIWindow?
+    var navigationController: UINavigationController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         IQKeyboardManager.shared.enable = true
         
         let navigationController = UINavigationController()
-        navigationController.navigationBar.isHidden = true
+        navigationController.setNavigationBarHidden(true, animated: false)
         coordinator = AppCoordinator.shared
         coordinator?.navigationController = navigationController
         coordinator?.start()

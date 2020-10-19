@@ -16,6 +16,7 @@ final class FinesViewController: UIViewController {
     
     // MARK:- Private outlet
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var customNavigationBar: NavigationBar!
     
     // MARK: - Public properties
     var presenter: FinesPresenterProtocol?
@@ -25,6 +26,7 @@ final class FinesViewController: UIViewController {
         super.viewDidLoad()
         
         presenter?.viewDidLoad()
+        setupNavigationBar()
         setupTableCell()
         setupTableView()
     }
@@ -38,6 +40,12 @@ final class FinesViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        customNavigationBar.delegate = self
+        customNavigationBar.update(title: "ШТРАФИ")
     }
     
     // MARK: - Private action
@@ -80,5 +88,21 @@ extension FinesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.update(entity: presenter.model(index: indexPath.row))
         cell.delegate = self
         return cell
+    }
+}
+
+// MARK: - NavigationBarDelegate method
+extension FinesViewController: NavigationBarDelegate {
+    
+    func leftAction() {
+        presenter?.routePop()
+    }
+}
+
+// MARK: - Pop gesture delegate method
+extension FinesViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
