@@ -15,4 +15,5 @@ public extension UserDefaults.Key {
     static let familyName: UserDefaults.Key = "familyName"
     static let email: UserDefaults.Key = "email"
     static let tokenId: UserDefaults.Key = "tokenId"
+    static let avatarURL: UserDefaults.Key = "avatarURL"
 }

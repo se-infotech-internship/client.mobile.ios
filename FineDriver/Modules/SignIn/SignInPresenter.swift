@@ -11,7 +11,7 @@ import Foundation
 protocol SignInPresenterProtocol: class {
     var view: SignInViewControllerProtocol? { get set }
     func routeToMap()
-    func saveToUserDefaults(login: String, firstName: String, familyName: String, email: String, tokenId: String)
+    func saveToUserDefaults(login: String, firstName: String, familyName: String, email: String, tokenId: String, avatarURL: URL)
     func resetToken()
 }
 
@@ -33,12 +33,13 @@ final class SignInPresenter {
 // MARK: - protocol methods
 extension SignInPresenter: SignInPresenterProtocol {
     
-    func saveToUserDefaults(login: String, firstName: String, familyName: String, email: String, tokenId: String) {
+    func saveToUserDefaults(login: String, firstName: String, familyName: String, email: String, tokenId: String, avatarURL: URL) {
         defaults[.user] = login
         defaults[.firstName] = firstName
         defaults[.familyName] = familyName
         defaults[.email] = email
         defaults[.tokenId] = tokenId
+        defaults[.avatarURL] = avatarURL
     }
     
     func routeToMap() {

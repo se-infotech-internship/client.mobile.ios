@@ -61,6 +61,7 @@ class MapViewController: UIViewController {
     private var isSoundMusic = false
     private var isCheckButtonSound = false
     private var oldPolylineArr = [GMSPolyline]()
+    private var isInRadiusCameraAlready = true
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -243,7 +244,7 @@ extension MapViewController: GMSMapViewDelegate {
             isCenterCamera = false
         }
     }
-
+    
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         
         presenter?.fetchRoute(from: currentLocation, to: coordinate)
@@ -275,80 +276,88 @@ extension MapViewController: CLLocationManagerDelegate {
             let endLocation = CLLocation(latitude: presenter.model(index: index).latitude ?? 0, longitude: presenter.model(index: index).longitude ?? 0)
             let distance = startLocation.distance(from: endLocation)
             
-            if isUpdateLocation {
-                if distance.isEqual(to:Constants.Distance.longAway) {
-                    isSoundMusic = true
-                    isUpdateLocation = false
-                    hidePopUp()
-                    soundOncomingCamera()
-                    popUpAnimation()
-                    popUpView?.update(entity: element, metersTo: distance.binade)
-                } else {
-                    isUpdateLocation = true
-                    isSoundMusic = false
+            if distance.isLessThanOrEqualTo(Constants.Distance.longAway) {
+                
+                if isUpdateLocation {
+                    if isInRadiusCameraAlready {
+                        popUpView?.update(entity: element, metersTo: distance.binade)
+                    } else {
+                        isSoundMusic = true
+                        hidePopUp()
+                        soundOncomingCamera()
+                        popUpAnimation()
+                        popUpView?.update(entity: element, metersTo: distance.binade)
+                        isInRadiusCameraAlready = true
+                        isUpdateLocation = false
+                    }
                 }
+                
+            } else {
+                presenter.stopSound()
+                isUpdateLocation = true
+                isInRadiusCameraAlready = false
             }
         }
-        
-        //    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
-        //
-        //        if CLLocationManager.authorizationStatus() == .authorizedAlways {
-        //
-        //            if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-        //
-        //                let maxDistance = Constants.Distance.longAway
-        //                let midDistance = Constants.Distance.medium
-        //                let nearDistance = Constants.Distance.near
-        //
-        //                guard let cameras = presenter?.cameraInfo() else { return }
-        //                for (_, element) in cameras.enumerated() {
-        //
-        //                    let maxRegion  = CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
-        //                                                   radius: maxDistance,
-        //                                                   identifier: "\(element.address ?? "")" + "\(Constants.Distance.longAway)")
-        //                    let midRegion  =  CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
-        //                                                       radius: midDistance,
-        //                                                       identifier: "\(element.address ?? "")" + "\(Constants.Distance.medium)")
-        //                    let nearRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
-        //                                                      radius: nearDistance,
-        //                                                      identifier: "\(element.address ?? "")" + "\(Constants.Distance.near)")
-        //
-        //                    maxRegion.notifyOnEntry = true
-        //                    maxRegion.notifyOnExit = false
-        //
-        //                    midRegion.notifyOnEntry = true
-        //                    midRegion.notifyOnExit = false
-        //
-        //                    nearRegion.notifyOnEntry = true
-        //                    nearRegion.notifyOnExit = false
-        //
-        //                    locationManager.startMonitoring(for: maxRegion)
-        //                    locationManager.startMonitoring(for: midRegion)
-        //                    locationManager.startMonitoring(for: nearRegion)
-        //                }
-        //            }
-        //        }
-        //    }
-        //
-        //    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        //
-        //        if let region = region as? CLCircularRegion {
-        //
-        //            guard let cameras = presenter?.cameraInfo() else { return }
-        //            for (_, element) in cameras.enumerated() {
-        //                hidePopUp()
-        //                soundOncomingCamera()
-        //                popUpAnimation()
-        //
-        //                if region.identifier.suffix(3) == "\(Constants.Distance.longAway)" {
-        //                    popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
-        //                } else if region.identifier.suffix(3) == "\(Constants.Distance.medium)" {
-        //                    popUpView?.update(entity: element, metersTo: Constants.Distance.medium)
-        //                } else if region.identifier.suffix(3) == "\(Constants.Distance.near)" {
-        //                    popUpView?.update(entity: element, metersTo: Constants.Distance.near)
-        //                }
-        //            }
-        //        }
-        //    }
     }
+    
+    //    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
+    //
+    //        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+    //
+    //            if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+    //
+    //                let maxDistance = Constants.Distance.longAway
+    //                let midDistance = Constants.Distance.medium
+    //                let nearDistance = Constants.Distance.near
+    //
+    //                guard let cameras = presenter?.cameraInfo() else { return }
+    //                for (_, element) in cameras.enumerated() {
+    //
+    //                    let maxRegion  = CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
+    //                                                   radius: maxDistance,
+    //                                                   identifier: "\(element.address ?? "")" + "\(Constants.Distance.longAway)")
+    //                    let midRegion  =  CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
+    //                                                       radius: midDistance,
+    //                                                       identifier: "\(element.address ?? "")" + "\(Constants.Distance.medium)")
+    //                    let nearRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
+    //                                                      radius: nearDistance,
+    //                                                      identifier: "\(element.address ?? "")" + "\(Constants.Distance.near)")
+    //
+    //                    maxRegion.notifyOnEntry = true
+    //                    maxRegion.notifyOnExit = false
+    //
+    //                    midRegion.notifyOnEntry = true
+    //                    midRegion.notifyOnExit = false
+    //
+    //                    nearRegion.notifyOnEntry = true
+    //                    nearRegion.notifyOnExit = false
+    //
+    //                    locationManager.startMonitoring(for: maxRegion)
+    //                    locationManager.startMonitoring(for: midRegion)
+    //                    locationManager.startMonitoring(for: nearRegion)
+    //                }
+    //            }
+    //        }
+    //    }
+    //
+    //    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    //
+    //        if let region = region as? CLCircularRegion {
+    //
+    //            guard let cameras = presenter?.cameraInfo() else { return }
+    //            for (_, element) in cameras.enumerated() {
+    //                hidePopUp()
+    //                soundOncomingCamera()
+    //                popUpAnimation()
+    //
+    //                if region.identifier.suffix(3) == "\(Constants.Distance.longAway)" {
+    //                    popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
+    //                } else if region.identifier.suffix(3) == "\(Constants.Distance.medium)" {
+    //                    popUpView?.update(entity: element, metersTo: Constants.Distance.medium)
+    //                } else if region.identifier.suffix(3) == "\(Constants.Distance.near)" {
+    //                    popUpView?.update(entity: element, metersTo: Constants.Distance.near)
+    //                }
+    //            }
+    //        }
+    //    }
 }

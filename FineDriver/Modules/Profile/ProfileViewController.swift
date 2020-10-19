@@ -28,7 +28,6 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("userDefaults = \(UserDefaults.standard.string(forKey: .tokenId) ?? "")")
         presenter?.viewDidLoad()
         setupView()
         setupNavigationBar()
@@ -41,6 +40,7 @@ final class ProfileViewController: UIViewController {
         avatarImageView.clipsToBounds = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         setViewData()
+        presenter?.fetchGoogleImage(imageView: avatarImageView)
     }
     
     private func setupNavigationBar() {

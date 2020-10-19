@@ -67,6 +67,23 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5f9-UV-IKY">
+                    <rect key="frame" x="99" y="814" width="216" height="48"/>
+                    <color key="backgroundColor" red="0.16882747410000001" green="0.18808373810000001" blue="0.19608008860000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="ZOk-rY-RaB"/>
+                        <constraint firstAttribute="width" constant="216" id="abc-kT-tjI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="Змінити">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="24"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -76,7 +93,9 @@
                 <constraint firstItem="2C6-tG-HCy" firstAttribute="top" secondItem="rCA-MK-da8" secondAttribute="bottom" constant="4" id="AZe-rm-10W"/>
                 <constraint firstItem="KoI-iF-box" firstAttribute="top" secondItem="2C6-tG-HCy" secondAttribute="bottom" id="BKf-QW-j86"/>
                 <constraint firstItem="xma-UZ-Hmy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Erd-th-36l"/>
+                <constraint firstItem="5f9-UV-IKY" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="FIo-WM-ezS"/>
                 <constraint firstItem="KoI-iF-box" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="L9c-13-ZCq"/>
+                <constraint firstItem="5f9-UV-IKY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TGS-yI-cmj"/>
                 <constraint firstItem="sSx-6R-POX" firstAttribute="top" secondItem="KoI-iF-box" secondAttribute="bottom" id="XgF-6H-GJs"/>
                 <constraint firstItem="sSx-6R-POX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ZOZ-Le-7nw"/>
                 <constraint firstItem="rCA-MK-da8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aHM-gd-4bM"/>
@@ -91,7 +110,7 @@
     <resources>
         <image name="Person" width="66" height="95"/>
         <namedColor name="Ellipse2">
-            <color red="0.82748806480000003" green="0.82736402750000004" blue="0.83137422800000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.82700002193450928" green="0.82700002193450928" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

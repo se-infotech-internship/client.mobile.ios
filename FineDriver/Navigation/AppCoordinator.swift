@@ -61,6 +61,7 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = MapPresenter(view: viewController)
         viewController.presenter = presenter
         
+        
         print("routeToMap = \(navigationController?.viewControllers ?? [UIViewController()])")
         navigationController?.pushViewController(viewController, animated: true)
     }

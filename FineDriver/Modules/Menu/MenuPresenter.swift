@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 protocol MenuPresenterProtocol: class {
     
@@ -20,6 +21,7 @@ protocol MenuPresenterProtocol: class {
     func routeAuth()
     func routeSetting()
     func routeProfile()
+    func fetchGoogleImage(imageView: UIImageView)
 }
 
 final class MenuPresenter {
@@ -75,5 +77,14 @@ extension MenuPresenter: MenuPresenterProtocol {
     
     func routeProfile() {
         coordinator?.routeToProfile()
+    }
+    
+    func fetchGoogleImage(imageView: UIImageView) {
+        
+        var avatarURL: URL?
+        avatarURL = UserDefaults.standard[.avatarURL]
+        guard let url = avatarURL else { return }
+        
+        imageView.kf.setImage(with: url)
     }
 }

@@ -54,6 +54,7 @@ final class MenuViewController: UIViewController {
         avatarImageView.clipsToBounds = true
         presenter?.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        presenter?.fetchGoogleImage(imageView: avatarImageView)
     }
     
     private func setupTableView() {
@@ -120,6 +121,6 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 extension MenuViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return false
+        return true
     }
 }
