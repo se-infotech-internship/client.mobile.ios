@@ -12,6 +12,7 @@ protocol SignInPresenterProtocol: class {
     var view: SignInViewControllerProtocol? { get set }
     func routeToMap()
     func saveToUserDefaults(login: String, firstName: String, familyName: String, email: String, tokenId: String)
+    func resetToken()
 }
 
 final class SignInPresenter {
@@ -33,11 +34,6 @@ final class SignInPresenter {
 extension SignInPresenter: SignInPresenterProtocol {
     
     func saveToUserDefaults(login: String, firstName: String, familyName: String, email: String, tokenId: String) {
-        defaults.register(defaults: [.user: login,
-                                     .firstName: firstName,
-                                     .familyName: familyName,
-                                     .email: email,
-                                     .tokenId: tokenId])
         defaults[.user] = login
         defaults[.firstName] = firstName
         defaults[.familyName] = familyName
@@ -47,5 +43,9 @@ extension SignInPresenter: SignInPresenterProtocol {
     
     func routeToMap() {
         coordinator?.routeToMap()
+    }
+    
+    func resetToken() {
+        defaults[.tokenId] = ""
     }
 }

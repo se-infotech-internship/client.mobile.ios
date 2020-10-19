@@ -32,6 +32,7 @@ final class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        presenter?.resetToken()
     }
     
     // MARK: - Private methods
