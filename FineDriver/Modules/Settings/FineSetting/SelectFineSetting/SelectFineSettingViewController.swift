@@ -1,18 +1,18 @@
 //
-//  SettingsViewController.swift
+//  SelectFineSettingViewController.swift
 //  FineDriver
 //
-//  Created by Вячеслав on 09.10.2020.
+//  Created by Вячеслав on 19.10.2020.
 //  Copyright © 2020 Infotekh. All rights reserved.
 //
 
 import UIKit
 
-protocol SettingsViewControllerProtocol: class {
+protocol SelectFineSettingViewControllerProtocol: class {
     func reloadData()
 }
 
-final class SettingsViewController: UIViewController {
+final class SelectFineSettingViewController: UIViewController {
     
     private enum Constants {
         
@@ -22,24 +22,23 @@ final class SettingsViewController: UIViewController {
         }
     }
     
-    // MARK: - Private outlets
+    // MARK: - Private outlet
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var customNavigationBar: NavigationBar!
     
     // MARK: - Public property
-    var presenter: SettingsPresenterProtocol?
-    
-    // MARK: - LifeCycle
+    var presenter: SelectFineSettingPresenterProtocol?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupTableView()
         setupNavigationBar()
         presenter?.viewDidLoad()
         reloadData()
     }
-    
-    // MARK: - Private func
+
+    // MARK: - Private method
     private func setupTableView() {
         tableView.separatorStyle = .none
         tableView.delegate = self
@@ -48,26 +47,18 @@ final class SettingsViewController: UIViewController {
     }
     
     private func setupTableCell() {
-        tableView.register(UINib(nibName: BaseSettingCell.identifier, bundle: nil), forCellReuseIdentifier: BaseSettingCell.identifier)
+        tableView.register(UINib(nibName: SettingFineCell.identifier, bundle: nil), forCellReuseIdentifier: SettingFineCell.identifier)
     }
     
     private func setupNavigationBar() {
-        customNavigationBar.update(title: "НАЛАШТУВАННЯ")
+        customNavigationBar.update(title: "ШТРАФИ")
         customNavigationBar.delegate = self
         navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
 
-// MARK: - Protocol methods
-extension SettingsViewController: SettingsViewControllerProtocol {
-    
-    func reloadData() {
-        tableView.reloadData()
-    }
-}
-
 // MARK: - Delegate methods
-extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+extension SelectFineSettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Constants.TableView.height
@@ -79,27 +70,26 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cellModel = presenter?.model(index: indexPath.row),
-              let cell = tableView.dequeueReusableCell(withIdentifier: BaseSettingCell.identifier, for: indexPath) as? BaseSettingCell else { return UITableViewCell() }
+              let cell = tableView.dequeueReusableCell(withIdentifier: SettingFineCell.identifier, for: indexPath) as? SettingFineCell else { return UITableViewCell() }
         cell.update(entity: cellModel)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        switch indexPath.row {
-        case 0: presenter?.routeMessageSetting()
-        case 1: presenter?.routeCamerasSetting()
-        case 2: presenter?.routeToFineSetting()
-        case 3: break
-        case 4: break
-        default: break
-        }
+        presenter?.selectFineCheckmark(indexItem: indexPath.row)
+    }
+}
+
+// MARK: - Protocol methos
+extension SelectFineSettingViewController: SelectFineSettingViewControllerProtocol {
+    
+    func reloadData() {
+        tableView.reloadData()
     }
 }
 
 // MARK: - NavigationBarDelegate method
-extension SettingsViewController: NavigationBarDelegate {
+extension SelectFineSettingViewController: NavigationBarDelegate {
     
     func leftAction() {
         presenter?.routePop()
@@ -107,7 +97,7 @@ extension SettingsViewController: NavigationBarDelegate {
 }
 
 // MARK: - Pop gesture delegate method
-extension SettingsViewController: UIGestureRecognizerDelegate {
+extension SelectFineSettingViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true

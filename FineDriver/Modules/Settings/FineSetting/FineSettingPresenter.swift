@@ -1,42 +1,45 @@
 //
-//  CamerasSettingPresenter.swift
+//  FineSettingPresenter.swift
 //  FineDriver
 //
-//  Created by Вячеслав on 18.10.2020.
+//  Created by Вячеслав on 19.10.2020.
 //  Copyright © 2020 Infotekh. All rights reserved.
 //
 
 import Foundation
 
-protocol CamerasSettingPresenterProtocol: class {
-    var view: CamerasSettingViewProtocol? { get set }
+protocol FineSettingPresenterProtocol: class {
+    var view: FineSettingViewControllerProtocol? { get set }
     func countRows() -> Int
     func model(index: Int) -> SettingItemEntity
     func viewDidLoad()
     func routePop()
+    func routeSelectFineSetting()
 }
 
-final class CamerasSettingPresenter {
+
+final class FineSettingPresenter {
     
     // MARK: - Protocol property
-    weak var view: CamerasSettingViewProtocol?
+    weak var view: FineSettingViewControllerProtocol?
     
     // MARK: - Private property
     private weak var coordinator = AppCoordinator.shared
     private var entity = [SettingItemEntity]()
     
-    init(view: CamerasSettingViewProtocol) {
+    init(view: FineSettingViewControllerProtocol) {
         self.view = view
     }
     
     // MARK: - Private methods
-    private func fetchMockSettingData() {
-        entity = mockCameraSetting()
+    private func fetchMockFineSettingData() {
+        entity = mockFineSetting()
     }
 }
 
+
 // MARK: - Protocol methods
-extension CamerasSettingPresenter: CamerasSettingPresenterProtocol {
+extension FineSettingPresenter: FineSettingPresenterProtocol {
     
     func countRows() -> Int {
         return entity.count
@@ -47,10 +50,14 @@ extension CamerasSettingPresenter: CamerasSettingPresenterProtocol {
     }
     
     func viewDidLoad() {
-        fetchMockSettingData()
+        fetchMockFineSettingData()
     }
     
     func routePop() {
         coordinator?.popVC()
+    }
+    
+    func routeSelectFineSetting() {
+        coordinator?.routeToSelectFineSetting()
     }
 }

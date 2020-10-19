@@ -35,6 +35,16 @@ final class StepperEntity: SettingItemEntity {
     }
 }
 
+final class SelectFineEntity: SettingItemEntity {
+    
+    var isSelect: Bool
+    
+    init(title: String, isSelect: Bool) {
+        self.isSelect = isSelect
+        super.init(title: title)
+    }
+}
+
 
 
 // TODO: - Mock SettingScreen
@@ -65,4 +75,20 @@ func mockCameraSetting() -> [SettingItemEntity] {
     let four = StepperEntity(title: "РАДІУС ЗОНИ ПОПЕРЕДЖЕННЯ", distance: 700)
     
     return [one, two, three, four]
+}
+
+func mockFineSetting() -> [SettingItemEntity] {
+    let one =  SettingItemEntity(title: "Періодичність автоматичної перевірки штрафів")
+    let two = SwitchItemEntity(title: "Відправка e-mail при надходжені штрафу", isOn: true)
+    return [one, two]
+}
+
+func mockSelectFineSetting() -> [SelectFineEntity] {
+    let day = SelectFineEntity(title: "Раз на день", isSelect: true)
+    let weak = SelectFineEntity(title: "Раз на тиждень", isSelect: false)
+    let mounth = SelectFineEntity(title: "Раз на місяць", isSelect: false)
+    let year = SelectFineEntity(title: "Раз на рік", isSelect: false)
+    let never = SelectFineEntity(title: "Не перевіряти", isSelect: false)
+    
+    return [day, weak, mounth, year, never]
 }

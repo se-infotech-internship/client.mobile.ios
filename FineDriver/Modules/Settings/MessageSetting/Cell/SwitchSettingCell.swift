@@ -27,6 +27,11 @@ class SwitchSettingCell: UITableViewCell {
         self.entity = entity
         guard let entity = self.entity else { return }
         titleLabel.text = entity.title
+        if entity.isOn {
+            agreeSwitch.isOn = true
+        } else {
+            agreeSwitch.isOn = false
+        }
     }
     
     // MARK: - Private action
