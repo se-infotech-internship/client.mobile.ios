@@ -111,15 +111,16 @@ class MapViewController: UIViewController {
         
         var bounds = GMSCoordinateBounds()
         bounds = bounds.includingCoordinate(CLLocationCoordinate2D(latitude: Constants.UkrainePosition.lat, longitude: Constants.UkrainePosition.long))
+        
         mapView.animate(with: GMSCameraUpdate.fit(bounds))
         mapView.animate(toZoom: Constants.UkrainePosition.zoom)
+        mapView.delegate = self
+        mapView.isMyLocationEnabled = true
         
         locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        mapView.isMyLocationEnabled = true
-        mapView.delegate = self
         locationManager.startUpdatingLocation()
         locationManager.activityType = .automotiveNavigation
+        locationManager.requestAlwaysAuthorization()
     }
     
     private func setupMapView() {
@@ -282,10 +283,16 @@ extension MapViewController: GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        
         hidePopUp()
-        guard let cameraInfo = marker.userData as? CameraEntity else { return nil }
         popUpAnimation()
-        popUpView?.update(entity: cameraInfo, metersTo: 700)
+        
+        guard let cameraInfo = marker.userData as? CameraEntity,
+              let long = cameraInfo.longitude,
+              let lat = cameraInfo.latitude else { return nil }
+        let startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        let distance = startLocation.distance(from: CLLocation(latitude: lat, longitude: long))
+        popUpView?.update(entity: cameraInfo, metersTo: distance)
         return nil
     }
     
@@ -326,7 +333,7 @@ extension MapViewController: CLLocationManagerDelegate {
             
             let endLocation = CLLocation(latitude: presenter.model(index: index).latitude ?? 0, longitude: presenter.model(index: index).longitude ?? 0)
             
-            if index == 19 {
+            if index == 5 {
                 return
             }
             
@@ -359,6 +366,14 @@ extension MapViewController: CLLocationManagerDelegate {
         func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
                 print("start update")
         }
+    
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        if state == .inside {
+            print("invide blya")
+        } else if state == .outside {
+            
+        }
+    }
         
         func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
             
