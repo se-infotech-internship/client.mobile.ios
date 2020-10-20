@@ -11,6 +11,7 @@ import CoreLocation
 import GoogleMaps
 import GooglePlaces
 import UserNotifications
+import MapKit
 
 
 protocol MapViewControllerProtocol: class {
@@ -328,7 +329,11 @@ extension MapViewController: CLLocationManagerDelegate {
             if index == 19 {
                 return
             }
-            monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0), identifier: element.address ?? "")
+            
+            guard let lat = element.latitude, let long = element.longitude, let address = element.address else { return }
+            
+            print("identifier = \(address)")
+            monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: lat, longitude: long), identifier: address)
             
             
         }
@@ -347,6 +352,7 @@ extension MapViewController: CLLocationManagerDelegate {
                 region.notifyOnExit = true
                 
                 locationManager.startMonitoring(for: region)
+            locationManager.startUpdatingLocation()
         }
     }
         
