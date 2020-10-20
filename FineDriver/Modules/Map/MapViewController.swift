@@ -39,12 +39,6 @@ class MapViewController: UIViewController {
             static let animationTime: Double = 0.3
             static let translationX: CGFloat = 0
         }
-        
-        enum Distance {
-            static let longAway: Double = 700
-            static let medium: Double = 200
-            static let near: Double = 100
-        }
     }
     
     // MARK: - Private outlets
@@ -128,12 +122,15 @@ class MapViewController: UIViewController {
     }
     
     private func setupMarkers() {
+        
         guard let presenter = presenter else { return }
         let coordinates = presenter.markersLocation()
         let cameraInfo = presenter.cameraInfo()
         var cameraData = CameraEntity()
         var circle = GMSCircle()
+        
         for (index, element) in coordinates.enumerated() {
+            
             let marker = GMSMarker()
             marker.position.latitude = element.latitude
             marker.position.longitude = element.longitude
@@ -150,7 +147,9 @@ class MapViewController: UIViewController {
                     marker.icon = UIImage(named: "Camera_off")
                 }
                 
-                circle = GMSCircle(position: CLLocationCoordinate2D(latitude: element.latitude, longitude: element.longitude), radius: Constants.Distance.medium)
+                circle = GMSCircle(position: CLLocationCoordinate2D(latitude: element.latitude,
+                                                                    longitude: element.longitude),
+                                   radius: CLLocationDistance(presenter.fetchDistanceToCameraLocation()))
                 circle.fillColor = UIColor(red: 0.992, green: 0.818, blue: 0.818, alpha: 0.3)
                 circle.strokeColor = .clear
             }
@@ -195,22 +194,18 @@ class MapViewController: UIViewController {
     }
     
     private func soundOncomingCamera(forResource: String = "02869", withExtension: String = "mp3") {
-        //        if isSoundMusic {
         presenter?.stopSound()
         presenter?.playSound(forResource: forResource, withExtension: withExtension)
-        //        } else {
-        //            presenter?.stopSound()
-        //        }
     }
     
-    func registerBackgroundTask() {
+    private func registerBackgroundTask() {
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             self?.endBackgroundTask()
         }
         assert(backgroundTask != .invalid)
     }
     
-    func endBackgroundTask() {
+    private func endBackgroundTask() {
         print("Background task ended.")
         UIApplication.shared.endBackgroundTask(backgroundTask)
         backgroundTask = .invalid
@@ -324,16 +319,11 @@ extension MapViewController: CLLocationManagerDelegate {
             mapView.animate(toZoom: Constants.Default.zoom)
         }
         
-        let startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
-        
         guard let cameras = presenter?.cameraInfo() else { return }
         
         for (index, element) in cameras.enumerated() {
-            guard let presenter = presenter else { return }
             
-            let endLocation = CLLocation(latitude: presenter.model(index: index).latitude ?? 0, longitude: presenter.model(index: index).longitude ?? 0)
-            
-            if index == 5 {
+            if index == 20 {
                 return
             }
             
@@ -341,8 +331,6 @@ extension MapViewController: CLLocationManagerDelegate {
             
             print("identifier = \(address)")
             monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: lat, longitude: long), identifier: address)
-            
-            
         }
     }
     
@@ -350,57 +338,58 @@ extension MapViewController: CLLocationManagerDelegate {
         
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             
-            let maxDistance = Constants.Distance.longAway
-                
-                let region = CLCircularRegion(center: center,
-                                              radius: maxDistance,
-                                              identifier: identifier)
-                region.notifyOnEntry = true
-                region.notifyOnExit = true
-                
-                locationManager.startMonitoring(for: region)
+            guard let distance = presenter?.fetchDistanceToCameraLocation() else { return }
+            let maxDistance = CLLocationDistance(distance)
+            
+            let region = CLCircularRegion(center: center,
+                                          radius: maxDistance,
+                                          identifier: identifier)
+            region.notifyOnEntry = true
+            region.notifyOnExit = true
+            
+            locationManager.startMonitoring(for: region)
             locationManager.startUpdatingLocation()
         }
     }
-        
-        func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-                print("start update")
-        }
+    
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+        print("start update")
+    }
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         if state == .inside {
-            print("invide")
+            print("inside")
         } else if state == .outside {
             
         }
     }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
-        func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("method didEnterRegion work!!!")
+        
+        if let region = region as? CLCircularRegion {
             
-            print("method didEnterRegion work!!!")
+            let identifier = region.identifier
+            guard let cameras = presenter?.cameraInfo() else { return }
             
-            if let region = region as? CLCircularRegion {
+            for (_, element) in cameras.enumerated() {
                 
-                let identifier = region.identifier
-                guard let cameras = presenter?.cameraInfo() else { return }
-                
-                for (_, element) in cameras.enumerated() {
+                if element.address == identifier {
                     
-                    if element.address == identifier {
-                        
-                        sendNotification(address: element.address ?? "", speedLimit: "\(element.speed ?? 0)")
-                        hidePopUp()
-                        presenter?.playSound(forResource: "02869", withExtension: "mp3")
-                        popUpAnimation()
-                        popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
-                    }
+                    sendNotification(address: element.address ?? "", speedLimit: "\(element.speed ?? 0)")
+                    hidePopUp()
+                    presenter?.playSound(forResource: "02869", withExtension: "mp3")
+                    popUpAnimation()
+//                    popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
                 }
             }
         }
-        
-        func locationManager(_ manager: CLLocationManager, didExitRegion: CLRegion) {
-            presenter?.stopSound()
-        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion: CLRegion) {
+        presenter?.stopSound()
+    }
 }
 
 // MARK: Search delegates
@@ -448,7 +437,6 @@ extension MapViewController: UNUserNotificationCenterDelegate {
         notificationContent.title = warning
         notificationContent.subtitle = address
         notificationContent.body = "\(speedLimit) км/г"
-        //        notificationContent.badge = NSNumber(value: 3)
         
         if let url = Bundle.main.url(forResource: "dune",
                                      withExtension: "png") {

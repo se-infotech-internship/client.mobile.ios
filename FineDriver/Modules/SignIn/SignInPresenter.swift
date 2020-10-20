@@ -13,6 +13,7 @@ protocol SignInPresenterProtocol: class {
     func routeToMap()
     func saveToUserDefaults(login: String, firstName: String, familyName: String, email: String, tokenId: String, avatarURL: URL)
     func resetToken()
+    func defaultDistaceLocationToCamera()
 }
 
 final class SignInPresenter {
@@ -48,5 +49,9 @@ extension SignInPresenter: SignInPresenterProtocol {
     
     func resetToken() {
         defaults[.tokenId] = ""
+    }
+    
+    func defaultDistaceLocationToCamera() {
+        defaults[.distanceToCamera] = 700
     }
 }

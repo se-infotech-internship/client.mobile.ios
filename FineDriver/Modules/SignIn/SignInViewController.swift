@@ -21,7 +21,6 @@ final class SignInViewController: UIViewController {
     // MARK: - Private outlet
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
-    @IBOutlet private weak var appleView: UIView!
     
     // MARK: - Private property
     lazy private var facebookButton = FBLoginButton(frame: .zero, permissions: [.email, .publicProfile])
@@ -34,6 +33,7 @@ final class SignInViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         presenter?.resetToken()
+        presenter?.defaultDistaceLocationToCamera()
     }
     
     // MARK: - Private methods
