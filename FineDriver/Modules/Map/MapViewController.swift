@@ -369,7 +369,7 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         if state == .inside {
-            print("invide blya")
+            print("invide")
         } else if state == .outside {
             
         }
@@ -377,7 +377,7 @@ extension MapViewController: CLLocationManagerDelegate {
         
         func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
             
-            print("dfvdfvdfvfvdfV")
+            print("method didEnterRegion work!!!")
             
             if let region = region as? CLCircularRegion {
                 
