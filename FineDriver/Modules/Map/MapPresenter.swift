@@ -140,5 +140,4 @@ extension MapPresenter: MapPresenterProtocol {
         guard let player = player else { return }
         player.stop()
     }
-    
 }

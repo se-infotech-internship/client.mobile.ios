@@ -52,6 +52,7 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = SignInPresenter(view: viewController)
         viewController.presenter = presenter
         
+        
         print("routeToAuth = \(navigationController?.viewControllers ?? [UIViewController()])")
         navigationController?.pushViewController(viewController, animated: true)
     }

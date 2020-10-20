@@ -45,16 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(Constants.googleMapKey)
         GMSPlacesClient.provideAPIKey(Constants.googleMapKey)
         
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        
         return true
     }
-    
-//    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-//        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
-//
-//        application.beginBackgroundTask(withName: "testNotification", expirationHandler: nil)
-//
-//            return true
-//        }
 }
 
 // MARK: - Google Auth Delegate methods

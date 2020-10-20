@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CoreLocation
 import GoogleMaps
 import GooglePlaces
 import UserNotifications
+
 
 protocol MapViewControllerProtocol: class {
     func drawPath(from polyStr: String)
@@ -52,11 +54,13 @@ class MapViewController: UIViewController {
     private var popUpView: PopUpView?
     private var searchResultController: SearchResultsController!
     private var gmsFetcher: GMSAutocompleteFetcher!
+    private var cameraElement = CameraEntity()
     
     // MARK: - Public property
     var presenter: MapPresenterProtocol?
     var resultsArray = [String]()
     let userNotificationCenter = UNUserNotificationCenter.current()
+    var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     
     // MARK: - Private property
     private var locationManager = CLLocationManager()
@@ -86,17 +90,20 @@ class MapViewController: UIViewController {
     
     deinit {
         print("deinit MapViewController")
+        endBackgroundTask()
     }
     
     // MARK: - Private methods
     
     private func setupView() {
+        
         requestNotificationAuthorization()
         self.userNotificationCenter.delegate = self
         searchResultController = SearchResultsController()
         searchResultController.delegate = self
         gmsFetcher = GMSAutocompleteFetcher()
         gmsFetcher.delegate = self
+        registerBackgroundTask()
     }
     
     private func setCurrentLocation() {
@@ -107,7 +114,7 @@ class MapViewController: UIViewController {
         mapView.animate(toZoom: Constants.UkrainePosition.zoom)
         
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
         locationManager.startUpdatingLocation()
@@ -186,13 +193,27 @@ class MapViewController: UIViewController {
     }
     
     private func soundOncomingCamera(forResource: String = "02869", withExtension: String = "mp3") {
-        if isSoundMusic {
-            presenter?.stopSound()
-            presenter?.playSound(forResource: forResource, withExtension: withExtension)
-        } else {
-            presenter?.stopSound()
-        }
+        //        if isSoundMusic {
+        presenter?.stopSound()
+        presenter?.playSound(forResource: forResource, withExtension: withExtension)
+        //        } else {
+        //            presenter?.stopSound()
+        //        }
     }
+    
+    func registerBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            self?.endBackgroundTask()
+        }
+        assert(backgroundTask != .invalid)
+    }
+    
+    func endBackgroundTask() {
+        print("Background task ended.")
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+        backgroundTask = .invalid
+    }
+    
     
     // MARK: - Private action
     @IBAction private func didTapSearchButton(_ sender: Any) {
@@ -298,100 +319,67 @@ extension MapViewController: CLLocationManagerDelegate {
         let startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
         
         guard let cameras = presenter?.cameraInfo() else { return }
-        var cameraIsRound = CameraEntity()
         
         for (index, element) in cameras.enumerated() {
             guard let presenter = presenter else { return }
             
             let endLocation = CLLocation(latitude: presenter.model(index: index).latitude ?? 0, longitude: presenter.model(index: index).longitude ?? 0)
-            let distance = startLocation.distance(from: endLocation)
             
-            if distance.isLessThanOrEqualTo(Constants.Distance.longAway) {
-                
-                
-                if isUpdateLocation {
-                    if cameraIsRound.isInRadiusCamera {
-                        popUpView?.update(entity: element, metersTo: distance.binade)
-                    } else {
-                        sendNotification()
-                        isSoundMusic = true
-                        hidePopUp()
-                        soundOncomingCamera()
-                        popUpAnimation()
-                        popUpView?.update(entity: element, metersTo: distance.binade)
-                        isUpdateLocation = false
-                        cameraIsRound = element
-                        cameraIsRound.isInRadiusCamera = true
-                    }
-                }
-                
-            } else if !cameraIsRound.isInRadiusCamera {
-                presenter.stopSound()
-                isUpdateLocation = true
+            if index == 19 {
+                return
             }
+            monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0), identifier: element.address ?? "")
+            
+            
         }
     }
     
-    //    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
-    //
-    //        if CLLocationManager.authorizationStatus() == .authorizedAlways {
-    //
-    //            if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-    //
-    //                let maxDistance = Constants.Distance.longAway
-    //                let midDistance = Constants.Distance.medium
-    //                let nearDistance = Constants.Distance.near
-    //
-    //                guard let cameras = presenter?.cameraInfo() else { return }
-    //                for (_, element) in cameras.enumerated() {
-    //
-    //                    let maxRegion  = CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
-    //                                                   radius: maxDistance,
-    //                                                   identifier: "\(element.address ?? "")" + "\(Constants.Distance.longAway)")
-    //                    let midRegion  =  CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
-    //                                                       radius: midDistance,
-    //                                                       identifier: "\(element.address ?? "")" + "\(Constants.Distance.medium)")
-    //                    let nearRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0),
-    //                                                      radius: nearDistance,
-    //                                                      identifier: "\(element.address ?? "")" + "\(Constants.Distance.near)")
-    //
-    //                    maxRegion.notifyOnEntry = true
-    //                    maxRegion.notifyOnExit = false
-    //
-    //                    midRegion.notifyOnEntry = true
-    //                    midRegion.notifyOnExit = false
-    //
-    //                    nearRegion.notifyOnEntry = true
-    //                    nearRegion.notifyOnExit = false
-    //
-    //                    locationManager.startMonitoring(for: maxRegion)
-    //                    locationManager.startMonitoring(for: midRegion)
-    //                    locationManager.startMonitoring(for: nearRegion)
-    //                }
-    //            }
-    //        }
-    //    }
-    //
-    //    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-    //
-    //        if let region = region as? CLCircularRegion {
-    //
-    //            guard let cameras = presenter?.cameraInfo() else { return }
-    //            for (_, element) in cameras.enumerated() {
-    //                hidePopUp()
-    //                soundOncomingCamera()
-    //                popUpAnimation()
-    //
-    //                if region.identifier.suffix(3) == "\(Constants.Distance.longAway)" {
-    //                    popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
-    //                } else if region.identifier.suffix(3) == "\(Constants.Distance.medium)" {
-    //                    popUpView?.update(entity: element, metersTo: Constants.Distance.medium)
-    //                } else if region.identifier.suffix(3) == "\(Constants.Distance.near)" {
-    //                    popUpView?.update(entity: element, metersTo: Constants.Distance.near)
-    //                }
-    //            }
-    //        }
-    //    }
+    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
+        
+        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            
+            let maxDistance = Constants.Distance.longAway
+                
+                let region = CLCircularRegion(center: center,
+                                              radius: maxDistance,
+                                              identifier: identifier)
+                region.notifyOnEntry = true
+                region.notifyOnExit = true
+                
+                locationManager.startMonitoring(for: region)
+        }
+    }
+        
+        func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+                print("start update")
+        }
+        
+        func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+            
+            print("dfvdfvdfvfvdfV")
+            
+            if let region = region as? CLCircularRegion {
+                
+                let identifier = region.identifier
+                guard let cameras = presenter?.cameraInfo() else { return }
+                
+                for (_, element) in cameras.enumerated() {
+                    
+                    if element.address == identifier {
+                        
+                        sendNotification(address: element.address ?? "", speedLimit: "\(element.speed ?? 0)")
+                        hidePopUp()
+                        presenter?.playSound(forResource: "02869", withExtension: "mp3")
+                        popUpAnimation()
+                        popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
+                    }
+                }
+            }
+        }
+        
+        func locationManager(_ manager: CLLocationManager, didExitRegion: CLRegion) {
+            presenter?.stopSound()
+        }
 }
 
 // MARK: Search delegates
@@ -434,11 +422,12 @@ extension MapViewController: UNUserNotificationCenterDelegate {
         }
     }
     
-    func sendNotification() {
+    func sendNotification(address: String, warning: String = "Неподалiк камера!", speedLimit: String) {
         let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = "Test"
-        notificationContent.body = "Test body"
-//        notificationContent.badge = NSNumber(value: 3)
+        notificationContent.title = warning
+        notificationContent.subtitle = address
+        notificationContent.body = "\(speedLimit) км/г"
+        //        notificationContent.badge = NSNumber(value: 3)
         
         if let url = Bundle.main.url(forResource: "dune",
                                      withExtension: "png") {
@@ -449,7 +438,7 @@ extension MapViewController: UNUserNotificationCenterDelegate {
             }
         }
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5,
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
                                                         repeats: false)
         let request = UNNotificationRequest(identifier: "testNotification",
                                             content: notificationContent,
