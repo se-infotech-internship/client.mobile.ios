@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import UserNotifications
 
 protocol MapViewControllerProtocol: class {
     func drawPath(from polyStr: String)
@@ -49,9 +50,13 @@ class MapViewController: UIViewController {
     @IBOutlet private weak var mapView: GMSMapView!
     
     private var popUpView: PopUpView?
+    private var searchResultController: SearchResultsController!
+    private var gmsFetcher: GMSAutocompleteFetcher!
     
     // MARK: - Public property
     var presenter: MapPresenterProtocol?
+    var resultsArray = [String]()
+    let userNotificationCenter = UNUserNotificationCenter.current()
     
     // MARK: - Private property
     private var locationManager = CLLocationManager()
@@ -73,11 +78,27 @@ class MapViewController: UIViewController {
         setupMarkers()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setupView()
+    }
+    
     deinit {
         print("deinit MapViewController")
     }
     
     // MARK: - Private methods
+    
+    private func setupView() {
+        requestNotificationAuthorization()
+        self.userNotificationCenter.delegate = self
+        searchResultController = SearchResultsController()
+        searchResultController.delegate = self
+        gmsFetcher = GMSAutocompleteFetcher()
+        gmsFetcher.delegate = self
+    }
+    
     private func setCurrentLocation() {
         
         var bounds = GMSCoordinateBounds()
@@ -174,6 +195,12 @@ class MapViewController: UIViewController {
     }
     
     // MARK: - Private action
+    @IBAction private func didTapSearchButton(_ sender: Any) {
+        let searchController = UISearchController(searchResultsController: searchResultController)
+        searchController.searchBar.delegate = self
+        self.present(searchController, animated: true, completion: nil)
+    }
+    
     @IBAction private func didTapMenuButton(_ sender: Any) {
         presenter?.routeToMenu()
     }
@@ -203,7 +230,8 @@ extension MapViewController: MapViewControllerProtocol {
     
     func drawPath(from polyStr: String) {
         
-        DispatchQueue.main.async(execute: {
+        DispatchQueue.main.async {
+            
             let path = GMSPath(fromEncodedPath: polyStr)
             let polyline = GMSPolyline(path: path)
             polyline.strokeWidth = 5.0
@@ -220,7 +248,7 @@ extension MapViewController: MapViewControllerProtocol {
             }
             self.oldPolylineArr.append(polyline)
             polyline.map = self.mapView
-        })
+        }
     }
 }
 
@@ -270,6 +298,8 @@ extension MapViewController: CLLocationManagerDelegate {
         let startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
         
         guard let cameras = presenter?.cameraInfo() else { return }
+        var cameraIsRound = CameraEntity()
+        
         for (index, element) in cameras.enumerated() {
             guard let presenter = presenter else { return }
             
@@ -278,24 +308,26 @@ extension MapViewController: CLLocationManagerDelegate {
             
             if distance.isLessThanOrEqualTo(Constants.Distance.longAway) {
                 
+                
                 if isUpdateLocation {
-                    if isInRadiusCameraAlready {
+                    if cameraIsRound.isInRadiusCamera {
                         popUpView?.update(entity: element, metersTo: distance.binade)
                     } else {
+                        sendNotification()
                         isSoundMusic = true
                         hidePopUp()
                         soundOncomingCamera()
                         popUpAnimation()
                         popUpView?.update(entity: element, metersTo: distance.binade)
-                        isInRadiusCameraAlready = true
                         isUpdateLocation = false
+                        cameraIsRound = element
+                        cameraIsRound.isInRadiusCamera = true
                     }
                 }
                 
-            } else {
+            } else if !cameraIsRound.isInRadiusCamera {
                 presenter.stopSound()
                 isUpdateLocation = true
-                isInRadiusCameraAlready = false
             }
         }
     }
@@ -360,4 +392,81 @@ extension MapViewController: CLLocationManagerDelegate {
     //            }
     //        }
     //    }
+}
+
+// MARK: Search delegates
+extension MapViewController: UISearchBarDelegate, LocateOnTheMap, GMSAutocompleteFetcherDelegate {
+    
+    func locateWithLongitude(_ lon: Double, andLatitude lat: Double, andTitle title: String) {
+        
+        let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: 10)
+        self.mapView.camera = camera
+        self.presenter?.fetchRoute(from: self.currentLocation, to: CLLocationCoordinate2D(latitude: lat, longitude: lon))
+    }
+    
+    func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
+        for prediction in predictions {
+            
+            if let prediction = prediction as GMSAutocompletePrediction? {
+                self.resultsArray.append(prediction.attributedFullText.string)
+            }
+        }
+        self.searchResultController.reloadDataWithArray(self.resultsArray)
+    }
+    
+    func didFailAutocompleteWithError(_ error: Error) { } 
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.resultsArray.removeAll()
+        gmsFetcher?.sourceTextHasChanged(searchText)
+    }
+}
+
+// MARK: - UserNotification
+extension MapViewController: UNUserNotificationCenterDelegate {
+    func requestNotificationAuthorization() {
+        let authOptions = UNAuthorizationOptions.init(arrayLiteral: .alert, .badge, .sound)
+        
+        self.userNotificationCenter.requestAuthorization(options: authOptions) { (success, error) in
+            if let error = error {
+                print("Error: ", error)
+            }
+        }
+    }
+    
+    func sendNotification() {
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = "Test"
+        notificationContent.body = "Test body"
+//        notificationContent.badge = NSNumber(value: 3)
+        
+        if let url = Bundle.main.url(forResource: "dune",
+                                     withExtension: "png") {
+            if let attachment = try? UNNotificationAttachment(identifier: "dune",
+                                                              url: url,
+                                                              options: nil) {
+                notificationContent.attachments = [attachment]
+            }
+        }
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5,
+                                                        repeats: false)
+        let request = UNNotificationRequest(identifier: "testNotification",
+                                            content: notificationContent,
+                                            trigger: trigger)
+        
+        userNotificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Notification Error: ", error)
+            }
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
 }

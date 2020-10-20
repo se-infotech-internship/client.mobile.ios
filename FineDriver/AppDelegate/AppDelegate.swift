@@ -9,7 +9,9 @@ import UIKit
 import GoogleSignIn
 import FBSDKCoreKit
 import GoogleMaps
+import GooglePlaces
 import IQKeyboardManagerSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,9 +43,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: - Google map
         GMSServices.provideAPIKey(Constants.googleMapKey)
+        GMSPlacesClient.provideAPIKey(Constants.googleMapKey)
         
         return true
     }
+    
+//    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+//        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
+//
+//        application.beginBackgroundTask(withName: "testNotification", expirationHandler: nil)
+//
+//            return true
+//        }
 }
 
 // MARK: - Google Auth Delegate methods

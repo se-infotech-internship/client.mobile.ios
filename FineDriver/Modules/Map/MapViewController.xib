@@ -67,6 +67,9 @@
                         <constraint firstAttribute="width" constant="66" id="WkB-hU-3Xl"/>
                     </constraints>
                     <state key="normal" image="Search"/>
+                    <connections>
+                        <action selector="didTapSearchButton:" destination="-1" eventType="touchUpInside" id="G8s-ad-WMB"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXF-7I-TKi">
                     <rect key="frame" x="328" y="707" width="66" height="66"/>

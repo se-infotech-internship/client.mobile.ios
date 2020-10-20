@@ -69,6 +69,8 @@
 		92D544FB253D84F00091D0D5 /* SelectFineSettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D544FA253D84F00091D0D5 /* SelectFineSettingPresenter.swift */; };
 		92D544FF253D89950091D0D5 /* SettingFineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D544FD253D89950091D0D5 /* SettingFineCell.swift */; };
 		92D54500253D89950091D0D5 /* SettingFineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D544FE253D89950091D0D5 /* SettingFineCell.xib */; };
+		92D54503253E39580091D0D5 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D54502253E39550091D0D5 /* SearchResultsController.swift */; };
+		92D54505253EC72B0091D0D5 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D54504253EC72A0091D0D5 /* LocationModel.swift */; };
 		9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
 		9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */; };
 		9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */; };
@@ -148,6 +150,8 @@
 		92D544FA253D84F00091D0D5 /* SelectFineSettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFineSettingPresenter.swift; sourceTree = "<group>"; };
 		92D544FD253D89950091D0D5 /* SettingFineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFineCell.swift; sourceTree = "<group>"; };
 		92D544FE253D89950091D0D5 /* SettingFineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingFineCell.xib; sourceTree = "<group>"; };
+		92D54502253E39550091D0D5 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		92D54504253EC72A0091D0D5 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		9AA51BF1251C0C33000AB6F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
@@ -310,6 +314,7 @@
 				92CAF0D8252CFEE10080F46E /* CameraEntity.swift */,
 				920E55FD2530999A0082CF6F /* SettingItemEntity.swift */,
 				92CF0A74253C57C800F92897 /* ProfileEntity.swift */,
+				92D54504253EC72A0091D0D5 /* LocationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -495,6 +500,7 @@
 				9AA51C10251C1253000AB6F1 /* MapPresenter.swift */,
 				9AA51C0E251C122A000AB6F1 /* MapViewController.swift */,
 				9AA51C0C251C1208000AB6F1 /* MapViewController.xib */,
+				92D54502253E39550091D0D5 /* SearchResultsController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -679,6 +685,7 @@
 				920E55FE2530999A0082CF6F /* SettingItemEntity.swift in Sources */,
 				92D544FF253D89950091D0D5 /* SettingFineCell.swift in Sources */,
 				92CEE40C253323A0008543F0 /* SwitchSettingCell.swift in Sources */,
+				92D54505253EC72B0091D0D5 /* LocationModel.swift in Sources */,
 				47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */,
 				929416742521DD2A00D7F966 /* FinesPresenter.swift in Sources */,
 				9AA51C04251C0E20000AB6F1 /* MenuEntity.swift in Sources */,
@@ -692,6 +699,7 @@
 				47063681251DFE90006F7F41 /* SignInPresenter.swift in Sources */,
 				4706368E251DFEB9006F7F41 /* SplashViewController.swift in Sources */,
 				4706368C251DFEB9006F7F41 /* SplashPresenter.swift in Sources */,
+				92D54503253E39580091D0D5 /* SearchResultsController.swift in Sources */,
 				925E87842520ABF700FD1D75 /* Service.swift in Sources */,
 				925E87872520AC7B00FD1D75 /* ServiceProvider.swift in Sources */,
 				929416702521DD1600D7F966 /* FineCell.swift in Sources */,
