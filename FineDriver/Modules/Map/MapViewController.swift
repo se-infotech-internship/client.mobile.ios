@@ -323,16 +323,23 @@ extension MapViewController: CLLocationManagerDelegate {
         
         guard let cameras = presenter?.cameraInfo() else { return }
         
-        for (index, element) in cameras.enumerated() {
+        var allCameras: [CLLocation] = []
+        
+        for (_, element) in cameras.enumerated() {
             
-            if index == 20 {
-                return
+            allCameras.append(CLLocation(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0))
+            
+            let nearCamera = allCameras.min(by: { $0.distance(from: CLLocation(latitude: currentLocation.latitude,
+                                                                                    longitude: currentLocation.longitude)) < $1.distance(from: CLLocation(latitude: currentLocation.latitude,
+                                                                                                                                                          longitude: currentLocation.longitude)) })
+            guard let camera = nearCamera else { return }
+            
+            if camera.coordinate.latitude == element.latitude && camera.coordinate.longitude == element.longitude {
+                
+                guard let address = element.address else { return }
+                print("identifier = \(address)")
+                monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: camera.coordinate.latitude, longitude: camera.coordinate.longitude), identifier: address)
             }
-            
-            guard let lat = element.latitude, let long = element.longitude, let address = element.address else { return }
-            
-            print("identifier = \(address)")
-            monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: lat, longitude: long), identifier: address)
         }
     }
     
