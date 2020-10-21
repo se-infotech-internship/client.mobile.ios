@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onW-5M-Er3">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="143"/>
+                    <rect key="frame" x="10" y="0.0" width="394" height="143"/>
                     <color key="backgroundColor" red="0.93986392019999998" green="0.15100687739999999" blue="0.41566103700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="143" id="gAO-Kt-83S"/>
@@ -115,11 +115,11 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NBM-Yf-aRi" secondAttribute="trailing" constant="28" id="0qb-fk-2oI"/>
                 <constraint firstItem="JmO-p2-clR" firstAttribute="leading" secondItem="N8t-nd-4ED" secondAttribute="leading" id="5Af-tT-1bP"/>
-                <constraint firstItem="onW-5M-Er3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9Zl-av-3iQ"/>
+                <constraint firstItem="onW-5M-Er3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="9Zl-av-3iQ"/>
                 <constraint firstItem="bbW-e5-u2b" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="A0A-CJ-F7I"/>
                 <constraint firstItem="bbW-e5-u2b" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="34" id="CKL-Xv-MqD"/>
                 <constraint firstItem="JmO-p2-clR" firstAttribute="top" secondItem="N8t-nd-4ED" secondAttribute="bottom" id="EfP-BV-cJB"/>
-                <constraint firstItem="onW-5M-Er3" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Eyt-1U-ACm"/>
+                <constraint firstItem="onW-5M-Er3" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-10" id="Hu1-Fo-e4t"/>
                 <constraint firstItem="rq0-tt-DQS" firstAttribute="top" secondItem="NBM-Yf-aRi" secondAttribute="bottom" constant="8" symbolic="YES" id="Nog-IP-MlA"/>
                 <constraint firstItem="NBM-Yf-aRi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="T76-Xx-lsO"/>
                 <constraint firstItem="rq0-tt-DQS" firstAttribute="leading" secondItem="ep1-WV-Pch" secondAttribute="trailing" constant="24" id="TgM-F8-S5x"/>

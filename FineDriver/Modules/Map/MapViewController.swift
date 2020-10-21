@@ -177,7 +177,7 @@ class MapViewController: UIViewController {
             if isShow {
                 self.setupPopUpView()
                 self.popUpView?.transform = CGAffineTransform(translationX: Constants.PopUp.translationX,
-                                                              y: (self.view.safeAreaInsets.top + self.view.safeAreaInsets.bottom) * 2 + Constants.PopUp.height)
+                                                              y: self.view.safeAreaInsets.top + Constants.PopUp.height)
             } else {
                 self.popUpView?.transform = .identity
             }

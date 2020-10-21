@@ -188,7 +188,7 @@ extension SignInViewController: SignInViewControllerProtocol {
 
 // MARK: - Pop gesture delegate method
 extension SignInViewController: UIGestureRecognizerDelegate {
-    
+
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
