@@ -59,6 +59,8 @@
 	<string>Use for show location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Use for show location</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Use for show location</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

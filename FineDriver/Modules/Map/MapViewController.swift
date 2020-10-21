@@ -49,7 +49,6 @@ class MapViewController: UIViewController {
     private var popUpView: PopUpView?
     private var searchResultController: SearchResultsController!
     private var gmsFetcher: GMSAutocompleteFetcher!
-    private var cameraElement = CameraEntity()
     
     // MARK: - Public property
     var presenter: MapPresenterProtocol?
@@ -112,6 +111,7 @@ class MapViewController: UIViewController {
         mapView.isMyLocationEnabled = true
         
         locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.startUpdatingLocation()
         locationManager.activityType = .automotiveNavigation
         locationManager.requestAlwaysAuthorization()
@@ -140,6 +140,8 @@ class MapViewController: UIViewController {
                 cameraData.direction = cameraInfo[index].direction
                 cameraData.speed = cameraInfo[index].speed
                 cameraData.state = cameraInfo[index].state
+                cameraData.latitude = cameraInfo[index].latitude
+                cameraData.longitude = cameraInfo[index].longitude
                 
                 if cameraInfo[index].state == "on" {
                     marker.icon = UIImage(named: "Marker")
@@ -285,8 +287,8 @@ extension MapViewController: GMSMapViewDelegate {
         guard let cameraInfo = marker.userData as? CameraEntity,
               let long = cameraInfo.longitude,
               let lat = cameraInfo.latitude else { return nil }
-        let startLocation = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
-        let distance = startLocation.distance(from: CLLocation(latitude: lat, longitude: long))
+        let currentLoc = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        let distance = currentLoc.distance(from: CLLocation(latitude: lat, longitude: long))
         popUpView?.update(entity: cameraInfo, metersTo: distance)
         return nil
     }
@@ -381,7 +383,10 @@ extension MapViewController: CLLocationManagerDelegate {
                     hidePopUp()
                     presenter?.playSound(forResource: "02869", withExtension: "mp3")
                     popUpAnimation()
-//                    popUpView?.update(entity: element, metersTo: Constants.Distance.longAway)
+                    
+                    let currentLoc = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+                    let distance = currentLoc.distance(from: CLLocation(latitude: region.center.latitude, longitude: region.center.longitude))
+                    popUpView?.update(entity: element, metersTo: distance)
                 }
             }
         }
@@ -433,10 +438,13 @@ extension MapViewController: UNUserNotificationCenterDelegate {
     }
     
     func sendNotification(address: String, warning: String = "Неподалiк камера!", speedLimit: String) {
+        
+        guard let presenter = presenter else { return }
+        
         let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = warning
+        notificationContent.title = "\(warning) \(presenter.fetchDistanceToCameraLocation()) м"
         notificationContent.subtitle = address
-        notificationContent.body = "\(speedLimit) км/г"
+        notificationContent.body = "Дозволена швидкість \(speedLimit) км/г"
         
         if let url = Bundle.main.url(forResource: "dune",
                                      withExtension: "png") {

@@ -16,5 +16,4 @@ struct CameraEntity {
     var direction: String?
     var speed: Int?
     var state: String?
-    var isInRadiusCamera: Bool = false
 }
