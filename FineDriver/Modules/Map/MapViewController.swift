@@ -11,7 +11,6 @@ import CoreLocation
 import GoogleMaps
 import GooglePlaces
 import UserNotifications
-import MapKit
 
 
 protocol MapViewControllerProtocol: class {
@@ -85,6 +84,7 @@ class MapViewController: UIViewController {
     deinit {
         print("deinit MapViewController")
         endBackgroundTask()
+        
     }
     
     // MARK: - Private methods
@@ -177,7 +177,7 @@ class MapViewController: UIViewController {
             if isShow {
                 self.setupPopUpView()
                 self.popUpView?.transform = CGAffineTransform(translationX: Constants.PopUp.translationX,
-                                                              y: self.view.safeAreaInsets.bottom + Constants.PopUp.height)
+                                                              y: (self.view.safeAreaInsets.top + self.view.safeAreaInsets.bottom) * 2 + Constants.PopUp.height)
             } else {
                 self.popUpView?.transform = .identity
             }
@@ -369,7 +369,7 @@ extension MapViewController: CLLocationManagerDelegate {
         if state == .inside {
             print("inside")
         } else if state == .outside {
-            
+            print("outside")
         }
     }
     
@@ -401,6 +401,8 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didExitRegion: CLRegion) {
         presenter?.stopSound()
+        hidePopUp()
+        locationManager.stopMonitoring(for: didExitRegion)
     }
 }
 
@@ -452,6 +454,7 @@ extension MapViewController: UNUserNotificationCenterDelegate {
         notificationContent.title = "\(warning) \(presenter.fetchDistanceToCameraLocation()) м"
         notificationContent.subtitle = address
         notificationContent.body = "Дозволена швидкість \(speedLimit) км/г"
+        notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName("02869.mp3"))
         
         if let url = Bundle.main.url(forResource: "dune",
                                      withExtension: "png") {
@@ -464,7 +467,7 @@ extension MapViewController: UNUserNotificationCenterDelegate {
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
                                                         repeats: false)
-        let request = UNNotificationRequest(identifier: "testNotification",
+        let request = UNNotificationRequest(identifier: UUID().uuidString,
                                             content: notificationContent,
                                             trigger: trigger)
         

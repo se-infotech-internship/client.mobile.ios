@@ -45,8 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(Constants.googleMapKey)
         GMSPlacesClient.provideAPIKey(Constants.googleMapKey)
         
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        
         return true
     }
 }

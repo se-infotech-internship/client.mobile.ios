@@ -55,19 +55,18 @@
 	</dict>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Потрібно Вас ідентифікувати☺️</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Use for show location</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Use for show location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Use for show location</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Use for show location</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>fetch</string>
+		<string>audio</string>
 		<string>location</string>
-		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
