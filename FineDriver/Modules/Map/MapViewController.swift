@@ -84,7 +84,6 @@ class MapViewController: UIViewController {
     deinit {
         print("deinit MapViewController")
         endBackgroundTask()
-        
     }
     
     // MARK: - Private methods
