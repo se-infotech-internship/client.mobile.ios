@@ -54,6 +54,7 @@ final class MenuViewController: UIViewController {
         avatarImageView.clipsToBounds = true
         presenter?.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        presenter?.fetchGoogleImage(imageView: avatarImageView)
     }
     
     private func setupTableView() {
@@ -64,6 +65,20 @@ final class MenuViewController: UIViewController {
     }
     
     private func clearNavControllersStack() {
+        
+        guard let controllers = navigationController?.viewControllers else { return }
+        
+        for (index, element) in controllers.enumerated() {
+            if element == self {
+                navigationController?.viewControllers.removeAll(where: { (controller) -> Bool in
+                    if controller != element && controller != MapViewController(nibName: "MapViewController", bundle: nil) {
+                        navigationController?.viewControllers.remove(at: index)
+                    }
+                    return true
+                })
+            }
+        }
+        
         self.navigationController?.viewControllers = [self]
     }
 }
@@ -120,6 +135,6 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 extension MenuViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return false
+        return true
     }
 }

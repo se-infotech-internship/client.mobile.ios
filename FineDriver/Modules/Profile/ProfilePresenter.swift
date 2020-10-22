@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Kingfisher
+import UIKit
 
 protocol ProfilePresenterProtocol: class {
     var view: ProfileViewControllerProtocol? { get set }
@@ -14,6 +16,7 @@ protocol ProfilePresenterProtocol: class {
     func viewDidLoad()
     func routePop()
     func fetchProfileData()
+    func fetchGoogleImage(imageView: UIImageView)
 }
 
 final class ProfilePresenter {
@@ -51,5 +54,14 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         profileData.email = defaults[.email]
         profileData.firstName = defaults[.firstName]
         profileData.lastName = defaults[.familyName]
+    }
+    
+    func fetchGoogleImage(imageView: UIImageView) {
+        
+        var avatarURL: URL?
+        avatarURL = UserDefaults.standard[.avatarURL]
+        guard let url = avatarURL else { return }
+        
+        imageView.kf.setImage(with: url)
     }
 }

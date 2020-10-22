@@ -10,6 +10,7 @@ import UIKit
 import GoogleSignIn
 import FBSDKLoginKit
 import AuthenticationServices
+import Kingfisher
 
 protocol SignInViewControllerProtocol: class {
     
@@ -20,7 +21,6 @@ final class SignInViewController: UIViewController {
     // MARK: - Private outlet
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
-    @IBOutlet private weak var appleView: UIView!
     
     // MARK: - Private property
     lazy private var facebookButton = FBLoginButton(frame: .zero, permissions: [.email, .publicProfile])
@@ -32,6 +32,8 @@ final class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        presenter?.resetToken()
+        presenter?.defaultDistaceLocationToCamera()
     }
     
     // MARK: - Private methods
@@ -49,12 +51,6 @@ final class SignInViewController: UIViewController {
         appleButton.translatesAutoresizingMaskIntoConstraints = false
         appleButton.addTarget(self, action: #selector(didTapAppleButton), for: .touchUpInside)
         view.addSubview(appleButton)
-        
-        // TODO: - Constraint for test
-        NSLayoutConstraint.activate([appleButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
-                                     appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 30),
-                                     appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-                                     appleButton.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     @objc private func didTapAppleButton() {
@@ -102,13 +98,16 @@ extension SignInViewController: GIDSignInDelegate {
                   let firstName = user.profile.givenName,
                   let familyName = user.profile.familyName,
                   let email = user.profile.email,
-                  let tokenId = user.authentication.idToken else { return }
-
+                  let tokenId = user.authentication.idToken,
+                  let avatarURL = user.profile.imageURL(withDimension: 100) else { return }
+            
             presenter?.saveToUserDefaults(login: login,
                                           firstName: firstName,
                                           familyName: familyName,
                                           email: email,
-                                          tokenId: tokenId)
+                                          tokenId: tokenId,
+                                          avatarURL: avatarURL)
+            
             presenter?.routeToMap()
         }
     }
@@ -128,18 +127,18 @@ extension SignInViewController: LoginButtonDelegate {
         
         request.start { (connection, result, error) in
             
-            guard let fields = result as? [String: Any],
-                  let firstName = fields["first_name"] as? String,
-                  let id = fields["id"] as? String,
-                  let user = fields["user"] as? String,
-                  let familyName = fields["family_name"] as? String,
-                  let email = fields["email"] as? String else { return }
+//            guard let fields = result as? [String: Any],
+//                  let firstName = fields["first_name"] as? String,
+//                  let id = fields["id"] as? String,
+//                  let user = fields["user"] as? String,
+//                  let familyName = fields["family_name"] as? String,
+//                  let email = fields["email"] as? String else { return }
             
-            self.presenter?.saveToUserDefaults(login: user,
-                                               firstName: firstName,
-                                               familyName: familyName,
-                                               email: email,
-                                               tokenId: id)
+//            self.presenter?.saveToUserDefaults(login: user,
+//                                               firstName: firstName,
+//                                               familyName: familyName,
+//                                               email: email,
+//                                               tokenId: id)
         }
     }
     
@@ -156,17 +155,17 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
-            guard let firstName = appleIDCredential.fullName?.givenName else { return }
-            guard let familyName = appleIDCredential.fullName?.familyName else { return }
-            guard let email = appleIDCredential.email else { return }
-            guard let autorizationCode = appleIDCredential.authorizationCode else { return }
-            let tokenId = String(decoding: autorizationCode, as: UTF8.self)
+//            guard let firstName = appleIDCredential.fullName?.givenName else { return }
+//            guard let familyName = appleIDCredential.fullName?.familyName else { return }
+//            guard let email = appleIDCredential.email else { return }
+//            guard let autorizationCode = appleIDCredential.authorizationCode else { return }
+//            let tokenId = String(decoding: autorizationCode, as: UTF8.self)
             
-            self.presenter?.saveToUserDefaults(login: appleIDCredential.user,
-                                               firstName: firstName,
-                                               familyName: familyName,
-                                               email: email,
-                                               tokenId: tokenId)
+//            self.presenter?.saveToUserDefaults(login: appleIDCredential.user,
+//                                               firstName: firstName,
+//                                               familyName: familyName,
+//                                               email: email,
+//                                               tokenId: tokenId)
             
         }
     }
@@ -189,7 +188,7 @@ extension SignInViewController: SignInViewControllerProtocol {
 
 // MARK: - Pop gesture delegate method
 extension SignInViewController: UIGestureRecognizerDelegate {
-    
+
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }

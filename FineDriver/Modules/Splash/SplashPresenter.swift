@@ -81,7 +81,7 @@ extension SplashPresenter: SplashPresenterProtocol {
         let defaults = UserDefaults.standard
         token = defaults[.tokenId]
         
-        if token != "" || token != nil {
+        if token != "" && token != nil  {
             faceTouchAuth()
         } else {
             routeAuth()

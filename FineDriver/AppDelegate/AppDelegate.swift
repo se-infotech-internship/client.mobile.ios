@@ -9,7 +9,9 @@ import UIKit
 import GoogleSignIn
 import FBSDKCoreKit
 import GoogleMaps
+import GooglePlaces
 import IQKeyboardManagerSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: - Google map
         GMSServices.provideAPIKey(Constants.googleMapKey)
+        GMSPlacesClient.provideAPIKey(Constants.googleMapKey)
         
         return true
     }

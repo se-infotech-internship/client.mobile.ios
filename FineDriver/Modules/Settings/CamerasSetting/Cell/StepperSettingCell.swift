@@ -18,6 +18,7 @@ class StepperSettingCell: UITableViewCell {
     
     // MARK: - Private property
     private var entity: StepperEntity?
+    private var defaults = UserDefaults.standard
     
     static let identifier = "StepperSettingCell"
 
@@ -25,6 +26,8 @@ class StepperSettingCell: UITableViewCell {
         self.entity = entity
         guard let entity = self.entity else { return }
         titleLabel.text = "\(entity.title)"
+        
+        self.entity?.distance = defaults[.distanceToCamera]
         distanceLabel.text = "\(entity.distance) м"
     }
     
@@ -35,6 +38,9 @@ class StepperSettingCell: UITableViewCell {
         if entity.distance < 700 {
             entity.distance += 100
             distanceLabel.text = "\(entity.distance) м"
+            
+            defaults[.distanceToCamera] = entity.distance
+            
         }
         self.entity?.distance = entity.distance
     }
@@ -44,6 +50,7 @@ class StepperSettingCell: UITableViewCell {
         if entity.distance > 100 {
             entity.distance -= 100
             distanceLabel.text = "\(entity.distance) м"
+            defaults[.distanceToCamera] = entity.distance
         }
         self.entity?.distance = entity.distance
     }

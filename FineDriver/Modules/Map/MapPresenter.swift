@@ -22,6 +22,7 @@ protocol MapPresenterProtocol: class {
     func playSound(forResource: String, withExtension: String)
     func stopSound()
     func fetchRoute(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D)
+    func fetchDistanceToCameraLocation() -> Int
 }
 
 class MapPresenter {
@@ -141,4 +142,8 @@ extension MapPresenter: MapPresenterProtocol {
         player.stop()
     }
     
+    func fetchDistanceToCameraLocation() -> Int {
+        let defaults = UserDefaults.standard
+        return defaults[.distanceToCamera]
+    }
 }
