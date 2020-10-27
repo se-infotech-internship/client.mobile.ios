@@ -110,6 +110,7 @@ class MapViewController: UIViewController {
         mapView.isMyLocationEnabled = true
         
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.startUpdatingLocation()
         locationManager.activityType = .automotiveNavigation
@@ -354,6 +355,10 @@ extension MapViewController: CLLocationManagerDelegate {
                                           identifier: identifier)
             region.notifyOnEntry = true
             region.notifyOnExit = true
+            
+            for monitoredRegion in locationManager.monitoredRegions {
+                locationManager.stopMonitoring(for: monitoredRegion)
+            }
             
             locationManager.startMonitoring(for: region)
             locationManager.startUpdatingLocation()
