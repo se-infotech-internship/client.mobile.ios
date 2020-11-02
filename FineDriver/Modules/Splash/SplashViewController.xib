@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_plate" translatesAutoresizingMaskIntoConstraints="NO" id="NwS-uZ-Ntq">
-                    <rect key="frame" x="103.5" y="155" width="207" height="207"/>
+                    <rect key="frame" x="103.5" y="120.5" width="207" height="207"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="NwS-uZ-Ntq" secondAttribute="height" multiplier="1:1" id="s47-8x-SUQ"/>
                     </constraints>
@@ -34,10 +34,10 @@
             <constraints>
                 <constraint firstItem="Rna-6f-7E6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NHs-Vq-wrr"/>
                 <constraint firstItem="NwS-uZ-Ntq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QLz-Vf-7FF"/>
+                <constraint firstItem="NwS-uZ-Ntq" firstAttribute="centerY" secondItem="Rna-6f-7E6" secondAttribute="centerY" multiplier="0.5" id="Tcg-db-Lkt"/>
                 <constraint firstAttribute="bottom" secondItem="Rna-6f-7E6" secondAttribute="bottom" id="dQn-o4-bGs"/>
                 <constraint firstItem="NwS-uZ-Ntq" firstAttribute="width" secondItem="Rna-6f-7E6" secondAttribute="width" multiplier="0.5" id="eSo-Do-1f0"/>
                 <constraint firstItem="Rna-6f-7E6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="l20-9M-6G5"/>
-                <constraint firstItem="NwS-uZ-Ntq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="111" id="pMy-fp-Sbs"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Rna-6f-7E6" secondAttribute="trailing" id="t59-KX-BQt"/>
             </constraints>
             <point key="canvasLocation" x="141" y="141"/>

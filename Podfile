@@ -17,7 +17,6 @@ def pods
   pod 'GoogleSignIn', '~> 5.0'
   pod 'FBSDKLoginKit', '~> 7.1.0'
 
-
 end
 
 target 'FineDriver' do

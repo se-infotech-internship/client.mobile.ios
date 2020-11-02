@@ -12,26 +12,26 @@ import FBSDKLoginKit
 import AuthenticationServices
 import Kingfisher
 
-protocol SignInViewControllerProtocol: class {
-    
-}
-
-final class SignInViewController: UIViewController {
+final class SignInViewController: BaseViewController {
     
     // MARK: - Private outlet
-    @IBOutlet private weak var emailTextField: UITextField!
-    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet fileprivate weak var emailTextField: UITextField!
+    @IBOutlet fileprivate weak var passwordTextField: UITextField!
     
     // MARK: - Private property
-    lazy private var facebookButton = FBLoginButton(frame: .zero, permissions: [.email, .publicProfile])
+    fileprivate var statusBarStyle = UIStatusBarStyle.lightContent {
+        didSet { setNeedsStatusBarAppearanceUpdate() }
+    }
+    fileprivate lazy var facebookButton = FBLoginButton(frame: .zero, permissions: [.email, .publicProfile])
     
     // MARK: - Public properties
+    override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
     var presenter: SignInPresenterProtocol?
     
     // LifeCicle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
         presenter?.resetToken()
         presenter?.defaultDistaceLocationToCamera()
     }
@@ -41,7 +41,6 @@ final class SignInViewController: UIViewController {
         view.addSubview(facebookButton)
         facebookButton.delegate = self
         facebookButton.permissions = ["public_profile", "email"]
-        
     }
     
     @available(iOS 13.0, *)
@@ -55,7 +54,6 @@ final class SignInViewController: UIViewController {
     
     @objc private func didTapAppleButton() {
         if #available(iOS 13.0, *) {
-            
             let provider = ASAuthorizationAppleIDProvider()
             let request = provider.createRequest()
             request.requestedScopes = [.fullName, .email]
@@ -181,15 +179,8 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     }
 }
 
-// MARK: - Protocol methods
+// MARK: - SignInViewControllerProtocol
+
 extension SignInViewController: SignInViewControllerProtocol {
     
-}
-
-// MARK: - Pop gesture delegate method
-extension SignInViewController: UIGestureRecognizerDelegate {
-
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return false
-    }
 }

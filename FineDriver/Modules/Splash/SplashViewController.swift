@@ -8,23 +8,21 @@
 
 import UIKit
 
-protocol SplashViewControllerProtocol: class {
+final class SplashViewController: BaseViewController {
     
-}
-
-class SplashViewController: UIViewController {
-    
-    // MARK: - Public property
+    //MARK: - Public property
     var presenter: SplashPresenterProtocol?
 
-    // MARK: - LifeCycle
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         presenter?.checkToken()
     }
 }
 
-// MARK: - Protocol methods
-extension SplashViewController: SplashViewControllerProtocol {
+//MARK: - SplashViewProtocol
+
+extension SplashViewController: SplashViewProtocol {
     
 }

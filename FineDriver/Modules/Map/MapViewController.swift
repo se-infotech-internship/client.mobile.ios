@@ -17,7 +17,7 @@ protocol MapViewControllerProtocol: class {
     func drawPath(from polyStr: String)
 }
 
-class MapViewController: UIViewController {
+class MapViewController: BaseViewController {
     
     private enum Constants {
         
@@ -41,13 +41,13 @@ class MapViewController: UIViewController {
     }
     
     // MARK: - Private outlets
-    @IBOutlet private weak var speedLabel: UILabel!
-    @IBOutlet private weak var soundButton: UIButton!
-    @IBOutlet private weak var mapView: GMSMapView!
+    @IBOutlet fileprivate weak var speedLabel: UILabel!
+    @IBOutlet fileprivate weak var soundButton: UIButton!
+    @IBOutlet fileprivate weak var mapView: GMSMapView!
     
-    private var popUpView: PopUpView?
-    private var searchResultController: SearchResultsController!
-    private var gmsFetcher: GMSAutocompleteFetcher!
+    fileprivate var popUpView: PopUpView?
+    fileprivate var searchResultController: SearchResultsController!
+    fileprivate var gmsFetcher: GMSAutocompleteFetcher!
     
     // MARK: - Public property
     var presenter: MapPresenterProtocol?
@@ -56,14 +56,14 @@ class MapViewController: UIViewController {
     var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     
     // MARK: - Private property
-    private var locationManager = CLLocationManager()
-    private var currentLocation = CLLocationCoordinate2D()
-    private var isCenterCamera = true
-    private var isUpdateLocation = true
-    private var isSoundMusic = false
-    private var isCheckButtonSound = false
-    private var oldPolylineArr = [GMSPolyline]()
-    private var isInRadiusCameraAlready = true
+    fileprivate var locationManager = CLLocationManager()
+    fileprivate var currentLocation = CLLocationCoordinate2D()
+    fileprivate var isCenterCamera = true
+    fileprivate var isUpdateLocation = true
+    fileprivate var isSoundMusic = false
+    fileprivate var isCheckButtonSound = false
+    fileprivate var oldPolylineArr = [GMSPolyline]()
+    fileprivate var isInRadiusCameraAlready = true
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -81,14 +81,9 @@ class MapViewController: UIViewController {
         setupView()
     }
     
-    deinit {
-        print("deinit MapViewController")
-        endBackgroundTask()
-    }
-    
     // MARK: - Private methods
     
-    private func setupView() {
+    fileprivate func setupView() {
         
         requestNotificationAuthorization()
         self.userNotificationCenter.delegate = self
@@ -99,7 +94,7 @@ class MapViewController: UIViewController {
         registerBackgroundTask()
     }
     
-    private func setCurrentLocation() {
+    fileprivate func setCurrentLocation() {
         
         var bounds = GMSCoordinateBounds()
         bounds = bounds.includingCoordinate(CLLocationCoordinate2D(latitude: Constants.UkrainePosition.lat, longitude: Constants.UkrainePosition.long))
@@ -111,6 +106,7 @@ class MapViewController: UIViewController {
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.distanceFilter = 1
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.startUpdatingLocation()
         locationManager.activityType = .automotiveNavigation
@@ -240,7 +236,6 @@ class MapViewController: UIViewController {
             presenter?.stopSound()
         } else {
             soundButton.setImage(UIImage(named: "volume-2"), for: .normal)
-            soundOncomingCamera()
         }
     }
 }
@@ -356,9 +351,9 @@ extension MapViewController: CLLocationManagerDelegate {
             region.notifyOnEntry = true
             region.notifyOnExit = true
             
-            for monitoredRegion in locationManager.monitoredRegions {
-                locationManager.stopMonitoring(for: monitoredRegion)
-            }
+//            for monitoredRegion in locationManager.monitoredRegions {
+//                locationManager.stopMonitoring(for: monitoredRegion)
+//            }
             
             locationManager.startMonitoring(for: region)
             locationManager.startUpdatingLocation()
@@ -406,7 +401,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didExitRegion: CLRegion) {
         presenter?.stopSound()
         hidePopUp()
-        locationManager.stopMonitoring(for: didExitRegion)
+//        locationManager.stopMonitoring(for: didExitRegion)
     }
 }
 

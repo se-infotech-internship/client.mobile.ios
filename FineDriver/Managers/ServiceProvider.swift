@@ -23,7 +23,8 @@ class ServiceProvider<T: Service> {
         call(service.urlRequest, completion: completion)
     }
 
-    func load<U>(service: T, decodeType: U.Type, completion: @escaping (ResultNetwork<U>) -> Void) where U: Decodable {
+    func load<U>(service: T, decodeType: U.Type,
+                 completion: @escaping (ResultNetwork<U>) -> Void) where U: Decodable {
         call(service.urlRequest) { result in
             switch result {
             case .success(let data):
@@ -44,21 +45,20 @@ class ServiceProvider<T: Service> {
 }
 
 extension ServiceProvider {
-    private func call(_ request: URLRequest, deliverQueue: DispatchQueue = DispatchQueue.main, completion: @escaping (ResultNetwork<Data>) -> Void) {
+    private func call(_ request: URLRequest,
+                      deliverQueue: DispatchQueue = DispatchQueue.main,
+                      completion: @escaping (ResultNetwork<Data>) -> Void) {
+        
         urlSession.dataTask(with: request) { (data, _, error) in
-            if let error = error {
-                deliverQueue.async {
+            deliverQueue.async {
+                if let error = error {
                     completion(.failure(error))
-                }
-            } else if let data = data {
-                deliverQueue.async {
+                } else if let data = data {
                     completion(.success(data))
-                }
-            } else {
-                deliverQueue.async {
+                } else {
                     completion(.empty)
                 }
             }
-            }.resume()
+        }.resume()
     }
 }

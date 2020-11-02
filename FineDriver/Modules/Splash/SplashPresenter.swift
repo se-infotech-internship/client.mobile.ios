@@ -10,8 +10,13 @@ import Foundation
 import LocalAuthentication
 
 
+protocol SplashViewProtocol: class {
+
+}
+
 protocol SplashPresenterProtocol {
-    var viewController: SplashViewControllerProtocol? { get set }
+    var delegate: SplashViewProtocol? { get set }
+    
     func auth()
     func checkToken()
 }
@@ -19,26 +24,22 @@ protocol SplashPresenterProtocol {
 final class SplashPresenter {
     
     // MARK: - Protocol property
-    weak var viewController: SplashViewControllerProtocol?
+    weak var delegate: SplashViewProtocol?
     
     // MARK: - Private property
-    private weak var coordinator = AppCoordinator.shared
     private var authManager: AuthManagerProtocol!
     
     // MARK: - LifeCycle
-    init(viewController: SplashViewControllerProtocol?,
-         authManager: AuthManagerProtocol) {
-        
-        self.viewController = viewController
-        self.authManager = authManager
+    init(delegate: SplashViewProtocol?) {
+        self.delegate = delegate
     }
     
     private func routeAuth() {
-        coordinator?.routeToAuth()
+        AppCoordinator.shared.routeToAuth()
     }
     
     private func routeMap() {
-        coordinator?.routeToMap()
+        AppCoordinator.shared.routeToMap()
     }
     
     private func faceTouchAuth() {
@@ -46,10 +47,9 @@ final class SplashPresenter {
         var error: NSError?
         
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            let reason = "Потрібно Вас ідентифікувати☺️"
+            let reason = "Потрібно Вас ідентифікувати"
             
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [weak self] success, authenticationError in
-                
                 DispatchQueue.main.async {
                     if success {
                         self?.routeMap()
@@ -62,26 +62,23 @@ final class SplashPresenter {
     }
 }
 
-// MARK: - Protocol methods
+// MARK: - SplashPresenterProtocol
+
 extension SplashPresenter: SplashPresenterProtocol {
     
     func auth() { // TODO: - doesn't using in this version
-        authManager.auth { [weak self] (result) in
-            switch result {
-            case .success(let authObj):
-                self?.coordinator?.routeToAuth()
-            case .failure(let err):
-                break
-            }
-        }
+//        authManager.auth { [weak self] (result) in
+//            switch result {
+//            case .success(let authObj):
+//                AppCoordinator.shared.routeToAuth()
+//            case .failure(let err):
+//                break
+//            }
+//        }
     }
     
     func checkToken() {
-        var token: String?
-        let defaults = UserDefaults.standard
-        token = defaults[.tokenId]
-        
-        if token != "" && token != nil  {
+        if KeychainStorage.accessToken != nil {
             faceTouchAuth()
         } else {
             routeAuth()

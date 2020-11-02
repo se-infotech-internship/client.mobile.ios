@@ -16,16 +16,18 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    private var coordinator: AppCoordinator?
+    fileprivate var coordinator: AppCoordinator?
     var window: UIWindow?
     var navigationController: UINavigationController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         IQKeyboardManager.shared.enable = true
-        
+
         let navigationController = UINavigationController()
+//        navigationController.navigationBar.isTranslucent = false
         navigationController.setNavigationBarHidden(true, animated: false)
+        
         coordinator = AppCoordinator.shared
         coordinator?.navigationController = navigationController
         coordinator?.start()
@@ -34,14 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
-        // MARK: - Google Auth
+        //MARK: Google Auth
         GIDSignIn.sharedInstance().clientID = Constants.googleSignInKey
         GIDSignIn.sharedInstance()?.delegate = self
         
-        // MARK: - Facebook Auth
+        //MARK: Facebook Auth
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
         
-        // MARK: - Google map
+        //MARK: Google map
         GMSServices.provideAPIKey(Constants.googleMapKey)
         GMSPlacesClient.provideAPIKey(Constants.googleMapKey)
         
@@ -50,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 // MARK: - Google Auth Delegate methods
+
 extension AppDelegate: GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) { }
@@ -60,6 +63,7 @@ extension AppDelegate: GIDSignInDelegate {
 }
 
 // MARK: - Facebook Auth method
+
 extension AppDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {

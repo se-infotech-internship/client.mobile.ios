@@ -24,10 +24,9 @@ protocol CoordinatorProtocol {
     func routeToSelectFineSetting()
 }
 
-class AppCoordinator: CoordinatorProtocol {
+final class AppCoordinator: CoordinatorProtocol {
     
     static let shared = AppCoordinator()
-    
     private init() {}
     
     var navigationController: UINavigationController?
@@ -37,10 +36,8 @@ class AppCoordinator: CoordinatorProtocol {
     }
     
     func start() {
-        let authManager = AuthManager()
         let viewController = SplashViewController()
-        let presenter = SplashPresenter(viewController: viewController,
-                                        authManager: authManager)
+        let presenter = SplashPresenter(delegate: viewController)
         viewController.presenter = presenter
         
         print("SplashViewController = \(navigationController?.viewControllers ?? [UIViewController()])")
@@ -52,9 +49,8 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = SignInPresenter(view: viewController)
         viewController.presenter = presenter
         
-        
         print("routeToAuth = \(navigationController?.viewControllers ?? [UIViewController()])")
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.setViewControllers([viewController], animated: true)
     }
     
     func routeToMap() {
@@ -62,9 +58,8 @@ class AppCoordinator: CoordinatorProtocol {
         let presenter = MapPresenter(view: viewController)
         viewController.presenter = presenter
         
-        
         print("routeToMap = \(navigationController?.viewControllers ?? [UIViewController()])")
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.setViewControllers([viewController], animated: true)
     }
     
     func routeToMenu() {
