@@ -55,7 +55,6 @@ final class CamerasSettingViewController: UIViewController {
     private func setupNavigationBar() {
         customNavigationBar.update(title: "КАМЕРИ")
         customNavigationBar.delegate = self
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
 

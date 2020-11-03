@@ -53,7 +53,6 @@ final class SelectFineSettingViewController: UIViewController {
     private func setupNavigationBar() {
         customNavigationBar.update(title: "ШТРАФИ")
         customNavigationBar.delegate = self
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
 

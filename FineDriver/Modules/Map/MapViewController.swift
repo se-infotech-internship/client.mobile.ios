@@ -20,7 +20,6 @@ protocol MapViewControllerProtocol: class {
 class MapViewController: BaseViewController {
     
     private enum Constants {
-        
         enum Default {
             static let zoom: Float = 17
         }
@@ -73,25 +72,23 @@ class MapViewController: BaseViewController {
         setCurrentLocation()
         setupMapView()
         setupMarkers()
+        setupView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        setupView()
     }
     
     // MARK: - Private methods
     
     fileprivate func setupView() {
-        
         requestNotificationAuthorization()
-        self.userNotificationCenter.delegate = self
+        userNotificationCenter.delegate = self
         searchResultController = SearchResultsController()
         searchResultController.delegate = self
         gmsFetcher = GMSAutocompleteFetcher()
         gmsFetcher.delegate = self
-        registerBackgroundTask()
     }
     
     fileprivate func setCurrentLocation() {
@@ -244,9 +241,7 @@ class MapViewController: BaseViewController {
 extension MapViewController: MapViewControllerProtocol {
     
     func drawPath(from polyStr: String) {
-        
         DispatchQueue.main.async {
-            
             let path = GMSPath(fromEncodedPath: polyStr)
             let polyline = GMSPolyline(path: path)
             polyline.strokeWidth = 5.0

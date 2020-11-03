@@ -54,7 +54,6 @@ final class FineSettingViewController: UIViewController {
     private func setupNavigationBar() {
         customNavigationBar.update(title: "ШТРАФИ")
         customNavigationBar.delegate = self
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
 
@@ -83,7 +82,7 @@ extension FineSettingViewController: UITableViewDelegate, UITableViewDataSource 
         switch indexPath.row {
         
         case 0:
-            guard let model = presenter?.model(index: indexPath.row) as? SettingItemEntity,
+            guard let model = presenter?.model(index: indexPath.row),
                   let switchCell = tableView.dequeueReusableCell(withIdentifier: BaseSettingCell.identifier, for: indexPath) as? BaseSettingCell else { return UITableViewCell() }
             switchCell.update(entity: model)
             return switchCell

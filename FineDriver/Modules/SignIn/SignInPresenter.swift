@@ -12,11 +12,14 @@ protocol SignInViewControllerProtocol: class {
     
 }
 
-protocol SignInPresenterProtocol: class {
-    var view: SignInViewControllerProtocol? { get set }
-    
+protocol SignInPresenterProtocol: class {    
     func routeToMap()
-    func saveToUserDefaults(login: String, firstName: String, familyName: String, email: String, tokenId: String, avatarURL: URL)
+    func saveToUserDefaults(login: String,
+                            firstName: String,
+                            familyName: String,
+                            email: String,
+                            tokenId: String,
+                            avatarURL: URL?)
     func resetToken()
     func defaultDistaceLocationToCamera()
 }
@@ -24,27 +27,33 @@ protocol SignInPresenterProtocol: class {
 final class SignInPresenter {
     
     // MARK: - Protocol property
-    weak var view: SignInViewControllerProtocol?
+    weak var delegate: SignInViewControllerProtocol?
     
     // MARK: - Private property
     fileprivate let defaults = UserDefaults.standard
     
     // MARK: - LifeCycle
-    init(view: SignInViewControllerProtocol?) {
-        self.view = view
+    init(delegate: SignInViewControllerProtocol?) {
+        self.delegate = delegate
     }
 }
 
 // MARK: - protocol methods
 extension SignInPresenter: SignInPresenterProtocol {
     
-    func saveToUserDefaults(login: String, firstName: String, familyName: String, email: String, tokenId: String, avatarURL: URL) {
+    func saveToUserDefaults(login: String,
+                            firstName: String,
+                            familyName: String,
+                            email: String,
+                            tokenId: String,
+                            avatarURL: URL? = nil) {
+        
         defaults[.user] = login
         defaults[.firstName] = firstName
         defaults[.familyName] = familyName
         defaults[.email] = email
-        defaults[.tokenId] = tokenId
         defaults[.avatarURL] = avatarURL
+        KeychainStorage.accessToken = tokenId
     }
     
     func routeToMap() {
@@ -52,7 +61,6 @@ extension SignInPresenter: SignInPresenterProtocol {
     }
     
     func resetToken() {
-        defaults[.tokenId] = ""
         KeychainStorage.accessToken = nil
     }
     

@@ -38,13 +38,11 @@ final class ProfileViewController: UIViewController {
     private func setupView() {
         avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
         avatarImageView.clipsToBounds = true
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
         setViewData()
         presenter?.fetchGoogleImage(imageView: avatarImageView)
     }
     
     private func setupNavigationBar() {
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
         customNavigationBar.delegate = self
         customNavigationBar.update(title: "ПРОФIЛЬ")
     }

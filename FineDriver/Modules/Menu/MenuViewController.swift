@@ -8,17 +8,10 @@
 
 import UIKit
 
-protocol MenuViewControllerProtocol: class {
-    
-    func reloadData()
-}
-
-final class MenuViewController: UIViewController {
+final class MenuViewController: BaseViewController {
     
     private enum Layout {
-        
         enum TableView {
-            
             static let height: CGFloat = 58.0
         }
     }
@@ -31,30 +24,21 @@ final class MenuViewController: UIViewController {
     var presenter: MenuPresenterProtocol?
     
     // MARK: - LifeCycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        clearNavControllersStack()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        presenter?.viewDidLoad()
         setupView()
         setupTableView()
-        reloadData()
-    }
-    
-    deinit {
-        debugPrint("MenuViewController deinit")
     }
     
     // MARK: - Private methods
     private func setupView() {
         avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
         avatarImageView.clipsToBounds = true
-        presenter?.viewDidLoad()
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-        presenter?.fetchGoogleImage(imageView: avatarImageView)
+        
+        presenter?.fetchImage(imageView: avatarImageView)
     }
     
     private func setupTableView() {
@@ -63,27 +47,10 @@ final class MenuViewController: UIViewController {
                                  bundle: nil),
                            forCellReuseIdentifier: MenuCell.identifier)
     }
-    
-    private func clearNavControllersStack() {
-        
-        guard let controllers = navigationController?.viewControllers else { return }
-        
-        for (index, element) in controllers.enumerated() {
-            if element == self {
-                navigationController?.viewControllers.removeAll(where: { (controller) -> Bool in
-                    if controller != element && controller != MapViewController(nibName: "MapViewController", bundle: nil) {
-                        navigationController?.viewControllers.remove(at: index)
-                    }
-                    return true
-                })
-            }
-        }
-        
-        self.navigationController?.viewControllers = [self]
-    }
 }
 
-// MARK: - Protocol methods
+// MARK: - MenuViewControllerProtocol
+
 extension MenuViewController: MenuViewControllerProtocol {
     
     func reloadData() {
@@ -92,6 +59,7 @@ extension MenuViewController: MenuViewControllerProtocol {
 }
 
 // MARK: - Delegate methods
+
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -123,18 +91,9 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         case 4:
             presenter?.routeSetting()
         case 6:
-            UserDefaults.standard[.tokenId] = ""
             presenter?.routeAuth()
         default:
             break
         }
-    }
-}
-
-// MARK: - Pop gesture delegate method
-extension MenuViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }

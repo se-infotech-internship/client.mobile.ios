@@ -45,8 +45,10 @@ final class AppCoordinator: CoordinatorProtocol {
     }
     
     func routeToAuth() {
+        KeychainStorage.accessToken = nil
+        
         let viewController = SignInViewController()
-        let presenter = SignInPresenter(view: viewController)
+        let presenter = SignInPresenter(delegate: viewController)
         viewController.presenter = presenter
         
         print("routeToAuth = \(navigationController?.viewControllers ?? [UIViewController()])")
@@ -55,7 +57,7 @@ final class AppCoordinator: CoordinatorProtocol {
     
     func routeToMap() {
         let viewController = MapViewController()
-        let presenter = MapPresenter(view: viewController)
+        let presenter = MapPresenter(delegate: viewController)
         viewController.presenter = presenter
         
         print("routeToMap = \(navigationController?.viewControllers ?? [UIViewController()])")
@@ -64,7 +66,7 @@ final class AppCoordinator: CoordinatorProtocol {
     
     func routeToMenu() {
         let viewController = MenuViewController()
-        let presenter = MenuPresenter(view: viewController)
+        let presenter = MenuPresenter(delegate: viewController)
         viewController.presenter = presenter
         
         print("routeToMenu = \(navigationController?.viewControllers ?? [UIViewController()])")

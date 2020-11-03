@@ -12,8 +12,8 @@ import AVFoundation
 import GooglePlaces
 
 protocol MapPresenterProtocol: class {
-    var view: MapViewControllerProtocol? { get set}
     var camerasEntity: [CameraEntity] { get set }
+    
     func viewDidLoad()
     func markersLocation() -> ([CLLocationCoordinate2D])
     func routeToMenu()
@@ -28,7 +28,7 @@ protocol MapPresenterProtocol: class {
 class MapPresenter {
     
     // MARK: - Protocol property
-    weak var view: MapViewControllerProtocol?
+    weak var delegate: MapViewControllerProtocol?
     var camerasEntity: [CameraEntity] = []
     
     // MARK: - Private property
@@ -37,8 +37,8 @@ class MapPresenter {
     private var player: AVAudioPlayer?
     
     // MARK: - LifeCycle
-    init(view: MapViewControllerProtocol?) {
-        self.view = view
+    init(delegate: MapViewControllerProtocol?) {
+        self.delegate = delegate
     }
     
     // MARK: - Private method
@@ -89,7 +89,7 @@ extension MapPresenter: MapPresenterProtocol {
                         let routeOverviewPolyline:NSDictionary = routes.value(forKey: "overview_polyline") as! NSDictionary
                         let polyString = routeOverviewPolyline.object(forKey: "points") as! String
                         
-                        guard let self = self, let view = self.view else { return }
+                        guard let self = self, let view = self.delegate else { return }
                         
                         view.drawPath(from: polyString)
                     }

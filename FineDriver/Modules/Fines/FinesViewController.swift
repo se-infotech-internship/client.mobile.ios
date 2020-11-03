@@ -43,7 +43,6 @@ final class FinesViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
         customNavigationBar.delegate = self
         customNavigationBar.update(title: "ШТРАФИ")
     }

@@ -28,7 +28,7 @@ final class SignInViewController: BaseViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
     var presenter: SignInPresenterProtocol?
     
-    // LifeCicle
+    //MARK: - LifeCicle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,6 +77,7 @@ final class SignInViewController: BaseViewController {
 }
 
 // MARK: - Google auth delegate methods
+
 extension SignInViewController: GIDSignInDelegate {
     
     private func signIn(_ signIn: GIDSignIn!, presentViewController viewController: UIViewController!) {
@@ -112,6 +113,7 @@ extension SignInViewController: GIDSignInDelegate {
 }
 
 // MARK: - Facebook auth delegate methods
+
 extension SignInViewController: LoginButtonDelegate {
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
@@ -123,20 +125,21 @@ extension SignInViewController: LoginButtonDelegate {
                                                  version: nil,
                                                  httpMethod: .get)
         
-        request.start { (connection, result, error) in
+        request.start { [self] (connection, result, error) in
             
-//            guard let fields = result as? [String: Any],
-//                  let firstName = fields["first_name"] as? String,
-//                  let id = fields["id"] as? String,
-//                  let user = fields["user"] as? String,
-//                  let familyName = fields["family_name"] as? String,
-//                  let email = fields["email"] as? String else { return }
-            
-//            self.presenter?.saveToUserDefaults(login: user,
-//                                               firstName: firstName,
-//                                               familyName: familyName,
-//                                               email: email,
-//                                               tokenId: id)
+        guard let fields = result as? [String: Any],
+              let firstName = fields["first_name"] as? String,
+              let id = fields["id"] as? String,
+              let user = fields["user"] as? String,
+              let familyName = fields["family_name"] as? String,
+              let email = fields["email"] as? String else { return }
+        
+        presenter?.saveToUserDefaults(login: user,
+                                   firstName: firstName,
+                                   familyName: familyName,
+                                   email: email,
+                                   tokenId: id,
+                                   avatarURL: nil)
         }
     }
     
@@ -153,18 +156,18 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
-//            guard let firstName = appleIDCredential.fullName?.givenName else { return }
-//            guard let familyName = appleIDCredential.fullName?.familyName else { return }
-//            guard let email = appleIDCredential.email else { return }
-//            guard let autorizationCode = appleIDCredential.authorizationCode else { return }
-//            let tokenId = String(decoding: autorizationCode, as: UTF8.self)
+            guard let firstName = appleIDCredential.fullName?.givenName else { return }
+            guard let familyName = appleIDCredential.fullName?.familyName else { return }
+            guard let email = appleIDCredential.email else { return }
+            guard let autorizationCode = appleIDCredential.authorizationCode else { return }
+            let tokenId = String(decoding: autorizationCode, as: UTF8.self)
             
-//            self.presenter?.saveToUserDefaults(login: appleIDCredential.user,
-//                                               firstName: firstName,
-//                                               familyName: familyName,
-//                                               email: email,
-//                                               tokenId: tokenId)
-            
+            presenter?.saveToUserDefaults(login: appleIDCredential.user,
+                                       firstName: firstName,
+                                       familyName: familyName,
+                                       email: email,
+                                       tokenId: tokenId,
+                                       avatarURL: nil)
         }
     }
     

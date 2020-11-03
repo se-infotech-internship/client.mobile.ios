@@ -54,7 +54,6 @@ final class SettingsViewController: UIViewController {
     private func setupNavigationBar() {
         customNavigationBar.update(title: "НАЛАШТУВАННЯ")
         customNavigationBar.delegate = self
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
 

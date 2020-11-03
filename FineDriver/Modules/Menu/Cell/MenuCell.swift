@@ -19,7 +19,7 @@ final class MenuCell: UITableViewCell {
     @IBOutlet private weak var yellowRoundView: UIView!
     
     // MARK: - Static property
-    static var identifier = "MenuCell"
+    static let identifier = "MenuCell"
     
     // MARK: - LifeCycle
     override func awakeFromNib() {

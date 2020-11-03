@@ -54,7 +54,6 @@ final class MessageSettingViewController: UIViewController {
     private func setupNavigationBar() {
         customNavigationBar.update(title: "ПОВIДОМЛЕННЯ")
         customNavigationBar.delegate = self
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
 

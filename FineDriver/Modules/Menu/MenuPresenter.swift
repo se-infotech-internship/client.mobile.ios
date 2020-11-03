@@ -10,9 +10,13 @@ import Foundation
 import UIKit
 import Kingfisher
 
+protocol MenuViewControllerProtocol: class {
+    func reloadData()
+}
+
 protocol MenuPresenterProtocol: class {
+    var delegate: MenuViewControllerProtocol? { get set }
     
-    var view: MenuViewControllerProtocol? { get set }
     func countRows() -> Int
     func model(index: Int) -> MenuItemEntity
     func viewDidLoad()
@@ -21,21 +25,21 @@ protocol MenuPresenterProtocol: class {
     func routeAuth()
     func routeSetting()
     func routeProfile()
-    func fetchGoogleImage(imageView: UIImageView)
+    func fetchImage(imageView: UIImageView)
 }
 
 final class MenuPresenter {
     
     // MARK: - Public property
-    weak var view: MenuViewControllerProtocol?
+    weak var delegate: MenuViewControllerProtocol?
     
     // MARK: - Private property
     private var menuItemsEntity = [MenuItemEntity]()
     private weak var coordinator = AppCoordinator.shared
     
     // MARK: - LifeCycle
-    init(view: MenuViewControllerProtocol?) {
-        self.view = view
+    init(delegate: MenuViewControllerProtocol?) {
+        self.delegate = delegate
     }
     
     // MARK: - Private method
@@ -44,7 +48,8 @@ final class MenuPresenter {
     }
 }
 
-// MARK: - Protocol methods
+// MARK: - MenuPresenterProtocol
+
 extension MenuPresenter: MenuPresenterProtocol {
     
     func countRows() -> Int {
@@ -60,7 +65,8 @@ extension MenuPresenter: MenuPresenterProtocol {
     }
     
     func routeMap() {
-        coordinator?.routeToMap()
+        coordinator?.navigationController?.popViewController(animated: true)
+//        coordinator?.routeToMap()
     }
     
     func routeFines() {
@@ -79,7 +85,7 @@ extension MenuPresenter: MenuPresenterProtocol {
         coordinator?.routeToProfile()
     }
     
-    func fetchGoogleImage(imageView: UIImageView) {
+    func fetchImage(imageView: UIImageView) {
         
         var avatarURL: URL?
         avatarURL = UserDefaults.standard[.avatarURL]
