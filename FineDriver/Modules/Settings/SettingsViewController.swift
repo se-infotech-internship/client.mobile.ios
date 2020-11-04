@@ -8,16 +8,11 @@
 
 import UIKit
 
-protocol SettingsViewControllerProtocol: class {
-    func reloadData()
-}
 
 final class SettingsViewController: UIViewController {
     
     private enum Constants {
-        
         enum TableView {
-            
             static let height: CGFloat = 56.0
         }
     }
@@ -27,7 +22,7 @@ final class SettingsViewController: UIViewController {
     @IBOutlet private weak var customNavigationBar: NavigationBar!
     
     // MARK: - Public property
-    var presenter: SettingsPresenterProtocol?
+    var presenter: SettingsPresenterProtocol!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -35,8 +30,7 @@ final class SettingsViewController: UIViewController {
         
         setupTableView()
         setupNavigationBar()
-        presenter?.viewDidLoad()
-        reloadData()
+        presenter.viewDidLoad()
     }
     
     // MARK: - Private func
@@ -57,9 +51,9 @@ final class SettingsViewController: UIViewController {
     }
 }
 
-// MARK: - Protocol methods
+// MARK: - SettingsViewControllerProtocol
+
 extension SettingsViewController: SettingsViewControllerProtocol {
-    
     func reloadData() {
         tableView.reloadData()
     }
@@ -73,7 +67,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.countRows() ?? 0
+        return presenter.itemCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,9 +81,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
-        case 0: presenter?.routeMessageSetting()
-        case 1: presenter?.routeCamerasSetting()
-        case 2: presenter?.routeToFineSetting()
+        case 0: presenter.routeMessageSetting()
+        case 1: presenter.routeCamerasSetting()
+        case 2: presenter.routeToFineSetting()
         case 3: break
         case 4: break
         default: break
@@ -99,16 +93,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - NavigationBarDelegate method
 extension SettingsViewController: NavigationBarDelegate {
-    
     func leftAction() {
         presenter?.routePop()
-    }
-}
-
-// MARK: - Pop gesture delegate method
-extension SettingsViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }

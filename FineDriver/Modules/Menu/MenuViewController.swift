@@ -19,9 +19,12 @@ final class MenuViewController: BaseViewController {
     // MARK: - Private outlets
     @IBOutlet private weak var avatarImageView: UIImageView!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var topConstraint: NSLayoutConstraint!
     
+    fileprivate var oldContentOffset = CGPoint.zero
+
     // MARK: - Public properties
-    var presenter: MenuPresenterProtocol?
+    var presenter: MenuPresenterProtocol!
     
     // MARK: - LifeCycle
     
@@ -46,6 +49,7 @@ final class MenuViewController: BaseViewController {
         tableView.register(UINib(nibName: MenuCell.identifier,
                                  bundle: nil),
                            forCellReuseIdentifier: MenuCell.identifier)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -67,11 +71,11 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.countRows() ?? 0
+        return presenter.itemCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let presenter = presenter else { return UITableViewCell() }
+
         let cellModel = presenter.model(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.identifier, for: indexPath) as? MenuCell else { return UITableViewCell() }
         cell.update(model: cellModel)
@@ -95,5 +99,42 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             break
         }
+    }
+}
+
+extension MenuViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        print(scrollView)
+////        UIView.animate(withDuration: 0.25) {
+//        let y = scrollView.contentOffset.y
+//        topConstraint.constant = 143 - y
+//        view.layoutIfNeeded()
+//        }
+        
+        /*
+        //ScrollView's contentOffset differences with previous contentOffset
+        let contentOffset =  scrollView.contentOffset.y - oldContentOffset.y
+      
+        // Scrolls UP - we compress the top view
+        if contentOffset > 0 && scrollView.contentOffset.y > 0 {
+            if (topConstraint.constant > -120 ) {
+                topConstraint.constant -= contentOffset
+                scrollView.contentOffset.y -= contentOffset
+            }
+        }
+        
+        // Scrolls Down - we expand the top view
+        if contentOffset < 0 && scrollView.contentOffset.y < 0 {
+//            if (topConstraint.constant < 143) {
+                if topConstraint.constant - contentOffset > 0 {
+                    topConstraint.constant += abs(contentOffset)
+                } else {
+                    topConstraint.constant -= contentOffset
+                }
+                scrollView.contentOffset.y -= contentOffset
+//            }
+        }
+        oldContentOffset = scrollView.contentOffset
+ */
     }
 }

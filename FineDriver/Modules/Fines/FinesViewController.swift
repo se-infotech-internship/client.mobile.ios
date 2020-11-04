@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol FinesViewControllerProtocol: class {
-    func reloadData()
-}
-
 final class FinesViewController: UIViewController {
     
     // MARK:- Private outlet
@@ -19,13 +15,13 @@ final class FinesViewController: UIViewController {
     @IBOutlet private weak var customNavigationBar: NavigationBar!
     
     // MARK: - Public properties
-    var presenter: FinesPresenterProtocol?
+    var presenter: FinesPresenterProtocol!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter?.viewDidLoad()
+        presenter.viewDidLoad()
         setupNavigationBar()
         setupTableCell()
         setupTableView()
@@ -49,11 +45,12 @@ final class FinesViewController: UIViewController {
     
     // MARK: - Private action
     @IBAction private func didTapPopUpButton(_ sender: Any) {
-        presenter?.routePop()
+        presenter.routePop()
     }
 }
 
-// MARK: - Protocol methods
+// MARK: - FinesViewControllerProtocol
+
 extension FinesViewController: FinesViewControllerProtocol {
     
     func reloadData() {
@@ -79,11 +76,11 @@ extension FinesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.countRows() ?? 0
+        return presenter.itemCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FineCell.identifier) as? FineCell, let presenter = presenter else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FineCell.identifier) as? FineCell else { return UITableViewCell() }
         cell.update(entity: presenter.model(index: indexPath.row))
         cell.delegate = self
         return cell
@@ -92,16 +89,7 @@ extension FinesViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - NavigationBarDelegate method
 extension FinesViewController: NavigationBarDelegate {
-    
     func leftAction() {
         presenter?.routePop()
-    }
-}
-
-// MARK: - Pop gesture delegate method
-extension FinesViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }

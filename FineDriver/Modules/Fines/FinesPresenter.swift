@@ -8,9 +8,13 @@
 
 import Foundation
 
+protocol FinesViewControllerProtocol: class {
+    func reloadData()
+}
+
 protocol FinesPresenterProtocol: class {
-    var view: FinesViewControllerProtocol? { get set }
-    func countRows() -> Int
+    var itemCount: Int { get }
+
     func model(index: Int) -> FineEntity
     func viewDidLoad()
     func fines() -> [FineEntity]
@@ -20,15 +24,21 @@ protocol FinesPresenterProtocol: class {
 final class FinesPresenter {
     
     // MARK: - Protocol property
-    weak var view: FinesViewControllerProtocol?
+    weak var delegate: FinesViewControllerProtocol?
     
     // MARK: - Private property
     private var fineEntities = [FineEntity]()
-    private weak var coordinator = AppCoordinator.shared
+    
+    // MARK: - Public property
+    var itemCount: Int {
+        get{
+            return fineEntities.count
+        }
+    }
     
     // MARK: - LifeCycle
-    init(view: FinesViewControllerProtocol?) {
-        self.view = view
+    init(delegate: FinesViewControllerProtocol?) {
+        self.delegate = delegate
     }
     
     // MARK: - Private method
@@ -37,11 +47,9 @@ final class FinesPresenter {
     }
 }
 
-// MARK: - Protocol methods
+// MARK: - FinesPresenterProtocol
+
 extension FinesPresenter: FinesPresenterProtocol {
-    func countRows() -> Int {
-        return fineEntities.count
-    }
     
     func model(index: Int) -> FineEntity {
         return fineEntities[index]
@@ -56,6 +64,6 @@ extension FinesPresenter: FinesPresenterProtocol {
     }
     
     func routePop() {
-        coordinator?.popVC()
+        AppCoordinator.shared.popVC()
     }
 }

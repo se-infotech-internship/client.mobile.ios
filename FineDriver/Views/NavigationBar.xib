@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,10 +21,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6Z-8D-AX1">
-                    <rect key="frame" x="0.0" y="44" width="414" height="64"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCv-Ce-LSZ">
-                            <rect key="frame" x="16" y="21" width="30" height="22"/>
+                            <rect key="frame" x="16" y="43" width="30" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="kEl-YC-0jy"/>
                                 <constraint firstAttribute="width" constant="30" id="smi-po-Prm"/>
@@ -35,7 +35,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;title&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jyz-BR-0Qb">
-                            <rect key="frame" x="43" y="17.5" width="328" height="29"/>
+                            <rect key="frame" x="43" y="39.5" width="328" height="29"/>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -57,7 +57,7 @@
             <constraints>
                 <constraint firstItem="W6Z-8D-AX1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Gib-jT-Vv2"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="W6Z-8D-AX1" secondAttribute="bottom" id="J8z-RH-Gp6"/>
-                <constraint firstItem="W6Z-8D-AX1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Sd5-47-QLn"/>
+                <constraint firstItem="W6Z-8D-AX1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Sd5-47-QLn"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="W6Z-8D-AX1" secondAttribute="trailing" id="f44-IX-los"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>

@@ -8,9 +8,13 @@
 
 import Foundation
 
+protocol SettingsViewControllerProtocol: class {
+    func reloadData()
+}
+
 protocol SettingsPresenterProtocol: class {
-    var view: SettingsViewControllerProtocol? { get set }
-    func countRows() -> Int
+    var itemCount: Int { get }
+
     func model(index: Int) -> SettingItemEntity
     func viewDidLoad()
     func routeMessageSetting()
@@ -22,15 +26,21 @@ protocol SettingsPresenterProtocol: class {
 final class SettingsPresenter {
     
     // MARK: - Protocol property
-    weak var view: SettingsViewControllerProtocol?
+    weak var delegate: SettingsViewControllerProtocol?
     
     // MARK: - Private property
-    private weak var coordinator = AppCoordinator.shared
     private var settingItemsEntity = [SettingItemEntity]()
     
+    // MARK: - Public property
+    var itemCount: Int {
+        get{
+            return settingItemsEntity.count
+        }
+    }
+    
     // MARK: - LifeCycle
-    init(view: SettingsViewControllerProtocol?) {
-        self.view = view
+    init(delegate: SettingsViewControllerProtocol?) {
+        self.delegate = delegate
     }
     
     // MARK: - Private methods
@@ -46,27 +56,23 @@ extension SettingsPresenter: SettingsPresenterProtocol {
         return settingItemsEntity[index]
     }
     
-    func countRows() -> Int {
-        return settingItemsEntity.count
-    }
-    
     func viewDidLoad() {
         fetchMockSettingData()
     }
     
     func routePop() {
-        coordinator?.popVC()
+        AppCoordinator.shared.popVC()
     }
     
     func routeMessageSetting() {
-        coordinator?.routeToMessageSetting()
+        AppCoordinator.shared.routeToMessageSetting()
     }
     
     func routeCamerasSetting() {
-        coordinator?.routeToCamerasSetting()
+        AppCoordinator.shared.routeToCamerasSetting()
     }
     
     func routeToFineSetting() {
-        coordinator?.routeToFineSetting()
+        AppCoordinator.shared.routeToFineSetting()
     }
 }

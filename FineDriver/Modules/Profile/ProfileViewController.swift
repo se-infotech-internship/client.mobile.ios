@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol ProfileViewControllerProtocol: class {
-    
-}
-
 final class ProfileViewController: UIViewController {
     
     // MARK:- Private outlets
@@ -22,13 +18,13 @@ final class ProfileViewController: UIViewController {
     @IBOutlet private weak var fullNameLabel: UILabel!
     
     // MARK: - Public properties
-    var presenter: ProfilePresenterProtocol?
+    var presenter: ProfilePresenterProtocol!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter?.viewDidLoad()
+        presenter.viewDidLoad()
         setupView()
         setupNavigationBar()
     }
@@ -39,7 +35,7 @@ final class ProfileViewController: UIViewController {
         avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
         avatarImageView.clipsToBounds = true
         setViewData()
-        presenter?.fetchGoogleImage(imageView: avatarImageView)
+        presenter.fetchImage(imageView: avatarImageView)
     }
     
     private func setupNavigationBar() {
@@ -48,30 +44,21 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setViewData() {
-        guard let presenter = presenter else { return }
         loginLabel.text = presenter.profileData.login
         emailLabel.text = presenter.profileData.email
         fullNameLabel.text = "\(presenter.profileData.firstName ?? "") \(presenter.profileData.lastName ?? "")"
     }
 }
 
-// MARK: - Protocol methods
+// MARK: - ProfileViewControllerProtocol
+
 extension ProfileViewController: ProfileViewControllerProtocol {
     
 }
 
 // MARK: - NavigationBarDelegate method
 extension ProfileViewController: NavigationBarDelegate {
-    
     func leftAction() {
         presenter?.routePop()
-    }
-}
-
-// MARK: - Pop gesture delegate method
-extension ProfileViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }

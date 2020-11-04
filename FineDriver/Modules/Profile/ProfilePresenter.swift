@@ -10,29 +10,33 @@ import Foundation
 import Kingfisher
 import UIKit
 
+protocol ProfileViewControllerProtocol: class {
+    
+}
+
 protocol ProfilePresenterProtocol: class {
-    var view: ProfileViewControllerProtocol? { get set }
-    var profileData: ProfileEntity { get set }
+    var profileData: ProfileEntity { get }
+    
     func viewDidLoad()
     func routePop()
     func fetchProfileData()
-    func fetchGoogleImage(imageView: UIImageView)
+    func fetchImage(imageView: UIImageView)
 }
 
 final class ProfilePresenter {
     
     // MARK: - Protocol property
-    weak var view: ProfileViewControllerProtocol?
+    weak var delegate: ProfileViewControllerProtocol?
     
     // MARK: - Private property
     private weak var coordinator = AppCoordinator.shared
     
     // MARK: - Public property
-    var profileData = ProfileEntity()
+    private(set) var profileData = ProfileEntity()
     
     // MARK: - LifeCycle
-    init(view: ProfileViewControllerProtocol?) {
-        self.view = view
+    init(delegate: ProfileViewControllerProtocol?) {
+        self.delegate = delegate
     }
 }
 
@@ -56,7 +60,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         profileData.lastName = defaults[.familyName]
     }
     
-    func fetchGoogleImage(imageView: UIImageView) {
+    func fetchImage(imageView: UIImageView) {
         
         var avatarURL: URL?
         avatarURL = UserDefaults.standard[.avatarURL]

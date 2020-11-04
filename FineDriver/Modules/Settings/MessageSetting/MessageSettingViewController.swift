@@ -8,16 +8,10 @@
 
 import UIKit
 
-protocol MessageSettingViewControllerProtocol: class {
-    func reloadData()
-}
-
 final class MessageSettingViewController: UIViewController {
     
     private enum Constants {
-        
         enum TableView {
-            
             static let height: CGFloat = 56.0
         }
     }
@@ -27,7 +21,7 @@ final class MessageSettingViewController: UIViewController {
     @IBOutlet private weak var customNavigationBar: NavigationBar!
     
     // MARK: - Public property
-    var presenter: MessageSettingPresenterProtocol?
+    var presenter: MessageSettingPresenterProtocol!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -35,8 +29,7 @@ final class MessageSettingViewController: UIViewController {
 
         setupTableView()
         setupNavigationBar()
-        presenter?.viewDidLoad()
-        reloadData()
+        presenter.viewDidLoad()
     }
 
     // MARK: - Private method
@@ -57,9 +50,9 @@ final class MessageSettingViewController: UIViewController {
     }
 }
 
-// MARK: - Protocol methos
+// MARK: - MessageSettingViewControllerProtocol
+
 extension MessageSettingViewController: MessageSettingViewControllerProtocol {
-    
     func reloadData() {
         tableView.reloadData()
     }
@@ -73,12 +66,12 @@ extension MessageSettingViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.countRows() ?? 0
+        return presenter.itemCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cellModel = presenter?.model(index: indexPath.row),
-              let cell = tableView.dequeueReusableCell(withIdentifier: SwitchSettingCell.identifier, for: indexPath) as? SwitchSettingCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchSettingCell.identifier, for: indexPath) as? SwitchSettingCell else { return UITableViewCell() }
+        let cellModel = presenter.model(index: indexPath.row)
         cell.update(entity: cellModel)
         return cell
     }
@@ -86,16 +79,7 @@ extension MessageSettingViewController: UITableViewDelegate, UITableViewDataSour
 
 // MARK: - NavigationBarDelegate method
 extension MessageSettingViewController: NavigationBarDelegate {
-    
     func leftAction() {
         presenter?.routePop()
-    }
-}
-
-// MARK: - Pop gesture delegate method
-extension MessageSettingViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }

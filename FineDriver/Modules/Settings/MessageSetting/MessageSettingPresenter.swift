@@ -8,9 +8,13 @@
 
 import Foundation
 
+protocol MessageSettingViewControllerProtocol: class {
+    func reloadData()
+}
+
 protocol MessageSettingPresenterProtocol: class {
-    var view: MessageSettingViewControllerProtocol? { get set }
-    func countRows() -> Int
+    var itemCount: Int { get }
+
     func model(index: Int) -> SwitchItemEntity
     func viewDidLoad()
     func routePop()
@@ -19,15 +23,21 @@ protocol MessageSettingPresenterProtocol: class {
 final class MessageSettingPresenter {
     
     // MARK: - Protocol property
-    weak var view: MessageSettingViewControllerProtocol?
+    weak var delegate: MessageSettingViewControllerProtocol?
     
     // MARK: - Private property
-    private weak var coordinator = AppCoordinator.shared
     private var entity = [SwitchItemEntity]()
     
+    // MARK: - Public property
+    var itemCount: Int {
+        get{
+            return entity.count
+        }
+    }
+    
     // MARK: - LifeCycle
-    init(view: MessageSettingViewControllerProtocol?) {
-        self.view = view
+    init(delegate: MessageSettingViewControllerProtocol?) {
+        self.delegate = delegate
     }
     
     // MARK: - Private methods
@@ -36,12 +46,9 @@ final class MessageSettingPresenter {
     }
 }
 
-// MARK: - Protocol methods
+// MARK: - MessageSettingPresenterProtocol
+
 extension MessageSettingPresenter: MessageSettingPresenterProtocol {
-    
-    func countRows() -> Int {
-        return entity.count
-    }
     
     func model(index: Int) -> SwitchItemEntity {
         return entity[index]
@@ -52,6 +59,6 @@ extension MessageSettingPresenter: MessageSettingPresenterProtocol {
     }
     
     func routePop() {
-        coordinator?.popVC()
+        AppCoordinator.shared.popVC()
     }
 }

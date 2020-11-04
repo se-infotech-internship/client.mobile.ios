@@ -15,9 +15,8 @@ protocol MenuViewControllerProtocol: class {
 }
 
 protocol MenuPresenterProtocol: class {
-    var delegate: MenuViewControllerProtocol? { get set }
+    var itemCount: Int { get }
     
-    func countRows() -> Int
     func model(index: Int) -> MenuItemEntity
     func viewDidLoad()
     func routeMap()
@@ -35,7 +34,12 @@ final class MenuPresenter {
     
     // MARK: - Private property
     private var menuItemsEntity = [MenuItemEntity]()
-    private weak var coordinator = AppCoordinator.shared
+    
+    var itemCount: Int {
+        get{
+            menuItemsEntity.count
+        }
+    }
     
     // MARK: - LifeCycle
     init(delegate: MenuViewControllerProtocol?) {
@@ -52,10 +56,6 @@ final class MenuPresenter {
 
 extension MenuPresenter: MenuPresenterProtocol {
     
-    func countRows() -> Int {
-        return  menuItemsEntity.count
-    }
-    
     func model(index: Int) -> MenuItemEntity {
         return menuItemsEntity[index]
     }
@@ -65,24 +65,23 @@ extension MenuPresenter: MenuPresenterProtocol {
     }
     
     func routeMap() {
-        coordinator?.navigationController?.popViewController(animated: true)
-//        coordinator?.routeToMap()
+        AppCoordinator.shared.navigationController?.popViewController(animated: true)
     }
     
     func routeFines() {
-        coordinator?.routeToFinesList()
+        AppCoordinator.shared.routeToFinesList()
     }
     
     func routeAuth() {
-        coordinator?.routeToAuth()
+        AppCoordinator.shared.routeToAuth()
     }
     
     func routeSetting() {
-        coordinator?.routeToSetting()
+        AppCoordinator.shared.routeToSetting()
     }
     
     func routeProfile() {
-        coordinator?.routeToProfile()
+        AppCoordinator.shared.routeToProfile()
     }
     
     func fetchImage(imageView: UIImageView) {
