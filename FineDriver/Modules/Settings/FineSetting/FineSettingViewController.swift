@@ -8,16 +8,10 @@
 
 import UIKit
 
-protocol FineSettingViewControllerProtocol: class {
-    func reloadData()
-}
-
 final class FineSettingViewController: UIViewController {
     
     private enum Constants {
-        
         enum TableView {
-            
             static let height: CGFloat = 56.0
         }
     }
@@ -27,7 +21,7 @@ final class FineSettingViewController: UIViewController {
     @IBOutlet private weak var customNavigationBar: NavigationBar!
     
     // MARK: - Public property
-    var presenter: FineSettingPresenterProtocol?
+    var presenter: FineSettingPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +29,6 @@ final class FineSettingViewController: UIViewController {
         setupTableView()
         setupNavigationBar()
         presenter?.viewDidLoad()
-        reloadData()
     }
     
     // MARK: - Private method
@@ -57,9 +50,9 @@ final class FineSettingViewController: UIViewController {
     }
 }
 
-// MARK: - Protocol methos
+// MARK: - FineSettingViewControllerProtocol
+
 extension FineSettingViewController: FineSettingViewControllerProtocol {
-    
     func reloadData() {
         tableView.reloadData()
     }
@@ -73,14 +66,13 @@ extension FineSettingViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.countRows() ?? 0
+        return presenter.itemCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
-        
         case 0:
             guard let model = presenter?.model(index: indexPath.row),
                   let switchCell = tableView.dequeueReusableCell(withIdentifier: BaseSettingCell.identifier, for: indexPath) as? BaseSettingCell else { return UITableViewCell() }
@@ -100,7 +92,7 @@ extension FineSettingViewController: UITableViewDelegate, UITableViewDataSource 
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
-            presenter?.routeSelectFineSetting()
+            presenter.routeSelectFineSetting()
         default:
             break
         }
@@ -109,16 +101,7 @@ extension FineSettingViewController: UITableViewDelegate, UITableViewDataSource 
 
 // MARK: - NavigationBarDelegate method
 extension FineSettingViewController: NavigationBarDelegate {
-    
     func leftAction() {
         presenter?.routePop()
-    }
-}
-
-// MARK: - Pop gesture delegate method
-extension FineSettingViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }

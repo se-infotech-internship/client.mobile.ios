@@ -12,7 +12,6 @@ import Foundation
 final class ServiceLocalFile {
     
     func readLocalFile() -> Data? {
-        
         do {
             if let bundle = Bundle.main.path(forResource: "cameras_list", ofType: "json"),
                 let jsonData = try String(contentsOfFile: bundle).data(using: .utf8) {
@@ -25,7 +24,6 @@ final class ServiceLocalFile {
     }
     
     func fetchLocationList(jsonData: Data, success: @escaping ([CameraModel]) -> Void, fail: @escaping (String) -> Void) {
-        
         do {
             let decodedData = try JSONDecoder().decode([CameraModel].self, from: jsonData)
             success(decodedData)

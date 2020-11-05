@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
 
         let navigationController = UINavigationController()
-//        navigationController.navigationBar.isTranslucent = false
         navigationController.setNavigationBarHidden(true, animated: false)
         
         coordinator = AppCoordinator.shared

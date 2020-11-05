@@ -8,9 +8,13 @@
 
 import Foundation
 
+protocol FineSettingViewControllerProtocol: class {
+    func reloadData()
+}
+
 protocol FineSettingPresenterProtocol: class {
-    var view: FineSettingViewControllerProtocol? { get set }
-    func countRows() -> Int
+    var itemCount: Int { get }
+
     func model(index: Int) -> SettingItemEntity
     func viewDidLoad()
     func routePop()
@@ -21,14 +25,20 @@ protocol FineSettingPresenterProtocol: class {
 final class FineSettingPresenter {
     
     // MARK: - Protocol property
-    weak var view: FineSettingViewControllerProtocol?
+    weak var delegate: FineSettingViewControllerProtocol?
     
     // MARK: - Private property
-    private weak var coordinator = AppCoordinator.shared
     private var entity = [SettingItemEntity]()
     
-    init(view: FineSettingViewControllerProtocol) {
-        self.view = view
+    // MARK: - Public property
+    var itemCount: Int {
+        get{
+            entity.count
+        }
+    }
+    
+    init(delegate: FineSettingViewControllerProtocol) {
+        self.delegate = delegate
     }
     
     // MARK: - Private methods
@@ -38,12 +48,9 @@ final class FineSettingPresenter {
 }
 
 
-// MARK: - Protocol methods
+// MARK: - FineSettingPresenterProtocol
+
 extension FineSettingPresenter: FineSettingPresenterProtocol {
-    
-    func countRows() -> Int {
-        return entity.count
-    }
     
     func model(index: Int) -> SettingItemEntity {
         return entity[index]
@@ -54,10 +61,10 @@ extension FineSettingPresenter: FineSettingPresenterProtocol {
     }
     
     func routePop() {
-        coordinator?.popVC()
+        AppCoordinator.shared.popVC()
     }
     
     func routeSelectFineSetting() {
-        coordinator?.routeToSelectFineSetting()
+        AppCoordinator.shared.routeToSelectFineSetting()
     }
 }

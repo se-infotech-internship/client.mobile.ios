@@ -17,7 +17,6 @@ class NavigationBar: NibView {
     
     @IBOutlet private weak var titleLabel: UILabel!
     
-    
     weak var delegate: NavigationBarDelegate?
     
     func update(title: String) {

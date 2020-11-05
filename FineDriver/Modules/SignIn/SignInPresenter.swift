@@ -65,6 +65,6 @@ extension SignInPresenter: SignInPresenterProtocol {
     }
     
     func defaultDistaceLocationToCamera() {
-        defaults[.distanceToCamera] = 700
+        defaults[.distanceToCamera] = Constants.Camera.maxDistance
     }
 }

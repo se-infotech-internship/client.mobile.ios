@@ -8,9 +8,13 @@
 
 import Foundation
 
+protocol SelectFineSettingViewControllerProtocol: class {
+    func reloadData()
+}
+
 protocol SelectFineSettingPresenterProtocol: class {
-    var view: SelectFineSettingViewControllerProtocol? { get set }
-    func countRows() -> Int
+    var itemCount: Int { get }
+
     func model(index: Int) -> SelectFineEntity
     func viewDidLoad()
     func routePop()
@@ -20,14 +24,20 @@ protocol SelectFineSettingPresenterProtocol: class {
 final class SelectFineSettingPresenter {
     
     // MARK: - Protocol property
-    weak var view: SelectFineSettingViewControllerProtocol?
+    weak var delegate: SelectFineSettingViewControllerProtocol?
     
     // MARK: - Private property
-    private weak var coordinator = AppCoordinator.shared
     private var entity = [SelectFineEntity]()
     
-    init(view: SelectFineSettingViewControllerProtocol) {
-        self.view = view
+    // MARK: - Public property
+    var itemCount: Int {
+        get{
+            entity.count
+        }
+    }
+    
+    init(delegate: SelectFineSettingViewControllerProtocol) {
+        self.delegate = delegate
     }
     
     // MARK: - Private methods
@@ -36,11 +46,9 @@ final class SelectFineSettingPresenter {
     }
 }
 
-// MARK: - Protocol methods
+// MARK: - SelectFineSettingPresenterProtocol
+
 extension SelectFineSettingPresenter: SelectFineSettingPresenterProtocol {
-    func countRows() -> Int {
-        return entity.count
-    }
     
     func model(index: Int) -> SelectFineEntity {
         return entity[index]
@@ -51,7 +59,7 @@ extension SelectFineSettingPresenter: SelectFineSettingPresenterProtocol {
     }
     
     func routePop() {
-        coordinator?.popVC()
+        AppCoordinator.shared.popVC()
     }
     
     func selectFineCheckmark(indexItem: Int) {
@@ -63,6 +71,6 @@ extension SelectFineSettingPresenter: SelectFineSettingPresenterProtocol {
                 model(index: index).isSelect = false
             }
         }
-        view?.reloadData()
+        delegate?.reloadData()
     }
 }

@@ -47,6 +47,7 @@ final class SplashPresenter {
         var error: NSError?
         
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            
             let reason = "Потрібно Вас ідентифікувати"
             
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [weak self] success, authenticationError in
@@ -54,7 +55,9 @@ final class SplashPresenter {
                     if success {
                         self?.routeMap()
                     } else {
+                        self?.routeAuth()
                         print("biometric error")
+                        print(authenticationError?.localizedDescription)
                     }
                 }
             }

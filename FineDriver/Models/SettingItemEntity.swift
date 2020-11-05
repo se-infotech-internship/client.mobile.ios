@@ -72,7 +72,7 @@ func mockCameraSetting() -> [SettingItemEntity] {
     let one = SwitchItemEntity(title: "ВІДОБРАЖАТИ ВСІ КАМЕРИ", isOn: true)
     let two = SwitchItemEntity(title: "ВІДОБРАЖАТИ TRUCAM", isOn: true)
     let three = SwitchItemEntity(title: "ВІДОБРАЖАТИ КАМЕРИ ТІЛЬКИ ПО ОБРАНОМУ МАРШРУТУ", isOn: false)
-    let four = StepperEntity(title: "РАДІУС ЗОНИ ПОПЕРЕДЖЕННЯ", distance: 700)
+    let four = StepperEntity(title: "РАДІУС ЗОНИ ПОПЕРЕДЖЕННЯ", distance: Constants.Camera.maxDistance)
     
     return [one, two, three, four]
 }

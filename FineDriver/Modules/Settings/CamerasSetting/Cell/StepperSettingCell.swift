@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class StepperSettingCell: UITableViewCell {
     
     // MARK: - Private outlets
@@ -35,7 +33,7 @@ class StepperSettingCell: UITableViewCell {
     @IBAction private func didTapPlusMeters(_ sender: Any) {
         
         guard let entity = entity else { return }
-        if entity.distance < 700 {
+        if entity.distance < Constants.Camera.maxDistance {
             entity.distance += 100
             distanceLabel.text = "\(entity.distance) м"
             

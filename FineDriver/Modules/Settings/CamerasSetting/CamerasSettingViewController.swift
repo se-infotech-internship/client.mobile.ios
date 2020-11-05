@@ -8,16 +8,10 @@
 
 import UIKit
 
-protocol CamerasSettingViewProtocol: class {
-    func reloadData()
-}
-
 final class CamerasSettingViewController: UIViewController {
 
     private enum Constants {
-        
         enum TableView {
-            
             static let height: CGFloat = 56.0
         }
     }
@@ -27,7 +21,7 @@ final class CamerasSettingViewController: UIViewController {
     @IBOutlet private weak var customNavigationBar: NavigationBar!
     
     // MARK: - Public property
-    var presenter: CamerasSettingPresenterProtocol?
+    var presenter: CamerasSettingPresenterProtocol!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -36,7 +30,6 @@ final class CamerasSettingViewController: UIViewController {
         setupTableView()
         setupNavigationBar()
         presenter?.viewDidLoad()
-        reloadData()
     }
     
     // MARK: - Private method
@@ -66,13 +59,12 @@ extension CamerasSettingViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.countRows() ?? 0
+        return presenter.itemCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.row {
-        
         case 0...2:
             guard let model = presenter?.model(index: indexPath.row) as? SwitchItemEntity,
                   let switchCell = tableView.dequeueReusableCell(withIdentifier: SwitchSettingCell.identifier, for: indexPath) as? SwitchSettingCell else { return UITableViewCell() }
@@ -89,9 +81,9 @@ extension CamerasSettingViewController: UITableViewDelegate, UITableViewDataSour
     }
 }
 
-// MARK: - Protocol methos
+// MARK: - CamerasSettingViewProtocol
+
 extension CamerasSettingViewController: CamerasSettingViewProtocol {
-    
     func reloadData() {
         tableView.reloadData()
     }
@@ -99,16 +91,7 @@ extension CamerasSettingViewController: CamerasSettingViewProtocol {
 
 // MARK: - NavigationBarDelegate method
 extension CamerasSettingViewController: NavigationBarDelegate {
-    
     func leftAction() {
         presenter?.routePop()
-    }
-}
-
-// MARK: - Pop gesture delegate method
-extension CamerasSettingViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }

@@ -13,4 +13,8 @@ struct Constants {
     static let googleMapKey = "AIzaSyB0AQ_yfD7J6JWmQsqiYh_HzvBb1Jr1xKs"
     
     static let bundleId = "ua.infotekh.fineDriver"
+    
+    struct Camera {
+        static let maxDistance = 700
+    }
 }

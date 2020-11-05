@@ -8,16 +8,10 @@
 
 import UIKit
 
-protocol SelectFineSettingViewControllerProtocol: class {
-    func reloadData()
-}
-
 final class SelectFineSettingViewController: UIViewController {
     
     private enum Constants {
-        
         enum TableView {
-            
             static let height: CGFloat = 56.0
         }
     }
@@ -27,7 +21,7 @@ final class SelectFineSettingViewController: UIViewController {
     @IBOutlet private weak var customNavigationBar: NavigationBar!
     
     // MARK: - Public property
-    var presenter: SelectFineSettingPresenterProtocol?
+    var presenter: SelectFineSettingPresenterProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +29,6 @@ final class SelectFineSettingViewController: UIViewController {
         setupTableView()
         setupNavigationBar()
         presenter?.viewDidLoad()
-        reloadData()
     }
 
     // MARK: - Private method
@@ -64,24 +57,24 @@ extension SelectFineSettingViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.countRows() ?? 0
+        return presenter.itemCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cellModel = presenter?.model(index: indexPath.row),
-              let cell = tableView.dequeueReusableCell(withIdentifier: SettingFineCell.identifier, for: indexPath) as? SettingFineCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingFineCell.identifier, for: indexPath) as? SettingFineCell else { return UITableViewCell() }
+        let cellModel = presenter.model(index: indexPath.row)
         cell.update(entity: cellModel)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.selectFineCheckmark(indexItem: indexPath.row)
+        presenter.selectFineCheckmark(indexItem: indexPath.row)
     }
 }
 
-// MARK: - Protocol methos
+// MARK: - SelectFineSettingViewControllerProtocol
+
 extension SelectFineSettingViewController: SelectFineSettingViewControllerProtocol {
-    
     func reloadData() {
         tableView.reloadData()
     }
@@ -89,16 +82,7 @@ extension SelectFineSettingViewController: SelectFineSettingViewControllerProtoc
 
 // MARK: - NavigationBarDelegate method
 extension SelectFineSettingViewController: NavigationBarDelegate {
-    
     func leftAction() {
         presenter?.routePop()
-    }
-}
-
-// MARK: - Pop gesture delegate method
-extension SelectFineSettingViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }

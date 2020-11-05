@@ -8,9 +8,13 @@
 
 import Foundation
 
+protocol CamerasSettingViewProtocol: class {
+    func reloadData()
+}
+
 protocol CamerasSettingPresenterProtocol: class {
-    var view: CamerasSettingViewProtocol? { get set }
-    func countRows() -> Int
+    var itemCount: Int { get }
+
     func model(index: Int) -> SettingItemEntity
     func viewDidLoad()
     func routePop()
@@ -19,14 +23,20 @@ protocol CamerasSettingPresenterProtocol: class {
 final class CamerasSettingPresenter {
     
     // MARK: - Protocol property
-    weak var view: CamerasSettingViewProtocol?
+    weak var delegate: CamerasSettingViewProtocol?
     
     // MARK: - Private property
-    private weak var coordinator = AppCoordinator.shared
     private var entity = [SettingItemEntity]()
     
-    init(view: CamerasSettingViewProtocol) {
-        self.view = view
+    // MARK: - Public property
+    var itemCount: Int {
+        get{
+            entity.count
+        }
+    }
+    
+    init(delegate: CamerasSettingViewProtocol) {
+        self.delegate = delegate
     }
     
     // MARK: - Private methods
@@ -35,12 +45,9 @@ final class CamerasSettingPresenter {
     }
 }
 
-// MARK: - Protocol methods
+// MARK: - CamerasSettingPresenterProtocol
+
 extension CamerasSettingPresenter: CamerasSettingPresenterProtocol {
-    
-    func countRows() -> Int {
-        return entity.count
-    }
     
     func model(index: Int) -> SettingItemEntity {
         return entity[index]
@@ -51,6 +58,6 @@ extension CamerasSettingPresenter: CamerasSettingPresenterProtocol {
     }
     
     func routePop() {
-        coordinator?.popVC()
+        AppCoordinator.shared.popVC()
     }
 }

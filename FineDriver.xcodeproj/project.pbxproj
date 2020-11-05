@@ -287,6 +287,7 @@
 		47B532842514DB8B006EAAB2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				47BA667B255438AC00DAA4FA /* Search */,
 				47631D80254C283D00CC867A /* Base */,
 				47063685251DFEB9006F7F41 /* Splash */,
 				4706367C251DFE90006F7F41 /* SignIn */,
@@ -302,7 +303,7 @@
 		47B532872514DB95006EAAB2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				92CAF0E5252F7C190080F46E /* 02869.mp3 */,
+				47BA667C255438F700DAA4FA /* Audio */,
 				92CAF0CF252CF47E0080F46E /* cameras_list.json */,
 				9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */,
 				9AA51BF1251C0C33000AB6F1 /* Images.xcassets */,
@@ -372,6 +373,22 @@
 				47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		47BA667B255438AC00DAA4FA /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				92D54502253E39550091D0D5 /* SearchResultsController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		47BA667C255438F700DAA4FA /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				92CAF0E5252F7C190080F46E /* 02869.mp3 */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		92001DAF2525FA6600CAE036 /* Views */ = {
@@ -517,7 +534,6 @@
 				9AA51C10251C1253000AB6F1 /* MapPresenter.swift */,
 				9AA51C0E251C122A000AB6F1 /* MapViewController.swift */,
 				9AA51C0C251C1208000AB6F1 /* MapViewController.xib */,
-				92D54502253E39550091D0D5 /* SearchResultsController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";

@@ -103,7 +103,7 @@ final class AppCoordinator: CoordinatorProtocol {
     
     func routeToCamerasSetting() {
         let viewController = CamerasSettingViewController()
-        let presenter = CamerasSettingPresenter(view: viewController)
+        let presenter = CamerasSettingPresenter(delegate: viewController)
         viewController.presenter = presenter
         
         navigationController?.pushViewController(viewController, animated: true)
@@ -111,7 +111,7 @@ final class AppCoordinator: CoordinatorProtocol {
     
     func routeToFineSetting() {
         let viewController = FineSettingViewController()
-        let presenter = FineSettingPresenter(view: viewController)
+        let presenter = FineSettingPresenter(delegate: viewController)
         viewController.presenter = presenter
         
         navigationController?.pushViewController(viewController, animated: true)
@@ -119,7 +119,7 @@ final class AppCoordinator: CoordinatorProtocol {
     
     func routeToSelectFineSetting() {
         let viewController = SelectFineSettingViewController()
-        let presenter = SelectFineSettingPresenter(view: viewController)
+        let presenter = SelectFineSettingPresenter(delegate: viewController)
         viewController.presenter = presenter
         
         navigationController?.pushViewController(viewController, animated: true)
