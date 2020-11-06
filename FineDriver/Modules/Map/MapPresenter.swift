@@ -11,10 +11,14 @@ import GoogleMaps
 import AVFoundation
 import GooglePlaces
 
+protocol MapViewControllerProtocol: class {
+    func drawPath(from polyStr: String)
+}
+
 protocol MapPresenterProtocol: class {
     var camerasEntity: [CameraEntity] { get set }
     
-    func viewDidLoad()
+    func fetchCameras()
     func markersLocation() -> ([CLLocationCoordinate2D])
     func routeToMenu()
     func cameraInfo() -> [CameraEntity]
@@ -25,14 +29,13 @@ protocol MapPresenterProtocol: class {
     func fetchDistanceToCameraLocation() -> Int
 }
 
-class MapPresenter {
+final class MapPresenter {
     
     // MARK: - Protocol property
     weak var delegate: MapViewControllerProtocol?
     var camerasEntity: [CameraEntity] = []
     
     // MARK: - Private property
-    private weak var coordinator = AppCoordinator.shared
     private let localService = ServiceLocalFile()
     private var player: AVAudioPlayer?
     
@@ -41,30 +44,27 @@ class MapPresenter {
         self.delegate = delegate
     }
     
-    // MARK: - Private method
-    private func fetchCameras() {
-        
+}
+
+// MARK: - MapPresenterProtocol
+
+extension MapPresenter: MapPresenterProtocol {
+    
+    func fetchCameras() {
         localService.fetchLocationList(jsonData: localService.readLocalFile() ?? Data(), success: { [weak self] (cameras) in
-            
-            guard let self = self else { return }
-            
             for camera in cameras {
-                
-                self.camerasEntity.append(CameraEntity(address: camera.address,
-                                                       latitude: camera.latitude,
-                                                       longitude: camera.longitude,
-                                                       direction: camera.direction,
-                                                       speed: camera.speed,
-                                                       state: camera.state))
+                self?.camerasEntity
+                    .append(CameraEntity(address: camera.address,
+                                       latitude: camera.latitude,
+                                       longitude: camera.longitude,
+                                       direction: camera.direction,
+                                       speed: camera.speed,
+                                       state: camera.state))
             }
         }, fail: { (error) in
             debugPrint("fetchLocationList - \(error)")
         })
     }
-}
-
-// MARK: - Protocol methods
-extension MapPresenter: MapPresenterProtocol {
     
     func fetchRoute(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) {
         
@@ -76,24 +76,17 @@ extension MapPresenter: MapPresenterProtocol {
         let task = session.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
             
             if data == nil {
-                
                 print(error!.localizedDescription)
             } else {
-                
                 do {
-                    
                     if let json : [String: Any] = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
                         
                         let preRoutes = json["routes"] as! NSArray
                         let routes = preRoutes[0] as! NSDictionary
                         let routeOverviewPolyline:NSDictionary = routes.value(forKey: "overview_polyline") as! NSDictionary
                         let polyString = routeOverviewPolyline.object(forKey: "points") as! String
-                        
-                        guard let self = self, let view = self.delegate else { return }
-                        
-                        view.drawPath(from: polyString)
+                        self?.delegate?.drawPath(from: polyString)
                     }
-                    
                 } catch {
                     print("parsing error")
                 }
@@ -102,17 +95,20 @@ extension MapPresenter: MapPresenterProtocol {
         task.resume()
     }
     
-    
     func markersLocation() -> ([CLLocationCoordinate2D]) {
-        return camerasEntity.map { CLLocationCoordinate2D(latitude: $0.latitude ?? 0, longitude: $0.longitude ?? 0) }
-    }
-    
-    func viewDidLoad() {
-        fetchCameras()
+        return camerasEntity.compactMap {
+            if let latitude = $0.latitude,
+               let longitude = $0.longitude {
+                return CLLocationCoordinate2D(latitude: latitude,
+                                              longitude: longitude)
+            }else{
+                return nil
+            }
+        }
     }
     
     func routeToMenu() {
-        coordinator?.routeToMenu()
+        AppCoordinator.shared.routeToMenu()
     }
     
     func cameraInfo() -> [CameraEntity] {
@@ -125,7 +121,6 @@ extension MapPresenter: MapPresenterProtocol {
     
     func playSound(forResource: String, withExtension: String = "mp3") {
         guard let url = Bundle.main.url(forResource: forResource, withExtension: withExtension) else { return }
-        
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)

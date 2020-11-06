@@ -70,4 +70,25 @@ extension AppDelegate {
     }
 }
 
+// MARK: - UNUserNotificationCenterDelegate
+
+extension MapViewController: UNUserNotificationCenterDelegate {
+    func requestNotificationAuthorization() {
+        let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
+        userNotificationCenter.requestAuthorization(options: authOptions) { (success, error) in
+            if let error = error {
+                print("Error: ", error)
+            }
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+}
+
 

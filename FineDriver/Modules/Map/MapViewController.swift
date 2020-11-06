@@ -10,26 +10,18 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 import GooglePlaces
-import UserNotifications
 
-
-protocol MapViewControllerProtocol: class {
-    func drawPath(from polyStr: String)
-}
-
-class MapViewController: BaseViewController {
+final class MapViewController: BaseViewController {
     
     private enum Constants {
         enum Default {
             static let zoom: Float = 17
         }
-        
         enum UkrainePosition {
             static let lat: Double = 49.0392207
             static let long: Double = 29.8098225
             static let zoom: Float = 7
         }
-        
         enum PopUp {
             static let x: Double = 0
             static let y: Double = -156
@@ -49,7 +41,7 @@ class MapViewController: BaseViewController {
     fileprivate var gmsFetcher: GMSAutocompleteFetcher!
     
     // MARK: - Public property
-    var presenter: MapPresenterProtocol?
+    var presenter: MapPresenterProtocol!
     var resultsArray = [String]()
     let userNotificationCenter = UNUserNotificationCenter.current()
     var backgroundTask: UIBackgroundTaskIdentifier = .invalid
@@ -68,39 +60,19 @@ class MapViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter?.viewDidLoad()
-        setCurrentLocation()
-        setupMapView()
+        fetchCameras()
+        configureUI()
+        configureLocationManager()
         setupMarkers()
-        setupView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    fileprivate func fetchCameras() {
+        presenter.fetchCameras()
     }
     
     // MARK: - Private methods
     
-    fileprivate func setupView() {
-        requestNotificationAuthorization()
-        userNotificationCenter.delegate = self
-        searchResultController = SearchResultsController()
-        searchResultController.delegate = self
-        gmsFetcher = GMSAutocompleteFetcher()
-        gmsFetcher.delegate = self
-    }
-    
-    fileprivate func setCurrentLocation() {
-        
-        var bounds = GMSCoordinateBounds()
-        bounds = bounds.includingCoordinate(CLLocationCoordinate2D(latitude: Constants.UkrainePosition.lat, longitude: Constants.UkrainePosition.long))
-        
-        mapView.animate(with: GMSCameraUpdate.fit(bounds))
-        mapView.animate(toZoom: Constants.UkrainePosition.zoom)
-        mapView.delegate = self
-        mapView.isMyLocationEnabled = true
-        
+    fileprivate func configureLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.distanceFilter = 1
@@ -110,13 +82,23 @@ class MapViewController: BaseViewController {
         locationManager.requestAlwaysAuthorization()
     }
     
-    private func setupMapView() {
+    fileprivate func configureUI() {
+        var bounds = GMSCoordinateBounds()
+        bounds = bounds.includingCoordinate(CLLocationCoordinate2D(latitude: Constants.UkrainePosition.lat, longitude: Constants.UkrainePosition.long))
+        
+        mapView.animate(with: GMSCameraUpdate.fit(bounds))
+        mapView.animate(toZoom: Constants.UkrainePosition.zoom)
+        mapView.delegate = self
+        mapView.isMyLocationEnabled = true
         mapView.isTrafficEnabled = true
+    
+        searchResultController = SearchResultsController()
+        searchResultController.delegate = self
+        gmsFetcher = GMSAutocompleteFetcher()
+        gmsFetcher.delegate = self
     }
     
     private func setupMarkers() {
-        
-        guard let presenter = presenter else { return }
         let coordinates = presenter.markersLocation()
         let cameraInfo = presenter.cameraInfo()
         var cameraData = CameraEntity()
@@ -128,7 +110,9 @@ class MapViewController: BaseViewController {
             marker.position.latitude = element.latitude
             marker.position.longitude = element.longitude
             
-            if element.latitude == cameraInfo[index].latitude && element.longitude == cameraInfo[index].longitude {
+            if element.latitude == cameraInfo[index].latitude &&
+                element.longitude == cameraInfo[index].longitude {
+                
                 cameraData.address = cameraInfo[index].address
                 cameraData.direction = cameraInfo[index].direction
                 cameraData.speed = cameraInfo[index].speed
@@ -142,10 +126,14 @@ class MapViewController: BaseViewController {
                     marker.icon = UIImage(named: "Camera_off")
                 }
                 
-                circle = GMSCircle(position: CLLocationCoordinate2D(latitude: element.latitude,
-                                                                    longitude: element.longitude),
-                                   radius: CLLocationDistance(presenter.fetchDistanceToCameraLocation()))
-                circle.fillColor = UIColor(red: 0.992, green: 0.818, blue: 0.818, alpha: 0.3)
+                circle = GMSCircle(position:
+                    CLLocationCoordinate2D(latitude: element.latitude,
+                    longitude: element.longitude),
+                    radius:CLLocationDistance(presenter.fetchDistanceToCameraLocation()))
+                circle.fillColor = UIColor(red: 0.992,
+                                           green: 0.818,
+                                           blue: 0.818,
+                                           alpha: 0.3)
                 circle.strokeColor = .clear
             }
             
@@ -193,20 +181,6 @@ class MapViewController: BaseViewController {
         presenter?.playSound(forResource: forResource, withExtension: withExtension)
     }
     
-    private func registerBackgroundTask() {
-        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-            self?.endBackgroundTask()
-        }
-        assert(backgroundTask != .invalid)
-    }
-    
-    private func endBackgroundTask() {
-        print("Background task ended.")
-        UIApplication.shared.endBackgroundTask(backgroundTask)
-        backgroundTask = .invalid
-    }
-    
-    
     // MARK: - Private action
     @IBAction private func didTapSearchButton(_ sender: Any) {
         let searchController = UISearchController(searchResultsController: searchResultController)
@@ -220,14 +194,12 @@ class MapViewController: BaseViewController {
     
     @IBAction private func didTapCurrentLocationButton(_ sender: Any) {
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude,
-                                                           longitude: currentLocation.longitude))
+                       longitude: currentLocation.longitude))
         isCenterCamera = true
     }
     
     @IBAction private func didTapSoundButton(_ sender: Any) {
-        
         isCheckButtonSound = !isCheckButtonSound
-        
         if isCheckButtonSound {
             soundButton.setImage(UIImage(named: "Sound_off"), for: .normal)
             presenter?.stopSound()
@@ -235,9 +207,40 @@ class MapViewController: BaseViewController {
             soundButton.setImage(UIImage(named: "volume-2"), for: .normal)
         }
     }
+    
+    fileprivate func sendNotification(address: String, warning: String = "Неподалiк камера!", speedLimit: String) {
+    
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = "\(warning) \(presenter.fetchDistanceToCameraLocation()) м"
+        notificationContent.subtitle = address
+        notificationContent.body = "Дозволена швидкість \(speedLimit) км/г"
+        notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName("02869.mp3"))
+        
+        if let url = Bundle.main.url(forResource: "dune",
+                                     withExtension: "png") {
+            if let attachment = try? UNNotificationAttachment(identifier: "dune",
+                                                              url: url,
+                                                              options: nil) {
+                notificationContent.attachments = [attachment]
+            }
+        }
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
+                                                        repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString,
+                                            content: notificationContent,
+                                            trigger: trigger)
+        
+        userNotificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Notification Error: ", error)
+            }
+        }
+    }
 }
 
-// MARK: - Protocol methods
+// MARK: - MapViewControllerProtocol
+
 extension MapViewController: MapViewControllerProtocol {
     
     func drawPath(from polyStr: String) {
@@ -301,7 +304,6 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.last else { return }
         
-        // TODO: - Speed
         guard let speed = manager.location?.speed else { return }
         speedLabel.text = speed < 0 ? "0 км/г" : "\(Int(speed * 3.6)) км/г"
         
@@ -320,8 +322,8 @@ extension MapViewController: CLLocationManagerDelegate {
             allCameras.append(CLLocation(latitude: element.latitude ?? 0, longitude: element.longitude ?? 0))
             
             let nearCamera = allCameras.min(by: { $0.distance(from: CLLocation(latitude: currentLocation.latitude,
-                                                                                    longitude: currentLocation.longitude)) < $1.distance(from: CLLocation(latitude: currentLocation.latitude,
-                                                                                                                                                          longitude: currentLocation.longitude)) })
+                    longitude: currentLocation.longitude)) < $1.distance(from: CLLocation(latitude: currentLocation.latitude,
+                                  longitude: currentLocation.longitude)) })
             guard let camera = nearCamera else { return }
             
             if camera.coordinate.latitude == element.latitude && camera.coordinate.longitude == element.longitude {
@@ -400,7 +402,8 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 }
 
-// MARK: Search delegates
+// MARK:- Search delegates
+
 extension MapViewController: UISearchBarDelegate, LocateOnTheMap, GMSAutocompleteFetcherDelegate {
     
     func locateWithLongitude(_ lon: Double, andLatitude lat: Double, andTitle title: String) {
@@ -425,58 +428,5 @@ extension MapViewController: UISearchBarDelegate, LocateOnTheMap, GMSAutocomplet
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.resultsArray.removeAll()
         gmsFetcher?.sourceTextHasChanged(searchText)
-    }
-}
-
-// MARK: - UserNotification
-extension MapViewController: UNUserNotificationCenterDelegate {
-    func requestNotificationAuthorization() {
-        let authOptions = UNAuthorizationOptions.init(arrayLiteral: .alert, .badge, .sound)
-        
-        self.userNotificationCenter.requestAuthorization(options: authOptions) { (success, error) in
-            if let error = error {
-                print("Error: ", error)
-            }
-        }
-    }
-    
-    func sendNotification(address: String, warning: String = "Неподалiк камера!", speedLimit: String) {
-        
-        guard let presenter = presenter else { return }
-        
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = "\(warning) \(presenter.fetchDistanceToCameraLocation()) м"
-        notificationContent.subtitle = address
-        notificationContent.body = "Дозволена швидкість \(speedLimit) км/г"
-        notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName("02869.mp3"))
-        
-        if let url = Bundle.main.url(forResource: "dune",
-                                     withExtension: "png") {
-            if let attachment = try? UNNotificationAttachment(identifier: "dune",
-                                                              url: url,
-                                                              options: nil) {
-                notificationContent.attachments = [attachment]
-            }
-        }
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
-                                                        repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString,
-                                            content: notificationContent,
-                                            trigger: trigger)
-        
-        userNotificationCenter.add(request) { (error) in
-            if let error = error {
-                print("Notification Error: ", error)
-            }
-        }
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        completionHandler()
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .badge, .sound])
     }
 }
