@@ -18,7 +18,9 @@ protocol MapViewControllerProtocol: class {
 protocol MapPresenterProtocol: class {
     var camerasEntity: [CameraEntity] { get set }
     
+    func oncomingCamera()
     func fetchCameras()
+    func setupMarkers(mapView: GMSMapView)
     func markersLocation() -> ([CLLocationCoordinate2D])
     func routeToMenu()
     func cameraInfo() -> [CameraEntity]
@@ -107,6 +109,51 @@ extension MapPresenter: MapPresenterProtocol {
         }
     }
     
+    func setupMarkers(mapView: GMSMapView) {
+        let coordinates = markersLocation()
+        let camera = cameraInfo()
+        var cameraData = CameraEntity()
+        var circle = GMSCircle()
+        
+        for (index, element) in coordinates.enumerated() {
+            
+            let marker = GMSMarker()
+            marker.position.latitude = element.latitude
+            marker.position.longitude = element.longitude
+            
+            if element.latitude == camera[index].latitude &&
+                element.longitude == camera[index].longitude {
+                
+                cameraData.address = camera[index].address
+                cameraData.direction = camera[index].direction
+                cameraData.speed = camera[index].speed
+                cameraData.state = camera[index].state
+                cameraData.latitude = camera[index].latitude
+                cameraData.longitude = camera[index].longitude
+                
+                if camera[index].state == "on" {
+                    marker.icon = UIImage(named: "Marker")
+                } else {
+                    marker.icon = UIImage(named: "Camera_off")
+                }
+                
+                circle = GMSCircle(position:
+                    CLLocationCoordinate2D(latitude: element.latitude,
+                    longitude: element.longitude),
+                    radius:CLLocationDistance(fetchDistanceToCameraLocation()))
+                circle.fillColor = UIColor(red: 0.992,
+                                           green: 0.818,
+                                           blue: 0.818,
+                                           alpha: 0.3)
+                circle.strokeColor = .clear
+            }
+            
+            marker.userData = cameraData
+            marker.map = mapView
+            circle.map = mapView
+        }
+    }
+    
     func routeToMenu() {
         AppCoordinator.shared.routeToMenu()
     }
@@ -119,7 +166,19 @@ extension MapPresenter: MapPresenterProtocol {
         return camerasEntity[index]
     }
     
-    func playSound(forResource: String, withExtension: String = "mp3") {
+    func fetchDistanceToCameraLocation() -> Int {
+        let defaults = UserDefaults.standard
+        return defaults[.distanceToCamera]
+    }
+    
+    //MARK:- Sound
+    func oncomingCamera() {
+        playSound()
+    }
+    
+    func playSound(forResource: String = "02869", withExtension: String = "mp3") {
+        stopSound()
+        
         guard let url = Bundle.main.url(forResource: forResource, withExtension: withExtension) else { return }
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -137,8 +196,4 @@ extension MapPresenter: MapPresenterProtocol {
         player.stop()
     }
     
-    func fetchDistanceToCameraLocation() -> Int {
-        let defaults = UserDefaults.standard
-        return defaults[.distanceToCamera]
-    }
 }
