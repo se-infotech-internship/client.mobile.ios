@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -14,7 +14,6 @@
             <connections>
                 <outlet property="avatarImageView" destination="xce-LN-y9t" id="jGS-qx-2g7"/>
                 <outlet property="tableView" destination="Z63-lu-aOM" id="2Mn-Jt-ULd"/>
-                <outlet property="topConstraint" destination="har-jO-IEZ" id="oZK-uE-wQ8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="VL6-s6-bxv"/>
             </connections>
         </placeholder>
@@ -47,7 +46,6 @@
                         <constraint firstItem="xce-LN-y9t" firstAttribute="centerX" secondItem="kUX-cl-Kwc" secondAttribute="centerX" id="YiI-S7-7p2"/>
                         <constraint firstAttribute="trailing" secondItem="Z63-lu-aOM" secondAttribute="trailing" constant="20" symbolic="YES" id="fnm-Y3-fbN"/>
                         <constraint firstItem="Z63-lu-aOM" firstAttribute="leading" secondItem="NdV-Fs-996" secondAttribute="leading" id="h9m-OJ-h4L"/>
-                        <constraint firstItem="Z63-lu-aOM" firstAttribute="top" secondItem="kUX-cl-Kwc" secondAttribute="top" constant="143" id="har-jO-IEZ"/>
                         <constraint firstItem="Z63-lu-aOM" firstAttribute="bottom" secondItem="NdV-Fs-996" secondAttribute="bottom" id="nJB-TO-hGs"/>
                         <constraint firstAttribute="bottom" secondItem="Z63-lu-aOM" secondAttribute="bottom" id="x2C-pS-Bf2"/>
                     </constraints>

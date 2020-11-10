@@ -75,7 +75,7 @@ extension AppDelegate {
 extension MapViewController: UNUserNotificationCenterDelegate {
     func requestNotificationAuthorization() {
         let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
-        userNotificationCenter.requestAuthorization(options: authOptions) { (success, error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (success, error) in
             if let error = error {
                 print("Error: ", error)
             }

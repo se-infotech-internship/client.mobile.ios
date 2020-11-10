@@ -35,28 +35,22 @@ final class MapViewController: BaseViewController {
     @IBOutlet fileprivate weak var speedLabel: UILabel!
     @IBOutlet fileprivate weak var soundButton: UIButton!
     @IBOutlet fileprivate weak var mapView: GMSMapView!
-    
-    fileprivate var popUpView: PopUpView?
-    fileprivate var searchResultController: SearchResultsController!
-    fileprivate var gmsFetcher: GMSAutocompleteFetcher!
-    
+
     // MARK: - Public property
     var presenter: MapPresenterProtocol!
-    var resultsArray = [String]()
-    let userNotificationCenter = UNUserNotificationCenter.current()
-    var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     
     // MARK: - Private property
     fileprivate var locationManager = CLLocationManager()
     fileprivate var currentLocation = CLLocationCoordinate2D()
     fileprivate var isCenterCamera = true
-    fileprivate var isUpdateLocation = true
-    fileprivate var isSoundMusic = false
     fileprivate var isCheckButtonSound = false
     fileprivate var oldPolylineArr = [GMSPolyline]()
-    fileprivate var isInRadiusCameraAlready = true
+    fileprivate var popUpView: PopUpView?
+    fileprivate var searchResultController: SearchResultsController!
+    fileprivate var gmsFetcher: GMSAutocompleteFetcher!
+    fileprivate var resultsArray = [String]()
     
-    // MARK: LifeCycle
+    //MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,9 +96,9 @@ final class MapViewController: BaseViewController {
         gmsFetcher.delegate = self
     }
     
-    //MARK: PopUP
+    //MARK:- Popup
     
-    private func setupPopUpView() {
+    fileprivate func setupPopUpView() {
         popUpView = PopUpView(frame:
                         CGRect(x: Constants.PopUp.x,
                                 y: Constants.PopUp.y,
@@ -140,15 +134,16 @@ final class MapViewController: BaseViewController {
         popUpView?.removeFromSuperview()
     }
     
-    // MARK: - Private action
+    // MARK: - Private actions
+    
     @IBAction private func didTapSearchButton(_ sender: Any) {
         let searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchBar.delegate = self
-        self.present(searchController, animated: true, completion: nil)
+        present(searchController, animated: true, completion: nil)
     }
     
     @IBAction private func didTapMenuButton(_ sender: Any) {
-        presenter?.routeToMenu()
+        presenter.routeToMenu()
     }
     
     @IBAction private func didTapCurrentLocationButton(_ sender: Any) {
@@ -159,42 +154,16 @@ final class MapViewController: BaseViewController {
     
     @IBAction private func didTapSoundButton(_ sender: Any) {
         isCheckButtonSound = !isCheckButtonSound
+        soundButton.isSelected = isCheckButtonSound
         if isCheckButtonSound {
-            soundButton.setImage(UIImage(named: "Sound_off"), for: .normal)
             presenter?.stopSound()
-        } else {
-            soundButton.setImage(UIImage(named: "volume-2"), for: .normal)
         }
     }
     
     fileprivate func sendNotification(address: String, warning: String = "Неподалiк камера!", speedLimit: String) {
-    
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = "\(warning) \(presenter.fetchDistanceToCameraLocation()) м"
-        notificationContent.subtitle = address
-        notificationContent.body = "Дозволена швидкість \(speedLimit) км/г"
-        notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName("02869.mp3"))
-        
-        if let url = Bundle.main.url(forResource: "dune",
-                                     withExtension: "png") {
-            if let attachment = try? UNNotificationAttachment(identifier: "dune",
-                                                              url: url,
-                                                              options: nil) {
-                notificationContent.attachments = [attachment]
-            }
-        }
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
-                                                        repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString,
-                                            content: notificationContent,
-                                            trigger: trigger)
-        
-        userNotificationCenter.add(request) { (error) in
-            if let error = error {
-                print("Notification Error: ", error)
-            }
-        }
+        presenter.sendNotification(address: address,
+                                   warning: warning,
+                                   speedLimit: speedLimit)
     }
 }
 
@@ -303,13 +272,13 @@ extension MapViewController: CLLocationManagerDelegate {
         }
     }
     
-    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
+    func monitorRegionAtLocation(center: CLLocationCoordinate2D,
+                                 identifier: String ) {
         
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             
-            guard let distance = presenter?.fetchDistanceToCameraLocation() else { return }
+            let distance = presenter.fetchDistanceToCameraLocation()
             let maxDistance = CLLocationDistance(distance)
-            
             let region = CLCircularRegion(center: center,
                                           radius: maxDistance,
                                           identifier: identifier)
@@ -371,27 +340,26 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: UISearchBarDelegate, LocateOnTheMap, GMSAutocompleteFetcherDelegate {
     
-    func locateWithLongitude(_ lon: Double, andLatitude lat: Double, andTitle title: String) {
+    func locateWithLongitude(_ lon: Double, lat: Double, title: String) {
         
         let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: 10)
-        self.mapView.camera = camera
-        self.presenter?.fetchRoute(from: self.currentLocation, to: CLLocationCoordinate2D(latitude: lat, longitude: lon))
+        mapView.camera = camera
+        presenter.fetchRoute(from: currentLocation, to: CLLocationCoordinate2D(latitude: lat, longitude: lon))
     }
     
     func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
         for prediction in predictions {
-            
             if let prediction = prediction as GMSAutocompletePrediction? {
-                self.resultsArray.append(prediction.attributedFullText.string)
+                resultsArray.append(prediction.attributedFullText.string)
             }
         }
-        self.searchResultController.reloadDataWithArray(self.resultsArray)
+        searchResultController.searchResults = resultsArray
     }
     
     func didFailAutocompleteWithError(_ error: Error) { } 
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.resultsArray.removeAll()
+        resultsArray.removeAll()
         gmsFetcher?.sourceTextHasChanged(searchText)
     }
 }

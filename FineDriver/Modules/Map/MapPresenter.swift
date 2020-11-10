@@ -29,6 +29,9 @@ protocol MapPresenterProtocol: class {
     func stopSound()
     func fetchRoute(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D)
     func fetchDistanceToCameraLocation() -> Int
+    func sendNotification(address: String,
+                          warning: String,
+                          speedLimit: String)
 }
 
 final class MapPresenter {
@@ -194,6 +197,40 @@ extension MapPresenter: MapPresenterProtocol {
     func stopSound() {
         guard let player = player else { return }
         player.stop()
+    }
+    
+    //MARK:- Notification
+    
+    func sendNotification(address: String,
+                          warning: String = "Неподалiк камера!",
+                          speedLimit: String) {
+    
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = "\(warning) \(fetchDistanceToCameraLocation()) м"
+        notificationContent.subtitle = address
+        notificationContent.body = "Дозволена швидкість \(speedLimit) км/г"
+        notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName("02869.mp3"))
+        
+        if let url = Bundle.main.url(forResource: "dune",
+                                     withExtension: "png") {
+            if let attachment = try? UNNotificationAttachment(identifier: "dune",
+                                                              url: url,
+                                                              options: nil) {
+                notificationContent.attachments = [attachment]
+            }
+        }
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
+                                                        repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString,
+                                            content: notificationContent,
+                                            trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error {
+                print("Notification Error: ", error)
+            }
+        }
     }
     
 }

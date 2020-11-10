@@ -9,68 +9,65 @@
 import UIKit
 
 protocol LocateOnTheMap: class {
-    func locateWithLongitude(_ lon:Double, andLatitude lat:Double, andTitle title: String)
+    func locateWithLongitude(_ lon: Double,
+                                lat: Double,
+                                title: String)
 }
 
-class SearchResultsController: UITableViewController {
+final class SearchResultsController: UITableViewController {
     
-    var searchResults: [String]!
+    public var searchResults: [String]! {
+        didSet{
+            tableView.reloadData()
+        }
+    }
     weak var delegate: LocateOnTheMap!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchResults = Array()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellIdentifier")
         
+        searchResults = Array()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellIdentifier")
     }
     
+    //MARK:- UITableViewDelegate, UITableViewDataSource
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.searchResults.count
+        return searchResults.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier", for: indexPath)
-        
-        cell.textLabel?.text = self.searchResults[indexPath.row]
+        cell.textLabel?.text = searchResults[indexPath.row]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // 2
-        self.dismiss(animated: true, completion: nil)
-        // 2
+        dismiss(animated: true, completion: nil)
+        
         guard let urlpath = "https://maps.googleapis.com/maps/api/geocode/json?address=\(self.searchResults[indexPath.row])&key=\(Constants.googleMapKey)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         print("urlPath = \(urlpath)")
         guard let url = URL(string: urlpath) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-            
-            URLSession.shared.dataTask(with: request) { [weak self] (data, responce, error) in
-                guard let jsonData = data else { return }
-                print("jsonData = \(jsonData)")
-                if let jsonResult = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as? [String: Any] {
-                    let location: LocationModel? = LocationModel(json: jsonResult)
-                    guard let long = location?.long,
-                          let lat = location?.lat else { return }
-                    
-                    DispatchQueue.main.async {
-                        self?.delegate.locateWithLongitude(long, andLatitude: lat, andTitle: "")
-                    }
+        URLSession.shared.dataTask(with: request) { [weak self] (data, responce, error) in
+            guard let jsonData = data else { return }
+            print("jsonData = \(jsonData)")
+            if let jsonResult = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as? [String: Any] {
+                let location: LocationModel? = LocationModel(json: jsonResult)
+                guard let long = location?.long,
+                      let lat = location?.lat else { return }
+                
+                DispatchQueue.main.async {
+                    self?.delegate.locateWithLongitude(long, lat: lat, title: "")
                 }
-            }.resume()
-    }
-    
-    func reloadDataWithArray(_ array:[String]){
-        self.searchResults = array
-        self.tableView.reloadData()
+            }
+        }.resume()
     }
 }
