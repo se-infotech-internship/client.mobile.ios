@@ -43,6 +43,8 @@ final class AppCoordinator: CoordinatorProtocol {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
+    //MARK:- Navigate
+    
     func routeToAuth() {
         KeychainStorage.accessToken = nil
         
@@ -123,5 +125,15 @@ final class AppCoordinator: CoordinatorProtocol {
         viewController.presenter = presenter
         
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    //MARK:- Get
+    
+    func getSearchResults() -> SearchResultsController {
+        let viewController = SearchResultsController()
+        let presenter = SearchResultsPresenter(delegate: viewController)
+        viewController.presenter = presenter
+        
+        return viewController
     }
 }

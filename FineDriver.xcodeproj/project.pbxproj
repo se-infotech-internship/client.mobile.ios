@@ -20,6 +20,7 @@
 		47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B5326D2514CB5E006EAAB2 /* LaunchScreen.storyboard */; };
 		47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */; };
 		47BC2AD625519F840042A201 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BC2AD525519F840042A201 /* UINavigationController+Extensions.swift */; };
+		47FCB2F8255D407A0009CE61 /* SearchResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCB2F7255D407A0009CE61 /* SearchResultsPresenter.swift */; };
 		9167D5E7C899946F444F6C27 /* Pods_FineDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DD5B6F486C2D0F5CF97B2A /* Pods_FineDriver.framework */; };
 		92001DAD2525C0E700CAE036 /* GMSCoordinateBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */; };
 		920E55F3253061BD0082CF6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920E55F1253061BD0082CF6F /* SettingsViewController.swift */; };
@@ -104,6 +105,7 @@
 		47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		47B532922514DD84006EAAB2 /* FineDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FineDriver.entitlements; sourceTree = "<group>"; };
 		47BC2AD525519F840042A201 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
+		47FCB2F7255D407A0009CE61 /* SearchResultsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsPresenter.swift; sourceTree = "<group>"; };
 		49835E0D39478AF6F454BDBF /* Pods-FineDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineDriver.debug.xcconfig"; path = "Target Support Files/Pods-FineDriver/Pods-FineDriver.debug.xcconfig"; sourceTree = "<group>"; };
 		92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMSCoordinateBounds.swift; sourceTree = "<group>"; };
 		920E55F1253061BD0082CF6F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				92D54502253E39550091D0D5 /* SearchResultsController.swift */,
+				47FCB2F7255D407A0009CE61 /* SearchResultsPresenter.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				92001DAD2525C0E700CAE036 /* GMSCoordinateBounds.swift in Sources */,
 				92CF0A7B253CABF900F92897 /* CamerasSettingViewController.swift in Sources */,
 				92D544F1253D77EE0091D0D5 /* FineSettingViewController.swift in Sources */,
+				47FCB2F8255D407A0009CE61 /* SearchResultsPresenter.swift in Sources */,
 				92CAF0D6252CF9B90080F46E /* ServiceLocalFile.swift in Sources */,
 				92CAF0D9252CFEE10080F46E /* CameraEntity.swift in Sources */,
 				47063682251DFE90006F7F41 /* SignInViewController.swift in Sources */,

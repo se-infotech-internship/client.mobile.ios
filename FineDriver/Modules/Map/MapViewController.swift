@@ -90,7 +90,7 @@ final class MapViewController: BaseViewController {
         mapView.isMyLocationEnabled = true
         mapView.isTrafficEnabled = true
     
-        searchResultController = SearchResultsController()
+        searchResultController = AppCoordinator.shared.getSearchResults()
         searchResultController.delegate = self
         gmsFetcher = GMSAutocompleteFetcher()
         gmsFetcher.delegate = self
@@ -353,7 +353,7 @@ extension MapViewController: UISearchBarDelegate, LocateOnTheMap, GMSAutocomplet
                 resultsArray.append(prediction.attributedFullText.string)
             }
         }
-        searchResultController.searchResults = resultsArray
+        searchResultController.presenter.searchResults = resultsArray
     }
     
     func didFailAutocompleteWithError(_ error: Error) { } 
