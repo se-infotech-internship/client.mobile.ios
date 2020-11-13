@@ -8,15 +8,14 @@
 
 import UIKit
 
-protocol LocateOnTheMap: class {
+protocol SearchResultsProtocol: class {
     func locateWithLongitude(lon: Double,
-                             lat: Double,
-                            title: String)
+                             lat: Double)
 }
 
 final class SearchResultsController: UITableViewController {
     
-    weak var delegate: LocateOnTheMap!
+    weak var delegate: SearchResultsProtocol!
     var presenter: SearchResultsPresenter!
     
     override func viewDidLoad() {
@@ -67,6 +66,6 @@ extension SearchResultsController: SearchResultsViewProtocol {
     }
     
     func receivedLocation(lat: Double, long: Double) {
-        delegate?.locateWithLongitude(lon: long, lat: lat, title: "")
+        delegate?.locateWithLongitude(lon: long, lat: lat)
     }
 }

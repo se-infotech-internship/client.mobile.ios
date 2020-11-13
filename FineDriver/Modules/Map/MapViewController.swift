@@ -109,11 +109,14 @@ final class MapViewController: BaseViewController {
     }
     
     fileprivate func popUpAnimation(isShow: Bool = true) {
-        hidePopUp()
+        if popUpView == nil ||
+            popUpView != nil &&
+            !self.view.subviews.contains(popUpView!) {
+            self.setupPopUpView()
+        }
         
         UIView.animate(withDuration: Constants.PopUp.animationTime) {
             if isShow {
-                self.setupPopUpView()
                 self.popUpView?.transform = CGAffineTransform(translationX:
                                             Constants.PopUp.translationX,
                                               y: self.view.safeAreaInsets.top +
@@ -149,6 +152,7 @@ final class MapViewController: BaseViewController {
     @IBAction private func didTapCurrentLocationButton(_ sender: Any) {
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude,
                        longitude: currentLocation.longitude))
+        mapView.animate(toZoom: Constants.Default.zoom)
         isCenterCamera = true
     }
     
@@ -158,12 +162,6 @@ final class MapViewController: BaseViewController {
         if isCheckButtonSound {
             presenter?.stopSound()
         }
-    }
-    
-    fileprivate func sendNotification(address: String, warning: String = "Неподалiк камера!", speedLimit: String) {
-        presenter.sendNotification(address: address,
-                                   warning: warning,
-                                   speedLimit: speedLimit)
     }
 }
 
@@ -235,7 +233,7 @@ extension MapViewController: CLLocationManagerDelegate {
               let speed = manager.location?.speed else { return }
         
         speedLabel.text = speed < 0 ? "0 км/г" : "\(Int(speed * 3.6)) км/г"
-        
+                
         if isCenterCamera {
             currentLocation = lastLocation.coordinate
             mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
@@ -306,7 +304,8 @@ extension MapViewController: CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager,
+                         didEnterRegion region: CLRegion) {
         
         #if DEBUG
         print("didEnterRegion")
@@ -316,14 +315,17 @@ extension MapViewController: CLLocationManagerDelegate {
               let cameras = presenter?.cameraInfo() else { return }
         
         for (_, element) in cameras.enumerated() {
-            if element.address == region.identifier {
-                sendNotification(address: element.address ?? "", speedLimit: "\(element.speed ?? 0)")
-                presenter.oncomingCamera()
-                popUpAnimation()
+            if element.address == region.identifier,
+               let address = element.address,
+               let speed = element.speed {
+                
+                presenter.oncomingCamera(address: address,
+                                         speedLimit: "\(speed)")
                 
                 let currentLoc = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
                 let distance = currentLoc.distance(from: CLLocation(latitude: region.center.latitude, longitude: region.center.longitude))
                 
+                popUpAnimation()
                 popUpView?.update(entity: element, metersTo: distance)
             }
         }
@@ -336,16 +338,9 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 }
 
-// MARK:- Search delegates
+// MARK:- GMSAutocompleteFetcherDelegate
 
-extension MapViewController: UISearchBarDelegate, LocateOnTheMap, GMSAutocompleteFetcherDelegate {
-    
-    func locateWithLongitude(_ lon: Double, lat: Double, title: String) {
-        
-        let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: 10)
-        mapView.camera = camera
-        presenter.fetchRoute(from: currentLocation, to: CLLocationCoordinate2D(latitude: lat, longitude: lon))
-    }
+extension MapViewController: GMSAutocompleteFetcherDelegate {
     
     func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
         for prediction in predictions {
@@ -357,6 +352,28 @@ extension MapViewController: UISearchBarDelegate, LocateOnTheMap, GMSAutocomplet
     }
     
     func didFailAutocompleteWithError(_ error: Error) { } 
+
+}
+
+// MARK:- SearchResultsProtocol
+
+extension MapViewController: SearchResultsProtocol {
+    
+    func locateWithLongitude(lon: Double, lat: Double) {
+        
+        let camera = GMSCameraPosition.camera(withLatitude: lat,
+                                              longitude: lon,
+                                              zoom: 10)
+        mapView.camera = camera
+        presenter.fetchRoute(from: currentLocation,
+                             to: CLLocationCoordinate2D(latitude: lat,
+                                                        longitude: lon))
+    }
+}
+
+// MARK:- UISearchBarDelegate
+
+extension MapViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         resultsArray.removeAll()

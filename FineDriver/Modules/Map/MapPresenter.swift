@@ -18,7 +18,8 @@ protocol MapViewControllerProtocol: class {
 protocol MapPresenterProtocol: class {
     var camerasEntity: [CameraEntity] { get set }
     
-    func oncomingCamera()
+    func oncomingCamera(address: String,
+                        speedLimit: String)
     func fetchCameras()
     func setupMarkers(mapView: GMSMapView)
     func markersLocation() -> ([CLLocationCoordinate2D])
@@ -175,7 +176,10 @@ extension MapPresenter: MapPresenterProtocol {
     }
     
     //MARK:- Sound
-    func oncomingCamera() {
+    func oncomingCamera(address: String,
+                        speedLimit: String) {
+        sendNotification(address: address,
+                         speedLimit: speedLimit)
         playSound()
     }
     

@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (5.2.2)
   - AppAuth (1.4.0):
     - AppAuth/Core (= 1.4.0)
     - AppAuth/ExternalUserAgent (= 1.4.0)
@@ -43,7 +42,6 @@ PODS:
   - Wormholy (1.6.3)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.2.0)
   - FBSDKLoginKit (~> 7.1.0)
   - GoogleMaps (~> 3.10.0)
   - GooglePlaces (~> 3.10.0)
@@ -56,7 +54,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Alamofire
     - AppAuth
     - FBSDKCoreKit
     - FBSDKLoginKit
@@ -72,7 +69,6 @@ SPEC REPOS:
     - Wormholy
 
 SPEC CHECKSUMS:
-  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
@@ -87,6 +83,6 @@ SPEC CHECKSUMS:
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   Wormholy: bfc1c8679eefd0edd92638758e21c3961b1b3b50
 
-PODFILE CHECKSUM: c9d6a9b82fd19ef5c2ce1f71b275813b5affdba9
+PODFILE CHECKSUM: 5c78bc7466490a11de41579249c5c1603dcdb4c5
 
 COCOAPODS: 1.9.3

@@ -57,7 +57,6 @@ final class SplashPresenter {
                     } else {
                         self?.routeAuth()
                         print("biometric error")
-                        print(authenticationError?.localizedDescription)
                     }
                 }
             }

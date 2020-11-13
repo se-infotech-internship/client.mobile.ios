@@ -4,7 +4,7 @@ use_frameworks!
 
 def pods
 
-  pod 'Alamofire', '~> 5.2.0'
+  #pod 'Alamofire', '~> 5.2.0'
   pod 'ObjectMapper', '~> 4.2.0'
   pod 'KeychainAccess', '~> 4.2.0'
   pod 'IQKeyboardManagerSwift', '~> 6.5.0'
