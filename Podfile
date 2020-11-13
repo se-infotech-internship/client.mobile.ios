@@ -1,6 +1,7 @@
 platform :ios, "11.0"
 
-use_frameworks!
+use_frameworks!(false)
+use_modular_headers!
 
 def pods
 

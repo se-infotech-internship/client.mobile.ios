@@ -21,7 +21,6 @@
 		47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */; };
 		47BC2AD625519F840042A201 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BC2AD525519F840042A201 /* UINavigationController+Extensions.swift */; };
 		47FCB2F8255D407A0009CE61 /* SearchResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCB2F7255D407A0009CE61 /* SearchResultsPresenter.swift */; };
-		9167D5E7C899946F444F6C27 /* Pods_FineDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DD5B6F486C2D0F5CF97B2A /* Pods_FineDriver.framework */; };
 		92001DAD2525C0E700CAE036 /* GMSCoordinateBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */; };
 		920E55F3253061BD0082CF6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920E55F1253061BD0082CF6F /* SettingsViewController.swift */; };
 		920E55F4253061BD0082CF6F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920E55F2253061BD0082CF6F /* SettingsViewController.xib */; };
@@ -86,6 +85,7 @@
 		9AA51C0D251C1208000AB6F1 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51C0C251C1208000AB6F1 /* MapViewController.xib */; };
 		9AA51C0F251C122A000AB6F1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51C0E251C122A000AB6F1 /* MapViewController.swift */; };
 		9AA51C11251C1253000AB6F1 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51C10251C1253000AB6F1 /* MapPresenter.swift */; };
+		A01AF3A2045420C743D2599F /* libPods-FineDriver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96126088A15FD6085E912F64 /* libPods-FineDriver.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +160,7 @@
 		92D544FE253D89950091D0D5 /* SettingFineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingFineCell.xib; sourceTree = "<group>"; };
 		92D54502253E39550091D0D5 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		92D54504253EC72A0091D0D5 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		96126088A15FD6085E912F64 /* libPods-FineDriver.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FineDriver.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA51BF1251C0C33000AB6F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
@@ -172,7 +173,6 @@
 		9AA51C0E251C122A000AB6F1 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9AA51C10251C1253000AB6F1 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		C2712C967E335A421276BA18 /* Pods-FineDriver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineDriver.release.xcconfig"; path = "Target Support Files/Pods-FineDriver/Pods-FineDriver.release.xcconfig"; sourceTree = "<group>"; };
-		D1DD5B6F486C2D0F5CF97B2A /* Pods_FineDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FineDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9167D5E7C899946F444F6C27 /* Pods_FineDriver.framework in Frameworks */,
+				A01AF3A2045420C743D2599F /* libPods-FineDriver.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,7 +544,7 @@
 		AD9DF553CF5919408B920236 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D1DD5B6F486C2D0F5CF97B2A /* Pods_FineDriver.framework */,
+				96126088A15FD6085E912F64 /* libPods-FineDriver.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -560,7 +560,6 @@
 				47B5325B2514CB5C006EAAB2 /* Sources */,
 				47B5325C2514CB5C006EAAB2 /* Frameworks */,
 				47B5325D2514CB5C006EAAB2 /* Resources */,
-				C21F038E7229EC2469CFF4B6 /* [CP] Embed Pods Frameworks */,
 				09C7AF482E161BA1BC841861 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -677,23 +676,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C21F038E7229EC2469CFF4B6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FineDriver/Pods-FineDriver-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FineDriver/Pods-FineDriver-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FineDriver/Pods-FineDriver-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
