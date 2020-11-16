@@ -14,6 +14,7 @@
 		4706368E251DFEB9006F7F41 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4706368A251DFEB9006F7F41 /* SplashViewController.swift */; };
 		4706368F251DFEB9006F7F41 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4706368B251DFEB9006F7F41 /* SplashViewController.xib */; };
 		470636D4251E19C9006F7F41 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470636D3251E19C9006F7F41 /* Constants.swift */; };
+		47272F7E25625FF300028CAE /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 47272F7D25625FF300028CAE /* Location.gpx */; };
 		47471E9D2550405E0087107E /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47471E9C2550405E0087107E /* KeychainStorage.swift */; };
 		47631D7F254C283A00CC867A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47631D7E254C283A00CC867A /* BaseViewController.swift */; };
 		47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B532622514CB5C006EAAB2 /* AppDelegate.swift */; };
@@ -96,6 +97,8 @@
 		4706368A251DFEB9006F7F41 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		4706368B251DFEB9006F7F41 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		470636D3251E19C9006F7F41 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		47272F7D25625FF300028CAE /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		47272F802562624C00028CAE /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Location.gpx; path = /Users/bohdan/Documents/Repo/FineDriver/FineDriver/Resources/Location.gpx; sourceTree = "<absolute>"; };
 		47471E9C2550405E0087107E /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		47631D7E254C283A00CC867A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		47B5325F2514CB5C006EAAB2 /* FineDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FineDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,11 +308,13 @@
 		47B532872514DB95006EAAB2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				47272F802562624C00028CAE /* Location.gpx */,
 				47BA667C255438F700DAA4FA /* Audio */,
 				92CAF0CF252CF47E0080F46E /* cameras_list.json */,
 				9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */,
 				9AA51BF1251C0C33000AB6F1 /* Images.xcassets */,
 				47B532702514CB5E006EAAB2 /* Info.plist */,
+				47272F7D25625FF300028CAE /* Location.gpx */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -621,6 +626,7 @@
 				92D544F9253D84D90091D0D5 /* SelectFineSettingViewController.xib in Resources */,
 				4706368F251DFEB9006F7F41 /* SplashViewController.xib in Resources */,
 				92CF0A7C253CABF900F92897 /* CamerasSettingViewController.xib in Resources */,
+				47272F7E25625FF300028CAE /* Location.gpx in Resources */,
 				9294165E2521DD0000D7F966 /* FinesViewController.xib in Resources */,
 				92CF0A6A253B25A000F92897 /* NavigationBar.xib in Resources */,
 				9AA51C01251C0DCF000AB6F1 /* MenuCell.xib in Resources */,

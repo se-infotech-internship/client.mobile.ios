@@ -13,7 +13,7 @@ import GooglePlaces
 
 final class MapViewController: BaseViewController {
     
-    private enum Constants {
+    private enum localConstants {
         enum Default {
             static let zoom: Float = 17
         }
@@ -49,43 +49,55 @@ final class MapViewController: BaseViewController {
     fileprivate var searchResultController: SearchResultsController!
     fileprivate var gmsFetcher: GMSAutocompleteFetcher!
     fileprivate var resultsArray = [String]()
+
     
     //MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addObservers()
         fetchCameras()
         configureUI()
         configureLocationManager()
         setupMarkers()
     }
+
     
     // MARK: - Private methods
+    
+    fileprivate func addObservers() {
+        NotificationCenter.default
+            .addObserver(self,
+                         selector: #selector(setupMarkers),
+                         name: NSNotification.Name(Constants.setupMarkersNotification),
+                         object: nil)
+    }
     
     fileprivate func fetchCameras() {
         presenter.fetchCameras()
     }
     
-    fileprivate func setupMarkers() {
+    @objc fileprivate func setupMarkers() {
         presenter.setupMarkers(mapView: mapView)
     }
     
     fileprivate func configureLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        locationManager.distanceFilter = 1
+        locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.startUpdatingLocation()
         locationManager.activityType = .automotiveNavigation
         locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingHeading()
     }
     
     fileprivate func configureUI() {
         var bounds = GMSCoordinateBounds()
-        bounds = bounds.includingCoordinate(CLLocationCoordinate2D(latitude: Constants.UkrainePosition.lat, longitude: Constants.UkrainePosition.long))
+        bounds = bounds.includingCoordinate(CLLocationCoordinate2D(latitude: localConstants.UkrainePosition.lat, longitude: localConstants.UkrainePosition.long))
         
         mapView.animate(with: GMSCameraUpdate.fit(bounds))
-        mapView.animate(toZoom: Constants.UkrainePosition.zoom)
+        mapView.animate(toZoom: localConstants.UkrainePosition.zoom)
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
         mapView.isTrafficEnabled = true
@@ -96,14 +108,34 @@ final class MapViewController: BaseViewController {
         gmsFetcher.delegate = self
     }
     
+    fileprivate func updateMarkerCameraWith(position: CLLocationCoordinate2D) {
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(1.0)
+        presenter.myLocationMarker.position = position
+        if isCenterCamera {
+            mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
+            mapView.animate(toZoom: localConstants.Default.zoom)
+        }
+        CATransaction.commit()
+    }
+    
+    fileprivate func transformMyLocationMarker(angle: Double) {
+        if angle >= 0 && angle < 360 {
+            let angleInRadians: CGFloat = (CGFloat(angle) * .pi) / CGFloat(180) //From degrees to radians transformation
+            presenter.myLocationMarker.iconView?.transform = CGAffineTransform.identity.rotated(by: angleInRadians)
+        }else{
+            presenter.myLocationMarker.iconView?.transform = CGAffineTransform.identity
+        }
+    }
+    
     //MARK:- Popup
     
     fileprivate func setupPopUpView() {
         popUpView = PopUpView(frame:
-                        CGRect(x: Constants.PopUp.x,
-                                y: Constants.PopUp.y,
+                        CGRect(x: localConstants.PopUp.x,
+                                y: localConstants.PopUp.y,
                                 width: Double(mapView.frame.width),
-                                height: Double(Constants.PopUp.height)))
+                                height: Double(localConstants.PopUp.height)))
         
         view.addSubview(popUpView!)
     }
@@ -115,18 +147,18 @@ final class MapViewController: BaseViewController {
             self.setupPopUpView()
         }
         
-        UIView.animate(withDuration: Constants.PopUp.animationTime) {
+        UIView.animate(withDuration: localConstants.PopUp.animationTime) {
             if isShow {
                 self.popUpView?.transform = CGAffineTransform(translationX:
-                                            Constants.PopUp.translationX,
+                                                                localConstants.PopUp.translationX,
                                               y: self.view.safeAreaInsets.top +
-                                                Constants.PopUp.height)
+                                                localConstants.PopUp.height)
             } else {
                 self.popUpView?.transform = .identity
             }
         } completion: { [weak self] _ in
             if !isShow {
-                DispatchQueue.main.asyncAfter(deadline: .now() + Constants.PopUp.animationTime) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + localConstants.PopUp.animationTime) {
                     self?.hidePopUp()
                 }
             }
@@ -150,9 +182,14 @@ final class MapViewController: BaseViewController {
     }
     
     @IBAction private func didTapCurrentLocationButton(_ sender: Any) {
-        mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude,
-                       longitude: currentLocation.longitude))
-        mapView.animate(toZoom: Constants.Default.zoom)
+        guard let latitude = locationManager.location?.coordinate.latitude,
+              let longitude = locationManager.location?.coordinate.longitude else {
+            return
+        }
+        
+        mapView.animate(toLocation: CLLocationCoordinate2D(latitude: latitude,
+           longitude: longitude))
+        mapView.animate(toZoom: localConstants.Default.zoom)
         isCenterCamera = true
     }
     
@@ -162,6 +199,10 @@ final class MapViewController: BaseViewController {
         if isCheckButtonSound {
             presenter?.stopSound()
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -193,6 +234,14 @@ extension MapViewController: MapViewControllerProtocol {
 
 // MARK: - MapView Delegate methods
 extension MapViewController: GMSMapViewDelegate {
+    
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        transformMyLocationMarker(angle: newHeading.trueHeading)
+    }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         popUpAnimation(isShow: false)
@@ -231,14 +280,10 @@ extension MapViewController: CLLocationManagerDelegate {
         
         guard let lastLocation = locations.last,
               let speed = manager.location?.speed else { return }
-        
-        speedLabel.text = speed < 0 ? "0 км/г" : "\(Int(speed * 3.6)) км/г"
                 
-        if isCenterCamera {
-            currentLocation = lastLocation.coordinate
-            mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
-            mapView.animate(toZoom: Constants.Default.zoom)
-        }
+        speedLabel.text = speed < 0 ? "0 км/г" : "\(Int(speed * 3.6)) км/г"
+        currentLocation = lastLocation.coordinate
+        updateMarkerCameraWith(position: lastLocation.coordinate)
         
         let cameras = presenter.cameraInfo()
         
@@ -265,6 +310,11 @@ extension MapViewController: CLLocationManagerDelegate {
                 #if DEBUG
                 print("identifier = \(address)")
                 #endif
+                
+                let currentLoc = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+                let distance = currentLoc.distance(from: CLLocation(latitude: camera.coordinate.latitude, longitude: camera.coordinate.longitude))
+                popUpView?.update(entity: element, metersTo: distance)
+                
                 monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: camera.coordinate.latitude, longitude: camera.coordinate.longitude), identifier: address)
             }
         }

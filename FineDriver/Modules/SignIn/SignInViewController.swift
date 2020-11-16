@@ -33,7 +33,6 @@ final class SignInViewController: BaseViewController {
         super.viewDidLoad()
         
         presenter?.resetToken()
-        presenter?.defaultDistaceLocationToCamera()
     }
     
     // MARK: - Private methods

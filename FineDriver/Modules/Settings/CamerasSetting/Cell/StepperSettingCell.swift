@@ -18,6 +18,8 @@ class StepperSettingCell: UITableViewCell {
     private var entity: StepperEntity?
     private var defaults = UserDefaults.standard
     
+    var isChangedDistance: ((Bool) -> Void)?
+    
     static let identifier = "StepperSettingCell"
 
     func update(entity: StepperEntity) {
@@ -38,7 +40,7 @@ class StepperSettingCell: UITableViewCell {
             distanceLabel.text = "\(entity.distance) м"
             
             defaults[.distanceToCamera] = entity.distance
-            
+            isChangedDistance?(true)
         }
         self.entity?.distance = entity.distance
     }
@@ -49,6 +51,7 @@ class StepperSettingCell: UITableViewCell {
             entity.distance -= 100
             distanceLabel.text = "\(entity.distance) м"
             defaults[.distanceToCamera] = entity.distance
+            isChangedDistance?(true)
         }
         self.entity?.distance = entity.distance
     }

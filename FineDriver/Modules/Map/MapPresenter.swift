@@ -17,6 +17,7 @@ protocol MapViewControllerProtocol: class {
 
 protocol MapPresenterProtocol: class {
     var camerasEntity: [CameraEntity] { get set }
+    var myLocationMarker: GMSMarker { get }
     
     func oncomingCamera(address: String,
                         speedLimit: String)
@@ -40,10 +41,12 @@ final class MapPresenter {
     // MARK: - Protocol property
     weak var delegate: MapViewControllerProtocol?
     var camerasEntity: [CameraEntity] = []
+    lazy var myLocationMarker = GMSMarker()
     
     // MARK: - Private property
-    private let localService = ServiceLocalFile()
-    private var player: AVAudioPlayer?
+    fileprivate let localService = ServiceLocalFile()
+    fileprivate var player: AVAudioPlayer?
+    
     
     // MARK: - LifeCycle
     init(delegate: MapViewControllerProtocol?) {
@@ -114,10 +117,17 @@ extension MapPresenter: MapPresenterProtocol {
     }
     
     func setupMarkers(mapView: GMSMapView) {
+        mapView.clear()
+        
         let coordinates = markersLocation()
         let camera = cameraInfo()
         var cameraData = CameraEntity()
         var circle = GMSCircle()
+        
+        myLocationMarker = GMSMarker()
+        myLocationMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
+        myLocationMarker.iconView = UIImageView(image: UIImage(named: "ic_my_location"))
+        myLocationMarker.map = mapView
         
         for (index, element) in coordinates.enumerated() {
             

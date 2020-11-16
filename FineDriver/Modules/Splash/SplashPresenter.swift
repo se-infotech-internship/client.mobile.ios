@@ -82,7 +82,7 @@ extension SplashPresenter: SplashPresenterProtocol {
     func checkToken() {
         if KeychainStorage.accessToken != nil {
 //            faceTouchAuth()
-            routeAuth()
+            routeMap()
         } else {
             routeAuth()
         }

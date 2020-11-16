@@ -13,8 +13,6 @@ def pods
   pod 'Wormholy', '~> 1.6.0', :configurations => ['Debug']
   pod 'GoogleMaps', '~> 3.10.0'
   pod 'GooglePlaces', '~> 3.10.0'
-
-# Auth pods
   pod 'GoogleSignIn', '~> 5.0'
   pod 'FBSDKLoginKit', '~> 7.1.0'
 

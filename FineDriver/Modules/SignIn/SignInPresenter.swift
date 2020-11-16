@@ -21,7 +21,6 @@ protocol SignInPresenterProtocol: class {
                             tokenId: String,
                             avatarURL: URL?)
     func resetToken()
-    func defaultDistaceLocationToCamera()
 }
 
 final class SignInPresenter {
@@ -62,9 +61,6 @@ extension SignInPresenter: SignInPresenterProtocol {
     
     func resetToken() {
         KeychainStorage.accessToken = nil
-    }
-    
-    func defaultDistaceLocationToCamera() {
         defaults[.distanceToCamera] = Constants.Camera.maxDistance
     }
 }
