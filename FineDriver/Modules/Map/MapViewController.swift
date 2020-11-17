@@ -49,7 +49,7 @@ final class MapViewController: BaseViewController {
     fileprivate var searchResultController: SearchResultsController!
     fileprivate var gmsFetcher: GMSAutocompleteFetcher!
     fileprivate var resultsArray = [String]()
-
+    fileprivate var isFirstUpdate = true
     
     //MARK:- LifeCycle
     override func viewDidLoad() {
@@ -78,7 +78,7 @@ final class MapViewController: BaseViewController {
     }
     
     @objc fileprivate func setupMarkers() {
-        presenter.setupMarkers(mapView: mapView)
+        presenter.setupMarkers(mapView: mapView, lastLocation: currentLocation)
     }
     
     fileprivate func configureLocationManager() {
@@ -99,7 +99,7 @@ final class MapViewController: BaseViewController {
         mapView.animate(with: GMSCameraUpdate.fit(bounds))
         mapView.animate(toZoom: localConstants.UkrainePosition.zoom)
         mapView.delegate = self
-        mapView.isMyLocationEnabled = true
+//        mapView.isMyLocationEnabled = true
         mapView.isTrafficEnabled = true
     
         searchResultController = AppCoordinator.shared.getSearchResults()
@@ -109,14 +109,26 @@ final class MapViewController: BaseViewController {
     }
     
     fileprivate func updateMarkerCameraWith(position: CLLocationCoordinate2D) {
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(1.0)
-        presenter.myLocationMarker.position = position
-        if isCenterCamera {
-            mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
-            mapView.animate(toZoom: localConstants.Default.zoom)
+        
+        func update() {
+            presenter.myLocationMarker.position = position
+            if isCenterCamera {
+                mapView.animate(toLocation: CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
+                mapView.animate(toZoom: localConstants.Default.zoom)
+            }
         }
-        CATransaction.commit()
+        
+        if !isFirstUpdate {
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(1.0)
+            update()
+            CATransaction.commit()
+        }else{
+            update()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.isFirstUpdate = false
+            }
+        }
     }
     
     fileprivate func transformMyLocationMarker(angle: Double) {

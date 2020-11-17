@@ -22,45 +22,31 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUX-cl-Kwc">
-                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Person" translatesAutoresizingMaskIntoConstraints="NO" id="xce-LN-y9t">
-                            <rect key="frame" x="159.5" y="40" width="95" height="95"/>
-                            <color key="backgroundColor" name="Ellipse2"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="xce-LN-y9t" secondAttribute="height" multiplier="1:1" id="apU-tb-XpW"/>
-                            </constraints>
-                        </imageView>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z63-lu-aOM">
-                            <rect key="frame" x="0.0" y="143" width="414" height="709"/>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="Vyk-HM-DeF"/>
-                                <outlet property="delegate" destination="-1" id="Tk1-9M-dQV"/>
-                            </connections>
-                        </tableView>
-                    </subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Person" translatesAutoresizingMaskIntoConstraints="NO" id="xce-LN-y9t">
+                    <rect key="frame" x="159.5" y="84" width="95" height="95"/>
+                    <color key="backgroundColor" name="Ellipse2"/>
                     <constraints>
-                        <constraint firstItem="Z63-lu-aOM" firstAttribute="top" secondItem="xce-LN-y9t" secondAttribute="bottom" constant="8" symbolic="YES" id="3Hq-lq-H30"/>
-                        <constraint firstItem="NdV-Fs-996" firstAttribute="trailing" secondItem="Z63-lu-aOM" secondAttribute="trailing" id="5ns-f1-PDG"/>
-                        <constraint firstItem="xce-LN-y9t" firstAttribute="centerX" secondItem="kUX-cl-Kwc" secondAttribute="centerX" id="YiI-S7-7p2"/>
-                        <constraint firstAttribute="trailing" secondItem="Z63-lu-aOM" secondAttribute="trailing" constant="20" symbolic="YES" id="fnm-Y3-fbN"/>
-                        <constraint firstItem="Z63-lu-aOM" firstAttribute="leading" secondItem="NdV-Fs-996" secondAttribute="leading" id="h9m-OJ-h4L"/>
-                        <constraint firstItem="Z63-lu-aOM" firstAttribute="bottom" secondItem="NdV-Fs-996" secondAttribute="bottom" id="nJB-TO-hGs"/>
-                        <constraint firstAttribute="bottom" secondItem="Z63-lu-aOM" secondAttribute="bottom" id="x2C-pS-Bf2"/>
+                        <constraint firstAttribute="height" constant="95" id="N5M-cJ-oci"/>
+                        <constraint firstAttribute="width" constant="95" id="SPJ-PG-jPT"/>
                     </constraints>
-                    <viewLayoutGuide key="contentLayoutGuide" id="usL-DO-stp"/>
-                    <viewLayoutGuide key="frameLayoutGuide" id="NdV-Fs-996"/>
-                </scrollView>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z63-lu-aOM">
+                    <rect key="frame" x="0.0" y="187" width="414" height="675"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Vyk-HM-DeF"/>
+                        <outlet property="delegate" destination="-1" id="Tk1-9M-dQV"/>
+                    </connections>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="kUX-cl-Kwc" secondAttribute="trailing" id="7wN-4u-SBG"/>
-                <constraint firstItem="kUX-cl-Kwc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LLU-we-PL2"/>
-                <constraint firstItem="kUX-cl-Kwc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="W94-uN-pWv"/>
-                <constraint firstItem="xce-LN-y9t" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="mKR-mv-Fqs"/>
-                <constraint firstAttribute="bottom" secondItem="kUX-cl-Kwc" secondAttribute="bottom" id="zaq-4R-pwg"/>
+                <constraint firstItem="xce-LN-y9t" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="D3S-9a-snn"/>
+                <constraint firstItem="Z63-lu-aOM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="JNt-Bb-S0O"/>
+                <constraint firstItem="Z63-lu-aOM" firstAttribute="top" secondItem="xce-LN-y9t" secondAttribute="bottom" constant="8" symbolic="YES" id="exa-Co-p5g"/>
+                <constraint firstItem="xce-LN-y9t" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="kEE-eJ-qL6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Z63-lu-aOM" secondAttribute="bottom" id="klJ-my-iag"/>
+                <constraint firstItem="Z63-lu-aOM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="uzE-oe-cIm"/>
             </constraints>
             <point key="canvasLocation" x="140.57971014492756" y="134.59821428571428"/>
         </view>

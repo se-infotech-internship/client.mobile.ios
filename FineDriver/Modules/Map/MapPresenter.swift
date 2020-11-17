@@ -17,12 +17,12 @@ protocol MapViewControllerProtocol: class {
 
 protocol MapPresenterProtocol: class {
     var camerasEntity: [CameraEntity] { get set }
-    var myLocationMarker: GMSMarker { get }
+    var myLocationMarker: GMSMarker! { get }
     
     func oncomingCamera(address: String,
                         speedLimit: String)
     func fetchCameras()
-    func setupMarkers(mapView: GMSMapView)
+    func setupMarkers(mapView: GMSMapView, lastLocation: CLLocationCoordinate2D?)
     func markersLocation() -> ([CLLocationCoordinate2D])
     func routeToMenu()
     func cameraInfo() -> [CameraEntity]
@@ -41,7 +41,7 @@ final class MapPresenter {
     // MARK: - Protocol property
     weak var delegate: MapViewControllerProtocol?
     var camerasEntity: [CameraEntity] = []
-    lazy var myLocationMarker = GMSMarker()
+    var myLocationMarker: GMSMarker!
     
     // MARK: - Private property
     fileprivate let localService = ServiceLocalFile()
@@ -116,7 +116,8 @@ extension MapPresenter: MapPresenterProtocol {
         }
     }
     
-    func setupMarkers(mapView: GMSMapView) {
+    func setupMarkers(mapView: GMSMapView,
+                      lastLocation: CLLocationCoordinate2D? = nil) {
         mapView.clear()
         
         let coordinates = markersLocation()
@@ -128,6 +129,9 @@ extension MapPresenter: MapPresenterProtocol {
         myLocationMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
         myLocationMarker.iconView = UIImageView(image: UIImage(named: "ic_my_location"))
         myLocationMarker.map = mapView
+        if let lastLocation = lastLocation {
+            myLocationMarker.position = lastLocation
+        }
         
         for (index, element) in coordinates.enumerated() {
             
@@ -198,7 +202,8 @@ extension MapPresenter: MapPresenterProtocol {
         
         guard let url = Bundle.main.url(forResource: forResource, withExtension: withExtension) else { return }
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setCategory(.playback,
+                                                        options: .mixWithOthers)
             try AVAudioSession.sharedInstance().setActive(true)
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
             guard let player = player else { return }
