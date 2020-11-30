@@ -17,9 +17,13 @@ final class SignInViewController: BaseViewController {
     // MARK: - Private outlet
     @IBOutlet fileprivate weak var emailTextField: UITextField!
     @IBOutlet fileprivate weak var passwordTextField: UITextField!
-    
+    @IBOutlet fileprivate weak var signInView: UIView!
+    @IBOutlet fileprivate weak var singingUpView: UIView!
+    @IBOutlet fileprivate weak var loginTextView: UITextView!
+    @IBOutlet fileprivate weak var registerTextView: UITextView!
+
     // MARK: - Private property
-    fileprivate var statusBarStyle = UIStatusBarStyle.lightContent {
+    fileprivate var statusBarStyle = UIStatusBarStyle.default {
         didSet { setNeedsStatusBarAppearanceUpdate() }
     }
     fileprivate lazy var facebookButton = FBLoginButton(frame: .zero, permissions: [.email, .publicProfile])
@@ -27,12 +31,26 @@ final class SignInViewController: BaseViewController {
     // MARK: - Public properties
     override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
     var presenter: SignInPresenterProtocol?
+    var signingUp: Bool?
     
     //MARK: - LifeCicle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureUI()
         presenter?.resetToken()
+    }
+    
+    fileprivate func configureUI() {
+        if let signingUp = signingUp,
+           signingUp == true {
+            singingUpView.isHidden = false
+            signInView.isHidden = true
+        }else{
+            singingUpView.isHidden = true
+            signInView.isHidden = false
+        }
+    
     }
     
     // MARK: - Private methods
@@ -72,6 +90,24 @@ final class SignInViewController: BaseViewController {
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().presentingViewController = self
         GIDSignIn.sharedInstance().signIn()
+    }
+    
+    @IBAction fileprivate func showloginAction(_ sender: Any) {
+        singingUpView.isHidden = true
+        signInView.isHidden = false
+    }
+    
+    @IBAction fileprivate func showRegisterAction(_ sender: Any) {
+        singingUpView.isHidden = false
+        signInView.isHidden = true
+    }
+    
+    @IBAction fileprivate func loginAction(_ sender: Any) {
+        AppCoordinator.shared.routeToMap()
+    }
+    
+    @IBAction fileprivate func registerAction(_ sender: Any) {
+        AppCoordinator.shared.routeToMap()
     }
 }
 

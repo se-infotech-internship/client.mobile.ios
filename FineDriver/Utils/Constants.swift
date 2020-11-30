@@ -18,4 +18,5 @@ struct Constants {
     }
     
     static let setupMarkersNotification = "SetupMarkersNotification"
+    static let viewedPresentationScreen = "ViewedPresentationScreen"
 }

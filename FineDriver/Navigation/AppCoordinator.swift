@@ -48,10 +48,23 @@ final class AppCoordinator: CoordinatorProtocol {
     func routeToAuth() {
         KeychainStorage.accessToken = nil
         
+        let viewController = EnterViewController()
+        navigationController?.setViewControllers([viewController], animated: true)
+    }
+    
+    func routeToSignIn(signingup: Bool = false) {
         let viewController = SignInViewController()
         let presenter = SignInPresenter(delegate: viewController)
         viewController.presenter = presenter
+        viewController.signingUp = signingup
         
+        navigationController?.setViewControllers([viewController], animated: true)
+    }
+
+    func routeToPresentation() {
+        let presenter: PresentationPresenterProtocol = PresentationPresenter()
+        let viewController: PresentationViewController = PresentationViewController()
+        viewController.presenter = presenter
         navigationController?.setViewControllers([viewController], animated: true)
     }
     
@@ -135,5 +148,12 @@ final class AppCoordinator: CoordinatorProtocol {
         viewController.presenter = presenter
         
         return viewController
+    }
+    
+    func getPresentationContent(title: String, desc: String, image: String) -> ContentViewController {
+        let vc: ContentViewController = ContentViewController(caption: title,
+                                                              desc: desc,
+                                                              image: image)
+        return vc
     }
 }

@@ -36,6 +36,7 @@ final class SplashPresenter {
     
     private func routeAuth() {
         AppCoordinator.shared.routeToAuth()
+//        AppCoordinator.shared.routeToPresentation()
     }
     
     private func routeMap() {
