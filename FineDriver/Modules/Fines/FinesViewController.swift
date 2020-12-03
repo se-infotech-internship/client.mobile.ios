@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FinesViewController: UIViewController {
+final class FinesViewController: BaseViewController {
     
     // MARK:- Private outlet
     @IBOutlet private weak var tableView: UITableView!
@@ -27,6 +27,7 @@ final class FinesViewController: UIViewController {
         setupTableView()
     }
 
+
     // MARK: - Private methods
     private func setupTableCell() {
         tableView.register(UINib(nibName: FineCell.identifier, bundle: nil), forCellReuseIdentifier: FineCell.identifier)
@@ -44,8 +45,13 @@ final class FinesViewController: UIViewController {
     }
     
     // MARK: - Private action
-    @IBAction private func didTapPopUpButton(_ sender: Any) {
-        presenter.routePop()
+    
+    @IBAction fileprivate func registerAction(_ sender: Any) {
+        AppCoordinator.shared.routeToSignIn(signingup: true)
+    }
+    
+    @IBAction fileprivate func addAction(_ sender: Any) {
+        AppCoordinator.shared.routeToNewNewVehicle()
     }
 }
 
@@ -84,12 +90,5 @@ extension FinesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.update(entity: presenter.model(index: indexPath.row))
         cell.delegate = self
         return cell
-    }
-}
-
-// MARK: - NavigationBarDelegate method
-extension FinesViewController: NavigationBarDelegate {
-    func leftAction() {
-        presenter?.routePop()
     }
 }

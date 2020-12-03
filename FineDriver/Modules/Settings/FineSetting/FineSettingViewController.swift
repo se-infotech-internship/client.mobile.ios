@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FineSettingViewController: UIViewController {
+final class FineSettingViewController: BaseViewController {
     
     private enum Constants {
         enum TableView {
@@ -45,8 +45,8 @@ final class FineSettingViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        customNavigationBar.update(title: "ШТРАФИ")
         customNavigationBar.delegate = self
+        customNavigationBar.update(title: "ШТРАФИ")
     }
 }
 
@@ -96,12 +96,5 @@ extension FineSettingViewController: UITableViewDelegate, UITableViewDataSource 
         default:
             break
         }
-    }
-}
-
-// MARK: - NavigationBarDelegate method
-extension FineSettingViewController: NavigationBarDelegate {
-    func leftAction() {
-        presenter?.routePop()
     }
 }

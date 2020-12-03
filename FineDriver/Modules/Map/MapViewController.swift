@@ -39,6 +39,11 @@ final class MapViewController: BaseViewController {
     // MARK: - Public property
     var presenter: MapPresenterProtocol!
     
+    fileprivate var statusBarStyle = UIStatusBarStyle.default {
+        didSet { setNeedsStatusBarAppearanceUpdate() }
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
+    
     // MARK: - Private property
     fileprivate var locationManager = CLLocationManager()
     fileprivate var currentLocation = CLLocationCoordinate2D()
@@ -61,7 +66,6 @@ final class MapViewController: BaseViewController {
         configureLocationManager()
         setupMarkers()
     }
-
     
     // MARK: - Private methods
     
@@ -208,9 +212,7 @@ final class MapViewController: BaseViewController {
     @IBAction private func didTapSoundButton(_ sender: Any) {
         isCheckButtonSound = !isCheckButtonSound
         soundButton.isSelected = isCheckButtonSound
-        if isCheckButtonSound {
-            presenter?.stopSound()
-        }
+        presenter.muteSound(muted: isCheckButtonSound)
     }
     
     deinit {

@@ -20,8 +20,14 @@ final class MenuViewController: BaseViewController {
     @IBOutlet private weak var avatarImageView: UIImageView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet fileprivate weak var topConstraint: NSLayoutConstraint!
-    
+    @IBOutlet private weak var customNavigationBar: NavigationBar!
+
     fileprivate var oldContentOffset = CGPoint.zero
+    
+    fileprivate var statusBarStyle = UIStatusBarStyle.default {
+        didSet { setNeedsStatusBarAppearanceUpdate() }
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
 
     // MARK: - Public properties
     var presenter: MenuPresenterProtocol!
@@ -34,6 +40,13 @@ final class MenuViewController: BaseViewController {
         presenter?.viewDidLoad()
         setupView()
         setupTableView()
+        setupNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: - Private methods
@@ -42,6 +55,11 @@ final class MenuViewController: BaseViewController {
         avatarImageView.clipsToBounds = true
         
         presenter?.fetchImage(imageView: avatarImageView)
+    }
+    
+    private func setupNavigationBar() {
+        customNavigationBar.delegate = self
+        customNavigationBar.update(title: "НАЛАШТУВАННЯ")
     }
     
     private func setupTableView() {
@@ -86,15 +104,15 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
+//        case 0:
+//            presenter?.routeMap()
         case 0:
-            presenter?.routeMap()
-        case 1:
             presenter?.routeFines()
-        case 3:
+        case 2:
             presenter?.routeProfile()
-        case 4:
+        case 3:
             presenter?.routeSetting()
-        case 6:
+        case 7:
             presenter?.routeAuth()
         default:
             break
@@ -104,37 +122,6 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MenuViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        print(scrollView)
-////        UIView.animate(withDuration: 0.25) {
-//        let y = scrollView.contentOffset.y
-//        topConstraint.constant = 143 - y
-//        view.layoutIfNeeded()
-//        }
-        
-        /*
-        //ScrollView's contentOffset differences with previous contentOffset
-        let contentOffset =  scrollView.contentOffset.y - oldContentOffset.y
-      
-        // Scrolls UP - we compress the top view
-        if contentOffset > 0 && scrollView.contentOffset.y > 0 {
-            if (topConstraint.constant > -120 ) {
-                topConstraint.constant -= contentOffset
-                scrollView.contentOffset.y -= contentOffset
-            }
-        }
-        
-        // Scrolls Down - we expand the top view
-        if contentOffset < 0 && scrollView.contentOffset.y < 0 {
-//            if (topConstraint.constant < 143) {
-                if topConstraint.constant - contentOffset > 0 {
-                    topConstraint.constant += abs(contentOffset)
-                } else {
-                    topConstraint.constant -= contentOffset
-                }
-                scrollView.contentOffset.y -= contentOffset
-//            }
-        }
-        oldContentOffset = scrollView.contentOffset
- */
+
     }
 }

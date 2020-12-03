@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MessageSettingViewController: UIViewController {
+final class MessageSettingViewController: BaseViewController {
     
     private enum Constants {
         enum TableView {
@@ -45,8 +45,8 @@ final class MessageSettingViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        customNavigationBar.update(title: "ПОВIДОМЛЕННЯ")
         customNavigationBar.delegate = self
+        customNavigationBar.update(title: "ПОВIДОМЛЕННЯ")
     }
 }
 
@@ -74,12 +74,5 @@ extension MessageSettingViewController: UITableViewDelegate, UITableViewDataSour
         let cellModel = presenter.model(index: indexPath.row)
         cell.update(entity: cellModel)
         return cell
-    }
-}
-
-// MARK: - NavigationBarDelegate method
-extension MessageSettingViewController: NavigationBarDelegate {
-    func leftAction() {
-        presenter?.routePop()
     }
 }

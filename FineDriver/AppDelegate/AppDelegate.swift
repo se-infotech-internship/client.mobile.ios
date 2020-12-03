@@ -24,8 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.enable = true
 
-        let navigationController = UINavigationController()
-        navigationController.setNavigationBarHidden(true, animated: false)
+        let navigationController = BaseNavigationController()
         
         coordinator = AppCoordinator.shared
         coordinator?.navigationController = navigationController
@@ -34,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
+        navigationBarApperance()
         
         //MARK: Google Auth
         GIDSignIn.sharedInstance().clientID = Constants.googleSignInKey
@@ -47,6 +48,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(Constants.googleMapKey)
         
         return true
+    }
+    
+    fileprivate func navigationBarApperance() {
+        let navigationBarAppearance = UINavigationBar.appearance()
+        let titleAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                              NSAttributedString.Key.font : UIFont(name: "Roboto-Bold", size: 24)!]
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.titleTextAttributes = titleAttributes;
+            appearance.largeTitleTextAttributes = titleAttributes;
+            appearance.backgroundColor = UIColor(hex: "2A3032")
+           
+            navigationBarAppearance.standardAppearance = appearance
+            navigationBarAppearance.compactAppearance = appearance
+            navigationBarAppearance.scrollEdgeAppearance = appearance
+        } else {
+            navigationBarAppearance.titleTextAttributes = titleAttributes
+            navigationBarAppearance.barTintColor = UIColor(hex: "2A3032")
+        }
+        navigationBarAppearance.tintColor = UIColor.white
+        
+        if #available(iOS 13.0, *) {
+           let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+           let statusBar = UIView(frame: window?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
+           statusBar.backgroundColor = .white
+           window?.addSubview(statusBar)
+        } else {
+           UIApplication.shared.statusBarView?.backgroundColor = .white
+        }
     }
 }
 
@@ -91,4 +121,9 @@ extension MapViewController: UNUserNotificationCenterDelegate {
     }
 }
 
+extension UIApplication {
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
+}
 

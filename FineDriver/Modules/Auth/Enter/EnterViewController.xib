@@ -35,7 +35,7 @@
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Aug-KD-Chf">
-                    <rect key="frame" x="103" y="650" width="208" height="192"/>
+                    <rect key="frame" x="103" y="722" width="208" height="120"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCD-hv-5dj">
                             <rect key="frame" x="0.0" y="0.0" width="208" height="48"/>
@@ -44,7 +44,7 @@
                                 <constraint firstAttribute="height" constant="48" id="uDm-oJ-Mj9"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
-                            <state key="normal" title="Увійти">
+                            <state key="normal" title="Поїхали">
                                 <color key="titleColor" name="TextDark"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -57,8 +57,32 @@
                                 <action selector="signInAction:" destination="-1" eventType="touchUpInside" id="Jfx-Xy-j9Q"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sgn-3F-8d4">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndM-37-XHV">
                             <rect key="frame" x="0.0" y="72" width="208" height="48"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5d-p9-XJE">
+                            <rect key="frame" x="0.0" y="120" width="208" height="48"/>
+                            <color key="backgroundColor" name="yellow"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="Oyf-pm-dfS"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                            <state key="normal" title="Увійти">
+                                <color key="titleColor" name="TextDark"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="24"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="signInAction:" destination="-1" eventType="touchUpInside" id="KJa-dL-Ab7"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sgn-3F-8d4">
+                            <rect key="frame" x="0.0" y="120" width="208" height="0.0"/>
                             <color key="backgroundColor" name="yellow"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                             <state key="normal" title="Зареєструватись">
@@ -74,8 +98,8 @@
                                 <action selector="signingUpAction:" destination="-1" eventType="touchUpInside" id="ry1-6P-2aT"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U64-Zk-8uK">
-                            <rect key="frame" x="0.0" y="144" width="208" height="48"/>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U64-Zk-8uK">
+                            <rect key="frame" x="0.0" y="120" width="208" height="0.0"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                             <state key="normal" title="продовжити без реєстрації">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

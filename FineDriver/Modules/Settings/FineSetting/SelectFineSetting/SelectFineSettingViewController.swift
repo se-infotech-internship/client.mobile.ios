@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SelectFineSettingViewController: UIViewController {
+final class SelectFineSettingViewController: BaseViewController {
     
     private enum Constants {
         enum TableView {
@@ -44,8 +44,8 @@ final class SelectFineSettingViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        customNavigationBar.update(title: "ШТРАФИ")
         customNavigationBar.delegate = self
+        customNavigationBar.update(title: "ШТРАФИ")
     }
 }
 
@@ -77,12 +77,5 @@ extension SelectFineSettingViewController: UITableViewDelegate, UITableViewDataS
 extension SelectFineSettingViewController: SelectFineSettingViewControllerProtocol {
     func reloadData() {
         tableView.reloadData()
-    }
-}
-
-// MARK: - NavigationBarDelegate method
-extension SelectFineSettingViewController: NavigationBarDelegate {
-    func leftAction() {
-        presenter?.routePop()
     }
 }

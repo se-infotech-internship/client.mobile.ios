@@ -16,7 +16,7 @@
 		4706368F251DFEB9006F7F41 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4706368B251DFEB9006F7F41 /* SplashViewController.xib */; };
 		470636D4251E19C9006F7F41 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470636D3251E19C9006F7F41 /* Constants.swift */; };
 		47184E772575370700D23228 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47184E742575370600D23228 /* ContentViewController.swift */; };
-		47184E782575370700D23228 /* PresentationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47184E752575370600D23228 /* PresentationViewModel.swift */; };
+		47184E782575370700D23228 /* PresentationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47184E752575370600D23228 /* PresentationPresenter.swift */; };
 		47184E792575370700D23228 /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47184E762575370600D23228 /* PresentationViewController.swift */; };
 		47184E7C257539C900D23228 /* PresentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47184E7B257539C900D23228 /* PresentationViewController.xib */; };
 		47184E7F25753A1000D23228 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47184E7E25753A1000D23228 /* ContentViewController.xib */; };
@@ -30,10 +30,27 @@
 		4764EDBD2574F39D0070E4A1 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4764EDBC2574F39D0070E4A1 /* Roboto-Thin.ttf */; };
 		4764EE0B2574FC450070E4A1 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4764EE0A2574FC450070E4A1 /* InputView.swift */; };
 		4764EE0E2574FC650070E4A1 /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4764EE0D2574FC650070E4A1 /* InputView.xib */; };
+		4784C72625777AC700A98C0B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784C72525777AC700A98C0B /* BaseNavigationController.swift */; };
+		4784C7882577AFD800A98C0B /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4784C7872577AFD700A98C0B /* Roboto-Medium.ttf */; };
+		4784C7902577B46100A98C0B /* NewVehiclePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784C78D2577B46100A98C0B /* NewVehiclePresenter.swift */; };
+		4784C7912577B46100A98C0B /* NewVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784C78E2577B46100A98C0B /* NewVehicleViewController.swift */; };
+		4784C7962577BBDC00A98C0B /* NewVehicleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4784C7952577BBDC00A98C0B /* NewVehicleViewController.xib */; };
 		47B532632514CB5C006EAAB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B532622514CB5C006EAAB2 /* AppDelegate.swift */; };
 		47B5326F2514CB5E006EAAB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B5326D2514CB5E006EAAB2 /* LaunchScreen.storyboard */; };
 		47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */; };
 		47BC2AD625519F840042A201 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BC2AD525519F840042A201 /* UINavigationController+Extensions.swift */; };
+		47E09C042578CB3C0054FC95 /* VehicleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E09C022578CB3C0054FC95 /* VehicleListViewController.swift */; };
+		47E09C052578CB3D0054FC95 /* VehicleListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E09C032578CB3C0054FC95 /* VehicleListViewController.xib */; };
+		47E09C172578D0AB0054FC95 /* VehicleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E09C162578D0AB0054FC95 /* VehicleListPresenter.swift */; };
+		47E32F4725767230003C4BDA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E32F462576722F003C4BDA /* Colors.swift */; };
+		47E32F4A257672ED003C4BDA /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E32F49257672ED003C4BDA /* UIColor+Extensions.swift */; };
+		47E32F4D25767440003C4BDA /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47E32F4C2576743F003C4BDA /* Roboto-Bold.ttf */; };
+		47E6C9412578D76000004CB1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
+		47E6C9562578DA8900004CB1 /* VehicleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6C9542578DA8900004CB1 /* VehicleListCell.swift */; };
+		47E6C9572578DA8900004CB1 /* VehicleListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E6C9552578DA8900004CB1 /* VehicleListCell.xib */; };
+		47E6C9742578DC5300004CB1 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6C9732578DC5300004CB1 /* UITableView+Extensions.swift */; };
+		47E6C9A32578E4D700004CB1 /* VehicleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6C9A22578E4D700004CB1 /* VehicleHeaderView.swift */; };
+		47E6C9A62578E4E200004CB1 /* VehicleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E6C9A52578E4E200004CB1 /* VehicleHeaderView.xib */; };
 		47FCB2F8255D407A0009CE61 /* SearchResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCB2F7255D407A0009CE61 /* SearchResultsPresenter.swift */; };
 		92001DAD2525C0E700CAE036 /* GMSCoordinateBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */; };
 		920E55F3253061BD0082CF6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920E55F1253061BD0082CF6F /* SettingsViewController.swift */; };
@@ -88,7 +105,6 @@
 		92D54500253D89950091D0D5 /* SettingFineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D544FE253D89950091D0D5 /* SettingFineCell.xib */; };
 		92D54503253E39580091D0D5 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D54502253E39550091D0D5 /* SearchResultsController.swift */; };
 		92D54505253EC72B0091D0D5 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D54504253EC72A0091D0D5 /* LocationModel.swift */; };
-		9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF1251C0C33000AB6F1 /* Images.xcassets */; };
 		9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA51BF2251C0C33000AB6F1 /* Colors.xcassets */; };
 		9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BF9251C0DCE000AB6F1 /* MenuPresenter.swift */; };
 		9AA51C00251C0DCF000AB6F1 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA51BFC251C0DCF000AB6F1 /* MenuCell.swift */; };
@@ -112,7 +128,7 @@
 		4706368B251DFEB9006F7F41 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		470636D3251E19C9006F7F41 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		47184E742575370600D23228 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		47184E752575370600D23228 /* PresentationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationViewModel.swift; sourceTree = "<group>"; };
+		47184E752575370600D23228 /* PresentationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationPresenter.swift; sourceTree = "<group>"; };
 		47184E762575370600D23228 /* PresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
 		47184E7B257539C900D23228 /* PresentationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresentationViewController.xib; sourceTree = "<group>"; };
 		47184E7E25753A1000D23228 /* ContentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
@@ -127,6 +143,11 @@
 		4764EDBC2574F39D0070E4A1 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		4764EE0A2574FC450070E4A1 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		4764EE0D2574FC650070E4A1 /* InputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
+		4784C72525777AC700A98C0B /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		4784C7872577AFD700A98C0B /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		4784C78D2577B46100A98C0B /* NewVehiclePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewVehiclePresenter.swift; sourceTree = "<group>"; };
+		4784C78E2577B46100A98C0B /* NewVehicleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewVehicleViewController.swift; sourceTree = "<group>"; };
+		4784C7952577BBDC00A98C0B /* NewVehicleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewVehicleViewController.xib; sourceTree = "<group>"; };
 		47B5325F2514CB5C006EAAB2 /* FineDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FineDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B532622514CB5C006EAAB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47B5326E2514CB5E006EAAB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -134,6 +155,17 @@
 		47B5328E2514DC82006EAAB2 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		47B532922514DD84006EAAB2 /* FineDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FineDriver.entitlements; sourceTree = "<group>"; };
 		47BC2AD525519F840042A201 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
+		47E09C022578CB3C0054FC95 /* VehicleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListViewController.swift; sourceTree = "<group>"; };
+		47E09C032578CB3C0054FC95 /* VehicleListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VehicleListViewController.xib; sourceTree = "<group>"; };
+		47E09C162578D0AB0054FC95 /* VehicleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListPresenter.swift; sourceTree = "<group>"; };
+		47E32F462576722F003C4BDA /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = FineDriver/Utils/Colors.swift; sourceTree = SOURCE_ROOT; };
+		47E32F49257672ED003C4BDA /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Extensions.swift"; path = "FineDriver/Utils/UIColor+Extensions.swift"; sourceTree = SOURCE_ROOT; };
+		47E32F4C2576743F003C4BDA /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		47E6C9542578DA8900004CB1 /* VehicleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListCell.swift; sourceTree = "<group>"; };
+		47E6C9552578DA8900004CB1 /* VehicleListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VehicleListCell.xib; sourceTree = "<group>"; };
+		47E6C9732578DC5300004CB1 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		47E6C9A22578E4D700004CB1 /* VehicleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleHeaderView.swift; sourceTree = "<group>"; };
+		47E6C9A52578E4E200004CB1 /* VehicleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VehicleHeaderView.xib; sourceTree = "<group>"; };
 		47FCB2F7255D407A0009CE61 /* SearchResultsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsPresenter.swift; sourceTree = "<group>"; };
 		49835E0D39478AF6F454BDBF /* Pods-FineDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineDriver.debug.xcconfig"; path = "Target Support Files/Pods-FineDriver/Pods-FineDriver.debug.xcconfig"; sourceTree = "<group>"; };
 		92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMSCoordinateBounds.swift; sourceTree = "<group>"; };
@@ -267,7 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				47184E742575370600D23228 /* ContentViewController.swift */,
-				47184E752575370600D23228 /* PresentationViewModel.swift */,
+				47184E752575370600D23228 /* PresentationPresenter.swift */,
 				47184E762575370600D23228 /* PresentationViewController.swift */,
 				47184E7B257539C900D23228 /* PresentationViewController.xib */,
 				47184E7E25753A1000D23228 /* ContentViewController.xib */,
@@ -279,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				47631D7E254C283A00CC867A /* BaseViewController.swift */,
+				4784C72525777AC700A98C0B /* BaseNavigationController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -304,11 +337,33 @@
 		4764ED8D2574D6E20070E4A1 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				4784C7872577AFD700A98C0B /* Roboto-Medium.ttf */,
+				47E32F4C2576743F003C4BDA /* Roboto-Bold.ttf */,
 				4764EDBC2574F39D0070E4A1 /* Roboto-Thin.ttf */,
 				4764EDB82574F3150070E4A1 /* Roboto-Light.ttf */,
 				4764ED8E2574D7060070E4A1 /* Roboto-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		4784C78B2577B41B00A98C0B /* Vehicles */ = {
+			isa = PBXGroup;
+			children = (
+				47E6C9532578DA6400004CB1 /* Cells */,
+				47E09C012578CB160054FC95 /* List */,
+				4784C78C2577B46100A98C0B /* NewVehicle */,
+			);
+			path = Vehicles;
+			sourceTree = "<group>";
+		};
+		4784C78C2577B46100A98C0B /* NewVehicle */ = {
+			isa = PBXGroup;
+			children = (
+				4784C78D2577B46100A98C0B /* NewVehiclePresenter.swift */,
+				4784C78E2577B46100A98C0B /* NewVehicleViewController.swift */,
+				4784C7952577BBDC00A98C0B /* NewVehicleViewController.xib */,
+			);
+			path = NewVehicle;
 			sourceTree = "<group>";
 		};
 		47B532562514CB5C006EAAB2 = {
@@ -341,8 +396,8 @@
 				47B532842514DB8B006EAAB2 /* Modules */,
 				92001DAF2525FA6600CAE036 /* Views */,
 				47B5328D2514DC53006EAAB2 /* Navigation */,
-				47B532872514DB95006EAAB2 /* Resources */,
 				47B532882514DBB1006EAAB2 /* Storyboards */,
+				47B532872514DB95006EAAB2 /* Resources */,
 			);
 			path = FineDriver;
 			sourceTree = "<group>";
@@ -365,6 +420,7 @@
 				47063685251DFEB9006F7F41 /* Splash */,
 				9AA51C07251C1191000AB6F1 /* Map */,
 				9AA51BF7251C0DCE000AB6F1 /* Menu */,
+				4784C78B2577B41B00A98C0B /* Vehicles */,
 				9294165A2521DCEA00D7F966 /* Fines */,
 				92CF0A6D253C311600F92897 /* Profile */,
 				920E55F02530617F0082CF6F /* Settings */,
@@ -433,12 +489,15 @@
 		47B5328C2514DC18006EAAB2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				47E32F49257672ED003C4BDA /* UIColor+Extensions.swift */,
+				47E32F462576722F003C4BDA /* Colors.swift */,
 				929416772521E0A700D7F966 /* UIView.swift */,
 				9297AF012524EE12007C2291 /* UINib.swift */,
 				92001DAC2525C0E700CAE036 /* GMSCoordinateBounds.swift */,
 				928E9F642528D22A008A1D59 /* UserDefaults.swift */,
 				47BC2AD525519F840042A201 /* UINavigationController+Extensions.swift */,
 				4702289F2575109300B8CE7F /* UITextField+Extensions.swift */,
+				47E6C9732578DC5300004CB1 /* UITableView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -466,6 +525,27 @@
 				92CAF0E5252F7C190080F46E /* 02869.mp3 */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		47E09C012578CB160054FC95 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				47E09C162578D0AB0054FC95 /* VehicleListPresenter.swift */,
+				47E09C022578CB3C0054FC95 /* VehicleListViewController.swift */,
+				47E09C032578CB3C0054FC95 /* VehicleListViewController.xib */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		47E6C9532578DA6400004CB1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				47E6C9542578DA8900004CB1 /* VehicleListCell.swift */,
+				47E6C9552578DA8900004CB1 /* VehicleListCell.xib */,
+				47E6C9A22578E4D700004CB1 /* VehicleHeaderView.swift */,
+				47E6C9A52578E4E200004CB1 /* VehicleHeaderView.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		92001DAF2525FA6600CAE036 /* Views */ = {
@@ -693,7 +773,9 @@
 				92CEE40225330D92008543F0 /* MessageSettingViewController.xib in Resources */,
 				92D54500253D89950091D0D5 /* SettingFineCell.xib in Resources */,
 				4764ED8F2574D7060070E4A1 /* Roboto-Regular.ttf in Resources */,
-				9AA51BF3251C0C34000AB6F1 /* Images.xcassets in Resources */,
+				4784C7962577BBDC00A98C0B /* NewVehicleViewController.xib in Resources */,
+				47E6C9412578D76000004CB1 /* Images.xcassets in Resources */,
+				47E6C9A62578E4E200004CB1 /* VehicleHeaderView.xib in Resources */,
 				92D544F2253D77EE0091D0D5 /* FineSettingViewController.xib in Resources */,
 				92CAF0D0252CF47F0080F46E /* cameras_list.json in Resources */,
 				920E55F4253061BD0082CF6F /* SettingsViewController.xib in Resources */,
@@ -705,14 +787,18 @@
 				9294165E2521DD0000D7F966 /* FinesViewController.xib in Resources */,
 				92CF0A6A253B25A000F92897 /* NavigationBar.xib in Resources */,
 				9AA51C01251C0DCF000AB6F1 /* MenuCell.xib in Resources */,
+				4784C7882577AFD800A98C0B /* Roboto-Medium.ttf in Resources */,
 				4764EDB92574F3160070E4A1 /* Roboto-Light.ttf in Resources */,
 				92CAF0E6252F7C1B0080F46E /* 02869.mp3 in Resources */,
 				928E9F6F2528FE36008A1D59 /* SignInViewController.xib in Resources */,
 				4764EDBD2574F39D0070E4A1 /* Roboto-Thin.ttf in Resources */,
 				92CEE40D253323A0008543F0 /* SwitchSettingCell.xib in Resources */,
 				9AA51C0D251C1208000AB6F1 /* MapViewController.xib in Resources */,
+				47E32F4D25767440003C4BDA /* Roboto-Bold.ttf in Resources */,
+				47E09C052578CB3D0054FC95 /* VehicleListViewController.xib in Resources */,
 				9AA51BF4251C0C34000AB6F1 /* Colors.xcassets in Resources */,
 				92CEE3FC2532FEBC008543F0 /* BaseSettingCell.xib in Resources */,
+				47E6C9572578DA8900004CB1 /* VehicleListCell.xib in Resources */,
 				929416712521DD1600D7F966 /* FineCell.xib in Resources */,
 				92CF0A83253CAED800F92897 /* StepperSettingCell.xib in Resources */,
 				92CF0A71253C319400F92897 /* ProfileViewController.xib in Resources */,
@@ -775,14 +861,19 @@
 				92D544F8253D84D90091D0D5 /* SelectFineSettingViewController.swift in Sources */,
 				4706368D251DFEB9006F7F41 /* AuthManager.swift in Sources */,
 				47BC2AD625519F840042A201 /* UINavigationController+Extensions.swift in Sources */,
+				47E6C9A32578E4D700004CB1 /* VehicleHeaderView.swift in Sources */,
 				929416992522034800D7F966 /* FineEntity.swift in Sources */,
+				4784C7912577B46100A98C0B /* NewVehicleViewController.swift in Sources */,
+				47E6C9562578DA8900004CB1 /* VehicleListCell.swift in Sources */,
 				9AA51C00251C0DCF000AB6F1 /* MenuCell.swift in Sources */,
 				920E55F8253063720082CF6F /* SettingsPresenter.swift in Sources */,
 				470228A02575109300B8CE7F /* UITextField+Extensions.swift in Sources */,
+				47E6C9742578DC5300004CB1 /* UITableView+Extensions.swift in Sources */,
 				92D544F4253D79A40091D0D5 /* FineSettingPresenter.swift in Sources */,
 				928E9F652528D22B008A1D59 /* UserDefaults.swift in Sources */,
 				9297AEFC2524C5FC007C2291 /* PopUpView.swift in Sources */,
 				92CAF0D3252CF5BC0080F46E /* CameraModel.swift in Sources */,
+				47E09C042578CB3C0054FC95 /* VehicleListViewController.swift in Sources */,
 				9297AF022524EE12007C2291 /* UINib.swift in Sources */,
 				92CEE40125330D92008543F0 /* MessageSettingViewController.swift in Sources */,
 				92CF0A7E253CAC0A00F92897 /* CamerasSettingPresenter.swift in Sources */,
@@ -791,6 +882,7 @@
 				92CEE40C253323A0008543F0 /* SwitchSettingCell.swift in Sources */,
 				92D54505253EC72B0091D0D5 /* LocationModel.swift in Sources */,
 				4764ED882574D5970070E4A1 /* EnterViewController.swift in Sources */,
+				4784C7902577B46100A98C0B /* NewVehiclePresenter.swift in Sources */,
 				47B5328F2514DC82006EAAB2 /* AppCoordinator.swift in Sources */,
 				929416742521DD2A00D7F966 /* FinesPresenter.swift in Sources */,
 				9AA51C04251C0E20000AB6F1 /* MenuEntity.swift in Sources */,
@@ -810,13 +902,17 @@
 				92D54503253E39580091D0D5 /* SearchResultsController.swift in Sources */,
 				925E87842520ABF700FD1D75 /* Service.swift in Sources */,
 				47184E792575370700D23228 /* PresentationViewController.swift in Sources */,
-				47184E782575370700D23228 /* PresentationViewModel.swift in Sources */,
+				47184E782575370700D23228 /* PresentationPresenter.swift in Sources */,
+				47E32F4725767230003C4BDA /* Colors.swift in Sources */,
+				47E09C172578D0AB0054FC95 /* VehicleListPresenter.swift in Sources */,
+				47E32F4A257672ED003C4BDA /* UIColor+Extensions.swift in Sources */,
 				925E87872520AC7B00FD1D75 /* ServiceProvider.swift in Sources */,
 				929416702521DD1600D7F966 /* FineCell.swift in Sources */,
 				92CF0A70253C319400F92897 /* ProfileViewController.swift in Sources */,
 				928E9F682528D929008A1D59 /* UserDefaultsKeys.swift in Sources */,
 				920E55F3253061BD0082CF6F /* SettingsViewController.swift in Sources */,
 				9AA51BFF251C0DCF000AB6F1 /* MenuPresenter.swift in Sources */,
+				4784C72625777AC700A98C0B /* BaseNavigationController.swift in Sources */,
 				92D544FB253D84F00091D0D5 /* SelectFineSettingPresenter.swift in Sources */,
 				47631D7F254C283A00CC867A /* BaseViewController.swift in Sources */,
 				92001DAD2525C0E700CAE036 /* GMSCoordinateBounds.swift in Sources */,
@@ -971,7 +1067,7 @@
 				CODE_SIGN_ENTITLEMENTS = FineDriver/FineDriver.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = HUHG2FJLKJ;
 				INFOPLIST_FILE = FineDriver/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -996,7 +1092,7 @@
 				CODE_SIGN_ENTITLEMENTS = FineDriver/FineDriver.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = HUHG2FJLKJ;
 				INFOPLIST_FILE = FineDriver/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

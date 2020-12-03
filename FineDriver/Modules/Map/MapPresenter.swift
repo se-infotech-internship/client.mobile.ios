@@ -19,6 +19,7 @@ protocol MapPresenterProtocol: class {
     var camerasEntity: [CameraEntity] { get set }
     var myLocationMarker: GMSMarker! { get }
     
+    func muteSound(muted: Bool)
     func oncomingCamera(address: String,
                         speedLimit: String)
     func fetchCameras()
@@ -46,7 +47,8 @@ final class MapPresenter {
     // MARK: - Private property
     fileprivate let localService = ServiceLocalFile()
     fileprivate var player: AVAudioPlayer?
-    
+    fileprivate var mutedSound: Bool = false
+
     
     // MARK: - LifeCycle
     init(delegate: MapViewControllerProtocol?) {
@@ -207,6 +209,7 @@ extension MapPresenter: MapPresenterProtocol {
             try AVAudioSession.sharedInstance().setActive(true)
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
             guard let player = player else { return }
+            player.volume = mutedSound ? 0.0 : 1.0
             player.play()
         } catch let error {
             print(error.localizedDescription)
@@ -216,6 +219,12 @@ extension MapPresenter: MapPresenterProtocol {
     func stopSound() {
         guard let player = player else { return }
         player.stop()
+    }
+    
+    func muteSound(muted: Bool) {
+        guard let player = player else { return }
+        mutedSound = muted
+        player.volume = mutedSound ? 0.0 : 1.0
     }
     
     //MARK:- Notification

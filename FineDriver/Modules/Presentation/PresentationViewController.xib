@@ -4,21 +4,20 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Roboto-Medium.ttf">
-            <string>Roboto-Medium</string>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
         </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PresentationViewController" customModule="FineDriver" customModuleProvider="target">
             <connections>
+                <outlet property="gradientView" destination="Efl-oC-zN5" id="bCI-Y1-2sc"/>
                 <outlet property="nextButton" destination="uGM-u8-b8A" id="vEd-yl-5aR"/>
                 <outlet property="pageControl" destination="Hao-sC-lYo" id="dYW-OH-zUP"/>
-                <outlet property="skipButton" destination="TaX-DU-idH" id="S4L-sq-Hh4"/>
                 <outlet property="view" destination="NtD-zU-x8k" id="lhb-Sa-exG"/>
             </connections>
         </placeholder>
@@ -27,53 +26,74 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundRegister" translatesAutoresizingMaskIntoConstraints="NO" id="Naq-uI-r70">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efl-oC-zN5">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view alpha="0.57999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="268-UB-VgJ">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Hao-sC-lYo">
+                    <rect key="frame" x="146" y="810.5" width="122.5" height="27.5"/>
+                    <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="currentPageIndicatorTintColor" red="0.98039215686274506" green="0.88235294117647056" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </pageControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGM-u8-b8A">
-                    <rect key="frame" x="20" y="802" width="374" height="40"/>
-                    <color key="backgroundColor" name="MainGreen"/>
+                    <rect key="frame" x="99" y="742.5" width="216" height="48"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="5AV-zG-Yf2"/>
+                        <constraint firstAttribute="height" constant="48" id="5AV-zG-Yf2"/>
+                        <constraint firstAttribute="width" constant="216" id="dYg-DK-iVI"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
-                    <state key="normal" title="Seuraava">
+                    <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="18"/>
+                    <state key="normal" title="Далі">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="lzTitle" value="Seuraava"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="24"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
-                </button>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="Hao-sC-lYo">
-                    <rect key="frame" x="136.5" y="754.5" width="141" height="27.5"/>
-                    <color key="pageIndicatorTintColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="currentPageIndicatorTintColor" red="0.070588235289999995" green="0.60392156860000001" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
-                </pageControl>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TaX-DU-idH">
-                    <rect key="frame" x="355" y="64" width="44" height="33"/>
-                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
-                    <state key="normal" title="Ohita">
-                        <color key="titleColor" red="0.1764705882" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="lzTitle" value="Ohita"/>
-                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="scrollToNextViewController:" destination="-1" eventType="touchUpInside" id="YLK-ie-tLX"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="ZOQ-nL-Py7"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="uGM-u8-b8A" firstAttribute="leading" secondItem="ZOQ-nL-Py7" secondAttribute="leading" constant="20" id="B2h-Ze-GYw"/>
-                <constraint firstItem="ZOQ-nL-Py7" firstAttribute="bottom" secondItem="uGM-u8-b8A" secondAttribute="bottom" constant="20" id="EWm-aN-254"/>
-                <constraint firstItem="TaX-DU-idH" firstAttribute="top" secondItem="ZOQ-nL-Py7" secondAttribute="top" constant="20" id="H1N-HC-65k"/>
-                <constraint firstItem="uGM-u8-b8A" firstAttribute="top" secondItem="Hao-sC-lYo" secondAttribute="bottom" constant="20" id="IqO-gl-XJX"/>
-                <constraint firstItem="ZOQ-nL-Py7" firstAttribute="trailing" secondItem="TaX-DU-idH" secondAttribute="trailing" constant="15" id="e3s-CC-Hc5"/>
-                <constraint firstItem="ZOQ-nL-Py7" firstAttribute="trailing" secondItem="uGM-u8-b8A" secondAttribute="trailing" constant="20" id="hAr-n0-I8x"/>
+                <constraint firstAttribute="bottom" secondItem="Naq-uI-r70" secondAttribute="bottom" id="1bQ-Es-cum"/>
+                <constraint firstItem="uGM-u8-b8A" firstAttribute="centerX" secondItem="ZOQ-nL-Py7" secondAttribute="centerX" id="3FB-Vv-RB7"/>
+                <constraint firstItem="268-UB-VgJ" firstAttribute="top" secondItem="NtD-zU-x8k" secondAttribute="top" id="3Wa-KI-YCO"/>
+                <constraint firstItem="268-UB-VgJ" firstAttribute="leading" secondItem="ZOQ-nL-Py7" secondAttribute="leading" id="Aus-8b-0ei"/>
+                <constraint firstItem="Efl-oC-zN5" firstAttribute="top" secondItem="NtD-zU-x8k" secondAttribute="top" id="Udw-1L-aas"/>
+                <constraint firstItem="Naq-uI-r70" firstAttribute="trailing" secondItem="ZOQ-nL-Py7" secondAttribute="trailing" id="acO-RX-70M"/>
+                <constraint firstItem="Naq-uI-r70" firstAttribute="top" secondItem="NtD-zU-x8k" secondAttribute="top" id="auq-Zs-nue"/>
+                <constraint firstItem="Efl-oC-zN5" firstAttribute="leading" secondItem="ZOQ-nL-Py7" secondAttribute="leading" id="ctL-Ml-SkX"/>
+                <constraint firstItem="ZOQ-nL-Py7" firstAttribute="bottom" secondItem="Hao-sC-lYo" secondAttribute="bottom" constant="24" id="drQ-cT-oFj"/>
+                <constraint firstItem="Naq-uI-r70" firstAttribute="leading" secondItem="ZOQ-nL-Py7" secondAttribute="leading" id="el6-kl-m0i"/>
+                <constraint firstItem="ZOQ-nL-Py7" firstAttribute="trailing" secondItem="268-UB-VgJ" secondAttribute="trailing" id="r8i-No-0NO"/>
                 <constraint firstItem="Hao-sC-lYo" firstAttribute="centerX" secondItem="ZOQ-nL-Py7" secondAttribute="centerX" id="u7I-iQ-HZX"/>
+                <constraint firstAttribute="bottom" secondItem="268-UB-VgJ" secondAttribute="bottom" id="xR4-KI-1O8"/>
+                <constraint firstAttribute="bottom" secondItem="Efl-oC-zN5" secondAttribute="bottom" id="y60-ul-ypI"/>
+                <constraint firstItem="Efl-oC-zN5" firstAttribute="trailing" secondItem="ZOQ-nL-Py7" secondAttribute="trailing" id="yiE-tQ-Ohg"/>
+                <constraint firstItem="Hao-sC-lYo" firstAttribute="top" secondItem="uGM-u8-b8A" secondAttribute="bottom" constant="20" id="zLk-Ag-vKM"/>
             </constraints>
             <point key="canvasLocation" x="158" y="-38"/>
         </view>
     </objects>
     <resources>
-        <namedColor name="MainGreen">
-            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="BackgroundRegister" width="375" height="736"/>
     </resources>
 </document>

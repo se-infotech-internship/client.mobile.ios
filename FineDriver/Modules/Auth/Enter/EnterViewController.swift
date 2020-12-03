@@ -9,6 +9,12 @@
 import UIKit
 
 final class EnterViewController: BaseViewController {
+    
+    fileprivate var statusBarStyle = UIStatusBarStyle.lightContent {
+        didSet { setNeedsStatusBarAppearanceUpdate() }
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
+
 
     //MARK: - LifeCicle
     override func viewDidLoad() {

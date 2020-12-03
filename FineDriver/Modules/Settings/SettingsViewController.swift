@@ -9,7 +9,7 @@
 import UIKit
 
 
-final class SettingsViewController: UIViewController {
+final class SettingsViewController: BaseViewController {
     
     private enum Constants {
         enum TableView {
@@ -46,8 +46,8 @@ final class SettingsViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        customNavigationBar.update(title: "НАЛАШТУВАННЯ")
         customNavigationBar.delegate = self
+        customNavigationBar.update(title: "НАЛАШТУВАННЯ")
     }
 }
 
@@ -88,12 +88,5 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case 4: break
         default: break
         }
-    }
-}
-
-// MARK: - NavigationBarDelegate method
-extension SettingsViewController: NavigationBarDelegate {
-    func leftAction() {
-        presenter?.routePop()
     }
 }

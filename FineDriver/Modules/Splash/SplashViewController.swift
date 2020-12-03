@@ -10,6 +10,11 @@ import UIKit
 
 final class SplashViewController: BaseViewController {
     
+    fileprivate var statusBarStyle = UIStatusBarStyle.lightContent {
+        didSet { setNeedsStatusBarAppearanceUpdate() }
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
+    
     //MARK: - Public property
     var presenter: SplashPresenterProtocol?
 

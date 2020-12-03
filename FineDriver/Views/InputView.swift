@@ -22,9 +22,23 @@ final class InputView: NibView {
     @IBOutlet fileprivate weak var imgView: UIImageView!
     @IBOutlet fileprivate weak var hideButtom: UIButton!
     
+    var text: String? {
+        didSet{
+            textField.text = text
+        }
+    }
     @IBInspectable var placeholder: String? {
         didSet{
             textField.placeholder = placeholder
+        }
+    }
+    
+    @IBInspectable var iconName: String? {
+        didSet{
+            if let iconName = iconName,
+               let image = UIImage(named: iconName) {
+                imgView.image = image
+            }
         }
     }
     

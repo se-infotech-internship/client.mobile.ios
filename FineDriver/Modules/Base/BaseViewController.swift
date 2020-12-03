@@ -14,13 +14,22 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
-                                                           style: .plain,
-                                                           target: nil,
-                                                           action: nil)
+                                                       style: .plain,
+                                                       target: nil,
+                                                       action: nil)
+        
     }
+    
     
     #if DEBUG
     deinit { print("🟢 \(#function) \(self)") }
     #endif
 
+}
+
+// MARK: - NavigationBarDelegate method
+extension BaseViewController: NavigationBarDelegate {
+    func leftAction() {
+        AppCoordinator.shared.popVC()
+    }
 }

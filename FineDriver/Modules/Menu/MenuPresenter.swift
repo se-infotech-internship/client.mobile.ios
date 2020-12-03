@@ -69,7 +69,7 @@ extension MenuPresenter: MenuPresenterProtocol {
     }
     
     func routeFines() {
-        AppCoordinator.shared.routeToFinesList()
+        AppCoordinator.shared.routeToVehicleList()
     }
     
     func routeAuth() {

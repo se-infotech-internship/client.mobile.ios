@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol PresentationViewProtocol: class {
+    func configurePageView()
+}
+
 protocol PresentationPresenterProtocol {
     var viewControllers: [UIViewController] { get }
 
@@ -20,15 +24,15 @@ final class PresentationPresenter: NSObject, PresentationPresenterProtocol {
     var viewControllers: [UIViewController] = [UIViewController]()
     
     let titles = [
-        "Tervetuloa apteekkiasiakkaiden Remomedi mobiilisovellukseen",
-        "Pääsy verkkoon",
-        "Turvallisuutesi - etusijamme"
+        "Заощаджуйте час та гроші:",
+        "Додаток пряцює як в активному, так і в фоновому режимі: ",
+        "Оплата штрафів в один клік:"
     ]
     
     let descs = [
-        "Remomedi-sovellus tarjoaa mahdollisuuden neuvotella apteekkihenkilökunnan kanssa ja ostaa apteekkitavaroita, myös lääkkeitä, verkossa. Katso käyttöopasta tai katso opasvideo",
-        "Pääset tietyn apteekin apteekkiin mistä tahansa online-tilassa.",
-        "Lääkevalmisteita koskevia neuvoja annetaan puhelun aikana, aivan kuten kun vierailet apteekissa henkilökohtaisesti."
+        "Інформація про камери та сплата штрафів  в оному додатку.",
+        "Коли на маршруті  з’явиться камера - миттєво прийде повідомлення про відстань до камери, напрямок її дії та ліміт швидкості.",
+        "Оперативно отримуйте інформацію з державних реєстрів про наявність штрафів та миттєво сплачуйте їх прямо із додатку."
     ]
     
     let images = [
@@ -37,11 +41,18 @@ final class PresentationPresenter: NSObject, PresentationPresenterProtocol {
         "img_onboarding_3"
     ]
     
+    weak var delegate: PresentationViewProtocol?
+    
+    init(delegate: PresentationViewProtocol) {
+        self.delegate = delegate
+    }
+    
     func getViewControllers() {
         for index in 0...titles.count-1 {
             let vc =  AppCoordinator.shared.getPresentationContent(title: titles[index], desc: descs[index], image: images[index])
             viewControllers.append(vc)
         }
+        delegate?.configurePageView()
     }
     
     func skip() {

@@ -50,7 +50,6 @@ final class SignInViewController: BaseViewController {
             singingUpView.isHidden = true
             signInView.isHidden = false
         }
-    
     }
     
     // MARK: - Private methods

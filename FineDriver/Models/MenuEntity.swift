@@ -18,11 +18,11 @@ final class MenuEntity {
 }
 
  final class MenuItemEntity {
-    var iconItem: UIImage
+    var iconItem: UIImage?
     var nameItem: String
     var notificationCount: Int?
     
-    init(iconItem: UIImage, nameItem: String, notificationCount: Int?) {
+    init(iconItem: UIImage?, nameItem: String, notificationCount: Int?) {
         self.iconItem = iconItem
         self.nameItem = nameItem
         self.notificationCount = notificationCount
@@ -39,14 +39,34 @@ final class MenuNotificationEntity {
 
 // TODO: - Mock MenuScreen
 func mockDataForMenuVC() -> [MenuItemEntity] {
-    let map = MenuItemEntity(iconItem: UIImage(named: "map") ?? UIImage(), nameItem: "Мапа", notificationCount: nil)
-    let fee = MenuItemEntity(iconItem: UIImage(named: "library_books") ?? UIImage(), nameItem: "Штрафи", notificationCount: 12)
-    let camera = MenuItemEntity(iconItem: UIImage(named: "camera_alt") ?? UIImage(), nameItem: "Перелік відеокамер", notificationCount: nil)
-    let profile = MenuItemEntity(iconItem: UIImage(named: "contact_page") ?? UIImage(), nameItem: "Профіль користувача ", notificationCount: nil)
-    let settings = MenuItemEntity(iconItem: UIImage(named: "settings") ?? UIImage(), nameItem: "Налаштування додатку", notificationCount: nil)
-    let feedback = MenuItemEntity(iconItem: UIImage(named: "live_help") ?? UIImage(), nameItem: "Зворотній зв’язок", notificationCount: nil)
-    let exit = MenuItemEntity(iconItem: UIImage(named: "meeting_room") ?? UIImage(), nameItem: "Вихід", notificationCount: nil)
+    let map = MenuItemEntity(iconItem: UIImage(named: "map"),
+                            nameItem: "Мапа",
+                            notificationCount: nil)
+    let fee = MenuItemEntity(iconItem: UIImage(named: "library_books"),
+                            nameItem: "Штрафи",
+                            notificationCount: 12)
+    let camera = MenuItemEntity(iconItem: UIImage(named: "camera_alt"),
+                                nameItem: "Перелік відеокамер",
+                                notificationCount: nil)
+    let profile = MenuItemEntity(iconItem: UIImage(named: "contact_page"),
+                                nameItem: "Профіль користувача",
+                                notificationCount: nil)
+    let settings = MenuItemEntity(iconItem: UIImage(named: "settings"),
+                                nameItem: "Налаштування додатку",
+                                notificationCount: nil)
+    let quastions = MenuItemEntity(iconItem: UIImage(named: "quastions"),
+                                nameItem: "Популярні запитання",
+                                notificationCount: nil)
+    let presentation = MenuItemEntity(iconItem: UIImage(named: "presentation"),
+                                nameItem: "Ознайомитись",
+                                notificationCount: nil)
+    let feedback = MenuItemEntity(iconItem: UIImage(named: "live_help"),
+                                nameItem: "Зворотній зв’язок",
+                                notificationCount: nil)
+    let exit = MenuItemEntity(iconItem: UIImage(named: "meeting_room"),
+                            nameItem: "Вихід",
+                            notificationCount: nil)
     
-    return [map, fee, camera, profile, settings, feedback, exit]
+    return [fee, camera, profile, settings, quastions, presentation, feedback, exit]
 }
 

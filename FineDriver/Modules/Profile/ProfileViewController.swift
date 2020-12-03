@@ -8,14 +8,15 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController {
+final class ProfileViewController: BaseViewController {
     
     // MARK:- Private outlets
     @IBOutlet private weak var customNavigationBar: NavigationBar!
     @IBOutlet private weak var avatarImageView: UIImageView!
-    @IBOutlet private weak var loginLabel: UILabel!
-    @IBOutlet private weak var emailLabel: UILabel!
-    @IBOutlet private weak var fullNameLabel: UILabel!
+    @IBOutlet private weak var nameInputView: InputView!
+    @IBOutlet private weak var emailInputView: InputView!
+    @IBOutlet private weak var phoneInputView: InputView!
+    @IBOutlet private weak var passwordInputView: InputView!
     
     // MARK: - Public properties
     var presenter: ProfilePresenterProtocol!
@@ -28,7 +29,6 @@ final class ProfileViewController: UIViewController {
         setupView()
         setupNavigationBar()
     }
-
 
     // MARK: - Private methods
     private func setupView() {
@@ -43,10 +43,12 @@ final class ProfileViewController: UIViewController {
         customNavigationBar.update(title: "ПРОФIЛЬ")
     }
     
-    private func setViewData() {
-        loginLabel.text = presenter.profileData.login
-        emailLabel.text = presenter.profileData.email
-        fullNameLabel.text = "\(presenter.profileData.firstName ?? "") \(presenter.profileData.lastName ?? "")"
+    fileprivate func setViewData() {
+        emailInputView.text = presenter.profileData.email
+        if let firstName = presenter.profileData.firstName,
+           let lastName = presenter.profileData.lastName {
+            nameInputView.text = "\(firstName) \(lastName)"
+        }
     }
 }
 
@@ -54,11 +56,4 @@ final class ProfileViewController: UIViewController {
 
 extension ProfileViewController: ProfileViewControllerProtocol {
     
-}
-
-// MARK: - NavigationBarDelegate method
-extension ProfileViewController: NavigationBarDelegate {
-    func leftAction() {
-        presenter?.routePop()
-    }
 }

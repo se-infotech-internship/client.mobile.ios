@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContentViewController" customModule="FineDriver" customModuleProvider="target">
             <connections>
@@ -18,72 +26,38 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="DnI-so-frF">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xf-fD-g3X">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oab-vV-dqF">
+                    <rect key="frame" x="24" y="24" width="272" height="400.5"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_onboarding_1" translatesAutoresizingMaskIntoConstraints="NO" id="qEO-yI-23V">
-                            <rect key="frame" x="90" y="128.5" width="234" height="234"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="qEO-yI-23V" secondAttribute="height" multiplier="1:1" id="0V1-BT-oGW"/>
-                            </constraints>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="img_onboarding_1" translatesAutoresizingMaskIntoConstraints="NO" id="qEO-yI-23V">
+                            <rect key="frame" x="0.0" y="0.0" width="272" height="255.5"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYM-d8-P9T">
-                            <rect key="frame" x="20" y="446.5" width="374" height="55"/>
-                            <attributedString key="attributedText">
-                                <fragment content="Welcome to Remomedi mobile application for pharmacy customers">
-                                    <attributes>
-                                        <color key="NSColor" red="0.1764705882352941" green="0.25882352941176467" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <font key="NSFont" size="20" name="Roboto-Medium"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="8" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заощаджуйте час та гроші: " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYM-d8-P9T">
+                            <rect key="frame" x="0.0" y="283.5" width="272" height="22.5"/>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="19"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYp-Da-tsM">
-                            <rect key="frame" x="20" y="523.5" width="374" height="72"/>
-                            <attributedString key="attributedText">
-                                <fragment content="Syötä sähköpostiosoitteesi niin lähetämme sinulle sähköpostin, jossa on koodi salasanan vaihtoa varten.">
-                                    <attributes>
-                                        <color key="NSColor" red="0.41960784313725491" green="0.47843137254901957" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <font key="NSFont" size="16" name="Roboto-Regular"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="8" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Інформація про камери та сплата штрафів  в оному додатку." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYp-Da-tsM">
+                            <rect key="frame" x="0.0" y="334" width="272" height="66.5"/>
+                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="19"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="vYp-Da-tsM" secondAttribute="trailing" constant="20" id="1c6-hw-iIg"/>
-                        <constraint firstItem="hzk-78-ZIn" firstAttribute="trailing" secondItem="qEO-yI-23V" secondAttribute="trailing" constant="90" id="AtY-Zk-CuT"/>
-                        <constraint firstAttribute="trailing" secondItem="TYM-d8-P9T" secondAttribute="trailing" constant="20" id="Dr2-1Q-eWJ"/>
-                        <constraint firstItem="qEO-yI-23V" firstAttribute="centerY" secondItem="6Xf-fD-g3X" secondAttribute="centerY" multiplier="0.6" id="IKt-lK-tQu"/>
-                        <constraint firstItem="TYM-d8-P9T" firstAttribute="top" secondItem="qEO-yI-23V" secondAttribute="bottom" constant="84" id="O2b-Dv-fu5"/>
-                        <constraint firstItem="vYp-Da-tsM" firstAttribute="leading" secondItem="6Xf-fD-g3X" secondAttribute="leading" constant="20" id="Ote-pz-2ps"/>
-                        <constraint firstItem="nRa-zX-dmt" firstAttribute="trailing" secondItem="vYp-Da-tsM" secondAttribute="trailing" constant="20" id="WAz-Q9-jIV"/>
-                        <constraint firstItem="qEO-yI-23V" firstAttribute="centerX" secondItem="6Xf-fD-g3X" secondAttribute="centerX" id="XVi-50-mXH"/>
-                        <constraint firstItem="vYp-Da-tsM" firstAttribute="top" secondItem="TYM-d8-P9T" secondAttribute="bottom" constant="22" id="agl-0Z-pIE"/>
-                        <constraint firstItem="TYM-d8-P9T" firstAttribute="leading" secondItem="hzk-78-ZIn" secondAttribute="leading" constant="20" id="hT1-6G-PFS"/>
-                        <constraint firstItem="qEO-yI-23V" firstAttribute="leading" secondItem="hzk-78-ZIn" secondAttribute="leading" constant="90" id="i8Q-2g-Nal"/>
-                        <constraint firstAttribute="bottom" secondItem="vYp-Da-tsM" secondAttribute="bottom" constant="120" id="xVe-cL-uWx"/>
-                        <constraint firstItem="hzk-78-ZIn" firstAttribute="trailing" secondItem="TYM-d8-P9T" secondAttribute="trailing" constant="20" id="yIW-lO-WKJ"/>
-                    </constraints>
-                    <viewLayoutGuide key="contentLayoutGuide" id="hzk-78-ZIn"/>
-                    <viewLayoutGuide key="frameLayoutGuide" id="nRa-zX-dmt"/>
-                </scrollView>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="3Yb-A8-dgB"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="6Xf-fD-g3X" firstAttribute="top" secondItem="3Yb-A8-dgB" secondAttribute="top" id="3GJ-ww-Rtl"/>
-                <constraint firstItem="6Xf-fD-g3X" firstAttribute="leading" secondItem="3Yb-A8-dgB" secondAttribute="leading" id="5Jq-hx-V16"/>
-                <constraint firstItem="6Xf-fD-g3X" firstAttribute="trailing" secondItem="3Yb-A8-dgB" secondAttribute="trailing" id="JkW-wn-dnV"/>
-                <constraint firstItem="6Xf-fD-g3X" firstAttribute="bottom" secondItem="3Yb-A8-dgB" secondAttribute="bottom" id="sra-GR-Ips"/>
+                <constraint firstItem="3Yb-A8-dgB" firstAttribute="trailing" secondItem="Oab-vV-dqF" secondAttribute="trailing" constant="24" id="38V-Fx-vG1"/>
+                <constraint firstItem="Oab-vV-dqF" firstAttribute="top" secondItem="3Yb-A8-dgB" secondAttribute="top" constant="24" id="CCK-2z-mZ6"/>
+                <constraint firstItem="3Yb-A8-dgB" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Oab-vV-dqF" secondAttribute="bottom" constant="140" id="XYA-xH-n0W"/>
+                <constraint firstItem="qEO-yI-23V" firstAttribute="height" relation="lessThanOrEqual" secondItem="DnI-so-frF" secondAttribute="height" multiplier="0.45" id="bnI-LS-fyy"/>
+                <constraint firstItem="Oab-vV-dqF" firstAttribute="leading" secondItem="3Yb-A8-dgB" secondAttribute="leading" constant="24" id="eLM-Ax-wxL"/>
             </constraints>
             <point key="canvasLocation" x="-88" y="-10"/>
         </view>

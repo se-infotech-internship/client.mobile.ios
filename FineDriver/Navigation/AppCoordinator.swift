@@ -36,11 +36,16 @@ final class AppCoordinator: CoordinatorProtocol {
     }
     
     func start() {
-        let viewController = SplashViewController()
-        let presenter = SplashPresenter(delegate: viewController)
-        viewController.presenter = presenter
-        
-        navigationController?.pushViewController(viewController, animated: true)
+        if !UserDefaults.standard
+            .bool(forKey: Constants.viewedPresentationScreen) {
+            routeToPresentation()
+        }else{
+            let viewController = SplashViewController()
+            let presenter = SplashPresenter(delegate: viewController)
+            viewController.presenter = presenter
+            
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
     //MARK:- Navigate
@@ -62,8 +67,8 @@ final class AppCoordinator: CoordinatorProtocol {
     }
 
     func routeToPresentation() {
-        let presenter: PresentationPresenterProtocol = PresentationPresenter()
         let viewController: PresentationViewController = PresentationViewController()
+        let presenter: PresentationPresenterProtocol = PresentationPresenter(delegate: viewController)
         viewController.presenter = presenter
         navigationController?.setViewControllers([viewController], animated: true)
     }
@@ -127,6 +132,22 @@ final class AppCoordinator: CoordinatorProtocol {
     func routeToFineSetting() {
         let viewController = FineSettingViewController()
         let presenter = FineSettingPresenter(delegate: viewController)
+        viewController.presenter = presenter
+        
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToVehicleList() {
+        let viewController = VehicleListViewController()
+        let presenter = VehicleListPresenter(delegate: viewController)
+        viewController.presenter = presenter
+        
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func routeToNewNewVehicle() {
+        let viewController = NewVehicleViewController()
+        let presenter = NewVehiclePresenter(delegate: viewController)
         viewController.presenter = presenter
         
         navigationController?.pushViewController(viewController, animated: true)

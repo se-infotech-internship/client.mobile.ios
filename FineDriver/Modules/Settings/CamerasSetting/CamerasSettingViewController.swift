@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CamerasSettingViewController: UIViewController {
+final class CamerasSettingViewController: BaseViewController {
 
     private enum localConstants {
         enum TableView {
@@ -57,8 +57,8 @@ final class CamerasSettingViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        customNavigationBar.update(title: "КАМЕРИ")
         customNavigationBar.delegate = self
+        customNavigationBar.update(title: "КАМЕРИ")
     }
 }
 
@@ -101,12 +101,5 @@ extension CamerasSettingViewController: UITableViewDelegate, UITableViewDataSour
 extension CamerasSettingViewController: CamerasSettingViewProtocol {
     func reloadData() {
         tableView.reloadData()
-    }
-}
-
-// MARK: - NavigationBarDelegate method
-extension CamerasSettingViewController: NavigationBarDelegate {
-    func leftAction() {
-        presenter?.routePop()
     }
 }

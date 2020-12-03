@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VehicleListViewController" customModule="FineDriver" customModuleProvider="target">
+            <connections>
+                <outlet property="customNavigationBar" destination="06K-iY-l7K" id="ouQ-o4-nYV"/>
+                <outlet property="tableView" destination="aiW-KZ-W5s" id="wnM-0G-hrq"/>
+                <outlet property="view" destination="zWp-nR-46i" id="KQ9-dU-Y7c"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="zWp-nR-46i">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iVa-JM-jRb">
+                    <rect key="frame" x="0.0" y="108" width="414" height="754"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="90" translatesAutoresizingMaskIntoConstraints="NO" id="PRC-Rj-c44">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="659.5"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="0NT-pm-W80">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="465.5"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_car" translatesAutoresizingMaskIntoConstraints="NO" id="F90-p1-ljO">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="260" id="UE6-tS-2tF"/>
+                                            </constraints>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52F-t6-86u">
+                                            <rect key="frame" x="0.0" y="272" width="414" height="50"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ДОДАЙТЕ ВАШ ТРАНСПОРТНИЙ ЗАСІБ ДЛЯ АВТОМАТИЧНОГО ПОШУКУ ШТРАФІВ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAH-Ki-cea">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="50"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                                    <color key="textColor" red="0.1647058824" green="0.18823529410000001" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="CAH-Ki-cea" secondAttribute="bottom" id="4WZ-Vn-nsx"/>
+                                                <constraint firstItem="CAH-Ki-cea" firstAttribute="leading" secondItem="52F-t6-86u" secondAttribute="leading" constant="20" id="JcW-My-C6h"/>
+                                                <constraint firstAttribute="trailing" secondItem="CAH-Ki-cea" secondAttribute="trailing" constant="20" id="Ld0-6L-Bg4"/>
+                                                <constraint firstItem="CAH-Ki-cea" firstAttribute="top" secondItem="52F-t6-86u" secondAttribute="top" id="R87-Kf-4du"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5v-6E-Xq1">
+                                            <rect key="frame" x="0.0" y="334" width="414" height="131.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idk-Yu-QKc">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="131.5"/>
+                                                    <string key="text">Система автоматично сканує
+ і повідомляє про надходження 
+штрафів у відповідності до кількості 
+доданих транспортних засобів.
+
+Штраф можна сплатити в будь-який 
+момент прямо із додатка.</string>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                                    <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="idk-Yu-QKc" secondAttribute="bottom" id="HDP-Uk-hDa"/>
+                                                <constraint firstAttribute="trailing" secondItem="idk-Yu-QKc" secondAttribute="trailing" constant="20" id="SNS-nB-yFl"/>
+                                                <constraint firstItem="idk-Yu-QKc" firstAttribute="leading" secondItem="L5v-6E-Xq1" secondAttribute="leading" constant="20" id="ctf-03-YZG"/>
+                                                <constraint firstItem="idk-Yu-QKc" firstAttribute="top" secondItem="L5v-6E-Xq1" secondAttribute="top" id="fUP-VJ-FpX"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ed4-l9-In5">
+                                    <rect key="frame" x="0.0" y="555.5" width="414" height="104"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BfK-6p-Jnv">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeH-t0-FaK">
+                                                    <rect key="frame" x="99" y="0.0" width="216" height="48"/>
+                                                    <color key="backgroundColor" red="0.1647058824" green="0.18823529410000001" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="TQp-0O-R8q"/>
+                                                        <constraint firstAttribute="width" constant="216" id="fwN-lh-dov"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="18"/>
+                                                    <state key="normal" title="Додати ТЗ">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="24"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="addAction:" destination="-1" eventType="touchUpInside" id="z0u-Hn-T9G"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="aeH-t0-FaK" firstAttribute="centerX" secondItem="BfK-6p-Jnv" secondAttribute="centerX" id="1wW-Hl-FWC"/>
+                                                <constraint firstAttribute="height" constant="48" id="nj7-IB-pV8"/>
+                                                <constraint firstItem="aeH-t0-FaK" firstAttribute="centerY" secondItem="BfK-6p-Jnv" secondAttribute="centerY" id="oXj-Vw-WiH"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldP-QD-Bvm">
+                                            <rect key="frame" x="0.0" y="76" width="414" height="28"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOl-Ah-Asf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <gestureRecognizers/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content=" ">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="12" name="Times-Roman"/>
+                                                                <real key="NSKern" value="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                                    <tabStops/>
+                                                                </paragraphStyle>
+                                                                <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <real key="NSStrokeWidth" value="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="Зареєструйтесь, ">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.55294117647058827" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="14" name="Roboto-Regular"/>
+                                                                <real key="NSKern" value="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                                    <tabStops/>
+                                                                </paragraphStyle>
+                                                                <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <real key="NSStrokeWidth" value="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="щоб зберегти платіжну історію">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="14" name="Roboto-Regular"/>
+                                                                <real key="NSKern" value="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                                    <tabStops/>
+                                                                </paragraphStyle>
+                                                                <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="5as-bq-ovq" appends="YES" id="Td6-NJ-Rya"/>
+                                                    </connections>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="KOl-Ah-Asf" secondAttribute="trailing" id="XhC-Fs-cYu"/>
+                                                <constraint firstItem="KOl-Ah-Asf" firstAttribute="leading" secondItem="ldP-QD-Bvm" secondAttribute="leading" id="clQ-Qq-cXe"/>
+                                                <constraint firstAttribute="bottom" secondItem="KOl-Ah-Asf" secondAttribute="bottom" id="mPB-Z0-VGM"/>
+                                                <constraint firstAttribute="height" constant="28" id="n4q-hk-FEO"/>
+                                                <constraint firstItem="KOl-Ah-Asf" firstAttribute="top" secondItem="ldP-QD-Bvm" secondAttribute="top" id="zme-zP-71J"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="PRC-Rj-c44" firstAttribute="top" secondItem="iVa-JM-jRb" secondAttribute="top" id="GVz-0g-qHw"/>
+                        <constraint firstAttribute="trailing" secondItem="PRC-Rj-c44" secondAttribute="trailing" id="OyJ-sj-57T"/>
+                        <constraint firstItem="PRC-Rj-c44" firstAttribute="leading" secondItem="pAm-2j-fnO" secondAttribute="leading" id="Q2A-Ly-pIP"/>
+                        <constraint firstItem="pAm-2j-fnO" firstAttribute="trailing" secondItem="PRC-Rj-c44" secondAttribute="trailing" id="ckW-bF-q7i"/>
+                        <constraint firstAttribute="bottom" secondItem="PRC-Rj-c44" secondAttribute="bottom" constant="20" id="eI6-tQ-Rno"/>
+                        <constraint firstItem="F6X-AH-3tI" firstAttribute="bottom" secondItem="PRC-Rj-c44" secondAttribute="bottom" constant="20" id="fVe-4b-d9p"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="F6X-AH-3tI"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="pAm-2j-fnO"/>
+                </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6T5-bb-3nB">
+                    <rect key="frame" x="0.0" y="108" width="414" height="754"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aiW-KZ-W5s">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.3005672089041096" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </tableView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhP-z4-Z2w">
+                            <rect key="frame" x="0.0" y="630" width="414" height="124"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="mGb-aC-unu">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jap-ge-NXe">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69n-ZR-O3a">
+                                                    <rect key="frame" x="99" y="0.0" width="216" height="48"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="cXs-hy-Xuj"/>
+                                                        <constraint firstAttribute="width" constant="216" id="pkU-gB-UJ9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="18"/>
+                                                    <state key="normal" title="Додати ТЗ">
+                                                        <color key="titleColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="24"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="addAction:" destination="-1" eventType="touchUpInside" id="GbN-Zf-iPc"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="N8q-kt-EQb"/>
+                                                <constraint firstItem="69n-ZR-O3a" firstAttribute="centerY" secondItem="jap-ge-NXe" secondAttribute="centerY" id="ecp-3C-Rgo"/>
+                                                <constraint firstItem="69n-ZR-O3a" firstAttribute="centerX" secondItem="jap-ge-NXe" secondAttribute="centerX" id="saE-hS-rHG"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqK-5G-pNd">
+                                            <rect key="frame" x="0.0" y="76" width="414" height="28"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeB-p4-dD6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <gestureRecognizers/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content=" ">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="12" name="Times-Roman"/>
+                                                                <real key="NSKern" value="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                                    <tabStops/>
+                                                                </paragraphStyle>
+                                                                <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <real key="NSStrokeWidth" value="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="Зареєструйтесь, ">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.55294117647058827" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="14" name="Roboto-Regular"/>
+                                                                <real key="NSKern" value="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                                    <tabStops/>
+                                                                </paragraphStyle>
+                                                                <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <real key="NSStrokeWidth" value="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="щоб зберегти платіжну історію">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="14" name="Roboto-Regular"/>
+                                                                <real key="NSKern" value="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                                                    <tabStops/>
+                                                                </paragraphStyle>
+                                                                <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstItem="ZeB-p4-dD6" firstAttribute="top" secondItem="nqK-5G-pNd" secondAttribute="top" id="5w3-In-ZIT"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZeB-p4-dD6" secondAttribute="trailing" id="E1C-Qn-Mvy"/>
+                                                <constraint firstAttribute="height" constant="28" id="Ftd-hJ-EFj"/>
+                                                <constraint firstItem="ZeB-p4-dD6" firstAttribute="leading" secondItem="nqK-5G-pNd" secondAttribute="leading" id="ITh-77-j7O"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZeB-p4-dD6" secondAttribute="bottom" id="cLV-TA-jUG"/>
+                                            </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="mEZ-OO-AiL" appends="YES" id="y6Q-9K-rPc"/>
+                                            </connections>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="mGb-aC-unu" secondAttribute="trailing" id="JrE-6g-gyq"/>
+                                <constraint firstAttribute="height" constant="124" id="Mcm-xB-iVo"/>
+                                <constraint firstItem="mGb-aC-unu" firstAttribute="leading" secondItem="PhP-z4-Z2w" secondAttribute="leading" id="PZc-xV-5Yk"/>
+                                <constraint firstAttribute="bottom" secondItem="mGb-aC-unu" secondAttribute="bottom" constant="20" id="pIs-Bp-mOM"/>
+                                <constraint firstItem="mGb-aC-unu" firstAttribute="top" secondItem="PhP-z4-Z2w" secondAttribute="top" id="zBa-Uu-Mir"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="PhP-z4-Z2w" secondAttribute="trailing" id="1OI-mQ-Sc1"/>
+                        <constraint firstItem="PhP-z4-Z2w" firstAttribute="top" secondItem="aiW-KZ-W5s" secondAttribute="bottom" id="CKU-4i-XNZ"/>
+                        <constraint firstItem="PhP-z4-Z2w" firstAttribute="leading" secondItem="6T5-bb-3nB" secondAttribute="leading" id="aBn-GX-y9C"/>
+                        <constraint firstAttribute="bottom" secondItem="PhP-z4-Z2w" secondAttribute="bottom" id="dFQ-ZT-FLR"/>
+                        <constraint firstItem="aiW-KZ-W5s" firstAttribute="leading" secondItem="6T5-bb-3nB" secondAttribute="leading" id="rVs-Ou-nGz"/>
+                        <constraint firstItem="aiW-KZ-W5s" firstAttribute="top" secondItem="6T5-bb-3nB" secondAttribute="top" id="y2p-1d-UQb"/>
+                        <constraint firstAttribute="trailing" secondItem="aiW-KZ-W5s" secondAttribute="trailing" id="zhN-Mg-fmJ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="06K-iY-l7K" customClass="NavigationBar" customModule="FineDriver" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="64"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="cP3-lh-fXa"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Cc4-fV-Dfz"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Cc4-fV-Dfz" firstAttribute="bottom" secondItem="iVa-JM-jRb" secondAttribute="bottom" id="1F0-oV-xpJ"/>
+                <constraint firstItem="iVa-JM-jRb" firstAttribute="top" secondItem="06K-iY-l7K" secondAttribute="bottom" id="33e-kb-gjN"/>
+                <constraint firstItem="06K-iY-l7K" firstAttribute="trailing" secondItem="Cc4-fV-Dfz" secondAttribute="trailing" id="BE7-77-H2W"/>
+                <constraint firstItem="Cc4-fV-Dfz" firstAttribute="trailing" secondItem="6T5-bb-3nB" secondAttribute="trailing" id="GQU-3j-lOG"/>
+                <constraint firstItem="6T5-bb-3nB" firstAttribute="leading" secondItem="Cc4-fV-Dfz" secondAttribute="leading" id="MTm-S8-Hpt"/>
+                <constraint firstItem="iVa-JM-jRb" firstAttribute="leading" secondItem="Cc4-fV-Dfz" secondAttribute="leading" id="QGq-Ba-sUJ"/>
+                <constraint firstItem="Cc4-fV-Dfz" firstAttribute="bottom" secondItem="6T5-bb-3nB" secondAttribute="bottom" id="X5p-ux-R30"/>
+                <constraint firstItem="06K-iY-l7K" firstAttribute="top" secondItem="Cc4-fV-Dfz" secondAttribute="top" id="g6Y-VJ-0db"/>
+                <constraint firstItem="6T5-bb-3nB" firstAttribute="top" secondItem="06K-iY-l7K" secondAttribute="bottom" id="pLn-F2-nes"/>
+                <constraint firstItem="Cc4-fV-Dfz" firstAttribute="trailing" secondItem="iVa-JM-jRb" secondAttribute="trailing" id="sCJ-0P-U7S"/>
+                <constraint firstItem="06K-iY-l7K" firstAttribute="leading" secondItem="Cc4-fV-Dfz" secondAttribute="leading" id="w0T-RR-GH3"/>
+            </constraints>
+            <point key="canvasLocation" x="140.57971014492756" y="109.82142857142857"/>
+        </view>
+        <tapGestureRecognizer id="5as-bq-ovq">
+            <connections>
+                <action selector="registerAction:" destination="-1" id="CdJ-uX-tLh"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="mEZ-OO-AiL">
+            <connections>
+                <action selector="registerAction:" destination="-1" id="5C9-nZ-jVz"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="img_car" width="375" height="397"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

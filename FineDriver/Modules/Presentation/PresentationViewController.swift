@@ -12,7 +12,12 @@ final class PresentationViewController: BaseViewController {
 
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var skipButton: UIButton!
+    @IBOutlet weak var gradientView: UIView!
+    
+    fileprivate var statusBarStyle = UIStatusBarStyle.lightContent {
+        didSet { setNeedsStatusBarAppearanceUpdate() }
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
 
     var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     
@@ -21,7 +26,6 @@ final class PresentationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       bindUI()
        configureUI()
     }
     
@@ -35,71 +39,92 @@ final class PresentationViewController: BaseViewController {
         pageViewController.delegate = self
         pageViewController.dataSource = self
         
-        nextButton.setTitle("Seuraava", for: .normal)
-    }
-    
-    fileprivate func bindUI() {
-//        viewModel?.viewControllers
-//            .skip(1)
-//            .asObservable()
-//            .subscribe(onNext: { [weak self] (viewControllers) in
-//                self?.configurePageView(viewControllers: viewControllers)
-//            })
-//            .disposed(by: disposeBag)
+        nextButton.layer.borderWidth = 1.0
+        nextButton.layer.borderColor = UIColor.white.cgColor
         
-//        nextButton.rx.tap
-//            .asObservable()
-//            .subscribe(onNext: {[weak self] (void) in
-//                self?.scrollToNextViewController()
-//            })
-//            .disposed(by: disposeBag)
-//
-//        skipButton.rx.tap
-//           .asObservable()
-//           .subscribe(onNext: {[weak self] (void) in
-//                self?.skipAction()
-//           })
-//           .disposed(by: disposeBag)
+        addGradient()
     }
     
-    fileprivate func scrollToNextViewController() {
+    fileprivate func addGradient() {
+        DispatchQueue.main.async {
+            self.gradientView.layer.compositingFilter = "multiplyBlendMode"
+
+            let shadows = UIView()
+            shadows.frame = self.gradientView.bounds
+            shadows.clipsToBounds = false
+            self.gradientView.addSubview(shadows)
+
+            let shadowPath0 = UIBezierPath(roundedRect: shadows.bounds, cornerRadius: 0)
+            let layer0 = CALayer()
+            layer0.shadowPath = shadowPath0.cgPath
+            layer0.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            layer0.shadowOpacity = 1
+            layer0.shadowRadius = 4
+            layer0.shadowOffset = CGSize(width: 0, height: 4)
+            layer0.bounds = shadows.bounds
+            layer0.position = shadows.center
+            shadows.layer.addSublayer(layer0)
+
+            let shapes = UIView()
+            shapes.frame = self.gradientView.bounds
+            shapes.clipsToBounds = true
+            self.gradientView.addSubview(shapes)
+
+            let layer1 = CALayer()
+            layer1.backgroundColor = UIColor(red: 0.13, green: 0.146, blue: 0.171, alpha: 1).cgColor
+            layer1.bounds = shapes.bounds
+            layer1.position = shapes.center
+            shapes.layer.addSublayer(layer1)
+
+            let layer2 = CAGradientLayer()
+            layer2.colors = [
+              UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor,
+              UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor
+            ]
+            layer2.locations = [0, 1]
+            layer2.startPoint = CGPoint(x: 0.25, y: 0.5)
+            layer2.endPoint = CGPoint(x: 0.75, y: 0.5)
+            layer2.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0, b: 1, c: -1, d: 0, tx: 1, ty: 0))
+            layer2.bounds = shapes.bounds.insetBy(dx: -0.5*shapes.bounds.size.width, dy: -0.5*shapes.bounds.size.height)
+            layer2.position = shapes.center
+            shapes.layer.addSublayer(layer2)
+        }
+    }
+        
+    @IBAction fileprivate func scrollToNextViewController(_ sender: Any? = nil) {
         if let visibleViewController = pageViewController.viewControllers?.first,
             let nextViewController = pageViewController(pageViewController, viewControllerAfter: visibleViewController) {
             pageViewController.setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
             if let viewControllerIndex = presenter.viewControllers.firstIndex(of: nextViewController) {
                 pageControl.currentPage = viewControllerIndex
-                setButtonTitle(index: viewControllerIndex)
             }
         }else{
             skipAction()
         }
     }
     
-    fileprivate func setButtonTitle(index: Int) {
-        if let presenter = presenter,
-            index == presenter.viewControllers.count - 1 {
-            nextButton.setTitle("Viedä loppuun", for: .normal)
-        }else{
-            nextButton.setTitle("Seuraava", for: .normal)
-        }
-    }
-    
-    fileprivate func skipAction() {
+    @IBAction fileprivate func skipAction(_ sender: Any? = nil) {
         presenter.skip()
     }
-    
-    fileprivate func configurePageView(viewControllers: [UIViewController]) {
+
+}
+
+//MARK:- PresentationViewProtocol
+
+extension PresentationViewController: PresentationViewProtocol {
+    func configurePageView() {
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         
-        pageViewController.setViewControllers([viewControllers[0]], direction: .forward, animated: true, completion: nil)
+        pageViewController.setViewControllers([presenter.viewControllers[0]],
+                                              direction: .forward,
+                                              animated: true,
+                                              completion: nil)
         pageViewController.didMove(toParent: self)
         
         view.bringSubviewToFront(pageControl)
         view.bringSubviewToFront(nextButton)
-        view.bringSubviewToFront(skipButton)
     }
-
 }
 
 //MARK:- UIPageViewControllerDataSource, UIPageViewControllerDelegate
@@ -157,7 +182,6 @@ extension PresentationViewController: UIPageViewControllerDataSource, UIPageView
 
         if let viewControllerIndex = presenter.viewControllers.firstIndex(of: pageViewController.viewControllers!.first!) {
             pageControl.currentPage = viewControllerIndex
-            setButtonTitle(index: viewControllerIndex)
         }
     }
     
